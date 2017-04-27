@@ -1,0 +1,34 @@
+#ant specific
+dist/
+dist/*
+build/
+build/*
+
+AttendanceDatabase.cfg
+
+#netbeans specific
+core
+nbproject/*
+!nbproject/project.properties
+!nbproject/project.xml
+!nbproject/jfx-impl.xml
+
+#java specific
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+#general swap/backup files
+*.so
+*.log
+*.out
+*~
+*.swp
+*.DS_Store
+*.lock
