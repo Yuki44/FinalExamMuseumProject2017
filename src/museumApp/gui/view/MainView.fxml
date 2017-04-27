@@ -109,60 +109,101 @@
             <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints fillHeight="false" minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <VBox alignment="CENTER" cache="true" depthTest="DISABLE" opacity="0.61" spacing="20.0" styleClass="opacityChanger">
+            <GridPane>
+               <columnConstraints>
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints fillHeight="false" minHeight="10.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="NEVER" />
+               </rowConstraints>
                <children>
-                  <ImageView fitHeight="168.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true" styleClass="flagsRounded">
-                     <image>
-                        <Image url="@../img/Denmark%20Flag.png" />
-                     </image>
-                  </ImageView>
-                  <Label styleClass="textChanger" text="Dansk" textFill="WHITE">
+                  <VBox alignment="CENTER" cache="true" depthTest="DISABLE" opacity="0.61" spacing="20.0" styleClass="opacityChanger">
+                     <children>
+                        <ImageView fitHeight="168.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true" styleClass="flagsRounded">
+                           <image>
+                              <Image url="@../img/Denmark%20Flag.png" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="textChanger" text="Dansk" textFill="WHITE">
+                           <font>
+                              <Font name="Balthazar Regular" size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </VBox>
+                  <JFXButton buttonType="RAISED" ripplerFill="#77a859" text="Manager Login" GridPane.rowIndex="1">
                      <font>
-                        <Font name="Balthazar Regular" size="30.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
-                  </Label>
+                     <GridPane.margin>
+                        <Insets left="-20.0" />
+                     </GridPane.margin>
+                  </JFXButton>
                </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </VBox>
-            <VBox alignment="CENTER" opacity="0.61" spacing="20.0" styleClass="opacityChanger" GridPane.columnIndex="1">
+            </GridPane>
+            <GridPane GridPane.columnIndex="1">
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints fillHeight="false" minHeight="10.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="NEVER" />
+               </rowConstraints>
                <children>
-                  <ImageView fitHeight="173.0" fitWidth="258.0" pickOnBounds="true" preserveRatio="true" styleClass="flagsRounded">
-                     <image>
-                        <Image url="@../img/greatBritain%20Flag.png" />
-                     </image>
-                  </ImageView>
-                  <Label styleClass="textChanger" stylesheets="@../css/css.css" text="English" textFill="WHITE">
-                     <font>
-                        <Font name="Balthazar Regular" size="30.0" />
-                     </font>
-                  </Label>
+                  <VBox alignment="CENTER" opacity="0.61" spacing="20.0" styleClass="opacityChanger">
+                     <children>
+                        <ImageView fitHeight="173.0" fitWidth="258.0" pickOnBounds="true" preserveRatio="true" styleClass="flagsRounded">
+                           <image>
+                              <Image url="@../img/greatBritain%20Flag.png" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="textChanger" stylesheets="@../css/css.css" text="English" textFill="WHITE">
+                           <font>
+                              <Font name="Balthazar Regular" size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </VBox>
                </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </VBox>
-            <VBox alignment="CENTER" cache="true" opacity="0.61" spacing="20.0" styleClass="opacityChanger" GridPane.columnIndex="2">
+            </GridPane>
+            <GridPane GridPane.columnIndex="2">
+               <columnConstraints>
+                  <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints fillHeight="false" minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="NEVER" />
+               </rowConstraints>
                <children>
-                  <ImageView fitHeight="194.0" fitWidth="258.0" pickOnBounds="true" preserveRatio="true" styleClass="flagsRounded">
-                     <image>
-                        <Image url="@../img/Germany%20Flag.png" />
-                     </image>
-                  </ImageView>
-                  <Label styleClass="textChanger" text="Deutsch" textFill="WHITE">
-                     <font>
-                        <Font name="Balthazar Regular" size="30.0" />
-                     </font>
-                  </Label>
+                  <VBox alignment="CENTER" cache="true" opacity="0.61" spacing="20.0" styleClass="opacityChanger">
+                     <children>
+                        <ImageView fitHeight="194.0" fitWidth="258.0" pickOnBounds="true" preserveRatio="true" styleClass="flagsRounded">
+                           <image>
+                              <Image url="@../img/Germany%20Flag.png" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="textChanger" text="Deutsch" textFill="WHITE">
+                           <font>
+                              <Font name="Balthazar Regular" size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </VBox>
                </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </VBox>
+            </GridPane>
          </children>
       </GridPane>
    </center>

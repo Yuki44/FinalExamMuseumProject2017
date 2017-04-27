@@ -1,0 +1,19 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.loginButton
+{
+    -fx-font-family: 'Roboto Medium';
+    -fx-font-size: 27px;
+    -fx-border-color: #8a8c8e;
+}
+
+.loginButton:hover
+{
+-fx-scale-x: 1.1;
+-fx-scale-y: 1.1;
+-fx-effect: dropshadow(three-pass-box , #ededed, 10, 0.0 , 5,5);
+}
