@@ -5,6 +5,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -70,19 +71,25 @@
                 </Label>
                 <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/RegistryViewCss.css" GridPane.rowIndex="2">
                     <children>
-                        <ImageView fx:id="btnBack" fitHeight="90.0" fitWidth="110.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" styleClass="arrowOpacityChanger">
+                        <ImageView fx:id="btnBack" fitHeight="90.0" fitWidth="170.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" styleClass="buttonBackHovered">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
                             </cursor>
+                     <image>
+                        <Image url="@../img/arrowBack2.png" />
+                     </image>
                         </ImageView>
                     </children>
                 </VBox>
                 <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/RegistryViewCss.css" GridPane.columnIndex="2" GridPane.rowIndex="2">
                     <children>
-                        <ImageView fx:id="btnNext" fitHeight="90.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" styleClass="arrowOpacityChanger">
+                        <ImageView fx:id="btnNext" fitHeight="90.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" styleClass="buttonNextHovered">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
                             </cursor>
+                     <image>
+                        <Image url="@../img/arrowNext2.png" />
+                     </image>
                         </ImageView>
                     </children>
                 </VBox>

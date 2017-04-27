@@ -23,9 +23,3 @@ and open the template in the editor.
     -fx-font-size: 15px;
     -fx-text-fill: white;
 }
-
-.arrowOpacityChanger:hover
-{
-    -fx-opacity: 1.0;
-    -fx-effect: dropshadow(three-pass-box , #808080, 10, 0.0 , 8,10);
-}
