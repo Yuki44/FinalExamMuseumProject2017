@@ -1,51 +1,38 @@
 /*
- * Erhvervsakademi Sydvest, Computer Science 2016-2017, Carlos F. Ognissanti
- * To change this header, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package museumApp.gui.controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author Yuki
+ * @author Peder
  */
-public class ManagerLoginViewController extends Controller implements Initializable
+public class VolunteerRegisterHoursViewController extends Controller implements Initializable
   {
 
     @FXML
     private BorderPane borderPane;
-    @FXML
-    private GridPane mainGridPane;
-    @FXML
-    private JFXTextField textFieldUserName;
-    @FXML
-    private JFXPasswordField passwordFieldPassword;
-    @FXML
-    private JFXButton loginButton;
-    @FXML
-    private Label wrongLoginLabel;
 
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -54,14 +41,14 @@ public class ManagerLoginViewController extends Controller implements Initializa
       }
 
     @FXML
-    private void handleLogin(ActionEvent event)
+    private void goBackToGuildSelection(MouseEvent event)
       {
         try
         {
             Stage stage;
             Parent root;
             stage = (Stage) borderPane.getScene().getWindow();
-            URL location = this.getClass().getResource("/museumApp/gui/view/ManagementRegisterVolunteer.fxml");
+            URL location = this.getClass().getResource("/museumApp/gui/view/ChooseVolunteerGuildView.fxml");
             System.out.println(location.getPath());
             FXMLLoader loader = new FXMLLoader(location);
             root = loader.load();
@@ -78,13 +65,27 @@ public class ManagerLoginViewController extends Controller implements Initializa
       }
 
     @FXML
-    private void handleGoToPassword(KeyEvent event)
+    private void goToFinalView(MouseEvent event)
       {
-      }
-
-    @FXML
-    private void handleGoToLogin(KeyEvent event)
-      {
+        try
+        {
+            Stage stage;
+            Parent root;
+            stage = (Stage) borderPane.getScene().getWindow();
+            URL location = this.getClass().getResource("/museumApp/gui/view/LessThanStandardHours.fxml");
+            System.out.println(location.getPath());
+            FXMLLoader loader = new FXMLLoader(location);
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.hide();
+            stage.setScene(scene);
+            stage.show();
+            stage.centerOnScreen();
+        }
+        catch (IOException ex)
+        {
+            System.err.println(ex);
+        }
       }
 
   }

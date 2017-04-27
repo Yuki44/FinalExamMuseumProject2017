@@ -52,10 +52,10 @@ public class SplashFXMLController implements Initializable
             try
             {
                 /**
-                 * We are telling the thread to sleep for 5 SECONDS before we
+                 * We are telling the thread to sleep for 6 SECONDS before we
                  * show the MainView.
                  */
-                Thread.sleep(5000);
+                Thread.sleep(6850);
                 /** ------------------------------------------------------------------------------------------ */
                 Platform.runLater(new Runnable()
                   {
@@ -65,7 +65,7 @@ public class SplashFXMLController implements Initializable
                         /**
                          * Now after waiting those 5 Seconds we run the main view.
                          */
-                        URL location = this.getClass().getResource("/museumApp/gui/view/MainView.fxml");
+                        URL location = this.getClass().getResource("/museumApp/gui/view/LanguageSelectionView.fxml");
                         System.out.println(location.getPath());
                         FXMLLoader loader = new FXMLLoader(location);
                         Parent root = null;

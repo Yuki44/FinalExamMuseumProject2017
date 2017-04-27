@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="878.0" styleClass="programBorder" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.MainViewController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="878.0" styleClass="programBorder" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.LanguageSelectionViewController">
    <top>
       <GridPane fx:id="mainGridPane" alignment="TOP_CENTER" onMouseDragged="#getXYForMouseDrag" onMousePressed="#getXYClickLocation" BorderPane.alignment="TOP_CENTER">
          <columnConstraints>
@@ -121,7 +121,7 @@
                   <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="NEVER" />
                </rowConstraints>
                <children>
-                  <VBox alignment="CENTER" cache="true" depthTest="DISABLE" opacity="0.61" spacing="20.0" styleClass="opacityChanger">
+                  <VBox alignment="CENTER" cache="true" depthTest="DISABLE" onMouseClicked="#goToDanishView" opacity="0.61" spacing="20.0" styleClass="opacityChanger">
                      <children>
                         <ImageView fitHeight="168.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true" styleClass="flagsRounded">
                            <image>
@@ -138,7 +138,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </VBox>
-                  <JFXButton buttonType="RAISED" ripplerFill="#77a859" text="Manager Login" GridPane.rowIndex="1">
+                  <JFXButton buttonType="RAISED" onAction="#goToManagerLogin" ripplerFill="#77a859" text="Manager Login" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -157,7 +157,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="NEVER" />
                </rowConstraints>
                <children>
-                  <VBox alignment="CENTER" opacity="0.61" spacing="20.0" styleClass="opacityChanger">
+                  <VBox alignment="CENTER" onMouseClicked="#goToEnglishView" opacity="0.61" spacing="20.0" styleClass="opacityChanger">
                      <children>
                         <ImageView fitHeight="173.0" fitWidth="258.0" pickOnBounds="true" preserveRatio="true" styleClass="flagsRounded">
                            <image>
@@ -185,7 +185,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="NEVER" />
                </rowConstraints>
                <children>
-                  <VBox alignment="CENTER" cache="true" opacity="0.61" spacing="20.0" styleClass="opacityChanger">
+                  <VBox alignment="CENTER" cache="true" onMouseClicked="#goToGermanView" opacity="0.61" spacing="20.0" styleClass="opacityChanger">
                      <children>
                         <ImageView fitHeight="194.0" fitWidth="258.0" pickOnBounds="true" preserveRatio="true" styleClass="flagsRounded">
                            <image>

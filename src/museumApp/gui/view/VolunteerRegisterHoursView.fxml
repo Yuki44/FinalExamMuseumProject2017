@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.RegistryViewController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.VolunteerRegisterHoursViewController">
     <center>
         <GridPane styleClass="programBorder" stylesheets="@../css/css.css" BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -71,25 +71,31 @@
                 </Label>
                 <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/RegistryViewCss.css" GridPane.rowIndex="2">
                     <children>
-                        <ImageView fx:id="btnBack" fitHeight="90.0" fitWidth="170.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" styleClass="buttonBackHovered">
+                        <ImageView fitHeight="90.0" fitWidth="170.0" nodeOrientation="INHERIT" onMouseClicked="#goBackToGuildSelection" pickOnBounds="true" preserveRatio="true" styleClass="buttonBackHovered">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                      <image>
                         <Image url="@../img/arrowBack2.png" />
                      </image>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="20.0" />
+                     </VBox.margin>
                         </ImageView>
                     </children>
                 </VBox>
                 <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/RegistryViewCss.css" GridPane.columnIndex="2" GridPane.rowIndex="2">
                     <children>
-                        <ImageView fx:id="btnNext" fitHeight="90.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" styleClass="buttonNextHovered">
+                        <ImageView fitHeight="90.0" fitWidth="170.0" onMouseClicked="#goToFinalView" pickOnBounds="true" preserveRatio="true" styleClass="buttonNextHovered">
                             <cursor>
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                      <image>
                         <Image url="@../img/arrowNext2.png" />
                      </image>
+                     <VBox.margin>
+                        <Insets bottom="10.0" right="20.0" />
+                     </VBox.margin>
                         </ImageView>
                     </children>
                 </VBox>

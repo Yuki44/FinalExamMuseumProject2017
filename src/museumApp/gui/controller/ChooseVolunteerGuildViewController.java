@@ -5,20 +5,16 @@
  */
 package museumApp.gui.controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXListView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -28,7 +24,7 @@ import javafx.stage.Stage;
  *
  * @author Yuki
  */
-public class ManagerLoginViewController extends Controller implements Initializable
+public class ChooseVolunteerGuildViewController extends Controller implements Initializable
   {
 
     @FXML
@@ -36,13 +32,9 @@ public class ManagerLoginViewController extends Controller implements Initializa
     @FXML
     private GridPane mainGridPane;
     @FXML
-    private JFXTextField textFieldUserName;
+    private JFXListView<?> guildListView;
     @FXML
-    private JFXPasswordField passwordFieldPassword;
-    @FXML
-    private JFXButton loginButton;
-    @FXML
-    private Label wrongLoginLabel;
+    private JFXListView<?> volunterListView;
 
     /**
      * Initializes the controller class.
@@ -54,14 +46,14 @@ public class ManagerLoginViewController extends Controller implements Initializa
       }
 
     @FXML
-    private void handleLogin(ActionEvent event)
+    private void goToRegisterHoursView(MouseEvent event)
       {
         try
         {
             Stage stage;
             Parent root;
             stage = (Stage) borderPane.getScene().getWindow();
-            URL location = this.getClass().getResource("/museumApp/gui/view/ManagementRegisterVolunteer.fxml");
+            URL location = this.getClass().getResource("/museumApp/gui/view/VolunteerRegisterHoursView.fxml");
             System.out.println(location.getPath());
             FXMLLoader loader = new FXMLLoader(location);
             root = loader.load();
@@ -78,13 +70,27 @@ public class ManagerLoginViewController extends Controller implements Initializa
       }
 
     @FXML
-    private void handleGoToPassword(KeyEvent event)
+    private void goToLanguageSelection(MouseEvent event)
       {
-      }
-
-    @FXML
-    private void handleGoToLogin(KeyEvent event)
-      {
+        try
+        {
+            Stage stage;
+            Parent root;
+            stage = (Stage) borderPane.getScene().getWindow();
+            URL location = this.getClass().getResource("/museumApp/gui/view/LanguageSelectionView.fxml");
+            System.out.println(location.getPath());
+            FXMLLoader loader = new FXMLLoader(location);
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.hide();
+            stage.setScene(scene);
+            stage.show();
+            stage.centerOnScreen();
+        }
+        catch (IOException ex)
+        {
+            System.err.println(ex);
+        }
       }
 
   }
