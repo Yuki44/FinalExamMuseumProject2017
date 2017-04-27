@@ -1,0 +1,23 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.titleLabel
+{
+    -fx-font-family: 'Arial Black';
+    -fx-font-size: 40px;
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+}
+
+.labelMessage
+{
+    -fx-font-family: 'Arial Black';
+    -fx-font-size: 20px;
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+}

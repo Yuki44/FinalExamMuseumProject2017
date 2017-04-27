@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.RegistryViewController">
+    <center>
+        <GridPane styleClass="programBorder" stylesheets="@../css/css.css" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="121.0" prefWidth="54.0" GridPane.columnIndex="2">
+                    <children>
+                        <JFXButton buttonType="RAISED" text="x">
+                            <font>
+                                <Font name="Arial Black" size="16.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" text="[]">
+                            <font>
+                                <Font name="Arial Black" size="16.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton text="-">
+                            <font>
+                                <Font size="19.0" />
+                            </font>
+                        </JFXButton>
+                    </children>
+                </HBox>
+                <JFXTextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="807.0" styleClass="textField" stylesheets="@../css/RegistryViewCss.css" unFocusColor="#4b4b4b" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets bottom="130.0" />
+                    </GridPane.margin>
+                    <font>
+                        <Font name="Arial Black" size="15.0" />
+                    </font>
+                </JFXTextField>
+                <Label ellipsisString="" prefHeight="193.0" prefWidth="293.0" text="How many hours did you spent today?" textFill="WHITE" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="245.0" styleClass="labelLeft" stylesheets="@../css/RegistryViewCss.css" text="Volunteer Name" GridPane.columnIndex="1">
+                    <GridPane.margin>
+                        <Insets left="100.0" />
+                    </GridPane.margin>
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <VBox alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/RegistryViewCss.css" GridPane.rowIndex="2">
+                    <children>
+                        <ImageView fx:id="btnBack" fitHeight="90.0" fitWidth="110.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" styleClass="arrowOpacityChanger">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </ImageView>
+                    </children>
+                </VBox>
+                <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0" stylesheets="@../css/RegistryViewCss.css" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                    <children>
+                        <ImageView fx:id="btnNext" fitHeight="90.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" styleClass="arrowOpacityChanger">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </ImageView>
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <ImageView fitHeight="159.0" fitWidth="241.0" pickOnBounds="true" preserveRatio="true" />
+                    </children>
+                </VBox>
+                <ImageView fitHeight="50.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                    <GridPane.margin>
+                        <Insets right="165.0" />
+                    </GridPane.margin>
+                </ImageView>
+                <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                    <children>
+                        <Label prefHeight="45.0" prefWidth="127.0" styleClass="labelLeft" stylesheets="@../css/RegistryViewCss.css" text="Member since:" textFill="WHITE" textOverrun="CLIP" />
+                        <Label layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="63.0" styleClass="labelLeft" stylesheets="@../css/RegistryViewCss.css" text="Laug:" textFill="WHITE" textOverrun="CLIP" />
+                        <Label layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="86.0" styleClass="labelLeft" stylesheets="@../css/RegistryViewCss.css" text="Location:" textFill="WHITE" textOverrun="CLIP" />
+                    </children>
+                </VBox>
+            </children>
+        </GridPane>
+    </center>
+</BorderPane>

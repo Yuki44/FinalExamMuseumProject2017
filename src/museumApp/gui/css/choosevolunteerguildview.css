@@ -1,0 +1,26 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.programBorder
+{
+    -fx-border-color: #8a8c8e;
+    -fx-border-width: 2px;
+    /*The background photo*/
+    -fx-background-image: url("../img/vikingPanoramaImage2.jpg");
+    -fx-background-size: stretch;
+    -fx-background-repeat: stretch; 
+    -fx-background-position: center center;
+}
+
+.buttonBackHovered:hover
+{
+    -fx-effect: dropshadow(three-pass-box , #cccdd0, 20, 0.0 , 5,10);
+    -fx-translate-x: -10;
+}
+
+.buttonNextHovered:hover
+{
+    -fx-effect: dropshadow(three-pass-box , #cccdd0, 20, 0.0 , 5,10);
+    -fx-translate-x: 10;
+}

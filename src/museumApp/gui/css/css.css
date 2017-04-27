@@ -1,0 +1,37 @@
+/**
+*We need to import some fonts from Google Fonts to our program 
+*so we can use those fonts in our views later on.
+*/
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Arvo');
+
+.programBorder
+{
+    -fx-border-color: #8a8c8e;
+    -fx-border-width: 2px;
+    /*The background photo*/
+    -fx-background-image: url("../img/vikingPanoramaImage2.jpg");
+    -fx-background-size: stretch;
+    -fx-background-repeat: stretch; 
+    -fx-background-position: center center;
+}
+
+.onlyTheBorder
+{
+    -fx-border-color: #8a8c8e;
+    -fx-border-width: 2px;
+}
+/**Here we change the opacity of the flags whe we Hover over them and we create
+*a white shadow underneath.
+*/
+.opacityChanger:hover
+{
+    -fx-opacity: 1.0;
+    -fx-effect: dropshadow(three-pass-box , #cccdd0, 10, 0.0 , 8,10);
+}
+
+/*One of the imported fonts are being used to change the writing under the language flags*/
+.textChanger 
+{
+    -fx-font-family: 'Arvo'; 
+}
