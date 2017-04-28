@@ -48,7 +48,7 @@
                         </JFXButton>
                     </children>
                 </HBox>
-                <JFXTextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="807.0" styleClass="textField" stylesheets="@../css/RegistryViewCss.css" unFocusColor="#4b4b4b" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <JFXTextField fx:id="setHoursLabel" alignment="BOTTOM_CENTER" focusColor="#9e530d" labelFloat="true" prefHeight="25.0" prefWidth="807.0" promptText="Set Hours..." styleClass="textField" stylesheets="@../css/RegistryViewCss.css" unFocusColor="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <GridPane.margin>
                         <Insets bottom="130.0" />
                     </GridPane.margin>
