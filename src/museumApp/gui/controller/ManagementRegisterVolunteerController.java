@@ -5,11 +5,17 @@
  */
 package museumApp.gui.controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextArea;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 /**
  * FXML Controller class
@@ -21,6 +27,30 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private GridPane mainGridPane;
+    @FXML
+    private JFXDatePicker regJoinedDatePicker;
+    @FXML
+    private JFXButton clearFieldsButton;
+    @FXML
+    private JFXButton saveInfoButton;
+    @FXML
+    private ComboBox<?> regFromLocationComboBox;
+    @FXML
+    private ComboBox<?> firstGuildSelectionComboBox;
+    @FXML
+    private JFXButton addExtraGuildButton;
+    @FXML
+    private Label regUploadPhotoLabel;
+    @FXML
+    private JFXButton chooseImageButton;
+    @FXML
+    private JFXButton uploadImageButton;
+    @FXML
+    private JFXTextArea regCommentArea;
+    @FXML
+    private ComboBox<?> managementSetLocationButton;
 
     /**
      * Initializes the controller class.
