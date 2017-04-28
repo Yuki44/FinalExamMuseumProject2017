@@ -14,26 +14,29 @@ import java.util.Properties;
 
 /**
  *
- * @author min
+ * @author PBLauge
  */
-public class ConnectionManager {
-   
+public class ConnectionManager
+{
+
+    private static final String CONFIG_FILE_NAME = "MuseumDatabase.cfg";
     private final SQLServerDataSource ds;
-    
+
     public ConnectionManager() throws IOException
     {
-                
+        Properties props = new Properties();
+        props.load(new FileReader(CONFIG_FILE_NAME));
+
         ds = new SQLServerDataSource();
-        ds.setServerName("EASV-DB2");
-        ds.setDatabaseName("levendehistorie");
-        ds.setPortNumber(1433);
-        ds.setUser("CS2016B_18");
-        ds.setPassword("CS2016B_18");
+        ds.setServerName(props.getProperty("SERVER"));
+        ds.setDatabaseName(props.getProperty("DATABASE"));
+        ds.setPortNumber(Integer.parseInt(props.getProperty("PORT")));
+        ds.setUser(props.getProperty("USER"));
+        ds.setPassword(props.getProperty("PASSWORD"));
     }
-    
+
     public Connection getConnection() throws SQLServerException
     {
         return ds.getConnection();
     }
 }
-
