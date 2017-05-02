@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import museumApp.be.Employee;
+import museumApp.bll.MuseumManager;
 
 /**
  *
@@ -16,9 +17,11 @@ import museumApp.be.Employee;
  */
 public class EmployeeModel extends UserModel{
     private List<Employee> employee;
+    private MuseumManager museumManager;
 
     public EmployeeModel() throws IOException {
         super();
+        museumManager = new MuseumManager();
         this.employee = new ArrayList<>();
     }
    /**

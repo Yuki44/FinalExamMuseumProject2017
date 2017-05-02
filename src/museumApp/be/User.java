@@ -5,56 +5,57 @@
  */
 package museumApp.be;
 
-import java.sql.Date;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
  * @author Peder
  */
 public abstract class User extends BusinessEntity
-{
+  {
 
-    protected String firstName;
-    protected String lastName;
-    protected String email;
+    protected StringProperty firstName;
+    protected StringProperty lastName;
+    protected StringProperty email;
 
     public User(String firstName, String lastName, String email, int id)
-    {
+      {
         super(id);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+        this.firstName = new SimpleStringProperty(firstName);
+        this.lastName = new SimpleStringProperty(lastName);
+        this.email = new SimpleStringProperty(email);
 
-    }
+      }
 
-    public String getFirstName()
-    {
+    public String getFirstNameAsString()
+      {
+        return firstName.get();
+      }
+
+    public StringProperty getFirstName()
+      {
         return firstName;
-    }
+      }
 
-    public void setFirstName(String firstName)
-    {
-        this.firstName = firstName;
-    }
-
-    public String getLastName()
-    {
+    public StringProperty getLastName()
+      {
         return lastName;
-    }
+      }
 
-    public void setLastName(String lastName)
-    {
-        this.lastName = lastName;
-    }
+    public String getLastNameAsString()
+      {
+        return lastName.get();
+      }
 
-    public String getEmail()
-    {
+    public StringProperty getEmail()
+      {
         return email;
-    }
+      }
 
-    public void setEmail(String email)
-    {
-        this.email = email;
-    }
+    public String getEmailAsString()
+      {
+        return email.get();
+      }
 
-}
+  }

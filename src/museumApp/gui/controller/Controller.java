@@ -11,7 +11,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import museumApp.main.MuseumApp;
 
 public abstract class Controller implements Initializable
   {
@@ -23,7 +22,6 @@ public abstract class Controller implements Initializable
     protected BorderPane borderPane;
     @FXML
     private GridPane mainGridPane;
-    protected MuseumApp mainApp;
 
     @FXML
     private void handleMinimize(ActionEvent event)

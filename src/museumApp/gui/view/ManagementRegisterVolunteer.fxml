@@ -127,7 +127,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Register a Guild">
+            <Tab text="Register a Manager">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -182,10 +182,10 @@
                               <JFXButton fx:id="deleteManagerBTN" layoutX="114.0" layoutY="17.0" prefHeight="13.0" styleClass="managementViewButtons" text="Delete" />
                            </buttons>
                         </ButtonBar>
-                        <TableView fx:id="teacherTbl" layoutX="589.0" layoutY="35.0" prefHeight="314.0" prefWidth="210.0">
+                        <TableView fx:id="managerTbl" layoutX="589.0" layoutY="35.0" onMouseClicked="#handleSelectManager" prefHeight="314.0" prefWidth="210.0">
                            <columns>
-                              <TableColumn fx:id="teacherTblColFname" prefWidth="105.0" text="First name" />
-                              <TableColumn fx:id="teacherTblColLname" prefWidth="104.0" text="Last name" />
+                              <TableColumn fx:id="managerTblColFname" prefWidth="105.0" text="First name" />
+                              <TableColumn fx:id="managerTblColLname" prefWidth="104.0" text="Last name" />
                            </columns>
                         </TableView>
                      </children></AnchorPane>
