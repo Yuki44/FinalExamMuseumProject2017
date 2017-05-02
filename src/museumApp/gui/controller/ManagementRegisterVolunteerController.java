@@ -12,14 +12,12 @@ import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -96,39 +94,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
       {
 
         managerTbl.setItems(userModel.getManagers());
-        managerTblColFname.setCellValueFactory(
-                new PropertyValueFactory<Manager, String>("firstName"));
-
         managerTblColFname.setCellValueFactory(manager -> manager.getValue().getFirstName());
-      }
-
-    protected void fixStudentsTable()
-      {
-      }
-
-    @FXML
-    private void handleExit(ActionEvent event)
-      {
-      }
-
-    @FXML
-    private void handleMaximize(ActionEvent event)
-      {
-      }
-
-    @FXML
-    private void handleMinimize(ActionEvent event)
-      {
-      }
-
-    @FXML
-    private void getXYForMouseDrag(MouseEvent event)
-      {
-      }
-
-    @FXML
-    private void getXYClickLocation(MouseEvent event)
-      {
       }
 
     @FXML
@@ -138,6 +104,10 @@ public class ManagementRegisterVolunteerController extends Controller implements
         {
             Manager selectedManager = managerTbl.getSelectionModel().getSelectedItem();
             addTFNameTxtF.setText(selectedManager.getFirstNameAsString());
+            addTLNameTxtF.setText(selectedManager.getLastNameAsString());
+            addTEmailTxtF.setText(selectedManager.getEmailAsString());
+            addTUNameTxtF.setText(selectedManager.getUserNameAsString());
+            addTPassTxtF.setText(selectedManager.getPasswordAsString());
         }
       }
 
