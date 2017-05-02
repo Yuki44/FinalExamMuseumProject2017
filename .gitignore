@@ -4,7 +4,7 @@ dist/*
 build/
 build/*
 
-AttendanceDatabase.cfg
+MuseumDatabase.cfg
 
 #netbeans specific
 core
