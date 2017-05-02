@@ -11,13 +11,13 @@ import java.sql.Date;
  *
  * @author Peder
  */
-public abstract class Employees extends User
+public abstract class Employee extends User
 {
 
     protected String userName;
     protected String password;
 
-    public Employees(String userName, String password, String firstName, String lastName, String email, int id)
+    public Employee(String userName, String password, String firstName, String lastName, String email, int id)
     {
         super(firstName, lastName, email, id);
         this.userName = userName;

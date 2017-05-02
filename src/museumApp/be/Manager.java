@@ -11,7 +11,7 @@ import java.sql.Date;
  *
  * @author Peder
  */
-public class Manager extends Employees
+public class Manager extends Employee
 {
 
     public Manager(String userName, String password, String firstName, String lastName, String email, int id)

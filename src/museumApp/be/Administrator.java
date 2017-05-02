@@ -11,7 +11,7 @@ import java.sql.Date;
  *
  * @author Peder
  */
-public class Administrator extends Employees
+public class Administrator extends Employee
 {
 
     public Administrator(String userName, String password, String firstName, String lastName, String email, int id)

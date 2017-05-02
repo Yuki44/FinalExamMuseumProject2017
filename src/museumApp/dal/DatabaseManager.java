@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import museumApp.be.Administrator;
+import museumApp.be.Employee;
 import museumApp.be.Manager;
 import museumApp.be.Volunteer;
 
@@ -144,6 +145,7 @@ public class DatabaseManager
         String phoneNumber = rs.getString("phone_number");
         Date birthDate = rs.getDate("date_of_birth");
         int id = rs.getInt("manager_id");
+     
         return new Manager(userName, password, firstName, lastName, email, id);
 
     }

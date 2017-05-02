@@ -8,14 +8,14 @@ package museumApp.gui.model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import museumApp.be.Employees;
+import museumApp.be.Employee;
 
 /**
  *
  * @author min
  */
 public class EmployeeModel extends UserModel{
-    private List<Employees> employee;
+    private List<Employee> employee;
 
     public EmployeeModel() throws IOException {
         super();
@@ -27,8 +27,8 @@ public class EmployeeModel extends UserModel{
     */ 
     
     
-    public List<Employees> getAllEmployees(){
-       List<Employees> result = new ArrayList<>();
+    public List<Employee> getAllEmployees(){
+       List<Employee> result = new ArrayList<>();
         result.addAll(museumManager.getAllManagers());
         result.addAll(museumManager.getAllAdmins());
         return result;
