@@ -11,6 +11,8 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -125,9 +127,68 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Register a Laug">
+            <Tab text="Register a Guild">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane prefHeight="329.0" prefWidth="509.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="109.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" minWidth="10.0" prefWidth="341.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label prefHeight="61.0" prefWidth="225.0" text="First Name :">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label prefHeight="61.0" prefWidth="225.0" text="Last Name :" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label prefHeight="61.0" prefWidth="225.0" text="User  Name :" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label prefHeight="61.0" prefWidth="225.0" text="Email :" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Label prefHeight="61.0" prefWidth="225.0" text="Password :" GridPane.rowIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <JFXTextField fx:id="addTFNameTxtF" focusColor="#25adfc" GridPane.columnIndex="1" />
+                              <JFXTextField fx:id="addTLNameTxtF" focusColor="#25adfc" layoutX="90.0" layoutY="19.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="addTEmailTxtF" focusColor="#25adfc" layoutX="90.0" layoutY="68.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <JFXTextField fx:id="addTUNameTxtF" focusColor="#25adfc" layoutX="90.0" layoutY="117.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <JFXTextField fx:id="addTPassTxtF" focusColor="#25adfc" layoutX="90.0" layoutY="166.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                           </children>
+                        </GridPane>
+                        <ButtonBar layoutX="315.0" layoutY="363.0" prefHeight="40.0" prefWidth="179.0">
+                           <buttons>
+                              <JFXButton fx:id="addManagerBTN" prefHeight="13.0" styleClass="managementViewButtons" text="Add" />
+                              <JFXButton fx:id="deleteManagerBTN" layoutX="114.0" layoutY="17.0" prefHeight="13.0" styleClass="managementViewButtons" text="Delete" />
+                           </buttons>
+                        </ButtonBar>
+                        <TableView fx:id="teacherTbl" layoutX="589.0" layoutY="35.0" prefHeight="314.0" prefWidth="210.0">
+                           <columns>
+                              <TableColumn fx:id="teacherTblColFname" prefWidth="105.0" text="First name" />
+                              <TableColumn fx:id="teacherTblColLname" prefWidth="104.0" text="Last name" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
               </content>
             </Tab>
             <Tab text="Set Volunteer Hours">
