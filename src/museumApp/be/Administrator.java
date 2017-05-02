@@ -14,9 +14,9 @@ import java.sql.Date;
 public class Administrator extends Employees
 {
 
-    public Administrator(String userName, String password, String firstName, String lastName, String email, String phoneNumber, Date birthDate, int id)
+    public Administrator(String userName, String password, String firstName, String lastName, String email, int id)
     {
-        super(userName, password, firstName, lastName, email, phoneNumber, birthDate, id);
+        super(userName, password, firstName, lastName, email, id);
     }
-    
+
 }

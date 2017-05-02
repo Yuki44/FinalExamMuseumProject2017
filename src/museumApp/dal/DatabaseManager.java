@@ -144,7 +144,7 @@ public class DatabaseManager
         String phoneNumber = rs.getString("phone_number");
         Date birthDate = rs.getDate("date_of_birth");
         int id = rs.getInt("manager_id");
-        return new Manager(userName, password, firstName, lastName, email, phoneNumber, birthDate, id);
+        return new Manager(userName, password, firstName, lastName, email, id);
 
     }
 
@@ -165,7 +165,7 @@ public class DatabaseManager
         String phoneNumber = rs.getString("phone_number");
         Date birthDate = rs.getDate("date_of_birth");
         int id = rs.getInt("administrator_id");
-        return new Administrator(userName, password, firstName, lastName, email, phoneNumber, birthDate, id);
+        return new Administrator(userName, password, firstName, lastName, email, id);
     }
 
     /**

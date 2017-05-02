@@ -17,9 +17,9 @@ public abstract class Employees extends User
     protected String userName;
     protected String password;
 
-    public Employees(String userName, String password, String firstName, String lastName, String email, String phoneNumber, Date birthDate, int id)
+    public Employees(String userName, String password, String firstName, String lastName, String email, int id)
     {
-        super(firstName, lastName, email, phoneNumber, birthDate, id);
+        super(firstName, lastName, email, id);
         this.userName = userName;
         this.password = password;
     }
