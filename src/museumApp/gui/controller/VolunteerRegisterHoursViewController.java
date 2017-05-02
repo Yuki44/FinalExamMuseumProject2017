@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumApp.gui.controller;
 
 import com.jfoenix.controls.JFXTextField;
@@ -22,11 +17,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author Peder
- */
 public class VolunteerRegisterHoursViewController extends Controller implements Initializable
   {
 
@@ -56,7 +46,6 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
             Parent root;
             stage = (Stage) borderPane.getScene().getWindow();
             URL location = this.getClass().getResource("/museumApp/gui/view/ChooseVolunteerGuildView.fxml");
-            System.out.println(location.getPath());
             FXMLLoader loader = new FXMLLoader(location);
             root = loader.load();
             Scene scene = new Scene(root);
@@ -103,7 +92,6 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
                         Parent root;
                         stage = (Stage) borderPane.getScene().getWindow();
                         URL location = this.getClass().getResource("/museumApp/gui/view/LanguageSelectionView.fxml");
-                        System.out.println(location.getPath());
                         FXMLLoader loader = new FXMLLoader(location);
                         root = loader.load();
                         Scene scene = new Scene(root);

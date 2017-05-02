@@ -32,7 +32,6 @@ public class MuseumApp extends Application
         try
         {
             URL location = this.getClass().getResource("/museumApp/gui/view/SplashFXML.fxml"); //First of all we start the splash screen
-            System.out.println(location.getPath());
             FXMLLoader loader = new FXMLLoader(location);
             Parent root = loader.load();
             Scene scene = new Scene(root);

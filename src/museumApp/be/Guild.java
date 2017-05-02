@@ -5,41 +5,61 @@
  */
 package museumApp.be;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  *
  * @author Peder
  */
 public class Guild extends BusinessEntity
-{
+  {
 
-    protected String name;
+    protected StringProperty name;
     protected int managerId;
 
     public Guild(String name, int managerId, int id)
-    {
+      {
         super(id);
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
         this.managerId = managerId;
-    }
+      }
 
-    public String getName()
-    {
+    /** ------------------------------------------------------------------------------------------- */
+    /**
+     * We get Name as string property because it can update the view
+     *
+     * @return
+     */
+    public StringProperty getName()
+      {
         return name;
-    }
+      }
 
-    public void setName(String name)
-    {
-        this.name = name;
-    }
+    /**
+     * We get Name as simple string, however it cannot update the view automatically
+     *
+     * @return
+     */
+    public String getNameAsString()
+      {
+        return name.get();
+      }
 
+    /** ------------------------------------------------------------------------------------------- */
+    /**
+     * We get managerId
+     *
+     * @return
+     */
     public int getManagerId()
-    {
+      {
         return managerId;
-    }
+      }
 
     public void setManagerId(int managerId)
-    {
+      {
         this.managerId = managerId;
-    }
-
-}
+      }
+    /** ------------------------------------------------------------------------------------------- */
+  }

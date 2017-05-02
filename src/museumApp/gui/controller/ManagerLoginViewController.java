@@ -62,7 +62,6 @@ public class ManagerLoginViewController extends Controller implements Initializa
             Parent root;
             stage = (Stage) borderPane.getScene().getWindow();
             URL location = this.getClass().getResource("/museumApp/gui/view/ManagementRegisterVolunteer.fxml");
-            System.out.println(location.getPath());
             FXMLLoader loader = new FXMLLoader(location);
             root = loader.load();
             Scene scene = new Scene(root);

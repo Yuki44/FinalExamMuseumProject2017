@@ -1,11 +1,5 @@
-/*
- * Erhvervsakademi Sydvest, Computer Science 2016-2017, Carlos F. Ognissanti
- * To change this header, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumApp.gui.controller;
 
-import com.jfoenix.controls.JFXListView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,27 +8,31 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import museumApp.be.Guild;
+import museumApp.be.Volunteer;
+import museumApp.gui.model.UserModel;
 
-/**
- * FXML Controller class
- *
- * @author Yuki
- */
 public class ChooseVolunteerGuildViewController extends Controller implements Initializable
   {
 
+    @FXML
+    private TableView<Guild> guildListView;
+    @FXML
+    private TableView<Volunteer> volunterListView;
     @FXML
     private BorderPane borderPane;
     @FXML
     private GridPane mainGridPane;
     @FXML
-    private JFXListView<?> guildListView;
+    private TableColumn<Guild, String> guildTblColName;
     @FXML
-    private JFXListView<?> volunterListView;
+    private TableColumn<Volunteer, String> volunteerTblColName;
 
     /**
      * Initializes the controller class.
@@ -42,7 +40,13 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
-        // TODO
+        guildListView.setItems(userModel.getGuilds());
+        guildTblColName.setCellValueFactory(guild -> guild.getValue().getName()); //Lambda expression sets values into laug name column
+      }
+
+    public ChooseVolunteerGuildViewController() throws IOException
+      {
+        userModel = new UserModel();
       }
 
     @FXML
@@ -54,7 +58,6 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
             Parent root;
             stage = (Stage) borderPane.getScene().getWindow();
             URL location = this.getClass().getResource("/museumApp/gui/view/VolunteerRegisterHoursView.fxml");
-            System.out.println(location.getPath());
             FXMLLoader loader = new FXMLLoader(location);
             root = loader.load();
             Scene scene = new Scene(root);
@@ -78,7 +81,6 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
             Parent root;
             stage = (Stage) borderPane.getScene().getWindow();
             URL location = this.getClass().getResource("/museumApp/gui/view/LanguageSelectionView.fxml");
-            System.out.println(location.getPath());
             FXMLLoader loader = new FXMLLoader(location);
             root = loader.load();
             Scene scene = new Scene(root);

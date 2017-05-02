@@ -60,7 +60,6 @@ public class LanguageSelectionViewController extends Controller implements Initi
             Parent root;
             stage = (Stage) borderPane.getScene().getWindow();
             URL location = this.getClass().getResource("/museumApp/gui/view/ChooseVolunteerGuildView.fxml");
-            System.out.println(location.getPath());
             FXMLLoader loader = new FXMLLoader(location);
             root = loader.load();
             Scene scene = new Scene(root);
@@ -84,7 +83,6 @@ public class LanguageSelectionViewController extends Controller implements Initi
             Parent root;
             stage = (Stage) borderPane.getScene().getWindow();
             URL location = this.getClass().getResource("/museumApp/gui/view/ManagerLoginView.fxml");
-            System.out.println(location.getPath());
             FXMLLoader loader = new FXMLLoader(location);
             root = loader.load();
             Scene scene = new Scene(root);

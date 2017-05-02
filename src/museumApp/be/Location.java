@@ -5,41 +5,43 @@
  */
 package museumApp.be;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  *
  * @author Peder
  */
 public class Location extends BusinessEntity
-{
+  {
 
-    protected String name;
-    protected String address;
+    protected StringProperty name;
 
-    public Location(String name, String address, int id)
-    {
+    public Location(String name, int id)
+      {
         super(id);
-        this.name = name;
-        this.address = address;
-    }
+        this.name = new SimpleStringProperty(name);
+      }
 
-    public String getName()
-    {
+    /** ------------------------------------------------------------------------------------------- */
+    /**
+     * We get userNames as string property because it can update the view
+     *
+     * @return
+     */
+    public StringProperty getName()
+      {
         return name;
-    }
+      }
 
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    public String getAddress()
-    {
-        return address;
-    }
-
-    public void setAddress(String address)
-    {
-        this.address = address;
-    }
-
-}
+    /**
+     * We get userNames as simple string, however it cannot update the view automatically
+     *
+     * @return
+     */
+    public String getNameAsString()
+      {
+        return name.get();
+      }
+    /** ------------------------------------------------------------------------------------------- */
+  }

@@ -28,34 +28,67 @@ public abstract class User extends BusinessEntity
 
       }
 
-    public String getFirstNameAsString()
-      {
-        return firstName.get();
-      }
-
+    /** ------------------------------------------------------------------------------------------- */
+    /**
+     * We get first name as string property because it can update the view
+     *
+     * @return
+     */
     public StringProperty getFirstName()
       {
         return firstName;
       }
 
+    /**
+     * We get the first name as simple string, however it cannot update the view automatically
+     *
+     * @return
+     */
+    public String getFirstNameAsString()
+      {
+        return firstName.get();
+      }
+
+    /** ------------------------------------------------------------------------------------------- */
+    /**
+     * We get last name as string property because it can update the view
+     *
+     * @return
+     */
     public StringProperty getLastName()
       {
         return lastName;
       }
 
+    /**
+     * We get the last name as simple string, however it cannot update the view automatically
+     *
+     * @return
+     */
     public String getLastNameAsString()
       {
         return lastName.get();
       }
 
+    /** ------------------------------------------------------------------------------------------- */
+    /**
+     * We get the email as string property because it can update the view
+     *
+     * @return
+     */
     public StringProperty getEmail()
       {
         return email;
       }
 
+    /**
+     * We get the email as simple string, however it cannot update the view automatically
+     *
+     * @return
+     */
     public String getEmailAsString()
       {
         return email.get();
       }
-
+    /** ------------------------------------------------------------------------------------------- */
   }

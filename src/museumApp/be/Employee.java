@@ -1,47 +1,61 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumApp.be;
 
-import java.sql.Date;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-/**
- *
- * @author Peder
- */
 public abstract class Employee extends User
-{
+  {
 
-    protected String userName;
-    protected String password;
+    protected StringProperty userName;
+    protected StringProperty password;
 
     public Employee(String userName, String password, String firstName, String lastName, String email, int id)
-    {
+      {
         super(firstName, lastName, email, id);
-        this.userName = userName;
-        this.password = password;
-    }
+        this.userName = new SimpleStringProperty(userName);
+        this.password = new SimpleStringProperty(password);
+      }
 
-    public String getUserName()
-    {
+    /** ------------------------------------------------------------------------------------------- */
+    /**
+     * We get userNames as string property because it can update the view
+     *
+     * @return
+     */
+    public StringProperty getUserName()
+      {
         return userName;
-    }
+      }
 
-    public void setUserName(String userName)
-    {
-        this.userName = userName;
-    }
+    /**
+     * We get userNames as simple string, however it cannot update the view automatically
+     *
+     * @return
+     */
+    public String getUserNameAsString()
+      {
+        return userName.get();
+      }
 
-    public String getPassword()
-    {
+    /** ------------------------------------------------------------------------------------------- */
+    /**
+     * We get Passwords as string property because it can update the view
+     *
+     * @return
+     */
+    public StringProperty getPassword()
+      {
         return password;
-    }
+      }
 
-    public void setPassword(String password)
-    {
-        this.password = password;
-    }
-
-}
+    /**
+     * We get Passwords as simple string, however it cannot update the view automatically
+     *
+     * @return
+     */
+    public String getPasswordAsString()
+      {
+        return password.get();
+      }
+    /** ------------------------------------------------------------------------------------------- */
+  }

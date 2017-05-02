@@ -1,18 +1,16 @@
 package museumApp.gui.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import museumApp.gui.model.UserModel;
 
-public abstract class Controller implements Initializable
+public abstract class Controller
   {
 
     //This is necessary for the mouse click location
@@ -21,10 +19,11 @@ public abstract class Controller implements Initializable
     @FXML
     protected BorderPane borderPane;
     @FXML
-    private GridPane mainGridPane;
+    protected GridPane mainGridPane;
+    protected UserModel userModel;
 
     @FXML
-    private void handleMinimize(ActionEvent event)
+    protected void handleMinimize(ActionEvent event)
       {
         Stage stage;
         stage = (Stage) mainGridPane.getScene().getWindow();
@@ -32,7 +31,7 @@ public abstract class Controller implements Initializable
       }
 
     @FXML
-    private void handleMaximize(ActionEvent event)
+    protected void handleMaximize(ActionEvent event)
       {
         Stage stage;
         stage = (Stage) mainGridPane.getScene().getWindow();
@@ -47,20 +46,9 @@ public abstract class Controller implements Initializable
       }
 
     @FXML
-    private void handleExit(ActionEvent event)
+    protected void handleExit(ActionEvent event)
       {
         System.exit(0);
-      }
-
-    /**
-     * Initializes the controller class.
-     *
-     * @param url
-     * @param rb
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb)
-      {
       }
 
     /** --------------------------------------------------------------------------------------- */
@@ -68,7 +56,7 @@ public abstract class Controller implements Initializable
      * Everything from here is for the custom window decoration.
      */
     @FXML
-    private void getXYForMouseDrag(MouseEvent event)
+    protected void getXYForMouseDrag(MouseEvent event)
       {
         Stage stage;
         stage = (Stage) mainGridPane.getScene().getWindow();
@@ -85,7 +73,7 @@ public abstract class Controller implements Initializable
       }
 
     @FXML
-    private void getXYClickLocation(MouseEvent event)
+    protected void getXYClickLocation(MouseEvent event)
       {
         xMouse = event.getX();
         yMouse = event.getY();

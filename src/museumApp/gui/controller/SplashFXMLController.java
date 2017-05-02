@@ -66,7 +66,6 @@ public class SplashFXMLController implements Initializable
                          * Now after waiting those 5 Seconds we run the main view.
                          */
                         URL location = this.getClass().getResource("/museumApp/gui/view/LanguageSelectionView.fxml");
-                        System.out.println(location.getPath());
                         FXMLLoader loader = new FXMLLoader(location);
                         Parent root = null;
                         try

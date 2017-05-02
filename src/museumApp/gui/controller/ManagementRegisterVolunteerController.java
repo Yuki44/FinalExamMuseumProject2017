@@ -79,7 +79,20 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private TableColumn<Manager, String> managerTblColLname;
 
-    private UserModel userModel;
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb)
+      {
+        /**
+         * We set the items on the manager table and with a lambda expression we set the individual
+         * columns first name and last name.
+         */
+        managerTbl.setItems(userModel.getManagers());
+        managerTblColFname.setCellValueFactory(manager -> manager.getValue().getFirstName());
+        managerTblColLname.setCellValueFactory(manager -> manager.getValue().getLastName());
+      }
 
     public ManagementRegisterVolunteerController() throws IOException
       {
@@ -87,16 +100,11 @@ public class ManagementRegisterVolunteerController extends Controller implements
       }
 
     /**
-     * Initializes the controller class.
+     * When the Table View is selected it will display the info inside it to the
+     * left side onto the text fields.
+     *
+     * @param event
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb)
-      {
-
-        managerTbl.setItems(userModel.getManagers());
-        managerTblColFname.setCellValueFactory(manager -> manager.getValue().getFirstName());
-      }
-
     @FXML
     private void handleSelectManager(MouseEvent event)
       {
