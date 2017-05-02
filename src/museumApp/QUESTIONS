@@ -1,0 +1,9 @@
+1. In the guild BE should we add a manager_id so only one manager can manage it's guild? (Carlos)
+
+2. Do we need guild_location table and location table or just one table called volunteer_location? (Carlos)
+
+3. How do we do the BLL Facade? (everyone)
+
+4. How do we connect the BLL to the DAL? Through the Facade or through the methods directly to the Facade? (everyone)
+
+

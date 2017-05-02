@@ -5,43 +5,44 @@
  */
 package museumApp.be;
 
-import java.sql.Date;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
  * @author Peder
  */
 public abstract class Employees extends User
-{
+  {
 
-    protected String userName;
-    protected String password;
+    protected StringProperty userName;
+    protected StringProperty password;
 
     public Employees(String userName, String password, String firstName, String lastName, String email, int id)
-    {
+      {
         super(firstName, lastName, email, id);
-        this.userName = userName;
-        this.password = password;
-    }
+        this.userName = new SimpleStringProperty(userName);
+        this.password = new SimpleStringProperty(password);
+      }
 
-    public String getUserName()
-    {
+    public StringProperty getUserName()
+      {
         return userName;
-    }
+      }
 
-    public void setUserName(String userName)
-    {
-        this.userName = userName;
-    }
-
-    public String getPassword()
-    {
+    public StringProperty getPassword()
+      {
         return password;
-    }
+      }
 
-    public void setPassword(String password)
-    {
-        this.password = password;
-    }
+    public String getUserNameAsString()
+      {
+        return userName.get();
+      }
 
-}
+    public String getPasswordAsString()
+      {
+        return password.get();
+      }
+
+  }

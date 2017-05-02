@@ -8,14 +8,23 @@ package museumApp.gui.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import museumApp.be.Manager;
+import museumApp.gui.model.UserModel;
 
 /**
  * FXML Controller class
@@ -51,6 +60,33 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private JFXTextArea regCommentArea;
     @FXML
     private ComboBox<?> managementSetLocationButton;
+    @FXML
+    private JFXTextField addTFNameTxtF;
+    @FXML
+    private JFXTextField addTLNameTxtF;
+    @FXML
+    private JFXTextField addTEmailTxtF;
+    @FXML
+    private JFXTextField addTUNameTxtF;
+    @FXML
+    private JFXTextField addTPassTxtF;
+    @FXML
+    private JFXButton addManagerBTN;
+    @FXML
+    private JFXButton deleteManagerBTN;
+    @FXML
+    private TableView<Manager> managerTbl;
+    @FXML
+    private TableColumn<Manager, String> managerTblColFname;
+    @FXML
+    private TableColumn<Manager, String> managerTblColLname;
+
+    private UserModel userModel;
+
+    public ManagementRegisterVolunteerController() throws IOException
+      {
+        userModel = new UserModel();
+      }
 
     /**
      * Initializes the controller class.
@@ -58,7 +94,51 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
-        // TODO
+
+        managerTbl.setItems(userModel.getManagers());
+        managerTblColFname.setCellValueFactory(
+                new PropertyValueFactory<Manager, String>("firstName"));
+
+        managerTblColFname.setCellValueFactory(manager -> manager.getValue().getFirstName());
+      }
+
+    protected void fixStudentsTable()
+      {
+      }
+
+    @FXML
+    private void handleExit(ActionEvent event)
+      {
+      }
+
+    @FXML
+    private void handleMaximize(ActionEvent event)
+      {
+      }
+
+    @FXML
+    private void handleMinimize(ActionEvent event)
+      {
+      }
+
+    @FXML
+    private void getXYForMouseDrag(MouseEvent event)
+      {
+      }
+
+    @FXML
+    private void getXYClickLocation(MouseEvent event)
+      {
+      }
+
+    @FXML
+    private void handleSelectManager(MouseEvent event)
+      {
+        if (event.getClickCount() == 1)
+        {
+            Manager selectedManager = managerTbl.getSelectionModel().getSelectedItem();
+            addTFNameTxtF.setText(selectedManager.getFirstNameAsString());
+        }
       }
 
   }
