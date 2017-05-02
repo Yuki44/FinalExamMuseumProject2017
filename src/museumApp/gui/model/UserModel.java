@@ -17,6 +17,7 @@ import museumApp.be.User;
  */
 public class UserModel extends Model
 {
+    
 
     public UserModel() throws IOException
     {
@@ -31,9 +32,9 @@ public class UserModel extends Model
     public List<User> getUsers() throws SQLException
     {
         List<User> result = new ArrayList<>();
-        result.addAll(dataManager.getAllVolunteers());
-        result.addAll(dataManager.getAllManagers());
-        result.addAll(dataManager.getAllAdmins());
+        result.addAll(museumManager.getAllVolunteers());
+        result.addAll(museumManager.getAllManagers());
+        result.addAll(museumManager.getAllAdmins());
         return result;
     }
     

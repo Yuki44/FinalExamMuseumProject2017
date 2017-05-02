@@ -83,7 +83,7 @@ public class MuseumManager
      *
      * @return method from DatabaseManager
      */
-    public List<Administrator> getAllAdmin()
+    public List<Administrator> getAllAdmins()
     {
         try
         {
@@ -95,4 +95,5 @@ public class MuseumManager
             throw new MuseumManagerException("Unable to fetch administrators.");
         }
     }
+   
 }

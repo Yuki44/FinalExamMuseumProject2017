@@ -17,11 +17,11 @@ public abstract class Model
 {
 
     /**
-     * Creates a connection to the BLL and the DAL. Needs refactoring. It should
+     * Creates a connection to the BLL. 
      * only connect to the BLL.
      */
     protected final MuseumManager museumManager;
-    protected final DatabaseManager dataManager;
+   
 
     /**
      *
@@ -30,7 +30,7 @@ public abstract class Model
     public Model() throws IOException
     {
         museumManager = new MuseumManager();
-        dataManager = new DatabaseManager();
+       
     }
 
 }
