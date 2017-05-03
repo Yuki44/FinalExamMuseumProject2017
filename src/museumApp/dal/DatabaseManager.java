@@ -5,6 +5,7 @@
  */
 package museumApp.dal;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -18,13 +19,14 @@ import museumApp.be.Administrator;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.be.Volunteer;
+import sun.plugin.dom.DOMObjectHelper;
 
 /**
  *
  * @author min
  */
 public class DatabaseManager
-  {
+{
 
     private final ConnectionManager connectionManager;
 
@@ -34,10 +36,10 @@ public class DatabaseManager
      * @throws IOException
      */
     public DatabaseManager() throws IOException
-      {
+    {
         connectionManager = new ConnectionManager();
 
-      }
+    }
 
     /**
      * Selects the volunteers in the database, through a SELECT statement.
@@ -46,7 +48,7 @@ public class DatabaseManager
      * @throws SQLException
      */
     public List<Volunteer> getAllVolunteers() throws SQLException
-      {
+    {
         List<Volunteer> volunteers = new ArrayList<>();
 
         String sql = "SELECT * FROM volunteer";
@@ -60,7 +62,7 @@ public class DatabaseManager
             }
             return volunteers;
         }
-      }
+    }
 
     /**
      * Selects the managers in the database, through a SELECT statement.
@@ -69,7 +71,7 @@ public class DatabaseManager
      * @throws SQLException
      */
     public List<Manager> getAllManagers() throws SQLException
-      {
+    {
         List<Manager> managers = new ArrayList<>();
 
         String sql = "SELECT * FROM manager";
@@ -83,7 +85,7 @@ public class DatabaseManager
             }
             return managers;
         }
-      }
+    }
 
     /**
      * Selects the administrator in the database, through a SELECT statement.
@@ -92,7 +94,7 @@ public class DatabaseManager
      * @throws SQLException
      */
     public List<Administrator> getAllAdmins() throws SQLException
-      {
+    {
         List<Administrator> admin = new ArrayList<>();
 
         String sql = "SELECT * FROM administrator";
@@ -106,7 +108,7 @@ public class DatabaseManager
             }
             return admin;
         }
-      }
+    }
 
     /**
      * Selects the Guild in the database, through a SELECT statement.
@@ -115,7 +117,7 @@ public class DatabaseManager
      * @throws SQLException
      */
     public List<Guild> getAllGuilds() throws SQLException
-      {
+    {
         List<Guild> guild = new ArrayList<>();
 
         String sql = "SELECT * FROM guild";
@@ -129,7 +131,7 @@ public class DatabaseManager
             }
             return guild;
         }
-      }
+    }
 
     /**
      * Gets information about one Guild in the database.
@@ -139,12 +141,12 @@ public class DatabaseManager
      * @throws SQLException
      */
     private Guild getOneGuild(ResultSet rs) throws SQLException
-      {
+    {
         String guildName = rs.getString("name");
         int manager_id = rs.getInt("manager_id");
         int id = rs.getInt("guild_id");
         return new Guild(guildName, manager_id, id);
-      }
+    }
 
     /**
      * Gets information about one volunteer in the database.
@@ -154,7 +156,7 @@ public class DatabaseManager
      * @throws SQLException
      */
     private Volunteer getOneVolunteer(ResultSet rs) throws SQLException
-      {
+    {
 
         String firstName = rs.getString("first_name");
         String lastName = rs.getString("last_name");
@@ -164,7 +166,7 @@ public class DatabaseManager
         int id = rs.getInt("volunteer_id");
         return new Volunteer(lastName, birthDate, email, birthDate, phoneNumber, firstName, lastName, email, id);
 
-      }
+    }
 
     /**
      * Gets information about one manager in the database.
@@ -173,8 +175,8 @@ public class DatabaseManager
      * @return
      * @throws SQLException
      */
-    private Manager getOneManager(ResultSet rs) throws SQLException
-      {
+    public Manager getOneManager(ResultSet rs) throws SQLException
+    {
         String userName = rs.getString("user_name");
         String password = rs.getString("password");
         String firstName = rs.getString("first_name");
@@ -184,7 +186,7 @@ public class DatabaseManager
 
         return new Manager(userName, password, firstName, lastName, email, id);
 
-      }
+    }
 
     /**
      * Gets information about one administrator in the database.
@@ -194,7 +196,7 @@ public class DatabaseManager
      * @throws SQLException
      */
     private Administrator getOneAdmin(ResultSet rs) throws SQLException
-      {
+    {
         String userName = rs.getString("user_name");
         String password = rs.getString("password");
         String firstName = rs.getString("first_name");
@@ -202,7 +204,7 @@ public class DatabaseManager
         String email = rs.getString("email");
         int id = rs.getInt("administrator_id");
         return new Administrator(userName, password, firstName, lastName, email, id);
-      }
+    }
 
     /**
      * Makes it possible to add a volunteer to the system through the database
@@ -216,7 +218,7 @@ public class DatabaseManager
      * @throws SQLException
      */
     public void addVolunteer(String firstName, String lastName, String email, String phoneNumber, Date birthDate) throws SQLException
-      {
+    {
         String sql = "INSERT INTO volunteer Values (?, ?, ?, ?, ?);";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
         pstmt.setString(1, firstName);
@@ -225,7 +227,7 @@ public class DatabaseManager
         pstmt.setString(4, phoneNumber);
         pstmt.setDate(5, birthDate);
         pstmt.execute();
-      }
+    }
 
     /**
      * Makes it possible to remove a volunteer from the database by use of the
@@ -236,12 +238,113 @@ public class DatabaseManager
      * @throws SQLException
      */
     public void removeVolunteer(String firstName, String lastName) throws SQLException
-      {
+    {
         String sql = "DELETE FROM volunteer WHERE first_name = (?) and last_name = (?);";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
         pstmt.setString(1, firstName);
         pstmt.setString(2, lastName);
         pstmt.execute();
-      }
+    }
 
-  }
+    public boolean checkPasswordForManager(String username, String password)
+    {
+        try (Connection con = connectionManager.getConnection())
+        {
+            String query1 = "SELECT * FROM manager WHERE user_name = ?";
+            PreparedStatement pstmt = con.prepareStatement(query1);
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+
+            return password.equals(rs.getString("password"));
+        }
+        catch (SQLException sqle)
+        {
+            System.err.println(sqle);
+            return false;
+        }
+    }
+
+    public boolean checkPasswordForAdmin(String username, String password)
+    {
+        try (Connection con = connectionManager.getConnection())
+        {
+            String query1 = "SELECT * FROM administrator WHERE user_name = ?";
+            PreparedStatement pstmt = con.prepareStatement(query1);
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+
+            return password.equals(rs.getString("password"));
+        }
+        catch (SQLException sqle)
+        {
+            System.err.println(sqle);
+            return false;
+        }
+    }
+
+    public Manager getManagerFromResults(PreparedStatement pstmt) throws SQLException
+    {
+        ResultSet rs = pstmt.executeQuery();
+        rs.next();
+        int idMgr = rs.getInt("manager_id");
+        String userName = rs.getString("user_name");
+        String password = rs.getString("password");
+        String firstName = rs.getString("first_name");
+        String lastName = rs.getString("last_name");
+        String email = rs.getString("email");
+
+        Manager manager = new Manager(userName, password, firstName, lastName, email, idMgr);
+        return manager;
+    }
+
+    public Administrator getAdminFromResults(PreparedStatement pstmt) throws SQLException
+    {
+        ResultSet rs = pstmt.executeQuery();
+        rs.next();
+        int idAdm = rs.getInt("administrator_id");
+        String userName = rs.getString("user_name");
+        String password = rs.getString("password");
+        String firstName = rs.getString("first_name");
+        String lastName = rs.getString("last_name");
+        String email = rs.getString("email");
+
+        Administrator admin = new Administrator(userName, password, firstName, lastName, email, idAdm);
+        return admin;
+    }
+
+    public Manager getManagerBasedOnUsername(String username)
+    {
+        try (Connection con = connectionManager.getConnection())
+        {
+            String query = "SELECT * FROM manager WHERE user_name = ?";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setString(1, username);
+
+            return getManagerFromResults(pstmt);
+        }
+        catch (SQLException sqle)
+        {
+            System.err.println(sqle);
+            return null;
+        }
+    }
+
+    public Administrator getAdminBasedOnUsername(String username)
+    {
+        try (Connection con = connectionManager.getConnection())
+        {
+            String query = "SELECT * FROM administrator WHERE user_name = ?";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setString(1, username);
+
+            return getAdminFromResults(pstmt);
+        }
+        catch (SQLException sqle)
+        {
+            System.err.println(sqle);
+            return null;
+        }
+    }
+}

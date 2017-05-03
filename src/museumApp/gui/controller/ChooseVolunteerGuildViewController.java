@@ -20,7 +20,7 @@ import museumApp.gui.model.UserModel;
 
 public class ChooseVolunteerGuildViewController extends Controller implements Initializable
   {
-
+    
     @FXML
     private TableView<Guild> guildListView;
     @FXML
