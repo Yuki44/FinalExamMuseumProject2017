@@ -217,15 +217,19 @@ public class DatabaseManager
      * @param birthDate
      * @throws SQLException
      */
-    public void addVolunteer(String firstName, String lastName, String email, String phoneNumber, Date birthDate) throws SQLException
+    public void addVolunteer(String firstName, String lastName, Date birthDate, String phoneNumber, String email, String nationality,Date joinDate,int guildLocationId ) throws SQLException
     {
-        String sql = "INSERT INTO volunteer Values (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO volunteer(first_name, last_name, date_of_birth, phone_number, "
+                + "email, nationality, join_date,guild_location_id) Values ('?',' ?', '?', '?',' ?','?','?','?');";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
         pstmt.setString(1, firstName);
         pstmt.setString(2, lastName);
-        pstmt.setString(3, email);
+        pstmt.setDate(3,birthDate);
         pstmt.setString(4, phoneNumber);
-        pstmt.setDate(5, birthDate);
+        pstmt.setString(5, email);
+        pstmt.setString(6, nationality);
+        pstmt.setDate(7,joinDate);
+        pstmt.setInt(8,guildLocationId);
         pstmt.execute();
     }
 
