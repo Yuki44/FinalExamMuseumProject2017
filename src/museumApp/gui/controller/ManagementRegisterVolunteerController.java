@@ -1,8 +1,3 @@
-/*
- * Erhvervsakademi Sydvest, Computer Science 2016-2017, Carlos F. Ognissanti
- * To change this header, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumApp.gui.controller;
 
 import com.jfoenix.controls.JFXButton;
@@ -12,6 +7,7 @@ import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -24,11 +20,6 @@ import javafx.scene.layout.GridPane;
 import museumApp.be.Manager;
 import museumApp.gui.model.UserModel;
 
-/**
- * FXML Controller class
- *
- * @author Yuki
- */
 public class ManagementRegisterVolunteerController extends Controller implements Initializable
   {
 
@@ -117,6 +108,21 @@ public class ManagementRegisterVolunteerController extends Controller implements
             addTUNameTxtF.setText(selectedManager.getUserNameAsString());
             addTPassTxtF.setText(selectedManager.getPasswordAsString());
         }
+      }
+
+    @FXML
+    private void handleAddingManager(ActionEvent event)
+      {
+        String fName = addTFNameTxtF.getText().trim();
+        String lName = addTLNameTxtF.getText().trim();
+        String email = addTEmailTxtF.getText().trim();
+        String username = addTUNameTxtF.getText().trim();
+        String password = addTPassTxtF.getText().trim();
+        addTFNameTxtF.clear();
+        addTLNameTxtF.clear();
+        addTEmailTxtF.clear();
+        addTUNameTxtF.clear();
+        addTPassTxtF.clear();
       }
 
   }
