@@ -18,7 +18,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="878.0" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagerLoginViewController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="878.0" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagerLoginViewController">
    <top>
       <GridPane fx:id="mainGridPane" alignment="TOP_CENTER" onMouseDragged="#getXYForMouseDrag" onMousePressed="#getXYClickLocation" BorderPane.alignment="TOP_CENTER">
          <columnConstraints>
@@ -117,7 +117,7 @@
          <children>
             <VBox alignment="CENTER" fillWidth="false" spacing="50.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
                <children>
-                  <JFXTextField fx:id="textFieldUserName" focusColor="#757575" labelFloat="true" maxWidth="396.0" minWidth="304.0" onKeyPressed="#handleGoToPassword" prefHeight="38.0" prefWidth="304.0" promptText="Username">
+                  <JFXTextField fx:id="txtUserName" focusColor="#757575" labelFloat="true" maxWidth="396.0" minWidth="304.0" onKeyPressed="#handleGoToPassword" prefHeight="38.0" prefWidth="304.0" promptText="Username">
                      <font>
                         <Font name="Rockwell" size="16.0" />
                      </font>
@@ -125,7 +125,7 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </JFXTextField>
-                  <JFXPasswordField fx:id="passwordFieldPassword" focusColor="#757575" labelFloat="true" maxWidth="396.0" minWidth="304.0" onKeyPressed="#handleGoToLogin" prefHeight="38.0" prefWidth="304.0" promptText="Password">
+                  <JFXPasswordField fx:id="txtPassword" focusColor="#757575" labelFloat="true" maxWidth="396.0" minWidth="304.0" onKeyPressed="#handleGoToLogin" prefHeight="38.0" prefWidth="304.0" promptText="Password">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -135,7 +135,7 @@
                   </JFXPasswordField>
                </children>
             </VBox>
-            <JFXButton fx:id="loginButton" onAction="#handleLogin" prefHeight="53.0" prefWidth="317.0" style="-fx-background-color: #cc9c70;" styleClass="loginButton" stylesheets="@../css/managerloginview.css" text="Login" textFill="WHITE" GridPane.rowIndex="3">
+            <JFXButton fx:id="btnLogin" onAction="#handleLogin" prefHeight="53.0" prefWidth="317.0" style="-fx-background-color: #cc9c70;" styleClass="loginButton" stylesheets="@../css/managerloginview.css" text="Login" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>
