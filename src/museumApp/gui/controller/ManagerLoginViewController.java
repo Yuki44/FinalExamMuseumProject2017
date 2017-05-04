@@ -29,18 +29,18 @@ import javafx.stage.Stage;
  * @author Yuki
  */
 public class ManagerLoginViewController extends Controller implements Initializable
-  {
+{
 
     @FXML
     private BorderPane borderPane;
     @FXML
     private GridPane mainGridPane;
     @FXML
-    private JFXTextField textFieldUserName;
+    private JFXTextField txtUsername;
     @FXML
-    private JFXPasswordField passwordFieldPassword;
+    private JFXPasswordField txtPassword;
     @FXML
-    private JFXButton loginButton;
+    private JFXButton btnLogin;
     @FXML
     private Label wrongLoginLabel;
 
@@ -49,13 +49,13 @@ public class ManagerLoginViewController extends Controller implements Initializa
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
-      {
+    {
         // TODO
-      }
+    }
 
     @FXML
     private void handleLogin(ActionEvent event)
-      {
+    {
         try
         {
             Stage stage;
@@ -74,16 +74,16 @@ public class ManagerLoginViewController extends Controller implements Initializa
         {
             System.err.println(ex);
         }
-      }
+    }
 
     @FXML
     private void handleGoToPassword(KeyEvent event)
-      {
-      }
+    {
+    }
 
     @FXML
     private void handleGoToLogin(KeyEvent event)
-      {
-      }
+    {
+    }
 
-  }
+}
