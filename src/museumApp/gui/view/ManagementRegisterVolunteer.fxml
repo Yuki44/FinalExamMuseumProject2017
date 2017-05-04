@@ -178,7 +178,7 @@
                         </GridPane>
                         <ButtonBar layoutX="315.0" layoutY="363.0" prefHeight="40.0" prefWidth="179.0">
                            <buttons>
-                              <JFXButton fx:id="addManagerBTN" prefHeight="13.0" styleClass="managementViewButtons" text="Add" />
+                              <JFXButton fx:id="addManagerBTN" onAction="#handleAddingManager" prefHeight="13.0" styleClass="managementViewButtons" text="Add" />
                               <JFXButton fx:id="deleteManagerBTN" layoutX="114.0" layoutY="17.0" prefHeight="13.0" styleClass="managementViewButtons" text="Delete" />
                            </buttons>
                         </ButtonBar>
