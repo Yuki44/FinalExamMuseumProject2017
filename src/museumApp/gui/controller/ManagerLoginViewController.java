@@ -17,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -29,33 +30,35 @@ import javafx.stage.Stage;
  * @author Yuki
  */
 public class ManagerLoginViewController extends Controller implements Initializable
-{
+  {
 
     @FXML
     private BorderPane borderPane;
     @FXML
     private GridPane mainGridPane;
     @FXML
-    private JFXTextField txtUsername;
-    @FXML
     private JFXPasswordField txtPassword;
     @FXML
     private JFXButton btnLogin;
     @FXML
     private Label wrongLoginLabel;
+    @FXML
+    private Button btnBypassLogin;
+    @FXML
+    private JFXTextField txtUserName;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
-    {
+      {
         // TODO
-    }
+      }
 
     @FXML
     private void handleLogin(ActionEvent event)
-    {
+      {
         try
         {
             Stage stage;
@@ -74,16 +77,16 @@ public class ManagerLoginViewController extends Controller implements Initializa
         {
             System.err.println(ex);
         }
-    }
+      }
 
     @FXML
     private void handleGoToPassword(KeyEvent event)
-    {
-    }
+      {
+      }
 
     @FXML
     private void handleGoToLogin(KeyEvent event)
-    {
-    }
+      {
+      }
 
-}
+  }

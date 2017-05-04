@@ -18,6 +18,7 @@ public abstract class User extends BusinessEntity
     protected StringProperty firstName;
     protected StringProperty lastName;
     protected StringProperty email;
+    protected StringProperty fullName;
 
     public User(String firstName, String lastName, String email, int id)
       {
@@ -25,7 +26,24 @@ public abstract class User extends BusinessEntity
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.email = new SimpleStringProperty(email);
+        fullName = new SimpleStringProperty(firstName + " " + lastName);
 
+      }
+
+    public StringProperty getFullName()
+      {
+        return fullName;
+      }
+
+    public String getFullNameAsString()
+      {
+        return fullName.get();
+      }
+
+    @Override
+    public String toString()
+      {
+        return getFullNameAsString();
       }
 
     /** ------------------------------------------------------------------------------------------- */

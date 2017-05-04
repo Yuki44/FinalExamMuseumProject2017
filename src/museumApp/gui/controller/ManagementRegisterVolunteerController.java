@@ -12,11 +12,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.util.Callback;
+import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.gui.model.UserModel;
 
@@ -70,6 +74,21 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private TableColumn<Manager, String> managerTblColLname;
 
+    @FXML
+    private JFXTextField txtFieldAddGuildName;
+    @FXML
+    private ComboBox<Manager> comboBoxAddGuildManager;
+    @FXML
+    private TableColumn<Guild, String> tblColGuildName;
+    @FXML
+    private TableColumn<Guild, String> tblColGuildManager;
+    @FXML
+    private TableView<Guild> tblGuild;
+
+    /** ------------------------------------------------------------------------------------------- */
+    /**
+     * We initialize the view.
+     */
     /**
      * Initializes the controller class.
      */
@@ -83,6 +102,38 @@ public class ManagementRegisterVolunteerController extends Controller implements
         managerTbl.setItems(userModel.getManagers());
         managerTblColFname.setCellValueFactory(manager -> manager.getValue().getFirstName());
         managerTblColLname.setCellValueFactory(manager -> manager.getValue().getLastName());
+        /**
+         * We set the items on the guild table and with a lambda expression we set the individual
+         * columns first name and last name.
+         */
+        tblGuild.setItems(userModel.getGuilds());
+        tblColGuildName.setCellValueFactory(guild -> guild.getValue().getName());
+
+        comboBoxAddGuildManager.setItems(userModel.getManagers());
+        comboBoxAddGuildManager.setCellFactory(new Callback<ListView<Manager>, ListCell<Manager>>()
+          {
+            @Override
+            public ListCell<Manager> call(ListView<Manager> param)
+              {
+                return new ListCell<Manager>()
+                  {
+                    @Override
+                    protected void updateItem(Manager manager, boolean empty)
+                      {
+                        super.updateItem(manager, empty);
+                        if (manager == null || empty)
+                        {
+                            setGraphic(null);
+                        }
+                        else
+                        {
+                            setText(manager.getFullNameAsString());
+                        }
+                      }
+                  };
+              }
+          });
+//        tblColGuildManager.setCellValueFactory(guild -> guild.getValue().getManagerName());
       }
 
     public ManagementRegisterVolunteerController() throws IOException
@@ -90,6 +141,10 @@ public class ManagementRegisterVolunteerController extends Controller implements
         userModel = new UserModel();
       }
 
+    /** --------------------------------------MANAGER------------------------------------------- */
+    /**
+     * We make the register manager methods.
+     */
     /**
      * When the Table View is selected it will display the info inside it to the
      * left side onto the text fields.
@@ -110,19 +165,62 @@ public class ManagementRegisterVolunteerController extends Controller implements
         }
       }
 
+    /**
+     * We click the "add" button for registering managers.
+     *
+     * @param event
+     */
     @FXML
     private void handleAddingManager(ActionEvent event)
       {
+
+        /**
+         * We get the text in the fields as strings.
+         */
         String fName = addTFNameTxtF.getText().trim();
         String lName = addTLNameTxtF.getText().trim();
         String email = addTEmailTxtF.getText().trim();
         String username = addTUNameTxtF.getText().trim();
         String password = addTPassTxtF.getText().trim();
+        Manager mg = new Manager(username, password, fName, lName, email, 0);
         addTFNameTxtF.clear();
         addTLNameTxtF.clear();
         addTEmailTxtF.clear();
         addTUNameTxtF.clear();
         addTPassTxtF.clear();
+        userModel.addManager(mg);
       }
 
+    /** -----------------------------------------GUILD-------------------------------------------- */
+    /**
+     * We make the Register Guild methods.
+     */
+    @FXML
+    private void handleAddingGuild(ActionEvent event)
+      {
+      }
+
+    @FXML
+    private void handleRemoveGuild(ActionEvent event)
+      {
+      }
+
+    @FXML
+    private void handleSelectGuild(MouseEvent event)
+      {
+        if (event.getClickCount() == 1)
+        {
+            Guild selectedGuild = tblGuild.getSelectionModel().getSelectedItem();
+            txtFieldAddGuildName.setText(selectedGuild.getNameAsString());
+        }
+      }
+
+    @FXML
+    private void handleAddAnotherManager(ActionEvent event)
+      {
+      }
+
+    /** --------------------------------------VOLUNTEER-------------------------------------------- */
+    //SOME VOLUNTEER CODE
+    /** ------------------------------------------------------------------------------------------- */
   }

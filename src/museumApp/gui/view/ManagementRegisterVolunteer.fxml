@@ -191,6 +191,59 @@
                      </children></AnchorPane>
               </content>
             </Tab>
+            <Tab text="Register a Guild">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane prefHeight="329.0" prefWidth="509.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                           <columnConstraints>
+                              <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="109.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" minWidth="10.0" prefWidth="341.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="61.0" prefWidth="92.0" text="Guild Name:">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <JFXTextField fx:id="txtFieldAddGuildName" focusColor="#25adfc" GridPane.columnIndex="1" />
+                              <VBox alignment="CENTER" fillWidth="false" spacing="30.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                 <children>
+                                    <ComboBox fx:id="comboBoxAddGuildManager" prefHeight="25.0" prefWidth="402.0" promptText="none selected..." />
+                                    <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#handleAddAnotherManager" prefHeight="25.0" prefWidth="220.0" text="Add another manager for this guild" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" fillWidth="false" layoutX="163.0" layoutY="175.0" spacing="30.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label text="Guild Manager:" />
+                                    <Label />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </GridPane>
+                        <ButtonBar layoutX="315.0" layoutY="363.0" prefHeight="40.0" prefWidth="179.0">
+                           <buttons>
+                              <JFXButton onAction="#handleAddingGuild" prefHeight="13.0" styleClass="managementViewButtons" text="Add" />
+                              <JFXButton layoutX="114.0" layoutY="17.0" onAction="#handleRemoveGuild" prefHeight="13.0" styleClass="managementViewButtons" text="Delete" />
+                           </buttons>
+                        </ButtonBar>
+                        <TableView fx:id="tblGuild" layoutX="578.0" layoutY="39.0" onMouseClicked="#handleSelectGuild" prefHeight="379.0" prefWidth="352.0">
+                          <columns>
+                            <TableColumn fx:id="tblColGuildName" prefWidth="75.0" text="Guild Name" />
+                            <TableColumn fx:id="tblColGuildManager" prefWidth="75.0" text="Guild Manager" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
             <Tab text="Set Volunteer Hours">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />

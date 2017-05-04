@@ -75,4 +75,11 @@ public class UserModel extends Model
         return result;
       }
 
+    /** ------------------------------------------------------------------------------------------- */
+    public void addManager(Manager mg)
+      {
+        managers.add(mg); //updates gui through observable
+        museumManager.addManager(mg); //updates database
+      }
+
   }
