@@ -322,7 +322,7 @@ public class DatabaseManager
       {
         try (Connection con = connectionManager.getConnection())
         {
-            String query = "SELECT * FROM employee WHERE employee_type_id = 1, user_name = ?";
+            String query = "SELECT * FROM employee WHERE employee_type_id = 1 AND user_name = ?";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, username);
 
