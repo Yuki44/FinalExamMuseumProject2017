@@ -5,18 +5,16 @@
  */
 package museumApp.be;
 
-import java.sql.Date;
-
 /**
  *
  * @author Peder
  */
 public class Administrator extends Employee
-{
+  {
 
-    public Administrator(String userName, String password, String firstName, String lastName, String email, int id)
-    {
-        super(userName, password, firstName, lastName, email, id);
-    }
+    public Administrator(int id, String userName, String password, String firstName, String lastName, String email)
+      {
+        super(id, userName, password, firstName, lastName, email);
+      }
 
-}
+  }

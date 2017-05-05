@@ -21,9 +21,9 @@ public class Volunteer extends User
     protected Date registeredDate;
     protected Date birthDate;
 
-    public Volunteer( int id,  String firstName,String lastName,Date birthDate, String phoneNumber,String email,String nationality, Date registeredDate )
+    public Volunteer(int id, String firstName, String lastName, Date birthDate, String phoneNumber, String email, String nationality, Date registeredDate)
       {
-        super(firstName, lastName, email, id);
+        super(id, firstName, lastName, email);
         this.nationality = new SimpleStringProperty(nationality);
         this.phoneNumber = new SimpleStringProperty(phoneNumber);
         this.registeredDate = registeredDate;

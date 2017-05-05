@@ -183,13 +183,25 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String email = addTEmailTxtF.getText().trim();
         String username = addTUNameTxtF.getText().trim();
         String password = addTPassTxtF.getText().trim();
-        Manager mg = new Manager(username, password, fName, lName, email, 0);
+        Manager mg = new Manager(0, fName, lName, email, username, password);
+        userModel.addManager(mg);
         addTFNameTxtF.clear();
         addTLNameTxtF.clear();
         addTEmailTxtF.clear();
         addTUNameTxtF.clear();
         addTPassTxtF.clear();
-        userModel.addManager(mg);
+      }
+
+    @FXML
+    private void handleAddAnotherManager(ActionEvent event)
+      {
+
+      }
+
+    @FXML
+    private void handleRemoveManager(ActionEvent event) throws SQLException
+      {
+
       }
 
     /** -----------------------------------------GUILD-------------------------------------------- */
@@ -214,11 +226,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
             Guild selectedGuild = tblGuild.getSelectionModel().getSelectedItem();
             txtFieldAddGuildName.setText(selectedGuild.getNameAsString());
         }
-      }
-
-    @FXML
-    private void handleAddAnotherManager(ActionEvent event)
-      {
       }
 
     /** --------------------------------------VOLUNTEER-------------------------------------------- */

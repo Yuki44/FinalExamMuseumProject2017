@@ -20,7 +20,7 @@ public abstract class User extends BusinessEntity
     protected StringProperty email;
     protected StringProperty fullName;
 
-    public User(String firstName, String lastName, String email, int id)
+    public User(int id, String firstName, String lastName, String email)
       {
         super(id);
         this.firstName = new SimpleStringProperty(firstName);

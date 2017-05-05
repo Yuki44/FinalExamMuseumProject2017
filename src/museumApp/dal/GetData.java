@@ -26,10 +26,10 @@ import museumApp.be.Volunteer;
 public class GetData extends DatabaseManager
   {
 
-    public GetData() throws IOException {
-    }
+    public GetData() throws IOException
+      {
+      }
 
-    
     /**
      * Selects the volunteers in the database, through a SELECT statement.
      *
@@ -152,10 +152,10 @@ public class GetData extends DatabaseManager
         String email = rs.getString("email");
         String phoneNumber = rs.getString("phone_number");
         Date birthDate = rs.getDate("date_of_birth");
-        Date registeredDate= rs.getDate("join_date");
-        String nationality= rs.getString("nationality");
+        Date registeredDate = rs.getDate("join_date");
+        String nationality = rs.getString("nationality");
         int id = rs.getInt("volunteer_id");
-        return new Volunteer(id, firstName,lastName,birthDate,phoneNumber,  email, nationality,registeredDate );
+        return new Volunteer(id, firstName, lastName, birthDate, phoneNumber, email, nationality, registeredDate);
 
       }
 
@@ -175,7 +175,7 @@ public class GetData extends DatabaseManager
         String email = rs.getString("email");
         int id = rs.getInt("employee_id");
 
-        return new Manager(userName, password, firstName, lastName, email, id);
+        return new Manager(id, userName, password, firstName, lastName, email);
 
       }
 
@@ -194,7 +194,7 @@ public class GetData extends DatabaseManager
         String lastName = rs.getString("last_name");
         String email = rs.getString("email");
         int id = rs.getInt("employee_id");
-        return new Administrator(userName, password, firstName, lastName, email, id);
+        return new Administrator(id, userName, password, firstName, lastName, email);
       }
 
     public Manager getManagerFromResults(PreparedStatement pstmt) throws SQLException
@@ -208,7 +208,7 @@ public class GetData extends DatabaseManager
         String lastName = rs.getString("last_name");
         String email = rs.getString("email");
 
-        Manager manager = new Manager(userName, password, firstName, lastName, email, idMgr);
+        Manager manager = new Manager(idMgr, userName, password, firstName, lastName, email);
         return manager;
       }
 
@@ -223,7 +223,7 @@ public class GetData extends DatabaseManager
         String lastName = rs.getString("last_name");
         String email = rs.getString("email");
 
-        Administrator admin = new Administrator(userName, password, firstName, lastName, email, idAdm);
+        Administrator admin = new Administrator(idAdm, userName, password, firstName, lastName, email);
         return admin;
       }
 
@@ -260,7 +260,8 @@ public class GetData extends DatabaseManager
             return null;
         }
       }
-public boolean checkPasswordForManager(String username, String password)
+
+    public boolean checkPasswordForManager(String username, String password)
       {
         try (Connection con = connectionManager.getConnection())
         {
@@ -297,5 +298,5 @@ public boolean checkPasswordForManager(String username, String password)
             return false;
         }
       }
- 
+
   }

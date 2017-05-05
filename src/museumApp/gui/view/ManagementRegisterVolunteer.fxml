@@ -179,7 +179,7 @@
                         <ButtonBar layoutX="315.0" layoutY="363.0" prefHeight="40.0" prefWidth="179.0">
                            <buttons>
                               <JFXButton fx:id="addManagerBTN" onAction="#handleAddingManager" prefHeight="13.0" styleClass="managementViewButtons" text="Add" />
-                              <JFXButton fx:id="deleteManagerBTN" layoutX="114.0" layoutY="17.0" prefHeight="13.0" styleClass="managementViewButtons" text="Delete" />
+                              <JFXButton fx:id="deleteManagerBTN" layoutX="114.0" layoutY="17.0" onAction="#handleRemoveManager" prefHeight="13.0" styleClass="managementViewButtons" text="Delete" />
                            </buttons>
                         </ButtonBar>
                         <TableView fx:id="managerTbl" layoutX="589.0" layoutY="35.0" onMouseClicked="#handleSelectManager" prefHeight="314.0" prefWidth="210.0">

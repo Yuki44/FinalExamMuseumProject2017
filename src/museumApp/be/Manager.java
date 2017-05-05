@@ -12,9 +12,9 @@ package museumApp.be;
 public class Manager extends Employee
   {
 
-    public Manager(String userName, String password, String firstName, String lastName, String email, int id)
+    public Manager(int id, String firstName, String lastName, String email, String userName, String password)
       {
-        super(userName, password, firstName, lastName, email, id);
+        super(id, firstName, lastName, email, userName, password);
       }
 
   }
