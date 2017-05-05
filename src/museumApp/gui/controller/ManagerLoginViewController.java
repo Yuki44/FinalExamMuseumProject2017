@@ -48,7 +48,7 @@ public class ManagerLoginViewController extends Controller implements Initializa
     @FXML
     private JFXButton btnLogin;
     @FXML
-    private Label wrongLoginLabel;
+    private Label lblWrongLogin;
     @FXML
     private Button btnBypassLogin;
 
@@ -70,7 +70,6 @@ public class ManagerLoginViewController extends Controller implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
-        wrongLoginLabel.setVisible(false);
       }
 
     /**

@@ -16,26 +16,30 @@ import museumApp.dal.ManagerLoginHandler;
  * @author Peder
  */
 public class LoginManager
-{
+  {
 
     private final ManagerLoginHandler managerLoginHandler;
     private final AdministratorLoginHandler adminLoginHandler;
 
     public LoginManager() throws IOException
-    {
+      {
         this.managerLoginHandler = new ManagerLoginHandler();
         this.adminLoginHandler = new AdministratorLoginHandler();
-    }
+      }
 
     public Employee LoginChecker(String username, String password) throws SQLException
-    {
+      {
         if (managerLoginHandler.LoginChecker(username, password) != null)
         {
             return managerLoginHandler.LoginChecker(username, password);
         }
-        else
+        else if (adminLoginHandler.LoginChecker(username, password) != null)
         {
             return adminLoginHandler.LoginChecker(username, password);
         }
-    }
-}
+        else
+        {
+            return null;
+        }
+      }
+  }
