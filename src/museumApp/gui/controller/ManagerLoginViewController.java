@@ -34,7 +34,8 @@ import museumApp.gui.model.LoginModel;
  *
  * @author Yuki
  */
-public class ManagerLoginViewController extends Controller implements Initializable {
+public class ManagerLoginViewController extends Controller implements Initializable
+  {
 
     @FXML
     private BorderPane borderPane;
@@ -58,33 +59,42 @@ public class ManagerLoginViewController extends Controller implements Initializa
     private final LoginModel loginModel;
     private Employee employee = null;
 
-    public ManagerLoginViewController() throws IOException {
+    public ManagerLoginViewController() throws IOException
+      {
         this.loginModel = new LoginModel();
-    }
+      }
 
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+      {
         wrongLoginLabel.setVisible(false);
-    }
+      }
 
     @FXML
-    private void handleLogin(ActionEvent event) throws IOException, SQLException {
-        if (employee == null) {
+    private void handleLogin(ActionEvent event) throws IOException, SQLException
+      {
+        if (employee == null)
+        {
             employee = loginModel.LoginChecker(txtUserName.getText().trim(), txtPassword.getText().trim());
         }
-        if (loginState != loggedIn && employee != null) {
-            if (employee.getClass() == Administrator.class) {
+        if (loginState != loggedIn && employee != null)
+        {
+            if (employee.getClass() == Administrator.class)
+            {
                 loginState = loggedIn;
             }
-            if (employee.getClass() == Manager.class) {
+            if (employee.getClass() == Manager.class)
+            {
                 loginState = loggedIn;
             }
 
-            if (loginState == loggedIn) {
-                try {
+            if (loginState == loggedIn)
+            {
+                try
+                {
                     Stage stage;
                     Parent root;
                     URL location;
@@ -99,22 +109,27 @@ public class ManagerLoginViewController extends Controller implements Initializa
                     stage.setScene(scene);
                     stage.show();
                     stage.centerOnScreen();
-                } catch (IOException ex) {
+                }
+                catch (IOException ex)
+                {
                     System.err.println(ex);
                 }
             }
-            if (loginState != loggedIn && employee == null) {
+            if (loginState != loggedIn && employee == null)
+            {
                 loginState = wrongPassword;
                 wrongLoginLabel.setVisible(true);
             }
         }
-    }
+      }
 
     @FXML
-    private void handleGoToPassword(KeyEvent event) {
-    }
+    private void handleGoToPassword(KeyEvent event)
+      {
+      }
 
     @FXML
-    private void handleGoToLogin(KeyEvent event) {
-    }
-}
+    private void handleGoToLogin(KeyEvent event)
+      {
+      }
+  }

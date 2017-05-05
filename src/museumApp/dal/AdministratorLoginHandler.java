@@ -30,7 +30,7 @@ public class AdministratorLoginHandler extends DatabaseManager
     {
         for (Administrator allAdmin : DbMgr.getAllAdmins())
         {
-            if (allAdmin.equals(username))
+            if (allAdmin.getUserName().getValue().equals(username))
             {
                 if (DbMgr.checkPasswordForAdmin(username, password))
                 {

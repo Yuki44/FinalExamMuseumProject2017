@@ -231,18 +231,19 @@ public class DatabaseManager
             pstmt.setInt(8, guildLocationId);
             pstmt.execute();
         }
-        /**
-         * Makes it possible to remove a volunteer from the database by use of
-         * the parameters below
-         *
-         * @param firstName
-         * @param lastName
-         * @throws SQLException
-         */
+      }
 
+    /**
+     * Makes it possible to remove a volunteer from the database by use of
+     * the parameters below
+     *
+     * @param firstName
+     * @param lastName
+     * @throws SQLException
+     */
     public void removeVolunteer(String firstName, String lastName) throws SQLException
       {
-        String sql = "DELETE FROM volunteer WHERE first_name = (?) and last_name = (?);";
+        String sql = "DELETE FROM volunteer WHERE first_name = (?) AND last_name = (?);";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
         pstmt.setString(1, firstName);
         pstmt.setString(2, lastName);
@@ -253,7 +254,7 @@ public class DatabaseManager
       {
         try (Connection con = connectionManager.getConnection())
         {
-            String query1 = "SELECT * FROM employee WHERE employee_type_id = 1, user_name = ?";
+            String query1 = "SELECT * FROM employee WHERE employee_type_id = 1 AND user_name = ?";
             PreparedStatement pstmt = con.prepareStatement(query1);
             pstmt.setString(1, username);
             ResultSet rs = pstmt.executeQuery();
@@ -272,7 +273,7 @@ public class DatabaseManager
       {
         try (Connection con = connectionManager.getConnection())
         {
-            String query1 = "SELECT * FROM employye WHERE employee_type_id = 2, user_name = ?";
+            String query1 = "SELECT * FROM employee WHERE employee_type_id = 2 AND user_name = ?";
             PreparedStatement pstmt = con.prepareStatement(query1);
             pstmt.setString(1, username);
             ResultSet rs = pstmt.executeQuery();
@@ -338,7 +339,7 @@ public class DatabaseManager
       {
         try (Connection con = connectionManager.getConnection())
         {
-            String query = "SELECT * FROM employee WHERE employee_type_id = 2, user_name = ?";
+            String query = "SELECT * FROM employee WHERE employee_type_id = 2 AND user_name = ?";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, username);
 
