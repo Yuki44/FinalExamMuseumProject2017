@@ -24,7 +24,7 @@ public class MuseumManager
     private DatabaseManager DbMgr;
 
     /**
-     * Constructor of the DatabaseManager
+     * Constructor of the DatabaseManager.
      */
     public MuseumManager()
       {
@@ -111,6 +111,11 @@ public class MuseumManager
             System.err.println(ex);
             throw new MuseumManagerException("Unable to fetch administrators.");
         }
+      }
+
+    public void addManager(Manager mg)
+      {
+        DbMgr.addManager(mg);
       }
 
   }

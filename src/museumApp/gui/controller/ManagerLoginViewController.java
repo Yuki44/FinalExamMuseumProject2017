@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -47,6 +48,8 @@ public class ManagerLoginViewController extends Controller implements Initializa
     private JFXButton btnLogin;
     @FXML
     private Label wrongLoginLabel;
+    @FXML
+    private Button btnBypassLogin;
 
     private static final int notLoggedIn = 1;
     private static final int loggedIn = 2;
@@ -114,5 +117,4 @@ public class ManagerLoginViewController extends Controller implements Initializa
     @FXML
     private void handleGoToLogin(KeyEvent event) {
     }
-
 }
