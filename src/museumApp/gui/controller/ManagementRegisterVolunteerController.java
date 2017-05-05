@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -171,7 +172,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
      * @param event
      */
     @FXML
-    private void handleAddingManager(ActionEvent event)
+    private void handleAddingManager(ActionEvent event) throws SQLException
       {
 
         /**

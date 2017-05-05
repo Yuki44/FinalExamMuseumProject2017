@@ -76,10 +76,19 @@ public class UserModel extends Model
       }
 
     /** ------------------------------------------------------------------------------------------- */
-    public void addManager(Manager mg)
+    public void addManager(Manager mg) throws SQLException 
       {
         managers.add(mg); //updates gui through observable
         museumManager.addManager(mg); //updates database
       }
-
+public void addVolunteer(Volunteer vtr) throws SQLException 
+{
+    volunteers.add(vtr);
+    museumManager.addVolunteer(vtr);
+}
+public void removeVolunteer (Volunteer vtr) throws SQLException
+{
+    volunteers.remove(vtr);
+    museumManager.removeVolunteer(vtr);
+}
   }

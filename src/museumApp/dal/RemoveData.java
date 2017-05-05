@@ -8,6 +8,7 @@ package museumApp.dal;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import museumApp.be.Volunteer;
 
 /**
  *
@@ -26,12 +27,12 @@ public class RemoveData extends DatabaseManager {
      * @param lastName
      * @throws SQLException
      */
-    public void removeVolunteer(String firstName, String lastName) throws SQLException
+    public void removeVolunteer(Volunteer vtr) throws SQLException
       {
         String sql = "DELETE FROM volunteer WHERE first_name = (?) AND last_name = (?);";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-        pstmt.setString(1, firstName);
-        pstmt.setString(2, lastName);
+        pstmt.setString(1, vtr.getFirstNameAsString());
+        pstmt.setString(2, vtr.getLastNameAsString());
         pstmt.execute();
       }
 

@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import museumApp.be.Manager;
+import museumApp.be.Volunteer;
 
 /**
  *
@@ -24,6 +25,7 @@ public class AddData extends DatabaseManager {
      * Makes it possible to add a volunteer to the system through the database
      * by use of the parameters below
      *
+     * @param vtr
      * @param firstName
      * @param lastName
      * @param email
@@ -31,26 +33,28 @@ public class AddData extends DatabaseManager {
      * @param birthDate
      * @throws SQLException
      */
-    public void addVolunteer(String firstName, String lastName, Date birthDate, String phoneNumber, String email, String nationality, Date joinDate, int guildLocationId) throws SQLException
+    public void addVolunteer(Volunteer vtr) throws SQLException
       {
         {
             String sql = "INSERT INTO volunteer(first_name, last_name, date_of_birth, phone_number, "
-                    + "email, nationality, join_date,guild_location_id) Values ('?',' ?', '?', '?',' ?','?','?','?');";
+                    + "email, nationality, join_date,guild_location_id) Values ('?',' ?', '?', '?',' ?','?','?');";
             PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-            pstmt.setString(1, firstName);
-            pstmt.setString(2, lastName);
-            pstmt.setDate(3, birthDate);
-            pstmt.setString(4, phoneNumber);
-            pstmt.setString(5, email);
-            pstmt.setString(6, nationality);
-            pstmt.setDate(7, joinDate);
-            pstmt.setInt(8, guildLocationId);
+            
+            pstmt.setString(1, vtr.getFirstNameAsString());
+            pstmt.setString(2, vtr.getLastNameAsString());
+            pstmt.setDate(3, vtr.getBirthDate());
+            pstmt.setString(4, vtr.getPhoneNumberAsString());
+            pstmt.setString(5, vtr.getEmailAsString());
+            pstmt.setString(6, vtr.getNationalityAsString());
+            pstmt.setDate(7, vtr.getRegisteredDate());
             pstmt.execute();
         }
       }
+    
+    
 
-    public void addManager(Manager mg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addManager(Manager mg) throws SQLException  {
+
     }
     
 }
