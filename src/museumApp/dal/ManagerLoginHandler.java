@@ -16,12 +16,12 @@ import museumApp.be.Manager;
  *
  * @author Peder
  */
-public class EmployeeLoginHandler extends DatabaseManager
+public class ManagerLoginHandler extends DatabaseManager
 {
 
     DatabaseManager DbMgr;
 
-    public EmployeeLoginHandler() throws IOException
+    public ManagerLoginHandler() throws IOException
     {
         this.DbMgr = new DatabaseManager();
     }
@@ -38,16 +38,7 @@ public class EmployeeLoginHandler extends DatabaseManager
                 }
             }
         }
-        for (Administrator allAdmin : DbMgr.getAllAdmins())
-        {
-            if (allAdmin.equals(username))
-            {
-                if (DbMgr.checkPasswordForAdmin(username, password))
-                {
-                    return DbMgr.getAdminBasedOnUsername(username);
-                }
-            }
-        }
+
         return null;
     }
 }

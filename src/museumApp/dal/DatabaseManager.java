@@ -74,7 +74,7 @@ public class DatabaseManager
     {
         List<Manager> managers = new ArrayList<>();
 
-        String sql = "SELECT * FROM manager";
+        String sql = "SELECT * FROM employee WHERE employee_type_id = 1";
         try (Connection con = connectionManager.getConnection())
         {
             Statement st = con.createStatement();
@@ -97,7 +97,7 @@ public class DatabaseManager
     {
         List<Administrator> admin = new ArrayList<>();
 
-        String sql = "SELECT * FROM administrator";
+        String sql = "SELECT * FROM employee WHERE employee_type_id = 2";
         try (Connection con = connectionManager.getConnection())
         {
             Statement st = con.createStatement();
@@ -182,7 +182,7 @@ public class DatabaseManager
         String firstName = rs.getString("first_name");
         String lastName = rs.getString("last_name");
         String email = rs.getString("email");
-        int id = rs.getInt("manager_id");
+        int id = rs.getInt("employee_id");
 
         return new Manager(userName, password, firstName, lastName, email, id);
 
@@ -202,7 +202,7 @@ public class DatabaseManager
         String firstName = rs.getString("first_name");
         String lastName = rs.getString("last_name");
         String email = rs.getString("email");
-        int id = rs.getInt("administrator_id");
+        int id = rs.getInt("employee_id");
         return new Administrator(userName, password, firstName, lastName, email, id);
     }
 
@@ -217,19 +217,19 @@ public class DatabaseManager
      * @param birthDate
      * @throws SQLException
      */
-    public void addVolunteer(String firstName, String lastName, Date birthDate, String phoneNumber, String email, String nationality,Date joinDate,int guildLocationId ) throws SQLException
+    public void addVolunteer(String firstName, String lastName, Date birthDate, String phoneNumber, String email, String nationality, Date joinDate, int guildLocationId) throws SQLException
     {
         String sql = "INSERT INTO volunteer(first_name, last_name, date_of_birth, phone_number, "
                 + "email, nationality, join_date,guild_location_id) Values ('?',' ?', '?', '?',' ?','?','?','?');";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
         pstmt.setString(1, firstName);
         pstmt.setString(2, lastName);
-        pstmt.setDate(3,birthDate);
+        pstmt.setDate(3, birthDate);
         pstmt.setString(4, phoneNumber);
         pstmt.setString(5, email);
         pstmt.setString(6, nationality);
-        pstmt.setDate(7,joinDate);
-        pstmt.setInt(8,guildLocationId);
+        pstmt.setDate(7, joinDate);
+        pstmt.setInt(8, guildLocationId);
         pstmt.execute();
     }
 
@@ -254,7 +254,7 @@ public class DatabaseManager
     {
         try (Connection con = connectionManager.getConnection())
         {
-            String query1 = "SELECT * FROM manager WHERE user_name = ?";
+            String query1 = "SELECT * FROM employee WHERE employee_type_id = 1, user_name = ?";
             PreparedStatement pstmt = con.prepareStatement(query1);
             pstmt.setString(1, username);
             ResultSet rs = pstmt.executeQuery();
@@ -273,7 +273,7 @@ public class DatabaseManager
     {
         try (Connection con = connectionManager.getConnection())
         {
-            String query1 = "SELECT * FROM administrator WHERE user_name = ?";
+            String query1 = "SELECT * FROM employye WHERE employee_type_id = 2, user_name = ?";
             PreparedStatement pstmt = con.prepareStatement(query1);
             pstmt.setString(1, username);
             ResultSet rs = pstmt.executeQuery();
@@ -292,7 +292,7 @@ public class DatabaseManager
     {
         ResultSet rs = pstmt.executeQuery();
         rs.next();
-        int idMgr = rs.getInt("manager_id");
+        int idMgr = rs.getInt("employee_id");
         String userName = rs.getString("user_name");
         String password = rs.getString("password");
         String firstName = rs.getString("first_name");
@@ -307,7 +307,7 @@ public class DatabaseManager
     {
         ResultSet rs = pstmt.executeQuery();
         rs.next();
-        int idAdm = rs.getInt("administrator_id");
+        int idAdm = rs.getInt("employee_id");
         String userName = rs.getString("user_name");
         String password = rs.getString("password");
         String firstName = rs.getString("first_name");
@@ -322,7 +322,7 @@ public class DatabaseManager
     {
         try (Connection con = connectionManager.getConnection())
         {
-            String query = "SELECT * FROM manager WHERE user_name = ?";
+            String query = "SELECT * FROM employee WHERE employee_type_id = 1, user_name = ?";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, username);
 
@@ -339,7 +339,7 @@ public class DatabaseManager
     {
         try (Connection con = connectionManager.getConnection())
         {
-            String query = "SELECT * FROM administrator WHERE user_name = ?";
+            String query = "SELECT * FROM employee WHERE employee_type_id = 2, user_name = ?";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, username);
 

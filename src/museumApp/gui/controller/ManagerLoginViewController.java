@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,21 +23,24 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import museumApp.be.Administrator;
+import museumApp.be.Employee;
+import museumApp.be.Manager;
+import museumApp.gui.model.LoginModel;
 
 /**
  * FXML Controller class
  *
  * @author Yuki
  */
-public class ManagerLoginViewController extends Controller implements Initializable
-{
+public class ManagerLoginViewController extends Controller implements Initializable {
 
     @FXML
     private BorderPane borderPane;
     @FXML
     private GridPane mainGridPane;
     @FXML
-    private JFXTextField txtUsername;
+    private JFXTextField txtUserName;
     @FXML
     private JFXPasswordField txtPassword;
     @FXML
@@ -44,46 +48,71 @@ public class ManagerLoginViewController extends Controller implements Initializa
     @FXML
     private Label wrongLoginLabel;
 
+    private static final int notLoggedIn = 1;
+    private static final int loggedIn = 2;
+    private static final int wrongPassword = 3;
+    private int loginState = notLoggedIn;
+    private final LoginModel loginModel;
+    private Employee employee = null;
+
+    public ManagerLoginViewController() throws IOException {
+        this.loginModel = new LoginModel();
+    }
+
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
-        // TODO
+    public void initialize(URL url, ResourceBundle rb) {
+        wrongLoginLabel.setVisible(false);
     }
 
     @FXML
-    private void handleLogin(ActionEvent event)
-    {
-        try
-        {
-            Stage stage;
-            Parent root;
-            stage = (Stage) borderPane.getScene().getWindow();
-            URL location = this.getClass().getResource("/museumApp/gui/view/ManagementRegisterVolunteer.fxml");
-            FXMLLoader loader = new FXMLLoader(location);
-            root = loader.load();
-            Scene scene = new Scene(root);
-            stage.hide();
-            stage.setScene(scene);
-            stage.show();
-            stage.centerOnScreen();
+    private void handleLogin(ActionEvent event) throws IOException, SQLException {
+        if (employee == null) {
+            employee = loginModel.LoginChecker(txtUserName.getText().trim(), txtPassword.getText().trim());
         }
-        catch (IOException ex)
-        {
-            System.err.println(ex);
+        if (loginState != loggedIn && employee != null) {
+            if (employee.getClass() == Administrator.class) {
+                loginState = loggedIn;
+            }
+            if (employee.getClass() == Manager.class) {
+                loginState = loggedIn;
+            }
+
+            if (loginState == loggedIn) {
+                try {
+                    Stage stage;
+                    Parent root;
+                    URL location;
+                    location = this.getClass().getResource("/museumApp/gui/view/ManagementRegisterVolunteer.fxml");
+                    FXMLLoader loader;
+                    loader = new FXMLLoader(location);
+                    root = loader.load();
+                    Scene scene;
+                    scene = new Scene(root);
+                    stage = (Stage) borderPane.getScene().getWindow();
+                    stage.hide();
+                    stage.setScene(scene);
+                    stage.show();
+                    stage.centerOnScreen();
+                } catch (IOException ex) {
+                    System.err.println(ex);
+                }
+            }
+            if (loginState != loggedIn && employee == null) {
+                loginState = wrongPassword;
+                wrongLoginLabel.setVisible(true);
+            }
         }
     }
 
     @FXML
-    private void handleGoToPassword(KeyEvent event)
-    {
+    private void handleGoToPassword(KeyEvent event) {
     }
 
     @FXML
-    private void handleGoToLogin(KeyEvent event)
-    {
+    private void handleGoToLogin(KeyEvent event) {
     }
 
 }
