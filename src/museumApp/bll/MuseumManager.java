@@ -12,7 +12,11 @@ import museumApp.be.Administrator;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.be.Volunteer;
+import museumApp.dal.AddData;
 import museumApp.dal.DatabaseManager;
+import museumApp.dal.GetData;
+import museumApp.dal.RemoveData;
+import museumApp.dal.UpdateData;
 
 /**
  *
@@ -21,16 +25,20 @@ import museumApp.dal.DatabaseManager;
 public class MuseumManager
   {
 
+    private GetData getDbMgr;
+    private AddData addDbMgr;
+    private UpdateData updateDbMgr;
+    private RemoveData removeDbMgr;
     private DatabaseManager DbMgr;
 
     /**
-     * Constructor of the DatabaseManager.
+     * Constructor of the GetData.
      */
     public MuseumManager()
       {
         try
         {
-            DbMgr = new DatabaseManager();
+            getDbMgr = new GetData();
         }
         catch (IOException ex)
         {
@@ -44,13 +52,13 @@ public class MuseumManager
     /**
      * Creates a List to fetch the volunteers in the database.
      *
-     * @return method from DatabaseManager
+     * @return method from GetData
      */
     public List<Volunteer> getAllVolunteers()
       {
         try
         {
-            return DbMgr.getAllVolunteers();
+            return getDbMgr.getAllVolunteers();
         }
         catch (SQLException ex)
         {
@@ -62,13 +70,13 @@ public class MuseumManager
     /**
      * Creates a List to fetch the Guild in the database.
      *
-     * @return method from DatabaseManager
+     * @return method from GetData
      */
     public List<Guild> getAllGuilds()
       {
         try
         {
-            return DbMgr.getAllGuilds();
+            return getDbMgr.getAllGuilds();
         }
         catch (SQLException ex)
         {
@@ -80,13 +88,13 @@ public class MuseumManager
     /**
      * Creates a List to fetch the Manager in the database.
      *
-     * @return method from DatabaseManager
+     * @return method from GetData
      */
     public List<Manager> getAllManagers()
       {
         try
         {
-            return DbMgr.getAllManagers();
+            return getDbMgr.getAllManagers();
         }
         catch (SQLException ex)
         {
@@ -98,13 +106,13 @@ public class MuseumManager
     /**
      * Creates a List to fetch the Administrator in the database.
      *
-     * @return method from DatabaseManager
+     * @return method from GetData
      */
     public List<Administrator> getAllAdmins()
       {
         try
         {
-            return DbMgr.getAllAdmins();
+            return getDbMgr.getAllAdmins();
         }
         catch (SQLException ex)
         {
@@ -115,7 +123,7 @@ public class MuseumManager
 
     public void addManager(Manager mg)
       {
-        DbMgr.addManager(mg);
+        addDbMgr.addManager(mg);
       }
 
   }

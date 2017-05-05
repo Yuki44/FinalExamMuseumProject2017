@@ -17,16 +17,14 @@ public class Volunteer extends User
   {
 
     protected StringProperty nationality;
-    protected StringProperty guildLocation;
     protected StringProperty phoneNumber;
     protected Date registeredDate;
     protected Date birthDate;
 
-    public Volunteer(String nationality, Date registeredDate, String guildLocation, Date birthDate, String phoneNumber, String firstName, String lastName, String email, int id)
+    public Volunteer( int id,  String firstName,String lastName,Date birthDate, String phoneNumber,String email,String nationality, Date registeredDate )
       {
         super(firstName, lastName, email, id);
         this.nationality = new SimpleStringProperty(nationality);
-        this.guildLocation = new SimpleStringProperty(guildLocation);
         this.phoneNumber = new SimpleStringProperty(phoneNumber);
         this.registeredDate = registeredDate;
         this.birthDate = birthDate;
@@ -41,17 +39,6 @@ public class Volunteer extends User
     public String getNationalityAsString()
       {
         return nationality.get();
-      }
-
-    /** ------------------------------------------------------------------------------------------- */
-    public StringProperty getGuildLocation()
-      {
-        return guildLocation;
-      }
-
-    public String getGuildLocationAsString()
-      {
-        return guildLocation.get();
       }
 
     /** ------------------------------------------------------------------------------------------- */

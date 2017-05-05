@@ -7,7 +7,7 @@ package museumApp.gui.model;
 
 import java.io.IOException;
 import museumApp.bll.MuseumManager;
-import museumApp.dal.DatabaseManager;
+import museumApp.dal.GetData;
 
 /**
  *

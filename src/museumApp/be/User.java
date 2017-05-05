@@ -26,7 +26,7 @@ public abstract class User extends BusinessEntity
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.email = new SimpleStringProperty(email);
-        fullName = new SimpleStringProperty(firstName + " " + lastName);
+        this.fullName = new SimpleStringProperty(firstName + " " + lastName);
 
       }
 

@@ -16,15 +16,19 @@ import museumApp.be.Manager;
  *
  * @author Peder
  */
-public class ManagerLoginHandler extends DatabaseManager
+public class ManagerLoginHandler extends GetData
   {
 
-    DatabaseManager DbMgr;
+    GetData DbMgr;
 
-    public ManagerLoginHandler() throws IOException
-      {
-        this.DbMgr = new DatabaseManager();
-      }
+    /**
+     *
+     * @throws java.io.IOException
+     */
+    public ManagerLoginHandler() throws IOException {
+        this.DbMgr = new GetData();
+    }
+
 
     public Employee LoginChecker(String username, String password) throws SQLException
       {

@@ -16,14 +16,14 @@ import museumApp.be.Employee;
  *
  * @author Peder
  */
-public class AdministratorLoginHandler extends DatabaseManager
+public class AdministratorLoginHandler extends GetData
 {
 
-    DatabaseManager DbMgr;
+    GetData DbMgr;
 
     public AdministratorLoginHandler() throws IOException
     {
-        this.DbMgr = new DatabaseManager();
+        this.DbMgr = new GetData();
     }
     
     public Employee LoginChecker (String username, String password) throws SQLException
