@@ -73,6 +73,16 @@ public class ManagerLoginViewController extends Controller implements Initializa
         wrongLoginLabel.setVisible(false);
       }
 
+    /**
+     * This method handles the login feature. It checks the text fields to determine
+     * whether or not the username and the password is correct.
+     * And then goes on to check whether the user is a manager of an
+     * administrator.
+     *
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     private void handleLogin(ActionEvent event) throws IOException, SQLException
       {
@@ -118,7 +128,6 @@ public class ManagerLoginViewController extends Controller implements Initializa
             if (loginState != loggedIn && employee == null)
             {
                 loginState = wrongPassword;
-                wrongLoginLabel.setVisible(true);
             }
         }
       }
