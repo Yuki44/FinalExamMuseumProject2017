@@ -85,6 +85,20 @@ public class MuseumManager
         }
       }
 
+    public List<Volunteer> getVolunteersFromGuild(Guild newValue)
+      {
+        try
+        {
+            return getDbMgr.getVolunteerBasedOnGuild(newValue);
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex);
+            throw new MuseumManagerException("Unable to find new value");
+
+        }
+      }
+
     /**
      * Creates a List to fetch the Manager in the database.
      *

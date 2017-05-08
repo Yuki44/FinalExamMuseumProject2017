@@ -210,7 +210,7 @@ public class GetData extends DatabaseManager
         String nationality = rs.getString("nationality");
         Date joinDate = rs.getDate("join_date");
 
-        Volunteer volunteer = new Volunteer(id, firstname, lastname, birthDate, phoneNumber, email, nationality, birthDate);
+        Volunteer volunteer = new Volunteer(id, firstname, lastname, birthDate, phoneNumber, email, nationality, joinDate);
         return volunteer;
       }
 
@@ -244,18 +244,24 @@ public class GetData extends DatabaseManager
         return admin;
       }
 
-    public Volunteer getVolunteerBasedOnGuild(String guildName)
+    public List<Volunteer> getVolunteerBasedOnGuild(Guild newValue) throws SQLException
       {
+        List<Volunteer> volunteers = new ArrayList<>();
+
         try (Connection con = connectionManager.getConnection())
         {
-            String query = "SELCET first_name AND last_name FROM volunteer v "
+            String query = "SELECT * FROM volunteer v "
                     + "INNER JOIN guild_volunteer gv ON v.volunteer_id = gv.volunteer_id"
                     + "INNER JOIN guild g ON gv.guild_id = g.guild_id"
-                    + "WHERE g.name = '?'";
+                    + "WHERE g.guild_id = '?'";
             PreparedStatement pstmt = con.prepareStatement(query);
-            pstmt.setString(1, guildName);
+            pstmt.setInt(1, newValue.getId());
+            ResultSet rs = pstmt.executeQuery();
 
-            return getVolunteerFromResults(pstmt);
+            while (rs.next())
+            {
+                volunteers.add(getVolunteerFromResults(pstmt));
+            }
 
         }
         catch (SQLException sqle)
@@ -263,6 +269,7 @@ public class GetData extends DatabaseManager
             System.err.println(sqle);
             return null;
         }
+        return null;
       }
 
     public Manager getManagerBasedOnUsername(String username)

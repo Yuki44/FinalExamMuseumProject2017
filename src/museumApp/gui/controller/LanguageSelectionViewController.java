@@ -71,6 +71,7 @@ public class LanguageSelectionViewController extends Controller implements Initi
         catch (IOException ex)
         {
             System.err.println(ex);
+            ex.printStackTrace();
         }
       }
 

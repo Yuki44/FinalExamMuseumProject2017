@@ -22,6 +22,7 @@ public class UserModel extends Model
     private ObservableList<Volunteer> volunteers;
     private ObservableList<Guild> guilds;
     private ObservableList<Administrator> admins;
+    private ObservableList<Volunteer> volunteerFromGuild;
 
     public UserModel() throws IOException
       {
@@ -35,6 +36,12 @@ public class UserModel extends Model
         volunteers = FXCollections.observableArrayList(museumManager.getAllVolunteers());
         guilds = FXCollections.observableArrayList(museumManager.getAllGuilds());
         admins = FXCollections.observableArrayList(museumManager.getAllAdmins());
+        //  volunteerFromGuild = FXCollections.observableArrayList(museumManager.getVolunteersFromGuild());
+      }
+
+    public ObservableList<Volunteer> getVolunteerFromGuild()
+      {
+        return volunteerFromGuild;
       }
 
     public ObservableList<Manager> getManagers()
@@ -61,7 +68,7 @@ public class UserModel extends Model
     /**
      * PLEASE CHECK - PLEASE CHECK - PLEASE CHECK - PLEASE CHECK - PLEASE CHECK
      *
-     * WHY DO WE HAVE THIS getUsers()??? Any reason??.
+     * Check if this is used! if(!= true) {delete.method}
      *
      * @return an ArrayList of the different user types.
      * @throws SQLException
@@ -98,5 +105,10 @@ public class UserModel extends Model
       {
         volunteers.remove(vtr);
         museumManager.removeVolunteer(vtr);
+      }
+
+    public ObservableList<Volunteer> getVolunteerFromGuild(Guild newValue)
+      {
+        return (ObservableList<Volunteer>) museumManager.getVolunteersFromGuild(newValue);
       }
   }
