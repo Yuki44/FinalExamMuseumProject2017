@@ -25,11 +25,11 @@ import museumApp.dal.UpdateData;
 public class MuseumManager
   {
 
-    private GetData getDbMgr;
+    protected GetData getDbMgr;
     private AddData addDbMgr;
     private UpdateData updateDbMgr;
     private RemoveData removeDbMgr;
-    private DatabaseManager DbMgr;
+    protected DatabaseManager DbMgr;
 
     /**
      * Constructor of the GetData.

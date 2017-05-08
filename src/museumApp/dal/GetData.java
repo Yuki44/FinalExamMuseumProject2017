@@ -298,5 +298,22 @@ public class GetData extends DatabaseManager
             return false;
         }
       }
+    public int filterHoursByGuild(String guildName){
+         try (Connection con = connectionManager.getConnection())
+        {
+            String query = "SELECT COUNT(hours)FROM volunteer_time vt INNER JOIN guild_volunteer gv "
+                    + "ON vt.guild_volunteer_id =gv.guild_volunteer_id INNER JOIN guild g "
+                    + "ON gv.guild_id =g.guild_id WHERE g.name='%'?'%";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setString(1, guildName);
+            ResultSet rs = pstmt.executeQuery();
+            return rs.getInt(query);
+        }        catch (SQLException sqle)
+        {
+            System.err.println(sqle);
+            return 0;
+        }
+    
+    }
 
   }
