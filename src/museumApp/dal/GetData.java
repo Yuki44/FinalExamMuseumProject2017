@@ -197,6 +197,23 @@ public class GetData extends DatabaseManager
         return new Administrator(id, userName, password, firstName, lastName, email);
       }
 
+    public Volunteer getVolunteerFromResults(PreparedStatement pstmt) throws SQLException
+      {
+        ResultSet rs = pstmt.executeQuery();
+        rs.next();
+        int id = rs.getInt("volunteer_id");
+        String firstname = rs.getString("first_name");
+        String lastname = rs.getString("last_name");
+        Date birthDate = rs.getDate("date_of_birth");
+        String phoneNumber = rs.getString("phone_number");
+        String email = rs.getString("email");
+        String nationality = rs.getString("nationality");
+        Date joinDate = rs.getDate("join_date");
+
+        Volunteer volunteer = new Volunteer(id, firstname, lastname, birthDate, phoneNumber, email, nationality, birthDate);
+        return volunteer;
+      }
+
     public Manager getManagerFromResults(PreparedStatement pstmt) throws SQLException
       {
         ResultSet rs = pstmt.executeQuery();
@@ -225,6 +242,27 @@ public class GetData extends DatabaseManager
 
         Administrator admin = new Administrator(idAdm, userName, password, firstName, lastName, email);
         return admin;
+      }
+
+    public Volunteer getVolunteerBasedOnGuild(String guildName)
+      {
+        try (Connection con = connectionManager.getConnection())
+        {
+            String query = "SELCET first_name AND last_name FROM volunteer v "
+                    + "INNER JOIN guild_volunteer gv ON v.volunteer_id = gv.volunteer_id"
+                    + "INNER JOIN guild g ON gv.guild_id = g.guild_id"
+                    + "WHERE g.name = '?'";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setString(1, guildName);
+
+            return getVolunteerFromResults(pstmt);
+
+        }
+        catch (SQLException sqle)
+        {
+            System.err.println(sqle);
+            return null;
+        }
       }
 
     public Manager getManagerBasedOnUsername(String username)
@@ -298,8 +336,10 @@ public class GetData extends DatabaseManager
             return false;
         }
       }
-    public int filterHoursByGuild(String guildName){
-         try (Connection con = connectionManager.getConnection())
+
+    public int filterHoursByGuild(String guildName)
+      {
+        try (Connection con = connectionManager.getConnection())
         {
             String query = "SELECT COUNT(hours)FROM volunteer_time vt INNER JOIN guild_volunteer gv "
                     + "ON vt.guild_volunteer_id =gv.guild_volunteer_id INNER JOIN guild g "
@@ -308,12 +348,13 @@ public class GetData extends DatabaseManager
             pstmt.setString(1, guildName);
             ResultSet rs = pstmt.executeQuery();
             return rs.getInt(query);
-        }        catch (SQLException sqle)
+        }
+        catch (SQLException sqle)
         {
             System.err.println(sqle);
             return 0;
         }
-    
-    }
+
+      }
 
   }
