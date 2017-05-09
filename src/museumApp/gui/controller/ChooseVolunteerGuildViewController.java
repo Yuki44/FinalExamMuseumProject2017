@@ -41,6 +41,9 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
 
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -49,6 +52,14 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
         guildTblColName.setCellValueFactory(guild -> guild.getValue().getName()); //Lambda expression sets values into laug name column
         guildListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Guild>()
           {
+            /**
+             * Creates an observable list of the volunteers contained in the chosen guild.
+             * Which is then shown in the volunteer list with their full names diplayed.
+             *
+             * @param observable
+             * @param oldValue
+             * @param newValue
+             */
             @Override
             public void changed(ObservableValue<? extends Guild> observable, Guild oldValue, Guild newValue)
               {
@@ -60,6 +71,11 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
           });
       }
 
+    /**
+     * Constructor
+     *
+     * @throws IOException
+     */
     public ChooseVolunteerGuildViewController() throws IOException
       {
         userModel = new UserModel();
