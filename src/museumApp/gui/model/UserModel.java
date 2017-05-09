@@ -2,14 +2,12 @@ package museumApp.gui.model;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
-import museumApp.be.User;
 import museumApp.be.Volunteer;
 import museumApp.bll.MuseumManager;
 
@@ -65,23 +63,22 @@ public class UserModel extends Model
       }
 
     /** ------------------------------------------------------------------------------------------- */
-    /**
-     * PLEASE CHECK - PLEASE CHECK - PLEASE CHECK - PLEASE CHECK - PLEASE CHECK
-     *
-     * Check if this is used! if(!= true) {delete.method}
-     *
-     * @return an ArrayList of the different user types.
-     * @throws SQLException
-     */
-    public List<User> getUsers() throws SQLException
-      {
-        List<User> result = new ArrayList<>();
-        result.addAll(museumManager.getAllVolunteers());
-        result.addAll(museumManager.getAllManagers());
-        result.addAll(museumManager.getAllAdmins());
-        return result;
-      }
-
+//    /**
+//     * PLEASE CHECK - PLEASE CHECK - PLEASE CHECK - PLEASE CHECK - PLEASE CHECK
+//     *
+//     * Check if this is used! if(!= true) {delete.method}
+//     *
+//     * @return an ArrayList of the different user types.
+//     * @throws SQLException
+//     */
+//    public List<User> getUsers() throws SQLException
+//      {
+//        List<User> result = new ArrayList<>();
+//        result.addAll(museumManager.getAllVolunteers());
+//        result.addAll(museumManager.getAllManagers());
+//        result.addAll(museumManager.getAllAdmins());
+//        return result;
+//      }
     /** ------------------------------------------------------------------------------------------- */
     public void addManager(Manager mg) throws SQLException
       {

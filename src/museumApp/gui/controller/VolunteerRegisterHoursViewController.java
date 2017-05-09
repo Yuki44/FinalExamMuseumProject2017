@@ -1,6 +1,5 @@
 package museumApp.gui.controller;
 
-import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -13,8 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class VolunteerRegisterHoursViewController extends Controller implements Initializable
@@ -23,7 +24,9 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
     @FXML
     private BorderPane borderPane;
     @FXML
-    private JFXTextField setHoursLabel;
+    private TextField setHoursLabel;
+    @FXML
+    private GridPane mainGridPane;
 
     /**
      * Initializes the controller class.
