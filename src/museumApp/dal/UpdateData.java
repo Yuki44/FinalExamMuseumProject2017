@@ -11,10 +11,12 @@ import java.io.IOException;
  *
  * @author min
  */
-public class UpdateData extends DatabaseManager{
+public class UpdateData extends DatabaseManager
+  {
 
-    public UpdateData() throws IOException {
-    }
+    public UpdateData() throws IOException
+      {
+      }
+
     
-    
-}
+  }

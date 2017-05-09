@@ -5,21 +5,19 @@ import java.sql.Date;
 public class VolunteerTime extends BusinessEntity
   {
 
-    protected Date registrationDate;
+    protected Date date;
     protected int hours;
 
-    public VolunteerTime(Date registrationDate, int hours, int id)
+    public VolunteerTime(Date date, int hours, int id)
       {
         super(id);
-        this.registrationDate = registrationDate;
+        this.date = date;
         this.hours = hours;
       }
 
-    
-
-    public Date getRegistrationDate()
+    public Date getDate()
       {
-        return registrationDate;
+        return date;
       }
 
     public int getHours()

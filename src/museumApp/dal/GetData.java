@@ -5,6 +5,7 @@
  */
 package museumApp.dal;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -18,6 +19,7 @@ import museumApp.be.Administrator;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.be.Volunteer;
+import museumApp.be.VolunteerTime;
 
 /**
  *
@@ -195,6 +197,14 @@ public class GetData extends DatabaseManager
         return new Administrator(id, firstName, lastName, email, userName, password);
       }
 
+    public VolunteerTime getVTimeFromResults(ResultSet rs) throws SQLException
+      {
+        Date regDate = rs.getDate("date");
+        int hours = rs.getInt("hours");
+        int id = rs.getInt("volunteer_time_id");
+        return new VolunteerTime(regDate, hours, id);
+      }
+
     public Volunteer getVolunteerFromResults(ResultSet rs) throws SQLException
       {
         int id = rs.getInt("volunteer_id");
@@ -260,6 +270,28 @@ public class GetData extends DatabaseManager
             }
             return volunteers;
 
+        }
+      }
+
+    public List<VolunteerTime> getTimeBasedOnVolunteer(Volunteer hours) throws SQLException
+      {
+        List<VolunteerTime> vTime = new ArrayList<>();
+
+        try (Connection con = connectionManager.getConnection())
+        {
+            String query = "SELECT hours FROM volunteer_time vt "
+                    + "INNER JOIN guild_volunteer gv ON vt.guild_volunteer_id = gv.guild_volunteer_id "
+                    + "INNER JOIN volunteer v ON gv.volunteer_id = v.volunteer_id "
+                    + "WHERE v.volunteer_id = ?";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, hours.getId());
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next())
+            {
+                vTime.add(getVTimeFromResults(rs));
+            }
+            return vTime;
         }
       }
 
