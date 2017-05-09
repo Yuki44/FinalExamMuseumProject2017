@@ -10,7 +10,10 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -20,6 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
@@ -231,4 +235,29 @@ public class ManagementRegisterVolunteerController extends Controller implements
     /** --------------------------------------VOLUNTEER-------------------------------------------- */
     //SOME VOLUNTEER CODE
     /** ------------------------------------------------------------------------------------------- */
+    /** --------------------------------GENERAL SETTINGS------------------------------------------ */
+    @FXML
+    private void handleLogout(ActionEvent event)
+      {
+        try
+        {
+            Stage stage;
+            Parent root;
+            stage = (Stage) borderPane.getScene().getWindow();
+            URL location = this.getClass().getResource("/museumApp/gui/view/ManagerLoginView.fxml");
+            FXMLLoader loader = new FXMLLoader(location);
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.hide();
+            stage.setScene(scene);
+            stage.show();
+            stage.centerOnScreen();
+        }
+        catch (IOException ex)
+        {
+            System.err.println(ex);
+        }
+      }
+    /** ------------------------------------------------------------------------------------------- */
+
   }

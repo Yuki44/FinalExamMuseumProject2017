@@ -41,7 +41,11 @@
     -fx-effect: dropshadow(three-pass-box , #cccdd0, 20, 0.0 , 5,10);
     -fx-translate-x: -10;
 }
-
+.buttonBackHoveredBlack:hover
+{
+    -fx-effect: dropshadow(three-pass-box , #818387, 20, 0.0 , 5,10);
+    -fx-translate-x: -10;
+}
 .buttonNextHovered:hover
 {
     -fx-effect: dropshadow(three-pass-box , #cccdd0, 20, 0.0 , 5,10);

@@ -1,0 +1,26 @@
+/*
+Erhvervsakademi Sydvest, Computer Science 2016-2017, Carlos F. Ognissanti
+To change this header, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 9, 2017, 10:10:32 AM
+    Author     : Yuki
+*/
+
+.logoutButton
+{
+    -fx-font-family: 'Roboto Medium';
+    -fx-font-size: 15px;
+    -fx-background-color: #adb2b5;
+    -fx-border-color: #9fa5a8;
+    -fx-background-radius: 25,25,25,25;
+    -fx-border-radius: 25,25,25,25;
+}
+.logoutButton:hover
+{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-background-color: #d2d8db;
+    -fx-text-fill: #303233;
+}

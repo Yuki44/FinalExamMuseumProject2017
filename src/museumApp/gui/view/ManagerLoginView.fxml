@@ -18,7 +18,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="878.0" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagerLoginViewController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="878.0" styleClass="onlyTheBorder" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagerLoginViewController">
    <top>
       <GridPane fx:id="mainGridPane" alignment="TOP_CENTER" onMouseDragged="#getXYForMouseDrag" onMousePressed="#getXYClickLocation" BorderPane.alignment="TOP_CENTER">
          <columnConstraints>
@@ -115,6 +115,27 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
+            <GridPane prefHeight="89.0" prefWidth="882.0" GridPane.rowIndex="3">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints />
+              </rowConstraints>
+               <children>
+                  <ImageView fitHeight="72.0" fitWidth="134.0" nodeOrientation="INHERIT" onMouseClicked="#goBackToLanguageSelection" pickOnBounds="true" preserveRatio="true" styleClass="buttonBackHoveredBlack">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <image>
+                        <Image url="@../img/arrowBack2.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" left="20.0" />
+                     </GridPane.margin>
+                  </ImageView>
+               </children>
+            </GridPane>
             <VBox alignment="CENTER" fillWidth="false" spacing="50.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
                <children>
                   <JFXTextField fx:id="txtUserName" focusColor="#757575" labelFloat="true" maxWidth="396.0" minWidth="304.0" onKeyPressed="#handleGoToPassword" prefHeight="38.0" prefWidth="304.0" promptText="Username">
@@ -145,7 +166,7 @@
             </JFXButton>
             <Label fx:id="lblWrongLogin" textFill="RED" GridPane.rowIndex="2">
                <font>
-                  <Font size="15.0" />
+                  <Font size="23.0" />
                </font>
             </Label>
          </children>

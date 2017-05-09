@@ -18,9 +18,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -49,13 +50,11 @@ public class ManagerLoginViewController extends Controller implements Initializa
     private JFXButton btnLogin;
     @FXML
     private Label lblWrongLogin;
-    @FXML
-    private Button btnBypassLogin;
 
     private static final int notLoggedIn = 1;
     private static final int loggedIn = 2;
     private static final int wrongPassword = 3;
-    private int loginState = notLoggedIn;
+    private int loginState;
     private final LoginModel loginModel;
     private Employee employee = null;
 
@@ -70,6 +69,7 @@ public class ManagerLoginViewController extends Controller implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
+        loginState = notLoggedIn;
       }
 
     /**
@@ -84,6 +84,43 @@ public class ManagerLoginViewController extends Controller implements Initializa
      */
     @FXML
     private void handleLogin(ActionEvent event) throws IOException, SQLException
+      {
+        login();
+      }
+
+    /**
+     * When you click ENTER it will go to password field.
+     *
+     * @param event
+     */
+    @FXML
+    private void handleGoToPassword(KeyEvent event)
+      {
+        handleDisappearLabel();
+        if (event.getCode().equals(KeyCode.ENTER) && !txtUserName.getText().trim().isEmpty())
+        {
+            txtPassword.requestFocus();
+        }
+      }
+
+    /**
+     * When you click ENTER it will login.
+     *
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
+    @FXML
+    private void handleGoToLogin(KeyEvent event) throws IOException, SQLException
+      {
+        handleDisappearLabel();
+        if (event.getCode().equals(KeyCode.ENTER) && !txtPassword.getText().trim().isEmpty() && !txtUserName.getText().trim().isEmpty())
+        {
+            login();
+        }
+      }
+
+    private void login() throws IOException, SQLException
       {
         if (employee == null)
         {
@@ -128,16 +165,58 @@ public class ManagerLoginViewController extends Controller implements Initializa
             {
                 loginState = wrongPassword;
             }
+
+        }
+        else
+        {
+            handleAppearWrongLoginLabel();
         }
       }
 
-    @FXML
-    private void handleGoToPassword(KeyEvent event)
+    /**
+     * If the password is wrong then the label will appear red.
+     */
+    private void handleAppearWrongLoginLabel()
       {
+        txtUserName.setStyle("-jfx-focus-color:#FF1414");
+        txtUserName.setStyle("-jfx-unfocus-color: #FF1414");
+        txtPassword.setStyle("-jfx-unfocus-color:#FF1414");
+        txtPassword.setStyle("-jfx-focus-color:#FF1414");
+        lblWrongLogin.setText("This user ID or password is not recognized.");
+      }
+
+    /**
+     * If the password is correct or the user is trying to change it then from red it will go back to grey.
+     */
+    private void handleDisappearLabel()
+      {
+        lblWrongLogin.setText(" ");
+        txtUserName.setStyle("-jfx-unfocus-color: #4d4d4d");
+        txtPassword.setStyle("-jfx-unfocus-color: #4d4d4d");
+        txtUserName.setStyle("-jfx-focus-color: #757575");
+        txtPassword.setStyle("-jfx-focus-color:#757575");
       }
 
     @FXML
-    private void handleGoToLogin(KeyEvent event)
+    private void goBackToLanguageSelection(MouseEvent event)
       {
+        try
+        {
+            Stage stage;
+            Parent root;
+            stage = (Stage) borderPane.getScene().getWindow();
+            URL location = this.getClass().getResource("/museumApp/gui/view/LanguageSelectionView.fxml");
+            FXMLLoader loader = new FXMLLoader(location);
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.hide();
+            stage.setScene(scene);
+            stage.show();
+            stage.centerOnScreen();
+        }
+        catch (IOException ex)
+        {
+            System.err.println(ex);
+        }
       }
   }
