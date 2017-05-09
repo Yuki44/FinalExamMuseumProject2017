@@ -24,3 +24,75 @@
     -fx-effect: dropshadow(three-pass-box , #cccdd0, 20, 0.0 , 5,10);
     -fx-translate-x: 10;
 }
+
+/*Style of entire tableView*/
+.table-view{
+    -fx-background-color: transparent;
+ }
+
+ /*Style of entire tableView when is getting focused*/
+.table-view:focused{
+    -fx-background-color: transparent;
+}
+
+
+
+/*Style of each column header in the tableView*/
+.table-view .column-header {
+     -fx-background-color: transparent;
+} 
+
+/*Style of each column header's background in the tableView*/
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(#dddddd 0.0%, #424141 80.0%);
+}
+
+ /*Style of each column header's label  in the tableView*/
+.table-view .column-header-background .label{
+     -fx-background-color: transparent; 
+    -fx-font-weight:bold;
+    -fx-font-size:14px; 
+    -fx-text-fill: white;
+}
+
+/*Style of each column in the tableView*/
+.table-view .table-column{
+    -fx-alignment:center;
+}
+
+ /*Style of each table cell*/
+.table-view .table-cell{
+    -fx-font-weight:bold;
+    -fx-font-size:20px;           /*the font size you asked in the comments below*/
+
+}
+
+
+/*Style for each < non odd> row of table view*//*
+.table-row-cell{
+    -fx-background-color: white;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.0em; 
+}*/
+
+/*Style for each <odd> row of table view*//*
+.table-row-cell:odd{
+    -fx-background-color: orange;
+    -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
+    -fx-padding: 0.0em;  
+}*/
+
+
+/*Style of each entire row in the table view*/
+.table-row-cell:selected {
+    -fx-border-color:#d7f97f ;
+    -fx-background-color:#cee592;
+    -fx-border-width:2.0; 
+}
+
+
+/*Style of each entire row in the table view when is hovered*/
+.table-row-cell:hover {
+    -fx-background-color:#cee592;
+}
+

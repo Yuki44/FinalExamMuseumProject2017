@@ -115,7 +115,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets bottom="10.0" right="30.0" />
+                        <Insets bottom="25.0" right="30.0" />
                      </GridPane.margin>
                   </ImageView>
                </children>
@@ -136,7 +136,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
-                        <Insets bottom="10.0" left="30.0" />
+                        <Insets bottom="25.0" left="30.0" />
                      </GridPane.margin>
                   </ImageView>
                </children>
@@ -231,6 +231,9 @@
                </children>
             </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
       </GridPane>
    </center>
 </BorderPane>
