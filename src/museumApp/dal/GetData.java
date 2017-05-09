@@ -197,10 +197,8 @@ public class GetData extends DatabaseManager
         return new Administrator(id, userName, password, firstName, lastName, email);
       }
 
-    public Volunteer getVolunteerFromResults(PreparedStatement pstmt) throws SQLException
+    public Volunteer getVolunteerFromResults(ResultSet rs) throws SQLException
       {
-        ResultSet rs = pstmt.executeQuery();
-        rs.next();
         int id = rs.getInt("volunteer_id");
         String firstname = rs.getString("first_name");
         String lastname = rs.getString("last_name");
@@ -251,25 +249,20 @@ public class GetData extends DatabaseManager
         try (Connection con = connectionManager.getConnection())
         {
             String query = "SELECT * FROM volunteer v "
-                    + "INNER JOIN guild_volunteer gv ON v.volunteer_id = gv.volunteer_id"
-                    + "INNER JOIN guild g ON gv.guild_id = g.guild_id"
-                    + "WHERE g.guild_id = '?'";
+                    + "INNER JOIN guild_volunteer gv ON v.volunteer_id = gv.volunteer_id "
+                    + "INNER JOIN guild g ON gv.guild_id = g.guild_id "
+                    + "WHERE g.guild_id = ?";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setInt(1, newValue.getId());
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next())
             {
-                volunteers.add(getVolunteerFromResults(pstmt));
+                volunteers.add(getVolunteerFromResults(rs));
             }
+            return volunteers;
 
         }
-        catch (SQLException sqle)
-        {
-            System.err.println(sqle);
-            return null;
-        }
-        return null;
       }
 
     public Manager getManagerBasedOnUsername(String username)

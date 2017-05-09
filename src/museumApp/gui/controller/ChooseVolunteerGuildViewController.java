@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -50,8 +52,10 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
             @Override
             public void changed(ObservableValue<? extends Guild> observable, Guild oldValue, Guild newValue)
               {
-                volunterListView.setItems(userModel.getVolunteerFromGuild(newValue));
-                StringProperty volunteerInTable = newValue.getName();
+                ObservableList<Volunteer> volunteerList = FXCollections.observableArrayList();
+                volunteerList.addAll(userModel.getVolunteerFromGuild(newValue));
+                volunterListView.setItems(volunteerList);
+                volunteerTblColName.setCellValueFactory(volunteer -> volunteer.getValue().getFullName());
               }
           });
       }

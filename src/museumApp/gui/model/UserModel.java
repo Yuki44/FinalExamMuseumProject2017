@@ -107,8 +107,8 @@ public class UserModel extends Model
         museumManager.removeVolunteer(vtr);
       }
 
-    public ObservableList<Volunteer> getVolunteerFromGuild(Guild newValue)
+    public List<Volunteer> getVolunteerFromGuild(Guild newValue)
       {
-        return (ObservableList<Volunteer>) museumManager.getVolunteersFromGuild(newValue);
+        return museumManager.getVolunteersFromGuild(newValue);
       }
   }
