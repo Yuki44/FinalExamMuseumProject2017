@@ -9,7 +9,7 @@ public abstract class Employee extends User
     protected StringProperty userName;
     protected StringProperty password;
 
-    public Employee(int id, String userName, String password, String firstName, String lastName, String email)
+    public Employee(int id, String firstName, String lastName, String email, String userName, String password)
       {
         super(id, firstName, lastName, email);
         this.userName = new SimpleStringProperty(userName);

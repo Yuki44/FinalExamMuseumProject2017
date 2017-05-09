@@ -39,6 +39,7 @@ public class MuseumManager
         try
         {
             getDbMgr = new GetData();
+            addDbMgr = new AddData();
         }
         catch (IOException ex)
         {

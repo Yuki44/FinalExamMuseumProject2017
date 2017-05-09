@@ -187,6 +187,11 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String email = addTEmailTxtF.getText().trim();
         String username = addTUNameTxtF.getText().trim();
         String password = addTPassTxtF.getText().trim();
+        System.out.println("First Name: " + fName);
+        System.out.println("Last Name: " + lName);
+        System.out.println("Email: " + email);
+        System.out.println("Username: " + username);
+        System.out.println("Password: " + password);
         Manager mg = new Manager(0, fName, lName, email, username, password);
         userModel.addManager(mg);
         addTFNameTxtF.clear();
@@ -235,7 +240,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
     /** --------------------------------------VOLUNTEER-------------------------------------------- */
     //SOME VOLUNTEER CODE
     /** ------------------------------------------------------------------------------------------- */
-    /** --------------------------------GENERAL SETTINGS------------------------------------------ */
+    /** ----------------------------------GENERAL SETTINGS----------------------------------------- */
     @FXML
     private void handleLogout(ActionEvent event)
       {

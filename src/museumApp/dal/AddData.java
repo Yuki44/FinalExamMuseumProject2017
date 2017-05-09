@@ -38,7 +38,7 @@ public class AddData extends DatabaseManager
       {
         {
             String sql = "INSERT INTO volunteer(first_name, last_name, date_of_birth, phone_number, "
-                    + "email, nationality, join_date,guild_location_id) Values ('?',' ?', '?', '?',' ?','?','?');";
+                    + "email, nationality, join_date,guild_location_id) Values (?,?,?,?,?,?,?);";
             PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
 
             pstmt.setString(1, vtr.getFirstNameAsString());
@@ -54,15 +54,15 @@ public class AddData extends DatabaseManager
 
     public void addManager(Manager mg) throws SQLException
       {
-        String sql = "INSERT INTO employee(first_name, last_name, email, user_name, password)"
-                + "Values ('?',' ?', '?', '?',' ?');";
+        String sql = "INSERT INTO employee (first_name, last_name, email, user_name, password) "
+                + "Values (?,?,?,?,?);";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
         pstmt.setString(1, mg.getFirstNameAsString());
         pstmt.setString(2, mg.getLastNameAsString());
         pstmt.setString(3, mg.getEmailAsString());
         pstmt.setString(4, mg.getUserNameAsString());
         pstmt.setString(5, mg.getPasswordAsString());
-        pstmt.execute();
+        pstmt.executeUpdate();
       }
 
   }

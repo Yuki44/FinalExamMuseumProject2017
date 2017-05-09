@@ -168,15 +168,13 @@ public class GetData extends DatabaseManager
      */
     public Manager getOneManager(ResultSet rs) throws SQLException
       {
-        String userName = rs.getString("user_name");
-        String password = rs.getString("password");
+        int id = rs.getInt("employee_id");
         String firstName = rs.getString("first_name");
         String lastName = rs.getString("last_name");
         String email = rs.getString("email");
-        int id = rs.getInt("employee_id");
-
-        return new Manager(id, userName, password, firstName, lastName, email);
-
+        String userName = rs.getString("user_name");
+        String password = rs.getString("password");
+        return new Manager(id, firstName, lastName, email, userName, password);
       }
 
     /**
@@ -194,7 +192,7 @@ public class GetData extends DatabaseManager
         String lastName = rs.getString("last_name");
         String email = rs.getString("email");
         int id = rs.getInt("employee_id");
-        return new Administrator(id, userName, password, firstName, lastName, email);
+        return new Administrator(id, firstName, lastName, email, userName, password);
       }
 
     public Volunteer getVolunteerFromResults(ResultSet rs) throws SQLException
@@ -223,7 +221,7 @@ public class GetData extends DatabaseManager
         String lastName = rs.getString("last_name");
         String email = rs.getString("email");
 
-        Manager manager = new Manager(idMgr, userName, password, firstName, lastName, email);
+        Manager manager = new Manager(idMgr, firstName, lastName, email, userName, password);
         return manager;
       }
 
@@ -238,7 +236,7 @@ public class GetData extends DatabaseManager
         String lastName = rs.getString("last_name");
         String email = rs.getString("email");
 
-        Administrator admin = new Administrator(idAdm, userName, password, firstName, lastName, email);
+        Administrator admin = new Administrator(idAdm, firstName, lastName, email, userName, password);
         return admin;
       }
 
