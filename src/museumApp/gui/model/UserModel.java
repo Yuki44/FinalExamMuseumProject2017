@@ -19,7 +19,7 @@ public class UserModel extends Model
   {
 
     private MuseumManager museumManager;
-    private IManager timeRegistrationManager;
+    private TimeRegistrationManager timeRegistrationManager;
     private VolunteerTime vTime;
 
     private ObservableList<Manager> managers;
@@ -33,7 +33,9 @@ public class UserModel extends Model
       {
         super();
         museumManager = new MuseumManager();
+        vTime = new VolunteerTime(new Date(2017, 05, 10), 4, 1);
         timeRegistrationManager = new TimeRegistrationManager();
+
         /**
          * We create observable array lists for each element we want to display later
          * into the view.
@@ -48,7 +50,7 @@ public class UserModel extends Model
     /** -------------------------------------------------------------------------------------------. */
     public void addTime()
       {
-        timeRegistrationManager.Add(new VolunteerTime(vTime.getDate(), vTime.getHours(), vTime.getId()));
+        timeRegistrationManager.Add(vTime);
       }
 
     public ObservableList<Volunteer> getVolunteerFromGuild()
@@ -117,13 +119,6 @@ public class UserModel extends Model
       {
         guilds.add(gd);
         museumManager.addGuild(gd);
-      }
-
-    /** -------------------------------------------------------------------------------------------. */
-    public void addHours(VolunteerTime vTime) throws SQLException
-      {
-        volunteerTime.add(vTime);
-        museumManager.addHours(vTime);
       }
 
     /** -------------------------------------------------------------------------------------------. */

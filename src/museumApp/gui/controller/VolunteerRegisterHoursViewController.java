@@ -57,7 +57,6 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
-
       }
 
     @FXML
@@ -106,7 +105,7 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
                  * hours he/she wants to register.
                  * It should be inside this if statement.
                  */
-//                setHoursLabel.getText().trim().equals()
+                userModel.addTime();
                 Alert congratsAlert = new Alert(AlertType.INFORMATION);
                 congratsAlert.setTitle("\nRingkøbing-Skjern Museum");
                 congratsAlert.setHeaderText("Thank you for your contribution to Ringkøbing-skjern museum!");

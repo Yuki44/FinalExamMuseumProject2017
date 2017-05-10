@@ -174,11 +174,6 @@ public class MuseumManager
         addDbMgr.addVolunteer(vtr);
       }
 
-    public void addHours(VolunteerTime vTime) throws SQLException
-      {
-        addDbMgr.addHours(vTime);
-      }
-
     public void removeVolunteer(Volunteer vtr) throws SQLException
       {
         removeDbMgr.removeVolunteer(vtr);
