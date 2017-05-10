@@ -42,7 +42,7 @@ public class MuseumApp extends Application
              * has finished it.
              */
             /** ------------------------------------------------------------------------------------------ */
-            FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), root);
+            FadeTransition fadeIn = new FadeTransition(Duration.seconds(4), root);
             fadeIn.setFromValue(0);
             fadeIn.setToValue(1);
             fadeIn.setCycleCount(1);
@@ -59,14 +59,14 @@ public class MuseumApp extends Application
              * transition has finished so the fade out transition can start.
              */
             /** ------------------------------------------------------------------------------------------ */
-            fadeIn.setOnFinished((e) ->
-            {
-                FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), root);
-                fadeOut.setFromValue(1);
-                fadeOut.setToValue(0);
-                fadeOut.setCycleCount(1);
-                fadeOut.play(); //Plays the transition
-            });
+//            fadeIn.setOnFinished((e) ->
+//            {
+//                FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), root);
+//                fadeOut.setFromValue(1);
+//                fadeOut.setToValue(0);
+//                fadeOut.setCycleCount(1);
+//                fadeOut.play(); //Plays the transition
+//            });
             /** ------------------------------------------------------------------------------------------ */
 
         }

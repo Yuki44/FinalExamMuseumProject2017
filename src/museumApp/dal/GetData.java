@@ -172,16 +172,17 @@ public class GetData extends DatabaseManager
      */
     private Volunteer getOneVolunteer(ResultSet rs) throws SQLException
       {
-
+        int id = rs.getInt("volunteer_id");
         String firstName = rs.getString("first_name");
         String lastName = rs.getString("last_name");
         String email = rs.getString("email");
         String phoneNumber = rs.getString("phone_number");
         Date birthDate = rs.getDate("date_of_birth");
-        Date registeredDate = rs.getDate("join_date");
         String nationality = rs.getString("nationality_id");
-        int id = rs.getInt("volunteer_id");
-        return new Volunteer(id, firstName, lastName, birthDate, phoneNumber, email, nationality, registeredDate);
+        Date registeredDate = rs.getDate("join_date");
+        String comment = rs.getString("comment");
+
+        return new Volunteer(id, firstName, lastName, birthDate, phoneNumber, email, nationality, registeredDate, comment);
 
       }
 
@@ -239,8 +240,9 @@ public class GetData extends DatabaseManager
         String email = rs.getString("email");
         String nationality = rs.getString("nationality_id");
         Date joinDate = rs.getDate("join_date");
+        String comment = rs.getString("comment");
 
-        Volunteer volunteer = new Volunteer(id, firstname, lastname, birthDate, phoneNumber, email, nationality, joinDate);
+        Volunteer volunteer = new Volunteer(id, firstname, lastname, birthDate, phoneNumber, email, nationality, joinDate, comment);
         return volunteer;
       }
 

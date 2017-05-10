@@ -15,7 +15,14 @@
     -fx-background-repeat: stretch; 
     -fx-background-position: center center;
 }
-
+.programBorderAfterLanguage{
+    -fx-border-color: #8a8c8e;
+    -fx-border-width: 2px;
+    -fx-background-image: url("../img/Brown-Backgrounds34.jpg");
+    -fx-background-size: stretch;
+    -fx-background-repeat: stretch; 
+    -fx-background-position: center center;
+}
 .onlyTheBorder
 {
     -fx-border-color: #8a8c8e;
@@ -51,3 +58,21 @@
     -fx-effect: dropshadow(three-pass-box , #cccdd0, 20, 0.0 , 5,10);
     -fx-translate-x: 10;
 }
+.loginButton
+{
+    -fx-font-family: 'Roboto Medium';
+    -fx-font-size: 20px;
+    -fx-border-color: #8a8c8e;
+    -fx-background-radius: 25,0,0,25;
+    -fx-border-radius: 0,0,0,0;
+    -fx-opacity: 0.5;
+}
+
+.loginButton:hover
+{
+-fx-scale-x: 1.1;
+-fx-scale-y: 1.1;
+-fx-effect: dropshadow(three-pass-box , #ededed, 10, 0.0 , 5,5);
+-fx-opacity: 1.0;
+}
+

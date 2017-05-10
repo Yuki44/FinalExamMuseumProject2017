@@ -4,14 +4,15 @@
 
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-.loginButton
+.managerLoginButton
 {
     -fx-font-family: 'Roboto Medium';
     -fx-font-size: 27px;
     -fx-border-color: #8a8c8e;
+    
 }
 
-.loginButton:hover
+.managerLoginButton:hover
 {
 -fx-scale-x: 1.1;
 -fx-scale-y: 1.1;

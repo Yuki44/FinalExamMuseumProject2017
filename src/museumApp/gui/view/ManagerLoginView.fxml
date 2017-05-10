@@ -156,7 +156,7 @@
                   </JFXPasswordField>
                </children>
             </VBox>
-            <JFXButton fx:id="btnLogin" onAction="#handleLogin" prefHeight="53.0" prefWidth="317.0" style="-fx-background-color: #cc9c70;" styleClass="loginButton" stylesheets="@../css/managerloginview.css" text="Login" textFill="WHITE" GridPane.rowIndex="3">
+            <JFXButton fx:id="btnLogin" onAction="#handleLogin" prefHeight="53.0" prefWidth="317.0" style="-fx-background-color: #cc9c70;" styleClass="managerLoginButton" stylesheets="@../css/managerloginview.css" text="Login" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>

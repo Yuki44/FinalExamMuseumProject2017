@@ -138,13 +138,16 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </VBox>
-                  <JFXButton buttonType="RAISED" onAction="#goToManagerLogin" ripplerFill="#77a859" text="Manager Login" GridPane.rowIndex="1">
+                  <JFXButton buttonType="RAISED" onAction="#goToManagerLogin" ripplerFill="WHITE" styleClass="loginButton" stylesheets="@../css/css.css" text="Manager Login" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                      <GridPane.margin>
-                        <Insets left="-20.0" />
+                        <Insets bottom="15.0" left="-20.0" />
                      </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </JFXButton>
                </children>
             </GridPane>

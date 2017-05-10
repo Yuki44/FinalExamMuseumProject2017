@@ -106,7 +106,7 @@
                                     </ButtonBar>
                                     <VBox alignment="CENTER" fillWidth="false" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                                        <children>
-                                          <ComboBox fx:id="firstGuildSelectionComboBox" prefHeight="25.0" prefWidth="292.0" promptText="none selected...">
+                                          <ComboBox fx:id="comboBoxFirstGuildSelection" prefHeight="25.0" prefWidth="292.0" promptText="none selected...">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor></ComboBox>
@@ -139,25 +139,25 @@
                                     </Label>
                                     <Pane prefHeight="167.0" prefWidth="343.0" VBox.vgrow="SOMETIMES">
                                        <children>
-                                          <ImageView fitHeight="200.0" fitWidth="230.0" layoutX="90.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="174.0" fitWidth="170.0" layoutX="90.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../img/doodle-refresh-arrow-sign-22006725.png" />
                                              </image>
                                           </ImageView>
                                        </children>
                                     </Pane>
-                                    <HBox alignment="TOP_CENTER" prefHeight="44.0" prefWidth="255.0" spacing="100.0">
+                                    <HBox alignment="TOP_CENTER" prefHeight="44.0" prefWidth="255.0" spacing="180.0">
                                        <children>
                                           <JFXButton fx:id="chooseImageButton" prefHeight="44.0" prefWidth="77.0" text="Choose File" />
                                           <JFXButton fx:id="uploadImageButton" prefHeight="52.0" prefWidth="55.0" text="Upload" />
                                        </children>
                                     </HBox>
-                                    <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="352.0" text="Comments:">
+                                    <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="352.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextArea fx:id="txtAreaAddVolunteerComment" maxWidth="343.0" minWidth="343.0" prefWidth="343.0" promptText="Add a comment..." unFocusColor="WHITE" wrapText="true" VBox.vgrow="SOMETIMES">
+                                    <JFXTextArea fx:id="txtAreaAddVolunteerComment" maxWidth="343.0" minWidth="343.0" prefWidth="343.0" promptText="Add a comment..." style="-fx-border-color: gray;" unFocusColor="WHITE" wrapText="true" VBox.vgrow="SOMETIMES">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -293,11 +293,6 @@
                         </TableView>
                      </children>
                   </AnchorPane>
-               </content>
-            </Tab>
-            <Tab text="Set Volunteer Hours">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
             </Tab>
          </tabs>

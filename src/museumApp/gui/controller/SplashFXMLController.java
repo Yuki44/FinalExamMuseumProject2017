@@ -10,7 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -23,7 +23,7 @@ public class SplashFXMLController implements Initializable
   {
 
     @FXML
-    private StackPane rootPane;
+    private BorderPane rootPane;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -36,6 +36,7 @@ public class SplashFXMLController implements Initializable
          * the other thread (which executes its run method).
          */
         new SplashScreen().start();
+
       }
 
     /** ------------------------------------------------------------------------------------------- */
@@ -55,42 +56,42 @@ public class SplashFXMLController implements Initializable
                  * We are telling the thread to sleep for 6 SECONDS before we
                  * show the MainView.
                  */
-                Thread.sleep(6850);
+                Thread.sleep(3500);
                 /** ------------------------------------------------------------------------------------------ */
                 Platform.runLater(new Runnable()
                   {
                     @Override
                     public void run()
                       {
-                        /**
-                         * Now after waiting those 5 Seconds we run the main view.
-                         */
-                        URL location = this.getClass().getResource("/museumApp/gui/view/LanguageSelectionView.fxml");
-                        FXMLLoader loader = new FXMLLoader(location);
-                        Parent root = null;
                         try
                         {
+                            /**
+                             * Now after waiting those 5 Seconds we run the main view.
+                             */
+                            URL location = this.getClass().getResource("/museumApp/gui/view/LanguageSelectionView.fxml");
+                            FXMLLoader loader = new FXMLLoader(location);
+                            Parent root = null;
                             root = loader.load();
+                            Scene scene = new Scene(root);
+                            Stage stage = new Stage(); //Creating a new Stage
+                            stage.initStyle(StageStyle.UNDECORATED);// No borders to the window
+                            stage.show();
+                            stage.setScene(scene);
+                            stage.getIcons().add(new Image("/museumApp/gui/img/museum_logo.png")); //Setting an Icon
+                            stage.centerOnScreen();
+                            stage.setMaximized(false); //Starting it as minimized
+                            ResizeHelper.addResizeListener(stage); //We call the ResizeHelper class so we are able to resize our view.
+                            /** ------------------------------------------------------------------------------------------ */
+                            /**
+                             * Now we ran the Main View but, we must also HIDE the splash screen since
+                             * we are not going to use it anymore.
+                             */
+                            rootPane.getScene().getWindow().hide();
                         }
                         catch (IOException ex)
                         {
-                            System.err.println(ex); //We print out the error
+                            System.err.println(ex);
                         }
-                        Scene scene = new Scene(root);
-                        Stage stage = new Stage(); //Creating a new Stage
-                        stage.initStyle(StageStyle.UNDECORATED);// No borders to the window
-                        stage.show();
-                        stage.setScene(scene);
-                        stage.getIcons().add(new Image("/museumApp/gui/img/museum_logo.png")); //Setting an Icon
-                        stage.centerOnScreen();
-                        stage.setMaximized(false); //Starting it as minimized
-                        ResizeHelper.addResizeListener(stage); //We call the ResizeHelper class so we are able to resize our view.
-                        /** ------------------------------------------------------------------------------------------ */
-                        /**
-                         * Now we ran the Main View but, we must also HIDE the splash screen since
-                         * we are not going to use it anymore.
-                         */
-                        rootPane.getScene().getWindow().hide();
                       }
                   });
             }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
@@ -17,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" style="-fx-background-color: #a38b7f;" stylesheets="@../css/choosevolunteerguildview.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.VolunteerRegisterHoursViewController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" styleClass="programBorderAfterLanguage" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.VolunteerRegisterHoursViewController">
    <top>
       <GridPane fx:id="mainGridPane" alignment="TOP_CENTER" onMouseDragged="#getXYForMouseDrag" onMousePressed="#getXYClickLocation" BorderPane.alignment="TOP_CENTER">
          <columnConstraints>
@@ -260,7 +261,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                         </GridPane>
-                        <VBox alignment="CENTER" fillWidth="false" prefHeight="142.0" prefWidth="161.0" spacing="15.0">
+                        <VBox alignment="CENTER" fillWidth="false" prefHeight="142.0" prefWidth="161.0">
                            <children>
                               <Label prefWidth="161.0" text="Aproximate amount of hours:" wrapText="true">
                                  <font>
@@ -281,4 +282,8 @@
          </children>
       </GridPane>
    </center>
+   <stylesheets>
+      <URL value="@../css/choosevolunteerguildview.css" />
+      <URL value="@../css/css.css" />
+   </stylesheets>
 </BorderPane>

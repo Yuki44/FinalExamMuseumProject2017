@@ -2,55 +2,70 @@
 
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="878.0" styleClass="onlyTheBorder" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.SplashFXMLController">
-   <children>
-      <Pane prefHeight="352.0" prefWidth="522.0" style="-fx-background-color: #000000;">
+
+<BorderPane fx:id="rootPane" prefHeight="580.0" prefWidth="951.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.SplashFXMLController">
+   <center>
+      <GridPane prefHeight="580.0" prefWidth="951.0" BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <Text fill="WHITE" layoutX="68.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to...">
-               <font>
-                  <Font name="Roboto Medium" size="56.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="439.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velkommen til...">
-               <font>
-                  <Font name="Roboto Medium" size="56.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="24.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Willkommen auf...">
-               <font>
-                  <Font name="Roboto Medium" size="56.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="590.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Museum" textAlignment="CENTER">
-               <font>
-                  <Font name="Arial" size="71.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="515.0" layoutY="554.0" strokeType="OUTSIDE" strokeWidth="0.0" text="levendehistorie.dk" textAlignment="CENTER">
-               <font>
-                  <Font name="Arial" size="43.0" />
-               </font>
-            </Text>
-            <ImageView blendMode="ADD" fitHeight="132.0" fitWidth="163.0" layoutX="338.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+            <Pane prefHeight="580.0" prefWidth="951.0" style="-fx-background-color: #000000;">
+               <children>
+                  <Text fill="WHITE" layoutX="68.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to...">
+                     <font>
+                        <Font name="Roboto Medium" size="56.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="439.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velkommen til...">
+                     <font>
+                        <Font name="Roboto Medium" size="56.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="24.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Willkommen auf...">
+                     <font>
+                        <Font name="Roboto Medium" size="56.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" fontSmoothingType="LCD" layoutX="590.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Museum" textAlignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="71.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" fontSmoothingType="LCD" layoutX="515.0" layoutY="554.0" strokeType="OUTSIDE" strokeWidth="0.0" text="levendehistorie.dk" textAlignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="43.0" />
+                     </font>
+                  </Text>
+                  <ImageView blendMode="ADD" fitHeight="132.0" fitWidth="163.0" layoutX="338.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/museum_logo.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" fontSmoothingType="LCD" layoutX="375.0" layoutY="432.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ringkøbing-Skjern" textAlignment="CENTER">
+                     <font>
+                        <Font name="Arial" size="59.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <ImageView fitHeight="580.0" fitWidth="951.0" opacity="0.65" pickOnBounds="true">
                <image>
-                  <Image url="@../img/museum_logo.png" />
+                  <Image url="@../img/vikingPanoramaImage2.jpg" />
                </image>
             </ImageView>
-            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="375.0" layoutY="432.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ringkøbing-Skjern" textAlignment="CENTER">
-               <font>
-                  <Font name="Arial" size="59.0" />
-               </font>
-            </Text>
-         </children></Pane>
-      <ImageView fitHeight="652.0" fitWidth="895.0" opacity="0.65" pickOnBounds="true">
-         <image>
-            <Image url="@../img/vikingPanoramaImage2.jpg" />
-         </image>
-      </ImageView>
-   </children>
-</StackPane>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
