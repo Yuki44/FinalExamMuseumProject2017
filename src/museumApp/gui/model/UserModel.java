@@ -9,6 +9,7 @@ import museumApp.be.Administrator;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.be.Volunteer;
+import museumApp.be.VolunteerTime;
 import museumApp.bll.MuseumManager;
 
 public class UserModel extends Model
@@ -21,6 +22,7 @@ public class UserModel extends Model
     private ObservableList<Guild> guilds;
     private ObservableList<Administrator> admins;
     private ObservableList<Volunteer> volunteerFromGuild;
+    private ObservableList<VolunteerTime> volunteerTime;
 
     public UserModel() throws IOException
       {
@@ -34,7 +36,6 @@ public class UserModel extends Model
         volunteers = FXCollections.observableArrayList(museumManager.getAllVolunteers());
         guilds = FXCollections.observableArrayList(museumManager.getAllGuilds());
         admins = FXCollections.observableArrayList(museumManager.getAllAdmins());
-        //  volunteerFromGuild = FXCollections.observableArrayList(museumManager.getVolunteersFromGuild());
       }
 
     public ObservableList<Volunteer> getVolunteerFromGuild()
@@ -102,6 +103,12 @@ public class UserModel extends Model
       {
         volunteers.remove(vtr);
         museumManager.removeVolunteer(vtr);
+      }
+
+    public void addHours(VolunteerTime vTime) throws SQLException
+      {
+        volunteerTime.add(vTime);
+        museumManager.addHours(vTime);
       }
 
     public List<Volunteer> getVolunteerFromGuild(Guild newValue)

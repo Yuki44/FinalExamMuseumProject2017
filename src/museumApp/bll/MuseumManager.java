@@ -8,10 +8,13 @@ package museumApp.bll;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.be.Volunteer;
+import museumApp.be.VolunteerTime;
 import museumApp.dal.AddData;
 import museumApp.dal.DatabaseManager;
 import museumApp.dal.GetData;
@@ -136,6 +139,20 @@ public class MuseumManager
         }
       }
 
+    public List<VolunteerTime> getTimeBasedOnVolunteer(Volunteer hours)
+      {
+        try
+        {
+            return getDbMgr.getTimeBasedOnVolunteer(hours);
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex);
+            throw new MuseumManagerException("Unable to get Volunteer hours.");
+        }
+        
+      }
+
     public void addManager(Manager mg) throws SQLException
       {
         addDbMgr.addManager(mg);
@@ -144,6 +161,11 @@ public class MuseumManager
     public void addVolunteer(Volunteer vtr) throws SQLException
       {
         addDbMgr.addVolunteer(vtr);
+      }
+
+    public void addHours(VolunteerTime vTime) throws SQLException
+      {
+        addDbMgr.addHours(vTime);
       }
 
     public void removeVolunteer(Volunteer vtr) throws SQLException

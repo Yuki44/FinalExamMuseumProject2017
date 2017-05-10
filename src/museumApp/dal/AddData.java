@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import museumApp.be.Manager;
 import museumApp.be.Volunteer;
+import museumApp.be.VolunteerTime;
 
 /**
  *
@@ -62,6 +63,16 @@ public class AddData extends DatabaseManager
         pstmt.setString(3, mg.getEmailAsString());
         pstmt.setString(4, mg.getUserNameAsString());
         pstmt.setString(5, mg.getPasswordAsString());
+        pstmt.executeUpdate();
+      }
+
+    public void addHours(VolunteerTime vTime) throws SQLException
+      {
+        String sql = "INSERT INTO volunteer_time (guild_volunteer_id, date, hours) VALUES (?,'?',?) ";
+        PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
+        pstmt.setDate(1, vTime.getDate());
+        pstmt.setInt(2, vTime.getHours());
+        pstmt.setInt(3, vTime.getId());
         pstmt.executeUpdate();
       }
 

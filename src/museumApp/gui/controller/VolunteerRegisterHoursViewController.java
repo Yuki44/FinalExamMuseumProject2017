@@ -17,6 +17,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import museumApp.be.VolunteerTime;
+import museumApp.gui.model.UserModel;
 
 public class VolunteerRegisterHoursViewController extends Controller implements Initializable
   {
@@ -27,6 +29,13 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
     private TextField setHoursLabel;
     @FXML
     private GridPane mainGridPane;
+
+    private UserModel userModel;
+
+    public VolunteerRegisterHoursViewController() throws IOException
+      {
+        this.userModel = new UserModel();
+      }
 
     /**
      * Initializes the controller class.
