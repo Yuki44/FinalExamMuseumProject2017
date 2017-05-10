@@ -6,6 +6,7 @@
 package museumApp.be;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -56,6 +57,13 @@ public class Volunteer extends User
     public Date getRegisteredDate()
       {
         return registeredDate;
+      }
+
+    public String getRegisteredDateAsString()
+      {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String joinedDate = sdf.format(registeredDate);
+        return joinedDate;
       }
 
     /** ------------------------------------------------------------------------------------------- */

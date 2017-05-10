@@ -61,6 +61,7 @@ public class LanguageSelectionViewController extends Controller implements Initi
              */
 //            BorderPane bPane = FXMLLoader.load(getClass().getResource("/museumApp/gui/view/ChooseVolunteerGuildView.fxml"));
 //            borderPane.getChildren().setAll(bPane);
+
             Stage stage;
             Parent root;
             stage = (Stage) borderPane.getScene().getWindow();
