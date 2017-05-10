@@ -7,6 +7,7 @@ public class VolunteerTime extends BusinessEntity
 
     protected Date date;
     protected int hours;
+    private int id;
 
     public VolunteerTime(Date date, int hours, int id)
       {
