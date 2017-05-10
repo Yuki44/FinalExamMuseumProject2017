@@ -8,6 +8,7 @@ package museumApp.dal;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
@@ -73,6 +74,15 @@ public class AddData extends DatabaseManager
         pstmt.setDate(1, vTime.getDate());
         pstmt.setInt(2, vTime.getHours());
         pstmt.setInt(3, vTime.getId());
+        pstmt.executeUpdate();
+      }
+
+    public void addGuild(Guild gd) throws SQLException
+      {
+        String sql = "INSERT INTO guild (name, manager_id) VALUES ('?',?) ";
+        PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
+        pstmt.setString(1, gd.getNameAsString());
+        pstmt.setInt(2, gd.getManagerId());
         pstmt.executeUpdate();
       }
 

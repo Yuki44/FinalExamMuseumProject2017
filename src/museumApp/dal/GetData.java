@@ -132,10 +132,10 @@ public class GetData extends DatabaseManager
      */
     private Guild getOneGuild(ResultSet rs) throws SQLException
       {
+        int id = rs.getInt("guild_id");
         String guildName = rs.getString("name");
         int manager_id = rs.getInt("manager_id");
-        int id = rs.getInt("guild_id");
-        return new Guild(guildName, manager_id, id);
+        return new Guild(id, guildName, manager_id);
       }
 
     /**

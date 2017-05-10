@@ -80,27 +80,54 @@
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField labelFloat="true" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <JFXTextField fx:id="txtFieldAddVolunteerPhoneNum" labelFloat="true" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <cursor>
+                                          <Cursor fx:constant="TEXT" />
+                                       </cursor></JFXTextField>
                                     <Label prefHeight="23.0" prefWidth="129.0" text="Joined Date :" GridPane.rowIndex="6">
                                        <font>
                                           <Font size="20.0" />
                                        </font></Label>
-                                    <JFXDatePicker fx:id="regJoinedDatePicker" prefHeight="31.0" prefWidth="275.0" promptText="Select a date..." GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <JFXDatePicker fx:id="regJoinedDatePicker" overLay="true" prefHeight="31.0" prefWidth="275.0" promptText="Select a date..." GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                       <cursor>
+                                          <Cursor fx:constant="TEXT" />
+                                       </cursor></JFXDatePicker>
                                     <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                        <buttons>
-                                          <JFXButton fx:id="clearFieldsButton" prefHeight="35.0" prefWidth="131.0" text="Clear  All" />
-                                          <JFXButton fx:id="saveInfoButton" prefHeight="37.0" prefWidth="182.0" text="Save" />
+                                          <JFXButton fx:id="clearFieldsButton" onAction="#clearAllFields" prefHeight="35.0" prefWidth="131.0" text="Clear  All">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></JFXButton>
+                                          <JFXButton fx:id="saveInfoButton" onAction="#handleAddVolunteer" prefHeight="37.0" prefWidth="182.0" text="Save">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></JFXButton>
                                        </buttons>
                                     </ButtonBar>
                                     <VBox alignment="CENTER" fillWidth="false" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                                        <children>
-                                          <ComboBox fx:id="firstGuildSelectionComboBox" prefHeight="25.0" prefWidth="292.0" promptText="none selected..." />
-                                          <JFXButton fx:id="addExtraGuildButton" text="Add Extra Guild" />
+                                          <ComboBox fx:id="firstGuildSelectionComboBox" prefHeight="25.0" prefWidth="292.0" promptText="none selected...">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></ComboBox>
+                                          <JFXButton fx:id="addExtraGuildButton" onAction="#addExtraGuild" text="Add Extra Guild">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></JFXButton>
                                        </children>
                                     </VBox>
-                                    <JFXTextField labelFloat="true" layoutX="243.0" layoutY="117.0" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <JFXTextField labelFloat="true" layoutX="243.0" layoutY="39.0" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Last Name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <JFXTextField labelFloat="true" layoutX="243.0" layoutY="83.0" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Email" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <JFXTextField fx:id="txtFieldAddVolunteerFName" labelFloat="true" layoutX="243.0" layoutY="117.0" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Name" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <cursor>
+                                          <Cursor fx:constant="TEXT" />
+                                       </cursor></JFXTextField>
+                                    <JFXTextField fx:id="txtFieldAddVolunteerLName" labelFloat="true" layoutX="243.0" layoutY="39.0" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Last Name" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <cursor>
+                                          <Cursor fx:constant="TEXT" />
+                                       </cursor></JFXTextField>
+                                    <JFXTextField fx:id="txtFieldAddVolunteerEmail" labelFloat="true" layoutX="243.0" layoutY="83.0" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Email" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                       <cursor>
+                                          <Cursor fx:constant="TEXT" />
+                                       </cursor></JFXTextField>
                                  </children>
                               </GridPane>
                               <VBox prefHeight="441.0" prefWidth="255.0" GridPane.columnIndex="1">
@@ -130,10 +157,13 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextArea fx:id="regCommentArea" maxWidth="343.0" minWidth="343.0" prefWidth="343.0" promptText="Add a comment..." unFocusColor="WHITE" wrapText="true" VBox.vgrow="SOMETIMES">
+                                    <JFXTextArea fx:id="txtAreaAddVolunteerComment" maxWidth="343.0" minWidth="343.0" prefWidth="343.0" promptText="Add a comment..." unFocusColor="WHITE" wrapText="true" VBox.vgrow="SOMETIMES">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
-                                       </font></JFXTextArea>
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="TEXT" />
+                                       </cursor></JFXTextArea>
                                  </children>
                                  <opaqueInsets>
                                     <Insets />
@@ -175,7 +205,7 @@
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label prefHeight="61.0" prefWidth="225.0" text="User  Name :" GridPane.rowIndex="3">
+                              <Label prefHeight="61.0" prefWidth="225.0" text="Username :" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
@@ -190,11 +220,11 @@
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <JFXTextField fx:id="addTFNameTxtF" focusColor="#25adfc" GridPane.columnIndex="1" />
-                              <JFXTextField fx:id="addTLNameTxtF" focusColor="#25adfc" layoutX="90.0" layoutY="19.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <JFXTextField fx:id="addTEmailTxtF" focusColor="#25adfc" layoutX="90.0" layoutY="68.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <JFXTextField fx:id="addTUNameTxtF" focusColor="#25adfc" layoutX="90.0" layoutY="117.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <JFXTextField fx:id="addTPassTxtF" focusColor="#25adfc" layoutX="90.0" layoutY="166.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <JFXTextField fx:id="addTFNameTxtF" focusColor="#25adfc" promptText="Name" GridPane.columnIndex="1" />
+                              <JFXTextField fx:id="addTLNameTxtF" focusColor="#25adfc" layoutX="90.0" layoutY="19.0" promptText="Last Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="addTEmailTxtF" focusColor="#25adfc" layoutX="90.0" layoutY="68.0" promptText="Email" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <JFXTextField fx:id="addTUNameTxtF" focusColor="#25adfc" layoutX="90.0" layoutY="117.0" promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <JFXTextField fx:id="addTPassTxtF" focusColor="#25adfc" layoutX="90.0" layoutY="166.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                         </GridPane>
                         <ButtonBar layoutX="315.0" layoutY="363.0" prefHeight="40.0" prefWidth="179.0">
@@ -235,7 +265,7 @@
                               <VBox alignment="CENTER" fillWidth="false" spacing="30.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                  <children>
                                     <ComboBox fx:id="comboBoxAddGuildManager" prefHeight="25.0" prefWidth="402.0" promptText="none selected..." />
-                                    <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#handleAddAnotherManager" prefHeight="25.0" prefWidth="220.0" text="Add another manager for this guild" />
+                                    <JFXButton fx:id="buttonAddMoreManagersToGuild" alignment="CENTER" contentDisplay="CENTER" onAction="#handleAddAnotherManager" prefHeight="25.0" prefWidth="220.0" text="Add another manager for this guild" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" fillWidth="false" layoutX="163.0" layoutY="175.0" spacing="30.0" GridPane.rowIndex="1">

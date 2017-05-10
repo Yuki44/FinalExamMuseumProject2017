@@ -18,7 +18,7 @@ public class Guild extends BusinessEntity
     protected StringProperty name;
     protected int managerId;
 
-    public Guild(String name, int managerId, int id)
+    public Guild(int id, String name, int managerId)
       {
         super(id);
         this.name = new SimpleStringProperty(name);

@@ -43,8 +43,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private JFXButton saveInfoButton;
     @FXML
-    private ComboBox<?> regFromLocationComboBox;
-    @FXML
     private ComboBox<?> firstGuildSelectionComboBox;
     @FXML
     private JFXButton addExtraGuildButton;
@@ -54,10 +52,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private JFXButton chooseImageButton;
     @FXML
     private JFXButton uploadImageButton;
-    @FXML
-    private JFXTextArea regCommentArea;
-    @FXML
-    private ComboBox<?> managementSetLocationButton;
     @FXML
     private JFXTextField addTFNameTxtF;
     @FXML
@@ -78,7 +72,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private TableColumn<Manager, String> managerTblColFname;
     @FXML
     private TableColumn<Manager, String> managerTblColLname;
-
     @FXML
     private JFXTextField txtFieldAddGuildName;
     @FXML
@@ -89,8 +82,18 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private TableColumn<Guild, String> tblColGuildManager;
     @FXML
     private TableView<Guild> tblGuild;
+    @FXML
+    private JFXTextField txtFieldAddVolunteerPhoneNum;
+    @FXML
+    private JFXTextField txtFieldAddVolunteerFName;
+    @FXML
+    private JFXTextField txtFieldAddVolunteerLName;
+    @FXML
+    private JFXTextField txtFieldAddVolunteerEmail;
+    @FXML
+    private JFXTextArea txtAreaAddVolunteerComment;
 
-    /** ------------------------------------------------------------------------------------------- */
+    /** -------------------------------------------------------------------------------------------. */
     /**
      * We initialize the view.
      */
@@ -146,7 +149,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         userModel = new UserModel();
       }
 
-    /** --------------------------------------MANAGER------------------------------------------- */
+    /** --------------------------------------MANAGER-------------------------------------------. */
     /**
      * We make the register manager methods.
      */
@@ -178,7 +181,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private void handleAddingManager(ActionEvent event) throws SQLException
       {
-
         /**
          * We get the text in the fields as strings.
          */
@@ -187,11 +189,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String email = addTEmailTxtF.getText().trim();
         String username = addTUNameTxtF.getText().trim();
         String password = addTPassTxtF.getText().trim();
-        System.out.println("First Name: " + fName);
-        System.out.println("Last Name: " + lName);
-        System.out.println("Email: " + email);
-        System.out.println("Username: " + username);
-        System.out.println("Password: " + password);
         Manager mg = new Manager(0, fName, lName, email, username, password);
         userModel.addManager(mg);
         addTFNameTxtF.clear();
@@ -202,24 +199,23 @@ public class ManagementRegisterVolunteerController extends Controller implements
       }
 
     @FXML
-    private void handleAddAnotherManager(ActionEvent event)
-      {
-
-      }
-
-    @FXML
     private void handleRemoveManager(ActionEvent event) throws SQLException
       {
 
       }
 
-    /** -----------------------------------------GUILD-------------------------------------------- */
+    /** -----------------------------------------GUILD--------------------------------------------. */
     /**
      * We make the Register Guild methods.
      */
     @FXML
-    private void handleAddingGuild(ActionEvent event)
+    private void handleAddingGuild(ActionEvent event) throws SQLException
       {
+        String guildName = txtFieldAddGuildName.getText().trim();
+        Guild gd = new Guild(0, guildName, 0);
+        userModel.addGuild(gd);
+        txtFieldAddGuildName.clear();
+        //TO DO
       }
 
     @FXML
@@ -237,10 +233,31 @@ public class ManagementRegisterVolunteerController extends Controller implements
         }
       }
 
-    /** --------------------------------------VOLUNTEER-------------------------------------------- */
-    //SOME VOLUNTEER CODE
-    /** ------------------------------------------------------------------------------------------- */
-    /** ----------------------------------GENERAL SETTINGS----------------------------------------- */
+    @FXML
+    private void handleAddAnotherManager(ActionEvent event)
+      {
+
+      }
+
+    /** --------------------------------------VOLUNTEER--------------------------------------------. */
+    @FXML
+    private void handleAddVolunteer(ActionEvent event)
+      {
+        //TO DO
+      }
+
+    @FXML
+    private void clearAllFields(ActionEvent event)
+      {
+      }
+
+    @FXML
+    private void addExtraGuild(ActionEvent event)
+      {
+      }
+
+    /** -------------------------------------------------------------------------------------------. */
+    /** ----------------------------------GENERAL SETTINGS-----------------------------------------. */
     @FXML
     private void handleLogout(ActionEvent event)
       {
@@ -263,6 +280,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
             System.err.println(ex);
         }
       }
-    /** ------------------------------------------------------------------------------------------- */
 
+    /** -------------------------------------------------------------------------------------------. */
   }

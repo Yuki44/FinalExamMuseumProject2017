@@ -8,8 +8,6 @@ package museumApp.bll;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
@@ -150,7 +148,7 @@ public class MuseumManager
             System.err.println(ex);
             throw new MuseumManagerException("Unable to get Volunteer hours.");
         }
-        
+
       }
 
     public void addManager(Manager mg) throws SQLException
@@ -176,6 +174,11 @@ public class MuseumManager
     public void removeManager(Manager mg) throws SQLException
       {
         removeDbMgr.removeManager(mg);
+      }
+
+    public void addGuild(Guild gd) throws SQLException
+      {
+        addDbMgr.addGuild(gd);
       }
 
   }

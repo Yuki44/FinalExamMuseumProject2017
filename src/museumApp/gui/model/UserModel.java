@@ -38,6 +38,7 @@ public class UserModel extends Model
         admins = FXCollections.observableArrayList(museumManager.getAllAdmins());
       }
 
+    /** -------------------------------------------------------------------------------------------. */
     public ObservableList<Volunteer> getVolunteerFromGuild()
       {
         return volunteerFromGuild;
@@ -63,24 +64,7 @@ public class UserModel extends Model
         return guilds;
       }
 
-    /** ------------------------------------------------------------------------------------------- */
-//    /**
-//     * PLEASE CHECK - PLEASE CHECK - PLEASE CHECK - PLEASE CHECK - PLEASE CHECK
-//     *
-//     * Check if this is used! if(!= true) {delete.method}
-//     *
-//     * @return an ArrayList of the different user types.
-//     * @throws SQLException
-//     */
-//    public List<User> getUsers() throws SQLException
-//      {
-//        List<User> result = new ArrayList<>();
-//        result.addAll(museumManager.getAllVolunteers());
-//        result.addAll(museumManager.getAllManagers());
-//        result.addAll(museumManager.getAllAdmins());
-//        return result;
-//      }
-    /** ------------------------------------------------------------------------------------------- */
+    /** -------------------------------------------------------------------------------------------. */
     public void addManager(Manager mg) throws SQLException
       {
         managers.add(mg); //updates gui through observable
@@ -93,6 +77,7 @@ public class UserModel extends Model
         museumManager.removeManager(mg);
       }
 
+    /** -------------------------------------------------------------------------------------------. */
     public void addVolunteer(Volunteer vtr) throws SQLException
       {
         volunteers.add(vtr);
@@ -105,14 +90,24 @@ public class UserModel extends Model
         museumManager.removeVolunteer(vtr);
       }
 
+    public List<Volunteer> getVolunteerFromGuild(Guild newValue)
+      {
+        return museumManager.getVolunteersFromGuild(newValue);
+      }
+
+    /** -------------------------------------------------------------------------------------------. */
+    public void addGuild(Guild gd) throws SQLException
+      {
+        guilds.add(gd);
+        museumManager.addGuild(gd);
+      }
+
+    /** -------------------------------------------------------------------------------------------. */
     public void addHours(VolunteerTime vTime) throws SQLException
       {
         volunteerTime.add(vTime);
         museumManager.addHours(vTime);
       }
 
-    public List<Volunteer> getVolunteerFromGuild(Guild newValue)
-      {
-        return museumManager.getVolunteersFromGuild(newValue);
-      }
+    /** -------------------------------------------------------------------------------------------. */
   }
