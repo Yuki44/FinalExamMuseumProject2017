@@ -69,6 +69,15 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
                 volunteerTblColName.setCellValueFactory(volunteer -> volunteer.getValue().getFullName());
               }
           });
+        volunterListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Volunteer>()
+          {
+
+            @Override
+            public void changed(ObservableValue<? extends Volunteer> observable, Volunteer oldValue, Volunteer newValue)
+              {
+
+              }
+          });
       }
 
     /**
@@ -86,17 +95,24 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
       {
         try
         {
-            Stage stage;
-            Parent root;
-            stage = (Stage) borderPane.getScene().getWindow();
-            URL location = this.getClass().getResource("/museumApp/gui/view/VolunteerRegisterHoursView.fxml");
-            FXMLLoader loader = new FXMLLoader(location);
-            root = loader.load();
-            Scene scene = new Scene(root);
-            stage.hide();
-            stage.setScene(scene);
-            stage.show();
-            stage.centerOnScreen();
+            Volunteer volunteerSelected = volunterListView.getSelectionModel().getSelectedItem();
+            Guild guildSelected = guildListView.getSelectionModel().getSelectedItem();
+            if (volunteerSelected != null && guildSelected != null)
+            {
+                Stage stage;
+                Parent root;
+                stage = (Stage) borderPane.getScene().getWindow();
+                URL location = this.getClass().getResource("/museumApp/gui/view/VolunteerRegisterHoursView.fxml");
+                FXMLLoader loader = new FXMLLoader(location);
+                root = loader.load();
+                VolunteerRegisterHoursViewController vrhvc = loader.getController();
+                vrhvc.setVolunteer(volunteerSelected, guildSelected);
+                Scene scene = new Scene(root);
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
+                stage.centerOnScreen();
+            }
         }
         catch (IOException ex)
         {

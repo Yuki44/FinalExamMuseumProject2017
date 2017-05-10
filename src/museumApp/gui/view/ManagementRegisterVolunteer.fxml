@@ -88,7 +88,7 @@
                                        <font>
                                           <Font size="20.0" />
                                        </font></Label>
-                                    <JFXDatePicker fx:id="regJoinedDatePicker" overLay="true" prefHeight="31.0" prefWidth="275.0" promptText="Select a date..." GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                    <JFXDatePicker fx:id="regJoinedDatePicker" prefHeight="31.0" prefWidth="275.0" promptText="Select a date..." GridPane.columnIndex="1" GridPane.rowIndex="6">
                                        <cursor>
                                           <Cursor fx:constant="TEXT" />
                                        </cursor></JFXDatePicker>

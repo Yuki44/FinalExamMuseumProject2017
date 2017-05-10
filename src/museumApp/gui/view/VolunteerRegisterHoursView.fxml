@@ -182,7 +182,7 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="2016">
+                        <Label fx:id="lblJoinedDate" alignment="CENTER" contentDisplay="CENTER" text="2016">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -199,7 +199,7 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Smedelaug:">
+                        <Label fx:id="lblGuildName" alignment="CENTER" contentDisplay="CENTER" text="Smedelaug:">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -229,7 +229,7 @@
                   </ImageView>
                   <HBox alignment="CENTER_LEFT" spacing="20.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Peder Laugesen">
+                        <Label fx:id="lblVolunteerFullName" alignment="CENTER" contentDisplay="CENTER" text="Peder Laugesen">
                            <font>
                               <Font size="53.0" />
                            </font>

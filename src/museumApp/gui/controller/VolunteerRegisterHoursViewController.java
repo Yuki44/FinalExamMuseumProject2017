@@ -13,26 +13,36 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import museumApp.be.VolunteerTime;
+import museumApp.be.Guild;
+import museumApp.be.Volunteer;
 import museumApp.gui.model.UserModel;
 
 public class VolunteerRegisterHoursViewController extends Controller implements Initializable
   {
-    
+
     @FXML
     private BorderPane borderPane;
     @FXML
     private TextField setHoursLabel;
     @FXML
     private GridPane mainGridPane;
-    
+
     private UserModel userModel;
-    
+    private Volunteer volunteer;
+    private Guild guild;
+    @FXML
+    private Label lblGuildName;
+    @FXML
+    private Label lblVolunteerFullName;
+    @FXML
+    private Label lblJoinedDate;
+
     public VolunteerRegisterHoursViewController() throws IOException, SQLException
       {
         this.userModel = new UserModel();
@@ -47,9 +57,9 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
-        // TODO
+
       }
-    
+
     @FXML
     private void goBackToGuildSelection(MouseEvent event)
       {
@@ -72,7 +82,7 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
             System.err.println(ex);
         }
       }
-    
+
     @FXML
     private void goToFinalView(MouseEvent event)
       {
@@ -101,7 +111,7 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
                 congratsAlert.setTitle("\nRingkøbing-Skjern Museum");
                 congratsAlert.setHeaderText("Thank you for your contribution to Ringkøbing-skjern museum!");
                 congratsAlert.setContentText("\nHave a nice day!!");
-                
+
                 Optional<ButtonType> congratsResult = congratsAlert.showAndWait();
                 if (congratsResult.get() == ButtonType.OK)
                 {
@@ -134,5 +144,21 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
             }
         }
       }
-    
+
+    /**
+     * THIS CODE HAS TO BE PUT(or refactored)
+     * INTO A NEW MODEL THAT IS NOT "userModel"
+     *
+     * @param volunteer
+     * @param guild
+     */
+    public void setVolunteer(Volunteer volunteer, Guild guild)
+      {
+        this.volunteer = volunteer;
+        this.guild = guild;
+        lblVolunteerFullName.setText(volunteer.getFullNameAsString());
+        lblGuildName.setText(guild.getNameAsString());
+        lblJoinedDate.setText(volunteer.getRegisteredDateAsString());
+      }
+
   }
