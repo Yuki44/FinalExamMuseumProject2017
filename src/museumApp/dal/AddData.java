@@ -71,9 +71,9 @@ public class AddData extends DatabaseManager
       {
         String sql = "INSERT INTO volunteer_time (guild_volunteer_id, date, hours) VALUES (?,'?',?) ";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-        pstmt.setDate(1, vTime.getDate());
-        pstmt.setInt(2, vTime.getHours());
-        pstmt.setInt(3, vTime.getId());
+        pstmt.setInt(1, vTime.getId());
+        pstmt.setDate(2, vTime.getDate());
+        pstmt.setInt(3, vTime.getHours());
         pstmt.executeUpdate();
       }
 

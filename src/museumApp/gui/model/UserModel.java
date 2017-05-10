@@ -1,6 +1,7 @@
 package museumApp.gui.model;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -10,12 +11,16 @@ import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
+import museumApp.bll.IManager;
 import museumApp.bll.MuseumManager;
+import museumApp.bll.TimeRegistrationManager;
 
 public class UserModel extends Model
   {
 
     private MuseumManager museumManager;
+    private IManager timeRegistrationManager;
+    private VolunteerTime vTime;
 
     private ObservableList<Manager> managers;
     private ObservableList<Volunteer> volunteers;
@@ -28,6 +33,7 @@ public class UserModel extends Model
       {
         super();
         museumManager = new MuseumManager();
+        timeRegistrationManager = new TimeRegistrationManager();
         /**
          * We create observable array lists for each element we want to display later
          * into the view.
@@ -40,6 +46,11 @@ public class UserModel extends Model
       }
 
     /** -------------------------------------------------------------------------------------------. */
+    public void addTime()
+      {
+        timeRegistrationManager.Add(new VolunteerTime(vTime.getDate(), vTime.getHours(), vTime.getId()));
+      }
+
     public ObservableList<Volunteer> getVolunteerFromGuild()
       {
         return volunteerFromGuild;

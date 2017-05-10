@@ -136,7 +136,7 @@ public class MuseumManager
             throw new MuseumManagerException("Unable to fetch administrators.");
         }
       }
-    
+
     public List<VolunteerTime> getAllVTime() throws SQLException
       {
         try
@@ -191,7 +191,7 @@ public class MuseumManager
 
     public void addGuild(Guild gd) throws SQLException
       {
-        addDbMgr.addGuild(gd);
+//        addDbMgr.addGuild(gd);
       }
 
   }

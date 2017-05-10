@@ -14,15 +14,22 @@ import javafx.beans.property.StringProperty;
  */
 public class Guild extends BusinessEntity
   {
-
+    
     protected StringProperty name;
     protected int managerId;
-
+    
     public Guild(int id, String name, int managerId)
       {
         super(id);
         this.name = new SimpleStringProperty(name);
         this.managerId = managerId;
+      }
+
+    public Guild(String id, String name, String managerId)
+      {
+        super(Integer.parseInt(id));
+        this.name = new SimpleStringProperty(name);
+        this.managerId = Integer.parseInt(managerId);
       }
 
     /** ------------------------------------------------------------------------------------------- */
@@ -56,7 +63,7 @@ public class Guild extends BusinessEntity
       {
         return managerId;
       }
-
+    
     public void setManagerId(int managerId)
       {
         this.managerId = managerId;
