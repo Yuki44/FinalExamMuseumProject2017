@@ -56,6 +56,11 @@ public class LanguageSelectionViewController extends Controller implements Initi
       {
         try
         {
+            /**
+             * This commented out method works for setting the next fxml in the same scene.
+             */
+//            BorderPane bPane = FXMLLoader.load(getClass().getResource("/museumApp/gui/view/ChooseVolunteerGuildView.fxml"));
+//            borderPane.getChildren().setAll(bPane);
             Stage stage;
             Parent root;
             stage = (Stage) borderPane.getScene().getWindow();
@@ -71,7 +76,6 @@ public class LanguageSelectionViewController extends Controller implements Initi
         catch (IOException ex)
         {
             System.err.println(ex);
-            ex.printStackTrace();
         }
       }
 

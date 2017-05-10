@@ -5,7 +5,6 @@
  */
 package museumApp.dal;
 
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -155,7 +154,7 @@ public class GetData extends DatabaseManager
         String phoneNumber = rs.getString("phone_number");
         Date birthDate = rs.getDate("date_of_birth");
         Date registeredDate = rs.getDate("join_date");
-        String nationality = rs.getString("nationality");
+        String nationality = rs.getString("nationality_id");
         int id = rs.getInt("volunteer_id");
         return new Volunteer(id, firstName, lastName, birthDate, phoneNumber, email, nationality, registeredDate);
 
@@ -213,7 +212,7 @@ public class GetData extends DatabaseManager
         Date birthDate = rs.getDate("date_of_birth");
         String phoneNumber = rs.getString("phone_number");
         String email = rs.getString("email");
-        String nationality = rs.getString("nationality");
+        String nationality = rs.getString("nationality_id");
         Date joinDate = rs.getDate("join_date");
 
         Volunteer volunteer = new Volunteer(id, firstname, lastname, birthDate, phoneNumber, email, nationality, joinDate);
