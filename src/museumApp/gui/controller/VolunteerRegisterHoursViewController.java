@@ -2,6 +2,7 @@ package museumApp.gui.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -22,17 +23,17 @@ import museumApp.gui.model.UserModel;
 
 public class VolunteerRegisterHoursViewController extends Controller implements Initializable
   {
-
+    
     @FXML
     private BorderPane borderPane;
     @FXML
     private TextField setHoursLabel;
     @FXML
     private GridPane mainGridPane;
-
+    
     private UserModel userModel;
-
-    public VolunteerRegisterHoursViewController() throws IOException
+    
+    public VolunteerRegisterHoursViewController() throws IOException, SQLException
       {
         this.userModel = new UserModel();
       }
@@ -48,7 +49,7 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
       {
         // TODO
       }
-
+    
     @FXML
     private void goBackToGuildSelection(MouseEvent event)
       {
@@ -71,7 +72,7 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
             System.err.println(ex);
         }
       }
-
+    
     @FXML
     private void goToFinalView(MouseEvent event)
       {
@@ -90,11 +91,17 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK)
             {
+                /**
+                 * TODO: create the add function so that when the user presses "OK" he/she confirmes the amount of
+                 * hours he/she wants to register.
+                 * It should be inside this if statement.
+                 */
+//                setHoursLabel.getText().trim().equals()
                 Alert congratsAlert = new Alert(AlertType.INFORMATION);
                 congratsAlert.setTitle("\nRingkøbing-Skjern Museum");
                 congratsAlert.setHeaderText("Thank you for your contribution to Ringkøbing-skjern museum!");
                 congratsAlert.setContentText("\nHave a nice day!!");
-
+                
                 Optional<ButtonType> congratsResult = congratsAlert.showAndWait();
                 if (congratsResult.get() == ButtonType.OK)
                 {
@@ -127,5 +134,5 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
             }
         }
       }
-
+    
   }

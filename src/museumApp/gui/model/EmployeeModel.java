@@ -1,6 +1,7 @@
 package museumApp.gui.model;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import museumApp.be.Employee;
@@ -12,7 +13,7 @@ public class EmployeeModel extends UserModel
     private List<Employee> employee;
     private MuseumManager museumManager;
 
-    public EmployeeModel() throws IOException
+    public EmployeeModel() throws IOException, SQLException
       {
         super();
         museumManager = new MuseumManager();

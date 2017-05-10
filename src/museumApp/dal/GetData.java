@@ -123,6 +123,23 @@ public class GetData extends DatabaseManager
         }
       }
 
+    public List<VolunteerTime> getAllVTime() throws SQLException
+      {
+        List<VolunteerTime> vTime = new ArrayList<>();
+
+        String sql = "SELECT * FROM volunteer_time";
+        try (Connection con = connectionManager.getConnection())
+        {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next())
+            {
+                vTime.add(getOneVTime(rs));
+            }
+            return vTime;
+        }
+      }
+
     /**
      * Gets information about one Guild in the database.
      *
@@ -136,6 +153,14 @@ public class GetData extends DatabaseManager
         String guildName = rs.getString("name");
         int manager_id = rs.getInt("manager_id");
         return new Guild(id, guildName, manager_id);
+      }
+
+    private VolunteerTime getOneVTime(ResultSet rs) throws SQLException
+      {
+        int id = rs.getInt("guild_volunteer_id");
+        Date date = rs.getDate("date");
+        int hours = rs.getInt("hours");
+        return new VolunteerTime(date, hours, id);
       }
 
     /**

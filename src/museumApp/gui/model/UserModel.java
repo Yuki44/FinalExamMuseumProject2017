@@ -24,7 +24,7 @@ public class UserModel extends Model
     private ObservableList<Volunteer> volunteerFromGuild;
     private ObservableList<VolunteerTime> volunteerTime;
 
-    public UserModel() throws IOException
+    public UserModel() throws IOException, SQLException
       {
         super();
         museumManager = new MuseumManager();
@@ -36,12 +36,18 @@ public class UserModel extends Model
         volunteers = FXCollections.observableArrayList(museumManager.getAllVolunteers());
         guilds = FXCollections.observableArrayList(museumManager.getAllGuilds());
         admins = FXCollections.observableArrayList(museumManager.getAllAdmins());
+        volunteerTime = FXCollections.observableArrayList(museumManager.getAllVTime());
       }
 
     /** -------------------------------------------------------------------------------------------. */
     public ObservableList<Volunteer> getVolunteerFromGuild()
       {
         return volunteerFromGuild;
+      }
+
+    public ObservableList<VolunteerTime> getVTime()
+      {
+        return volunteerTime;
       }
 
     public ObservableList<Manager> getManagers()

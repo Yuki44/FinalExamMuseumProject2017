@@ -136,6 +136,19 @@ public class MuseumManager
             throw new MuseumManagerException("Unable to fetch administrators.");
         }
       }
+    
+    public List<VolunteerTime> getAllVTime() throws SQLException
+      {
+        try
+        {
+            return getDbMgr.getAllVTime();
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex);
+            throw new MuseumManagerException("Unable to fetch volunteer time.");
+        }
+      }
 
     public List<VolunteerTime> getTimeBasedOnVolunteer(Volunteer hours)
       {

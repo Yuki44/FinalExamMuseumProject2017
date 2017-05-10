@@ -144,7 +144,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
 //        tblColGuildManager.setCellValueFactory(guild -> guild.getValue().getManagerName());
       }
 
-    public ManagementRegisterVolunteerController() throws IOException
+    public ManagementRegisterVolunteerController() throws IOException, SQLException
       {
         userModel = new UserModel();
       }

@@ -2,6 +2,7 @@ package museumApp.gui.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -75,7 +76,7 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
      *
      * @throws IOException
      */
-    public ChooseVolunteerGuildViewController() throws IOException
+    public ChooseVolunteerGuildViewController() throws IOException, SQLException
       {
         userModel = new UserModel();
       }
