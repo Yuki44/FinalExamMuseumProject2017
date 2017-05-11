@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" styleClass="programBorderAfterLanguage" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.VolunteerRegisterHoursViewController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" styleClass="programBorderAfterLanguage" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.VolunteerRegisterHoursViewController">
    <top>
       <GridPane fx:id="mainGridPane" alignment="TOP_CENTER" onMouseDragged="#getXYForMouseDrag" onMousePressed="#getXYClickLocation" BorderPane.alignment="TOP_CENTER">
          <columnConstraints>
@@ -160,13 +160,13 @@
                <children>
                   <Pane maxHeight="300.0" maxWidth="300.0">
                      <children>
-                        <ImageView cache="true" cacheHint="SCALE" fitWidth="230.0" layoutX="61.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img/peder.jpg" />
-                           </image>
+                        <ImageView cache="true" cacheHint="SCALE" fitHeight="199.0" fitWidth="230.0" layoutX="61.0" pickOnBounds="true" preserveRatio="true">
                            <viewport>
                               <Rectangle2D />
                            </viewport>
+                           <image>
+                              <Image url="@../img/13934692_10210408106465902_4226325064191108898_n.jpg" />
+                           </image>
                         </ImageView>
                      </children>
                      <VBox.margin>
