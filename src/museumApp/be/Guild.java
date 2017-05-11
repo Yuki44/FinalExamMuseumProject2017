@@ -1,23 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumApp.be;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-/**
- *
- * @author Peder
- */
 public class Guild extends BusinessEntity
   {
-    
+
     protected StringProperty name;
     protected int managerId;
-    
+
+    /** ----------------------------TO DO REFACTOR BEGINNING---------------------------------------------. */
+    /**
+     * 1st Constructor.
+     */
     public Guild(int id, String name, int managerId)
       {
         super(id);
@@ -25,6 +20,9 @@ public class Guild extends BusinessEntity
         this.managerId = managerId;
       }
 
+    /**
+     * 2nd Constructor.
+     */
     public Guild(String id, String name, String managerId)
       {
         super(Integer.parseInt(id));
@@ -32,9 +30,10 @@ public class Guild extends BusinessEntity
         this.managerId = Integer.parseInt(managerId);
       }
 
-    /** ------------------------------------------------------------------------------------------- */
+    /** ------------------------------------TO DO REFACTOR END---------------------------------------------. */
+    /** ------------------------------------GUILD NAME---------------------------------------------. */
     /**
-     * We get Name as string property because it can update the view
+     * We get GUILD Name as string property because it can update the view
      *
      * @return
      */
@@ -44,7 +43,7 @@ public class Guild extends BusinessEntity
       }
 
     /**
-     * We get Name as simple string, however it cannot update the view automatically
+     * We get GUILD Name as simple string, however it cannot update the view automatically
      *
      * @return
      */
@@ -53,9 +52,9 @@ public class Guild extends BusinessEntity
         return name.get();
       }
 
-    /** ------------------------------------------------------------------------------------------- */
+    /** ----------------------------------GUILD MANAGER----------------------------------------------. */
     /**
-     * We get managerId
+     * We get GUILD managerId
      *
      * @return
      */
@@ -63,10 +62,6 @@ public class Guild extends BusinessEntity
       {
         return managerId;
       }
-    
-    public void setManagerId(int managerId)
-      {
-        this.managerId = managerId;
-      }
-    /** ------------------------------------------------------------------------------------------- */
+
+    /** -------------------------------------------------------------------------------------------. */
   }

@@ -39,7 +39,7 @@ public class SplashFXMLController implements Initializable
 
       }
 
-    /** ------------------------------------------------------------------------------------------- */
+    /** -------------------------------------------------------------------------------------------. */
     /**
      * We make a new class that will be responsible to handle a secondary thread
      * so we can display the Splash Screen window.
@@ -57,7 +57,7 @@ public class SplashFXMLController implements Initializable
                  * show the MainView.
                  */
                 Thread.sleep(3500);
-                /** ------------------------------------------------------------------------------------------ */
+                /** ------------------------------------------------------------------------------------------. */
                 Platform.runLater(new Runnable()
                   {
                     @Override
@@ -81,7 +81,7 @@ public class SplashFXMLController implements Initializable
                             stage.centerOnScreen();
                             stage.setMaximized(false); //Starting it as minimized
                             ResizeHelper.addResizeListener(stage); //We call the ResizeHelper class so we are able to resize our view.
-                            /** ------------------------------------------------------------------------------------------ */
+                            /** ------------------------------------------------------------------------------------------. */
                             /**
                              * Now we ran the Main View but, we must also HIDE the splash screen since
                              * we are not going to use it anymore.
@@ -101,4 +101,5 @@ public class SplashFXMLController implements Initializable
             }
           }
       }
+    /** ---------------------------------------------------------------------------------------------------------------------------. */
   }

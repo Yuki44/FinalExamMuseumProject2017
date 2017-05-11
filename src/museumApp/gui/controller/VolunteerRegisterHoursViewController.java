@@ -59,6 +59,7 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
       {
       }
 
+    /** ---------------------------------------------------------------------------------------------------------------------------. */
     @FXML
     private void goBackToGuildSelection(MouseEvent event)
       {

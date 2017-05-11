@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumApp.be;
 
 import java.sql.Date;
@@ -10,10 +5,6 @@ import java.text.SimpleDateFormat;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-/**
- *
- * @author Peder
- */
 public class Volunteer extends User
   {
 
@@ -31,34 +22,64 @@ public class Volunteer extends User
         this.birthDate = birthDate;
       }
 
-    /** ------------------------------------------------------------------------------------------- */
+    /** ------------------------------VOLUNTEER NATIONALITY-----------------------------------------. */
+    /**
+     * Get the VOLUNTEER nationality as a StringProperty so it can update the view.
+     *
+     * @return
+     */
     public StringProperty getNationality()
       {
         return nationality;
       }
 
+    /**
+     * Get the VOLUNTEER nationality as a string so it cannot update the view.
+     *
+     * @return
+     */
     public String getNationalityAsString()
       {
         return nationality.get();
       }
 
-    /** ------------------------------------------------------------------------------------------- */
+    /** --------------------------VOLUNTEER PHONE NUMBER------------------------------------------. */
+    /**
+     * Get the VOLUNTEER phone number as a StringProperty so it can update the view.
+     *
+     * @return
+     */
     public StringProperty getPhoneNumber()
       {
         return phoneNumber;
       }
 
+    /**
+     * Get the VOLUNTEER phone number as a string so it cannot update the view.
+     *
+     * @return
+     */
     public String getPhoneNumberAsString()
       {
         return phoneNumber.get();
       }
 
-    /** ------------------------------------------------------------------------------------------- */
+    /** --------------------------REGISTERED OR JOINED DATE----------------------------------------. */
+    /**
+     * Get the VOLUNTEER registered date as a Date type.
+     *
+     * @return
+     */
     public Date getRegisteredDate()
       {
         return registeredDate;
       }
 
+    /**
+     * VOLUNTEER Registered date gets converted to a string and formatted for displaying.
+     *
+     * @return
+     */
     public String getRegisteredDateAsString()
       {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -66,10 +87,15 @@ public class Volunteer extends User
         return joinedDate;
       }
 
-    /** ------------------------------------------------------------------------------------------- */
+    /** -------------------------------------BIRTHDATE-----------------------------------------------. */
+    /**
+     * Get the VOLUNTEER Birth date as a Date type.
+     *
+     * @return
+     */
     public Date getBirthDate()
       {
         return birthDate;
       }
-    /** ------------------------------------------------------------------------------------------- */
+    /** -------------------------------------------------------------------------------------------. */
   }

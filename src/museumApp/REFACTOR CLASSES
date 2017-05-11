@@ -1,0 +1,20 @@
+
+-BE: GUILD -> There are 2 constructors instead of 1
+
+-GUI: USERMODEL -> Every method goes through the userModel instead of each view with his own model
+
+-Needs to be checked by Peder and Javadoc commented the 
+BLL classes -> TimeRegistrationManager - MuseumManagerException - LoginManager - IManager
+
+-Needs to be checked by Peder and Javadoc commented the 
+DAL classes -> AdministratorLoginHandler
+
+-2 methods in the GetData class need to be checked by Peder (Javadoc -> REFACTOR)
+
+- JAVADOC in "OTHER GET METHODS" section in GetData class in the DAL (Peder - Linda)
+
+- JAVADOC in ManagerLoginHandler Class (Peder)
+
+- REFACTOR Controller: ChooseVolunterGuildView (Carlos)
+
+- REFACTOR UserModel constructor and addTime() method (Peder)

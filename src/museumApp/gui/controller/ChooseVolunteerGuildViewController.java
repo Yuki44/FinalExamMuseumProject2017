@@ -48,8 +48,30 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
+        /**
+         * Initializes the Guild listView.
+         */
         guildListView.setItems(userModel.getGuilds());
         guildTblColName.setCellValueFactory(guild -> guild.getValue().getName()); //Lambda expression sets values into laug name column
+        listGenerator();
+      }
+
+    /**
+     * Constructor
+     *
+     * @throws IOException
+     */
+    public ChooseVolunteerGuildViewController() throws IOException, SQLException
+      {
+        userModel = new UserModel(); // New userModel Instance
+      }
+
+    /** ----------------------------------------------------------------------------------------------------------------. */
+    /**
+     * We create the Volunteer listView after selecting the guild.
+     */
+    public void listGenerator()
+      {
         guildListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Guild>()
           {
             /**
@@ -69,27 +91,13 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
                 volunteerTblColName.setCellValueFactory(volunteer -> volunteer.getValue().getFullName());
               }
           });
-        volunterListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Volunteer>()
-          {
-
-            @Override
-            public void changed(ObservableValue<? extends Volunteer> observable, Volunteer oldValue, Volunteer newValue)
-              {
-
-              }
-          });
       }
 
     /**
-     * Constructor
+     * If the volunteer has been selected we go to the next view.
      *
-     * @throws IOException
+     * @param event
      */
-    public ChooseVolunteerGuildViewController() throws IOException, SQLException
-      {
-        userModel = new UserModel();
-      }
-
     @FXML
     private void goToRegisterHoursView(MouseEvent event)
       {
@@ -105,8 +113,11 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
                 URL location = this.getClass().getResource("/museumApp/gui/view/VolunteerRegisterHoursView.fxml");
                 FXMLLoader loader = new FXMLLoader(location);
                 root = loader.load();
+                /** -------------------------------------------REFACTOR START-------------------------------------------. */
+                /* It should pass the value to the method in model of the next controller not to the controller directly */
                 VolunteerRegisterHoursViewController vrhvc = loader.getController();
                 vrhvc.setVolunteer(volunteerSelected, guildSelected);
+                /** --------------------------------------------REFACTOR END-------------------------------------------. */
                 Scene scene = new Scene(root);
                 stage.hide();
                 stage.setScene(scene);
@@ -120,6 +131,11 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
         }
       }
 
+    /**
+     * Just a method that goes to the Language selection view
+     *
+     * @param event
+     */
     @FXML
     private void goToLanguageSelection(MouseEvent event)
       {
@@ -142,5 +158,5 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
             System.err.println(ex);
         }
       }
-
+    /** ----------------------------------------------------------------------------------------------------------------. */
   }

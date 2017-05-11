@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumApp.be;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-/**
- *
- * @author Peder
- */
 public abstract class User extends BusinessEntity
   {
 
@@ -27,28 +18,43 @@ public abstract class User extends BusinessEntity
         this.lastName = new SimpleStringProperty(lastName);
         this.email = new SimpleStringProperty(email);
         this.fullName = new SimpleStringProperty(firstName + " " + lastName);
-
       }
 
+    /** ------------------------------FULL NAMES FROM USER---------------------------------------------. */
+    /**
+     * We get the name of the user as a StringProperty and this allows us to update the tableView.
+     *
+     * @return
+     */
     public StringProperty getFullName()
       {
         return fullName;
       }
 
+    /**
+     * FULL NAME OF USER AS A STRING (1 of 2 Steps).
+     *
+     * @return
+     */
     public String getFullNameAsString()
       {
         return fullName.get();
       }
 
+    /**
+     * FULL NAME OF USER AS A STRING (Step 2 of 2).
+     *
+     * @return
+     */
     @Override
     public String toString()
       {
         return getFullNameAsString();
       }
 
-    /** ------------------------------------------------------------------------------------------- */
+    /** ----------------------------ONLY USER'S FIRST NAME---------------------------------------------. */
     /**
-     * We get first name as string property because it can update the view
+     * We get USER first name as string property because it can update the view
      *
      * @return
      */
@@ -58,7 +64,7 @@ public abstract class User extends BusinessEntity
       }
 
     /**
-     * We get the first name as simple string, however it cannot update the view automatically
+     * We get the USER first name as simple string, however it cannot update the view automatically
      *
      * @return
      */
@@ -67,9 +73,9 @@ public abstract class User extends BusinessEntity
         return firstName.get();
       }
 
-    /** ------------------------------------------------------------------------------------------- */
+    /** ---------------------------ONLY USER'S LAST NAME----------------------------------------------. */
     /**
-     * We get last name as string property because it can update the view
+     * We get USER last name as string property because it can update the view
      *
      * @return
      */
@@ -79,7 +85,7 @@ public abstract class User extends BusinessEntity
       }
 
     /**
-     * We get the last name as simple string, however it cannot update the view automatically
+     * We get the USER last name as simple string, however it cannot update the view automatically
      *
      * @return
      */
@@ -88,9 +94,9 @@ public abstract class User extends BusinessEntity
         return lastName.get();
       }
 
-    /** ------------------------------------------------------------------------------------------- */
+    /** ---------------------------------------EMAIL------------------------------------------. */
     /**
-     * We get the email as string property because it can update the view
+     * We get the USER email as string property because it can update the view
      *
      * @return
      */
@@ -100,7 +106,7 @@ public abstract class User extends BusinessEntity
       }
 
     /**
-     * We get the email as simple string, however it cannot update the view automatically
+     * We get the USER email as simple string, however it cannot update the view automatically
      *
      * @return
      */
@@ -108,5 +114,5 @@ public abstract class User extends BusinessEntity
       {
         return email.get();
       }
-    /** ------------------------------------------------------------------------------------------- */
+    /** -------------------------------------------------------------------------------------------. */
   }

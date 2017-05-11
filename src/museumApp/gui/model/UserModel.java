@@ -11,7 +11,6 @@ import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
-import museumApp.bll.IManager;
 import museumApp.bll.MuseumManager;
 import museumApp.bll.TimeRegistrationManager;
 
@@ -29,6 +28,12 @@ public class UserModel extends Model
     private ObservableList<Volunteer> volunteerFromGuild;
     private ObservableList<VolunteerTime> volunteerTime;
 
+    /**
+     * REFACTOR
+     *
+     * @throws IOException
+     * @throws SQLException
+     */
     public UserModel() throws IOException, SQLException
       {
         super();
@@ -48,11 +53,15 @@ public class UserModel extends Model
       }
 
     /** -------------------------------------------------------------------------------------------. */
+    /**
+     * REFACTOR.
+     */
     public void addTime()
       {
         timeRegistrationManager.Add(vTime);
       }
 
+    /** --------------------------------------------------GET METHODS------------------------------------------------------------. */
     public ObservableList<Volunteer> getVolunteerFromGuild()
       {
         return volunteerFromGuild;
@@ -83,7 +92,7 @@ public class UserModel extends Model
         return guilds;
       }
 
-    /** -------------------------------------------------------------------------------------------. */
+    /** ------------------------------------MANAGER---------------------------------------------. */
     public void addManager(Manager mg) throws SQLException
       {
         managers.add(mg); //updates gui through observable
@@ -96,7 +105,7 @@ public class UserModel extends Model
         museumManager.removeManager(mg);
       }
 
-    /** -------------------------------------------------------------------------------------------. */
+    /** --------------------------------VOLUNTEER--------------------------------------------------. */
     public void addVolunteer(Volunteer vtr) throws SQLException
       {
         volunteers.add(vtr);
@@ -114,7 +123,7 @@ public class UserModel extends Model
         return museumManager.getVolunteersFromGuild(newValue);
       }
 
-    /** -------------------------------------------------------------------------------------------. */
+    /** -----------------------------------GUILD----------------------------------------------. */
     public void addGuild(Guild gd) throws SQLException
       {
         guilds.add(gd);

@@ -16,9 +16,9 @@ public abstract class Employee extends User
         this.password = new SimpleStringProperty(password);
       }
 
-    /** ------------------------------------------------------------------------------------------- */
+    /** ------------------------------------USERNAME-------------------------------------------. */
     /**
-     * We get userNames as string property because it can update the view
+     * We get EMPLOYEE userNames as string property because it can update the view
      *
      * @return
      */
@@ -28,7 +28,7 @@ public abstract class Employee extends User
       }
 
     /**
-     * We get userNames as simple string, however it cannot update the view automatically
+     * We get EMPLOYEE userNames as simple string, however it cannot update the view automatically
      *
      * @return
      */
@@ -37,9 +37,9 @@ public abstract class Employee extends User
         return userName.get();
       }
 
-    /** ------------------------------------------------------------------------------------------- */
+    /** ----------------------------------PASSWORD----------------------------------------------. */
     /**
-     * We get Passwords as string property because it can update the view
+     * We get EMPLOYEE Passwords as string property because it can update the view
      *
      * @return
      */
@@ -49,7 +49,7 @@ public abstract class Employee extends User
       }
 
     /**
-     * We get Passwords as simple string, however it cannot update the view automatically
+     * We get EMPLOYEE Passwords as simple string, however it cannot update the view automatically
      *
      * @return
      */
@@ -57,5 +57,5 @@ public abstract class Employee extends User
       {
         return password.get();
       }
-    /** ------------------------------------------------------------------------------------------- */
+    /** -------------------------------------------------------------------------------------------. */
   }

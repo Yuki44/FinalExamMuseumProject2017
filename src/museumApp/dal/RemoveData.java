@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumApp.dal;
 
 import java.io.IOException;
@@ -11,17 +6,19 @@ import java.sql.SQLException;
 import museumApp.be.Manager;
 import museumApp.be.Volunteer;
 
-/**
- *
- * @author min
- */
 public class RemoveData extends DatabaseManager
   {
 
+    /**
+     * Constructor.
+     *
+     * @throws IOException
+     */
     public RemoveData() throws IOException
       {
       }
 
+    /** --------------------------------------VOLUNTEER------------------------------------------------. */
     /**
      * Makes it possible to remove a volunteer from the database by use of
      * the parameters below
@@ -39,6 +36,12 @@ public class RemoveData extends DatabaseManager
         pstmt.execute();
       }
 
+    /** ---------------------------------------MANAGER----------------------------------------------------. */
+    /**
+     *
+     * @param mg
+     * @throws SQLException
+     */
     public void removeManager(Manager mg) throws SQLException
       {
         String sql = "DELETE FROM employee WHERE first_name = ('?') AND last_name = ('?') AND employee_type_id IN (1,3);";
@@ -47,5 +50,5 @@ public class RemoveData extends DatabaseManager
         pstmt.setString(2, mg.getLastNameAsString());
         pstmt.execute();
       }
-
+    /** ----------------------------------------------------------------------------------------------------. */
   }

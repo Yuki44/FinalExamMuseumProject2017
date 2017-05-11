@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumApp.dal;
 
 import java.io.IOException;
@@ -13,27 +8,24 @@ import museumApp.be.Manager;
 import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
 
-/**
- *
- * @author min
- */
 public class AddData extends DatabaseManager
   {
 
+    /**
+     * Constructor
+     *
+     * @throws IOException
+     */
     public AddData() throws IOException
       {
       }
 
+    /** -----------------------------------VOLUNTEER-------------------------------------------------------. */
     /**
      * Makes it possible to add a volunteer to the system through the database
-     * by use of the parameters below
+     * by use of the volunteer parameters:
      *
      * @param vtr
-     * @param firstName
-     * @param lastName
-     * @param email
-     * @param phoneNumber
-     * @param birthDate
      * @throws SQLException
      */
     public void addVolunteer(Volunteer vtr) throws SQLException
@@ -54,6 +46,14 @@ public class AddData extends DatabaseManager
         }
       }
 
+    /** ----------------------------------------MANAGER-----------------------------------------------------. */
+    /**
+     * Makes it possible to add a manager to the system through the database
+     * by use of the manager parameters:
+     *
+     * @param mg
+     * @throws SQLException
+     */
     public void addManager(Manager mg) throws SQLException
       {
         String sql = "INSERT INTO employee (first_name, last_name, email, user_name, password) "
@@ -67,6 +67,14 @@ public class AddData extends DatabaseManager
         pstmt.executeUpdate();
       }
 
+    /** -----------------------------------------HOURS-----------------------------------------------------. */
+    /**
+     * Makes it possible to add a manager to the system through the database
+     * by use of the VolunteerTime parameters:
+     *
+     * @param vTime
+     * @throws SQLException
+     */
     public void addHours(VolunteerTime vTime) throws SQLException
       {
         String sql = "INSERT INTO volunteer_time (guild_volunteer_id, date, hours) VALUES ( ? , ? , ?) ";
@@ -77,6 +85,14 @@ public class AddData extends DatabaseManager
         pstmt.executeUpdate();
       }
 
+    /** ------------------------------------------GUILD--------------------------------------------------. */
+    /**
+     * Makes it possible to add a manager to the system through the database
+     * by use of the guild parameters:
+     *
+     * @param gd
+     * @throws SQLException
+     */
     public void addGuild(Guild gd) throws SQLException
       {
         String sql = "INSERT INTO guild (name, manager_id) VALUES ('?',?) ";
@@ -85,5 +101,5 @@ public class AddData extends DatabaseManager
         pstmt.setInt(2, gd.getManagerId());
         pstmt.executeUpdate();
       }
-
+    /** ----------------------------------------------------------------------------------------------------. */
   }

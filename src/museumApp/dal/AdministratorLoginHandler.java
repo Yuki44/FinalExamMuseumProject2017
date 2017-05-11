@@ -1,33 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumApp.dal;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import museumApp.be.Administrator;
 import museumApp.be.Employee;
 
-/**
- *
- * @author Peder
- */
 public class AdministratorLoginHandler extends GetData
-{
+  {
 
     GetData DbMgr;
 
+    /**
+     * Constructor
+     *
+     * @throws IOException
+     */
     public AdministratorLoginHandler() throws IOException
-    {
-        this.DbMgr = new GetData();
-    }
-    
-    public Employee LoginChecker (String username, String password) throws SQLException
-    {
+      {
+        this.DbMgr = new GetData(); // Get a new getData Database Manager
+      }
+
+    /** ----------------------------------------------------------------------------------------------------. */
+    public Employee LoginChecker(String username, String password) throws SQLException
+      {
         for (Administrator allAdmin : DbMgr.getAllAdmins())
         {
             if (allAdmin.getUserName().getValue().equals(username))
@@ -39,5 +34,6 @@ public class AdministratorLoginHandler extends GetData
             }
         }
         return null;
-    }
-}
+      }
+    /** ----------------------------------------------------------------------------------------------------. */
+  }

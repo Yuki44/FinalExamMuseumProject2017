@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumApp.dal;
 
 import java.io.IOException;
@@ -20,17 +15,19 @@ import museumApp.be.Manager;
 import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
 
-/**
- *
- * @author min
- */
 public class GetData extends DatabaseManager
   {
 
+    /**
+     * Constructor.
+     *
+     * @throws IOException
+     */
     public GetData() throws IOException
       {
       }
 
+    /** ------------------------------getAll FROM DATABASE METHODS------------------------------------------. */
     /**
      * Selects the volunteers in the database, through a SELECT statement.
      *
@@ -123,6 +120,12 @@ public class GetData extends DatabaseManager
         }
       }
 
+    /**
+     * Selects the VolunteerTime in the database, through a SELECT statement.
+     *
+     * @return
+     * @throws SQLException
+     */
     public List<VolunteerTime> getAllVTime() throws SQLException
       {
         List<VolunteerTime> vTime = new ArrayList<>();
@@ -140,6 +143,7 @@ public class GetData extends DatabaseManager
         }
       }
 
+    /** ---------------------------------getOne FROM DATABASE METHODS-------------------------------------------. */
     /**
      * Gets information about one Guild in the database.
      *
@@ -155,6 +159,13 @@ public class GetData extends DatabaseManager
         return new Guild(id, guildName, manager_id);
       }
 
+    /**
+     * Gets information about one VolunteerTime in the database.
+     *
+     * @param rs
+     * @return
+     * @throws SQLException
+     */
     private VolunteerTime getOneVTime(ResultSet rs) throws SQLException
       {
         int id = rs.getInt("guild_volunteer_id");
@@ -164,7 +175,7 @@ public class GetData extends DatabaseManager
       }
 
     /**
-     * Gets information about one volunteer in the database.
+     * Gets information about one Volunteer in the database.
      *
      * @param rs
      * @return Volunteer
@@ -187,7 +198,7 @@ public class GetData extends DatabaseManager
       }
 
     /**
-     * Gets information about one manager in the database.
+     * Gets information about one Manager in the database.
      *
      * @param rs
      * @return
@@ -205,7 +216,7 @@ public class GetData extends DatabaseManager
       }
 
     /**
-     * Gets information about one administrator in the database.
+     * Gets information about one Administrator in the database.
      *
      * @param rs
      * @return
@@ -222,30 +233,13 @@ public class GetData extends DatabaseManager
         return new Administrator(id, firstName, lastName, email, userName, password);
       }
 
-    public VolunteerTime getVTimeFromResults(ResultSet rs) throws SQLException
-      {
-        Date regDate = rs.getDate("date");
-        int hours = rs.getInt("hours");
-        int id = rs.getInt("volunteer_time_id");
-        return new VolunteerTime(regDate, hours, id);
-      }
-
-    public Volunteer getVolunteerFromResults(ResultSet rs) throws SQLException
-      {
-        int id = rs.getInt("volunteer_id");
-        String firstname = rs.getString("first_name");
-        String lastname = rs.getString("last_name");
-        Date birthDate = rs.getDate("date_of_birth");
-        String phoneNumber = rs.getString("phone_number");
-        String email = rs.getString("email");
-        String nationality = rs.getString("nationality_id");
-        Date joinDate = rs.getDate("join_date");
-        String comment = rs.getString("comment");
-
-        Volunteer volunteer = new Volunteer(id, firstname, lastname, birthDate, phoneNumber, email, nationality, joinDate, comment);
-        return volunteer;
-      }
-
+    /**
+     * TO REFACTOR
+     *
+     * @param pstmt
+     * @return
+     * @throws SQLException
+     */
     public Manager getManagerFromResults(PreparedStatement pstmt) throws SQLException
       {
         ResultSet rs = pstmt.executeQuery();
@@ -261,6 +255,13 @@ public class GetData extends DatabaseManager
         return manager;
       }
 
+    /**
+     * TO REFACTOR
+     *
+     * @param pstmt
+     * @return
+     * @throws SQLException
+     */
     public Administrator getAdminFromResults(PreparedStatement pstmt) throws SQLException
       {
         ResultSet rs = pstmt.executeQuery();
@@ -276,6 +277,13 @@ public class GetData extends DatabaseManager
         return admin;
       }
 
+    /** -----------------------------------OTHER GET METHODS-----------------------------------------------. */
+    /**
+     *
+     * @param newValue
+     * @return
+     * @throws SQLException
+     */
     public List<Volunteer> getVolunteerBasedOnGuild(Guild newValue) throws SQLException
       {
         List<Volunteer> volunteers = new ArrayList<>();
@@ -292,13 +300,19 @@ public class GetData extends DatabaseManager
 
             while (rs.next())
             {
-                volunteers.add(getVolunteerFromResults(rs));
+                volunteers.add(getOneVolunteer(rs));
             }
             return volunteers;
 
         }
       }
 
+    /**
+     *
+     * @param hours
+     * @return
+     * @throws SQLException
+     */
     public List<VolunteerTime> getTimeBasedOnVolunteer(Volunteer hours) throws SQLException
       {
         List<VolunteerTime> vTime = new ArrayList<>();
@@ -315,12 +329,17 @@ public class GetData extends DatabaseManager
 
             while (rs.next())
             {
-                vTime.add(getVTimeFromResults(rs));
+                vTime.add(getOneVTime(rs));
             }
             return vTime;
         }
       }
 
+    /**
+     *
+     * @param username
+     * @return
+     */
     public Manager getManagerBasedOnUsername(String username)
       {
         try (Connection con = connectionManager.getConnection())
@@ -329,7 +348,7 @@ public class GetData extends DatabaseManager
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, username);
 
-            return getManagerFromResults(pstmt);
+            return getManagerFromResults(pstmt); // REFACTOR
         }
         catch (SQLException sqle)
         {
@@ -338,6 +357,11 @@ public class GetData extends DatabaseManager
         }
       }
 
+    /**
+     *
+     * @param username
+     * @return
+     */
     public Administrator getAdminBasedOnUsername(String username)
       {
         try (Connection con = connectionManager.getConnection())
@@ -346,7 +370,7 @@ public class GetData extends DatabaseManager
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, username);
 
-            return getAdminFromResults(pstmt);
+            return getAdminFromResults(pstmt); // REFACTOR
         }
         catch (SQLException sqle)
         {
@@ -355,6 +379,12 @@ public class GetData extends DatabaseManager
         }
       }
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     */
     public boolean checkPasswordForManager(String username, String password)
       {
         try (Connection con = connectionManager.getConnection())
@@ -374,6 +404,12 @@ public class GetData extends DatabaseManager
         }
       }
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     */
     public boolean checkPasswordForAdmin(String username, String password)
       {
         try (Connection con = connectionManager.getConnection())
@@ -393,6 +429,11 @@ public class GetData extends DatabaseManager
         }
       }
 
+    /**
+     *
+     * @param guildName
+     * @return
+     */
     public int filterHoursByGuild(String guildName)
       {
         try (Connection con = connectionManager.getConnection())
@@ -410,7 +451,6 @@ public class GetData extends DatabaseManager
             System.err.println(sqle);
             return 0;
         }
-
       }
-
+    /** ----------------------------------------------------------------------------------------------------. */
   }

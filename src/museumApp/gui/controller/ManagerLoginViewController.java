@@ -1,8 +1,3 @@
-/*
- * Erhvervsakademi Sydvest, Computer Science 2016-2017, Carlos F. Ognissanti
- * To change this header, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumApp.gui.controller;
 
 import com.jfoenix.controls.JFXButton;
@@ -30,11 +25,6 @@ import museumApp.be.Employee;
 import museumApp.be.Manager;
 import museumApp.gui.model.LoginModel;
 
-/**
- * FXML Controller class
- *
- * @author Yuki
- */
 public class ManagerLoginViewController extends Controller implements Initializable
   {
 
@@ -69,14 +59,12 @@ public class ManagerLoginViewController extends Controller implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
-        loginState = notLoggedIn;
+        loginState = notLoggedIn; // Sets the program as not logged in.
       }
 
+    /** -----------------------------------------------------------------------------------------------------------------------. */
     /**
-     * This method handles the login feature. It checks the text fields to determine
-     * whether or not the username and the password is correct.
-     * And then goes on to check whether the user is a manager of an
-     * administrator.
+     * Method call to the login method below.
      *
      * @param event
      * @throws IOException
@@ -120,6 +108,12 @@ public class ManagerLoginViewController extends Controller implements Initializa
         }
       }
 
+    /**
+     * This method handles the login feature, It checks the text fields to determine
+     * whether or not the username and the password is correct,
+     * And then goes on to check whether the user is a manager of an
+     * administrator.
+     */
     private void login() throws IOException, SQLException
       {
         if (employee == null)
@@ -197,6 +191,11 @@ public class ManagerLoginViewController extends Controller implements Initializa
         txtPassword.setStyle("-jfx-focus-color:#757575");
       }
 
+    /**
+     * It goes back to language selection when clicked.
+     *
+     * @param event
+     */
     @FXML
     private void goBackToLanguageSelection(MouseEvent event)
       {
@@ -219,4 +218,5 @@ public class ManagerLoginViewController extends Controller implements Initializa
             System.err.println(ex);
         }
       }
+    /** -----------------------------------------------------------------------------------------------------------------------. */
   }

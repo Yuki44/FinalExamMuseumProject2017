@@ -13,6 +13,12 @@ public class EmployeeModel extends UserModel
     private List<Employee> employee;
     private MuseumManager museumManager;
 
+    /**
+     * Constructor.
+     *
+     * @throws IOException
+     * @throws SQLException
+     */
     public EmployeeModel() throws IOException, SQLException
       {
         super();
@@ -20,6 +26,7 @@ public class EmployeeModel extends UserModel
         this.employee = new ArrayList<>();
       }
 
+    /** ---------------------------------------------------------------------------------------------------------------------------. */
     /**
      * to get the list of employees
      *

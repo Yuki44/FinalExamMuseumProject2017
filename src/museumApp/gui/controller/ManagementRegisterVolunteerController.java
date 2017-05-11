@@ -95,13 +95,24 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
     /** -------------------------------------------------------------------------------------------. */
     /**
-     * We initialize the view.
-     */
-    /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
+      {
+        initializeManagers();
+      }
+
+    public ManagementRegisterVolunteerController() throws IOException, SQLException
+      {
+        userModel = new UserModel();
+      }
+
+    /** --------------------------------------MANAGER-------------------------------------------. */
+    /**
+     * Managers in the tables.
+     */
+    public void initializeManagers()
       {
         /**
          * We set the items on the manager table and with a lambda expression we set the individual
@@ -141,18 +152,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
                   };
               }
           });
-//        tblColGuildManager.setCellValueFactory(guild -> guild.getValue().getManagerName());
       }
 
-    public ManagementRegisterVolunteerController() throws IOException, SQLException
-      {
-        userModel = new UserModel();
-      }
-
-    /** --------------------------------------MANAGER-------------------------------------------. */
-    /**
-     * We make the register manager methods.
-     */
     /**
      * When the Table View is selected it will display the info inside it to the
      * left side onto the text fields.
@@ -198,6 +199,12 @@ public class ManagementRegisterVolunteerController extends Controller implements
         addTPassTxtF.clear();
       }
 
+    /**
+     * Removes the manager
+     *
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     private void handleRemoveManager(ActionEvent event) throws SQLException
       {
@@ -218,11 +225,21 @@ public class ManagementRegisterVolunteerController extends Controller implements
         //TO DO
       }
 
+    /**
+     * Removes the Guild
+     *
+     * @param event
+     */
     @FXML
     private void handleRemoveGuild(ActionEvent event)
       {
       }
 
+    /**
+     * When a guild is selected from the view then put its name into the text field
+     *
+     * @param event
+     */
     @FXML
     private void handleSelectGuild(MouseEvent event)
       {
@@ -233,6 +250,11 @@ public class ManagementRegisterVolunteerController extends Controller implements
         }
       }
 
+    /**
+     * If you want to add more managers to the same guild.
+     *
+     * @param event
+     */
     @FXML
     private void handleAddAnotherManager(ActionEvent event)
       {
@@ -240,17 +262,32 @@ public class ManagementRegisterVolunteerController extends Controller implements
       }
 
     /** --------------------------------------VOLUNTEER--------------------------------------------. */
+    /**
+     * Add new volunteers.
+     *
+     * @param event
+     */
     @FXML
     private void handleAddVolunteer(ActionEvent event)
       {
         //TO DO
       }
 
+    /**
+     * Clear all fields, to start again.
+     *
+     * @param event
+     */
     @FXML
     private void clearAllFields(ActionEvent event)
       {
       }
 
+    /**
+     * If you want to add more guilds to that volunteer.
+     *
+     * @param event
+     */
     @FXML
     private void addExtraGuild(ActionEvent event)
       {
@@ -258,6 +295,12 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
     /** -------------------------------------------------------------------------------------------. */
     /** ----------------------------------GENERAL SETTINGS-----------------------------------------. */
+    /**
+     * Needed to Logout and go back to the ManagerLoginView
+     * {There is in the MLV Initializer a method that sets the application as logged out)
+     *
+     * @param event
+     */
     @FXML
     private void handleLogout(ActionEvent event)
       {

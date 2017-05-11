@@ -22,6 +22,12 @@ public abstract class Controller
     protected GridPane mainGridPane;
     protected UserModel userModel;
 
+    /** ----------------------------------------------------------------------------------------------------------------. */
+    /**
+     * Minimizes the view into the taskbar
+     *
+     * @param event
+     */
     @FXML
     protected void handleMinimize(ActionEvent event)
       {
@@ -30,6 +36,11 @@ public abstract class Controller
         stage.setIconified(true);
       }
 
+    /**
+     * Maximizes the view into fullscreen
+     *
+     * @param event
+     */
     @FXML
     protected void handleMaximize(ActionEvent event)
       {
@@ -45,15 +56,22 @@ public abstract class Controller
         }
       }
 
+    /**
+     * Exits the application
+     *
+     * @param event
+     */
     @FXML
     protected void handleExit(ActionEvent event)
       {
         System.exit(0);
       }
 
-    /** --------------------------------------------------------------------------------------- */
+    /** ----------------------Everything from here is for the custom window decoration------------------------------. */
     /**
-     * Everything from here is for the custom window decoration.
+     * When you drag the window it gets small
+     *
+     * @param event
      */
     @FXML
     protected void getXYForMouseDrag(MouseEvent event)
@@ -72,6 +90,11 @@ public abstract class Controller
         window.setY(y - yMouse);
       }
 
+    /**
+     * Gets the location of the click
+     *
+     * @param event
+     */
     @FXML
     protected void getXYClickLocation(MouseEvent event)
       {
@@ -84,6 +107,6 @@ public abstract class Controller
             stage.setMaximized(false);
         }
       }
-    /** --------------------------------------------------------------------------------------- */
+    /** -------------------------------------------------------------------------------------------------------------------------. */
 
   }

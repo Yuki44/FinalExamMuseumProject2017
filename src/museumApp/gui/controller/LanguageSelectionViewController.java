@@ -34,6 +34,7 @@ public class LanguageSelectionViewController extends Controller implements Initi
       {
       }
 
+    /** --------------------------------------GO TO DIFFERENT LANGUAGES-------------------------------------------------. */
     @FXML
     private void goToDanishView(MouseEvent event)
       {
@@ -52,12 +53,17 @@ public class LanguageSelectionViewController extends Controller implements Initi
         goToChooseVolunteerGuildView();
       }
 
+    /** ----------------------------------------------------------------------------------------------------------------. */
+    /**
+     * Goes to ChooseVolunteerGuildView.
+     */
     private void goToChooseVolunteerGuildView()
       {
         try
         {
             /**
-             * This commented out method works for setting the next fxml in the same scene.
+             * This commented out method works for setting the next fxml in the same scene
+             * for a smoother transition, but need to be REFACTOR ed.
              */
 //            BorderPane bPane = FXMLLoader.load(getClass().getResource("/museumApp/gui/view/ChooseVolunteerGuildView.fxml"));
 //            borderPane.getChildren().setAll(bPane);
@@ -80,6 +86,11 @@ public class LanguageSelectionViewController extends Controller implements Initi
         }
       }
 
+    /**
+     * Goes to the ManagerLogin View
+     *
+     * @param event
+     */
     @FXML
     private void goToManagerLogin(ActionEvent event)
       {
@@ -102,5 +113,5 @@ public class LanguageSelectionViewController extends Controller implements Initi
             System.err.println(ex);
         }
       }
-
+    /** ----------------------------------------------------------------------------------------------------------------. */
   }

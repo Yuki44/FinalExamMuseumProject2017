@@ -1,8 +1,3 @@
-/*
- * Erhvervsakademi Sydvest, Computer Science 2016-2017, Carlos F. Ognissanti
- * To change this header, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumApp.gui.controller;
 
 import javafx.collections.ObservableList;
@@ -15,10 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Yuki
- */
 public class ResizeHelper
   {
 
