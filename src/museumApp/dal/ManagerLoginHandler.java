@@ -11,13 +11,21 @@ public class ManagerLoginHandler extends GetData
     GetData DbMgr;
 
     /**
-     *
+     * constructor 
      * @throws java.io.IOException
      */
     public ManagerLoginHandler() throws IOException
       {
         this.DbMgr = new GetData();
       }
+    /**
+     * loop all the managers'username and password in the employee table,
+     * to check whether there is record matching the given username and password
+     * @param username
+     * @param password
+     * @return
+     * @throws SQLException 
+     */
 
     public Employee LoginChecker(String username, String password) throws SQLException
       {

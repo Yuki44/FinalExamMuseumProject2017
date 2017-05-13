@@ -38,7 +38,7 @@ public class RemoveData extends DatabaseManager
 
     /** ---------------------------------------MANAGER----------------------------------------------------. */
     /**
-     *
+     * delete the record of manager from the employee table, by the given first name and last name
      * @param mg
      * @throws SQLException
      */

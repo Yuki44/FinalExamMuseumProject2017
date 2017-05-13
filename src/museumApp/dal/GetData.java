@@ -279,7 +279,7 @@ public class GetData extends DatabaseManager
 
     /** -----------------------------------OTHER GET METHODS-----------------------------------------------. */
     /**
-     *
+     *get all the volunteers work in the given guild name
      * @param newValue
      * @return
      * @throws SQLException
@@ -308,7 +308,7 @@ public class GetData extends DatabaseManager
       }
 
     /**
-     *
+     * to refactor
      * @param hours
      * @return
      * @throws SQLException
@@ -336,7 +336,7 @@ public class GetData extends DatabaseManager
       }
 
     /**
-     *
+     * get the manager with given username
      * @param username
      * @return
      */
@@ -358,7 +358,7 @@ public class GetData extends DatabaseManager
       }
 
     /**
-     *
+     * get the administrator with given username
      * @param username
      * @return
      */
@@ -380,7 +380,8 @@ public class GetData extends DatabaseManager
       }
 
     /**
-     *
+     * check whether the given username and password matching the record of manager 
+     * from the employee table in the database
      * @param username
      * @param password
      * @return
@@ -405,7 +406,8 @@ public class GetData extends DatabaseManager
       }
 
     /**
-     *
+     *check whether the given username and password matching the record of administrator 
+     * from the employee table in the database
      * @param username
      * @param password
      * @return
@@ -430,7 +432,7 @@ public class GetData extends DatabaseManager
       }
 
     /**
-     *
+     * get the total hours from the given guild name
      * @param guildName
      * @return
      */
