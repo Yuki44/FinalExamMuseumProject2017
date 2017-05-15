@@ -282,7 +282,13 @@ public class GetData extends DatabaseManager
 
     /** -----------------------------------OTHER GET METHODS-----------------------------------------------. */
     /**
+<<<<<<< HEAD
      *get all the volunteers work in the given guild name
+=======
+     * This method is used to call Volunteers from the database
+     * Based the guilds they are registered to.
+     *
+>>>>>>> origin/master
      * @param newValue
      * @return
      * @throws SQLException
@@ -311,7 +317,13 @@ public class GetData extends DatabaseManager
       }
 
     /**
+<<<<<<< HEAD
      * to refactor
+=======
+     * This method is used to tell how many hours the different volunteers
+     * have registered.
+     *
+>>>>>>> origin/master
      * @param hours
      * @return
      * @throws SQLException
@@ -339,7 +351,13 @@ public class GetData extends DatabaseManager
       }
 
     /**
+<<<<<<< HEAD
      * get the manager with given username
+=======
+     * This method is used to get the manager based on their username.
+     * This method is used for the login function.
+     *
+>>>>>>> origin/master
      * @param username
      * @return
      */
@@ -361,7 +379,13 @@ public class GetData extends DatabaseManager
       }
 
     /**
+<<<<<<< HEAD
      * get the administrator with given username
+=======
+     * This method is used to get the administrator based on their username of the manager.
+     * This method is used in the login function.
+     *
+>>>>>>> origin/master
      * @param username
      * @return
      */
@@ -383,8 +407,14 @@ public class GetData extends DatabaseManager
       }
 
     /**
+<<<<<<< HEAD
      * check whether the given username and password matching the record of manager 
      * from the employee table in the database
+=======
+     * This method is used to check if the password fits with the username.
+     * This method is used in the login function.
+     *
+>>>>>>> origin/master
      * @param username
      * @param password
      * @return
@@ -409,8 +439,15 @@ public class GetData extends DatabaseManager
       }
 
     /**
+<<<<<<< HEAD
      *check whether the given username and password matching the record of administrator 
      * from the employee table in the database
+=======
+     * This method is used to check if the password fits with the username
+     * of the administrator.
+     * This method is used in the login function.
+     *
+>>>>>>> origin/master
      * @param username
      * @param password
      * @return

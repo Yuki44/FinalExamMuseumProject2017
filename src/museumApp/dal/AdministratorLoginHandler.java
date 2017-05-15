@@ -21,6 +21,14 @@ public class AdministratorLoginHandler extends GetData
       }
 
     /** ----------------------------------------------------------------------------------------------------. */
+    /**
+     * This method is used to check the username and password of an administrator.
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws SQLException
+     */
     public Employee LoginChecker(String username, String password) throws SQLException
       {
         for (Administrator allAdmin : DbMgr.getAllAdmins())

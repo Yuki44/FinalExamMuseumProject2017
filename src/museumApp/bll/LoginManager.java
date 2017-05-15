@@ -25,7 +25,7 @@ public class LoginManager
 
     /** ---------------------------------------------------------------------------------------------------------------------------. */
     /**
-     * Checks wether is a manager or an administrator
+     * Checks whether the user login in is a manager or an administrator.
      *
      * @param username
      * @param password

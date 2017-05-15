@@ -27,6 +27,14 @@ public class ManagerLoginHandler extends GetData
      * @throws SQLException 
      */
 
+    /**
+     * This method checks the username and password of the manager.
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws SQLException
+     */
     public Employee LoginChecker(String username, String password) throws SQLException
       {
         for (Manager allManager : DbMgr.getAllManagers())
