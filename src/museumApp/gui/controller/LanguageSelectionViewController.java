@@ -3,6 +3,7 @@ package museumApp.gui.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class.
@@ -32,6 +34,13 @@ public class LanguageSelectionViewController extends Controller implements Initi
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
+        /** ------------------------------------------------------------------------------------------ */
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(1.5), borderPane);
+        fadeIn.setFromValue(0);
+        fadeIn.setToValue(1);
+        fadeIn.setCycleCount(1);
+        fadeIn.play(); //Plays the transition
+        /** ------------------------------------------------------------------------------------------ */
       }
 
     /** --------------------------------------GO TO DIFFERENT LANGUAGES-------------------------------------------------. */

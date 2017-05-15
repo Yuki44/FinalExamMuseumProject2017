@@ -286,7 +286,7 @@ public class GetData extends DatabaseManager
      * Based the guilds they are registered to.
      *
      * @param newValue
-     * @return
+     * @return volunteers
      * @throws SQLException
      */
     public List<Volunteer> getVolunteerBasedOnGuild(Guild newValue) throws SQLException
