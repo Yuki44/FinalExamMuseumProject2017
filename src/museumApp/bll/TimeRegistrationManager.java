@@ -19,6 +19,11 @@ public class TimeRegistrationManager implements IManager<VolunteerTime>
         this.getData = new GetData();
       }
 
+    /**
+     * This method connects through the IManager to call the addHours function
+     *
+     * @param obj
+     */
     @Override
     public void Add(VolunteerTime obj)
       {
@@ -33,12 +38,23 @@ public class TimeRegistrationManager implements IManager<VolunteerTime>
         }
       }
 
+    /**
+     * This method is not currently in use
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public VolunteerTime Update(VolunteerTime obj)
       {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
       }
 
+    /**
+     * This method connects through the IManager to call the getAllVTime function.
+     *
+     * @return
+     */
     @Override
     public List<VolunteerTime> ReadAll()
       {
@@ -53,12 +69,24 @@ public class TimeRegistrationManager implements IManager<VolunteerTime>
         return null;
       }
 
+    /**
+     * This method is not currently in use
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public VolunteerTime Read(int id)
       {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
       }
 
+    /**
+     * This method is not currently in use
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public void Delete(int id)
       {

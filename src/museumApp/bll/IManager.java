@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  *
- * JAVADOC MISSING, PLEASE CHECK
+ * This is a generic interface.
  *
  * @param <T>
  */

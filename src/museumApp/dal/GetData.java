@@ -279,6 +279,8 @@ public class GetData extends DatabaseManager
 
     /** -----------------------------------OTHER GET METHODS-----------------------------------------------. */
     /**
+     * This method is used to call Volunteers from the database
+     * Based the guilds they are registered to.
      *
      * @param newValue
      * @return
@@ -308,6 +310,8 @@ public class GetData extends DatabaseManager
       }
 
     /**
+     * This method is used to tell how many hours the different volunteers
+     * have registered.
      *
      * @param hours
      * @return
@@ -336,6 +340,8 @@ public class GetData extends DatabaseManager
       }
 
     /**
+     * This method is used to get the manager based on their username.
+     * This method is used for the login function.
      *
      * @param username
      * @return
@@ -358,6 +364,8 @@ public class GetData extends DatabaseManager
       }
 
     /**
+     * This method is used to get the administrator based on their username of the manager.
+     * This method is used in the login function.
      *
      * @param username
      * @return
@@ -380,6 +388,8 @@ public class GetData extends DatabaseManager
       }
 
     /**
+     * This method is used to check if the password fits with the username.
+     * This method is used in the login function.
      *
      * @param username
      * @param password
@@ -405,6 +415,9 @@ public class GetData extends DatabaseManager
       }
 
     /**
+     * This method is used to check if the password fits with the username
+     * of the administrator.
+     * This method is used in the login function.
      *
      * @param username
      * @param password
