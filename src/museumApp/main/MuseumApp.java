@@ -72,7 +72,7 @@ public class MuseumApp extends Application
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            System.err.println(e);
         }
       }
 

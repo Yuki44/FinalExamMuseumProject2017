@@ -290,7 +290,7 @@ public class GetData extends DatabaseManager
      *
 >>>>>>> origin/master
      * @param newValue
-     * @return
+     * @return volunteers
      * @throws SQLException
      */
     public List<Volunteer> getVolunteerBasedOnGuild(Guild newValue) throws SQLException
