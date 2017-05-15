@@ -192,8 +192,11 @@ public class GetData extends DatabaseManager
         String nationality = rs.getString("nationality_id");
         Date registeredDate = rs.getDate("join_date");
         String comment = rs.getString("comment");
+        String NoAndStreet = rs.getString("No._and_street");
+        String city= rs.getString("city");
+        String zipCode= rs.getString("zip_code");
 
-        return new Volunteer(id, firstName, lastName, birthDate, phoneNumber, email, nationality, registeredDate, comment);
+        return new Volunteer(id, firstName, lastName, birthDate, phoneNumber, email, nationality, registeredDate, comment, NoAndStreet, city, zipCode);
 
       }
 
