@@ -12,14 +12,18 @@ public class Volunteer extends User
     protected StringProperty phoneNumber;
     protected Date registeredDate;
     protected Date birthDate;
+    protected String Address;
+    protected String city;
+    protected String zipCode;
 
-    public Volunteer(int id, String firstName, String lastName, Date birthDate, String phoneNumber, String email, String nationality, Date registeredDate, String comment)
       {
         super(id, firstName, lastName, email);
         this.nationality = new SimpleStringProperty(nationality);
         this.phoneNumber = new SimpleStringProperty(phoneNumber);
         this.registeredDate = registeredDate;
         this.birthDate = birthDate;
+        this.city= city;
+        this.zipCode= zipCode;
       }
 
     /** ------------------------------VOLUNTEER NATIONALITY-----------------------------------------. */
