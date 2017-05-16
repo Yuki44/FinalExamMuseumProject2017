@@ -9,8 +9,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
+import museumApp.be.GuildVolunteer;
 import museumApp.be.Manager;
 import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
@@ -130,11 +133,15 @@ public class GetData extends DatabaseManager
       {
         List<VolunteerTime> vTime = new ArrayList<>();
 
-        String sql = "SELECT * FROM volunteer_time";
+        String sql = "SELECT * FROM volunteer_time vt "
+                + "INNER JOIN guild_volunteer gv ON vt.guild_volunteer_id = gv.guild_volunteer_id "
+                + "INNER JOIN volunteer v ON gv.volunteer_id = v.volunteer_id "
+                + "INNER JOIN guild g ON g.guild_id = gv.guild_id ";
+
         try (Connection con = connectionManager.getConnection())
         {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
             while (rs.next())
             {
                 vTime.add(getOneVTime(rs));
@@ -151,12 +158,20 @@ public class GetData extends DatabaseManager
      * @return Guild
      * @throws SQLException
      */
-    private Guild getOneGuild(ResultSet rs) throws SQLException
+    private Guild getOneGuild(ResultSet rs)
       {
-        int id = rs.getInt("guild_id");
-        String guildName = rs.getString("name");
-        int manager_id = rs.getInt("manager_id");
-        return new Guild(id, guildName, manager_id);
+        try
+        {
+            int id = rs.getInt("guild_id");
+            String guildName = rs.getString("name");
+            int manager_id = rs.getInt("manager_id");
+            return new Guild(id, guildName, manager_id);
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(GetData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
       }
 
     /**
@@ -171,7 +186,10 @@ public class GetData extends DatabaseManager
         int id = rs.getInt("guild_volunteer_id");
         Date date = rs.getDate("date");
         int hours = rs.getInt("hours");
-        return new VolunteerTime(date, hours, id);
+        Volunteer v = getOneVolunteer(rs);
+        Guild g = getOneGuild(rs);
+
+        return new VolunteerTime(id, date, hours, v, g);
       }
 
     /**
@@ -195,8 +213,9 @@ public class GetData extends DatabaseManager
         String address = rs.getString("address");
         String city = rs.getString("city");
         String zipCode = rs.getString("zip_code");
+        String country = rs.getString("country");
 
-        return new Volunteer(id, firstName, lastName, birthDate, phoneNumber, email, nationality, registeredDate, comment, address, city, zipCode);
+        return new Volunteer(id, firstName, lastName, birthDate, phoneNumber, email, nationality, registeredDate, comment, address, city, zipCode, country);
 
       }
 
@@ -235,6 +254,11 @@ public class GetData extends DatabaseManager
         int id = rs.getInt("employee_id");
         return new Administrator(id, firstName, lastName, email, userName, password);
       }
+
+//    private GuildVolunteer getOneGuildVolunteer(ResultSet rs) throws SQLException
+//      {
+//        
+//      }
 
     /**
      * TO REFACTOR

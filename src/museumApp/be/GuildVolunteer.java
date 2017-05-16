@@ -1,6 +1,6 @@
 package museumApp.be;
 
-public class GuildVolunteer
+public class GuildVolunteer extends BusinessEntity
   {
 
     private Guild guild;
@@ -14,9 +14,23 @@ public class GuildVolunteer
      */
     public GuildVolunteer(Guild guild, Volunteer volunteer)
       {
+        super(-1);
         this.guild = guild;
         this.volunteer = volunteer;
       }
+
+    public GuildVolunteer(Guild guild, Volunteer volunteer, int id)
+      {
+        super(id);
+        this.guild = guild;
+        this.volunteer = volunteer;
+      }
+
+    public int getId()
+      {
+        return id;
+      }
+    
 
     /**
      * We get a Guild.
@@ -25,6 +39,7 @@ public class GuildVolunteer
      */
     public Guild getGuild()
       {
+        guild.getId();
         return guild;
       }
 
@@ -35,6 +50,7 @@ public class GuildVolunteer
      */
     public Volunteer getVolunteer()
       {
+        volunteer.getId();
         return volunteer;
       }
 

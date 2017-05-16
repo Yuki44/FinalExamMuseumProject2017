@@ -25,7 +25,6 @@ public class UserModel extends Model
     private ObservableList<Volunteer> volunteers;
     private ObservableList<Guild> guilds;
     private ObservableList<Administrator> admins;
-    private ObservableList<Volunteer> volunteerFromGuild;
     private ObservableList<VolunteerTime> volunteerTime;
 
     /**
@@ -38,7 +37,6 @@ public class UserModel extends Model
       {
         super();
         museumManager = new MuseumManager();
-        vTime = new VolunteerTime(new Date(2017, 05, 10), 4, 1);
         timeRegistrationManager = new TimeRegistrationManager();
 
         /**
@@ -54,19 +52,19 @@ public class UserModel extends Model
 
     /** -------------------------------------------------------------------------------------------. */
     /**
-     * REFACTOR.
+     *
      */
     public void addTime()
       {
         timeRegistrationManager.Add(vTime);
       }
 
-    /** --------------------------------------------------GET METHODS------------------------------------------------------------. */
-    public ObservableList<Volunteer> getVolunteerFromGuild()
+    public void setvTime(VolunteerTime vTime)
       {
-        return volunteerFromGuild;
+        this.vTime = vTime;
       }
 
+    /** --------------------------------------------------GET METHODS------------------------------------------------------------. */
     public ObservableList<VolunteerTime> getVTime()
       {
         return volunteerTime;
@@ -128,6 +126,11 @@ public class UserModel extends Model
       {
         guilds.add(gd);
         museumManager.addGuild(gd);
+      }
+
+    public void addTime(Date valueOf, int parseInt, Volunteer volunteer, Guild guild)
+      {
+        // Create guild volunteer in db and get object
       }
 
     /** -------------------------------------------------------------------------------------------. */

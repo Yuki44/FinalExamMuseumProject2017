@@ -3,6 +3,8 @@ package museumApp.bll;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import museumApp.be.VolunteerTime;
 import museumApp.dal.AddData;
 import museumApp.dal.GetData;
@@ -29,13 +31,14 @@ public class TimeRegistrationManager implements IManager<VolunteerTime>
       {
         try
         {
-            System.out.println("time: " + obj.getHours());
+//            System.out.println("time: " + obj.getHours());
             addData.addHours(obj);
         }
         catch (SQLException ex)
         {
-            System.err.println("Unable to add hours. " + ex.getMessage());
+            Logger.getLogger(TimeRegistrationManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+
       }
 
     /**
@@ -55,7 +58,6 @@ public class TimeRegistrationManager implements IManager<VolunteerTime>
      *
      * @return
      */
-    @Override
     public List<VolunteerTime> ReadAll()
       {
         try

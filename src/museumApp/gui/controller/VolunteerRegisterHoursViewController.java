@@ -2,7 +2,9 @@ package museumApp.gui.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
@@ -19,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import museumApp.be.Guild;
 import museumApp.be.Volunteer;
+import museumApp.be.VolunteerTime;
 import museumApp.gui.model.UserModel;
 
 public class VolunteerRegisterHoursViewController extends Controller implements Initializable
@@ -33,6 +36,7 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
 
     private UserModel userModel;
     private Volunteer volunteer;
+    private VolunteerTime vTime;
     private Guild guild;
     @FXML
     private Label lblGuildName;
@@ -87,6 +91,8 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
         BorderPane bPane;
         try
         {
+//            userModel.addTime(
+//                    Date.valueOf(LocalDate.now()), Integer.parseInt(setHoursLabel.getText()), volunteer, guild);
             bPane = FXMLLoader.load(getClass().getResource("/museumApp/gui/view/ThankYouSplash.fxml"));
             borderPane.getChildren().setAll(bPane);
             /** ------------------------------------------------------------------------------------------ */

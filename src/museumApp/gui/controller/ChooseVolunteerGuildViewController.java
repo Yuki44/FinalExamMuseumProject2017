@@ -21,6 +21,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import museumApp.be.Guild;
 import museumApp.be.Volunteer;
+import museumApp.be.VolunteerTime;
 import museumApp.gui.model.UserModel;
 
 public class ChooseVolunteerGuildViewController extends Controller implements Initializable
@@ -112,6 +113,7 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
                 stage = (Stage) borderPane.getScene().getWindow();
                 URL location = this.getClass().getResource("/museumApp/gui/view/VolunteerRegisterHoursView.fxml");
                 FXMLLoader loader = new FXMLLoader(location);
+                
                 root = loader.load();
                 /** -------------------------------------------REFACTOR START-------------------------------------------. */
                 /* It should pass the value to the method in model of the next controller not to the controller directly */

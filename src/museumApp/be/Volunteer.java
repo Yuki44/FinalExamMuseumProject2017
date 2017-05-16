@@ -15,9 +15,11 @@ public class Volunteer extends User
     protected StringProperty address;
     protected StringProperty city;
     protected StringProperty zipCode;
+    protected StringProperty country;
 
-    public Volunteer(int id, String firstName, String lastName, Date birthDate, String phoneNumber, String email, String nationality, Date registeredDate, String comment, String address, String city, String zipCode
-    )
+    public Volunteer(int id, String firstName, String lastName, Date birthDate, String phoneNumber, String email,
+            String nationality, Date registeredDate, String comment,
+            String address, String city, String zipCode, String country)
       {
         super(id, firstName, lastName, email);
         this.nationality = new SimpleStringProperty(nationality);
@@ -27,6 +29,12 @@ public class Volunteer extends User
         this.address = new SimpleStringProperty(address);
         this.city = new SimpleStringProperty(city);
         this.zipCode = new SimpleStringProperty(zipCode);
+        this.country = new SimpleStringProperty(country);
+      }
+
+    public StringProperty getCountry()
+      {
+        return country;
       }
 
     /** ------------------------------VOLUNTEER NATIONALITY-----------------------------------------. */
@@ -106,7 +114,7 @@ public class Volunteer extends User
       }
 
     /** -----------------------------ADDRESS----------------------------------------------. */
-      /**
+    /**
      * Get the VOLUNTEER address as a StringProperty so it can update the view.
      *
      * @return
@@ -115,7 +123,8 @@ public class Volunteer extends User
       {
         return address;
       }
-   /**
+
+    /**
      * Get the VOLUNTEER address as a string so it cannot update the view.
      *
      * @return
@@ -124,8 +133,9 @@ public class Volunteer extends User
       {
         return address.get();
       }
- /** -----------------------------CITY----------------------------------------------. */
-      /**
+
+    /** -----------------------------CITY----------------------------------------------. */
+    /**
      * Get the VOLUNTEER city as a StringProperty so it can update the view.
      *
      * @return
@@ -134,7 +144,8 @@ public class Volunteer extends User
       {
         return city;
       }
-   /**
+
+    /**
      * Get the VOLUNTEER city as a string so it cannot update the view.
      *
      * @return
@@ -144,8 +155,8 @@ public class Volunteer extends User
         return city.get();
       }
 
-   /** -----------------------------ZIPCODE----------------------------------------------. */
-      /**
+    /** -----------------------------ZIPCODE----------------------------------------------. */
+    /**
      * Get the VOLUNTEER zipCode as a StringProperty so it can update the view.
      *
      * @return
@@ -154,7 +165,8 @@ public class Volunteer extends User
       {
         return zipCode;
       }
-   /**
+
+    /**
      * Get the VOLUNTEER zipCode as a string so it cannot update the view.
      *
      * @return
