@@ -52,7 +52,8 @@
                                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="80.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="15.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -79,19 +80,29 @@
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="txtFieldAddVolunteerPhoneNum" focusColor="#69dd5a" labelFloat="true" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <JFXTextField fx:id="txtFieldAddVolunteerPhoneNum" focusColor="#5fc552" labelFloat="true" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                        <cursor>
                                           <Cursor fx:constant="TEXT" />
                                        </cursor></JFXTextField>
-                                    <Label prefHeight="23.0" prefWidth="129.0" text="Joining Date:" GridPane.rowIndex="6">
+                                    <Label prefHeight="23.0" prefWidth="129.0" text="Joining Date:" GridPane.rowIndex="7">
                                        <font>
                                           <Font size="20.0" />
                                        </font></Label>
-                                    <JFXDatePicker fx:id="regJoinedDatePicker" defaultColor="#69dd5a" prefHeight="31.0" prefWidth="275.0" promptText="Select a date..." GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                       <cursor>
-                                          <Cursor fx:constant="TEXT" />
-                                       </cursor></JFXDatePicker>
-                                    <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                    <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                       <children>
+                                          <JFXDatePicker fx:id="regJoinedDatePicker" defaultColor="#5fc552" prefHeight="31.0" prefWidth="275.0" promptText="Select a date...">
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
+                                          </JFXDatePicker>
+                                          <Label text="*" textFill="RED">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                                        <buttons>
                                           <JFXButton fx:id="buttonSaveInfo" onAction="#handleAddVolunteer" prefHeight="37.0" prefWidth="182.0" text="Save">
                                              <cursor>
@@ -99,26 +110,81 @@
                                              </cursor></JFXButton>
                                        </buttons>
                                     </ButtonBar>
-                                    <VBox alignment="CENTER" fillWidth="false" spacing="10.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                                    <ComboBox fx:id="comboBoxFirstGuildSelection" prefHeight="25.0" prefWidth="292.0" promptText="none selected..." GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ComboBox>
+                                    <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <ComboBox fx:id="comboBoxFirstGuildSelection" prefHeight="25.0" prefWidth="292.0" promptText="none selected...">
+                                          <JFXTextField fx:id="txtFieldAddVolunteerFName" focusColor="#5fc552" labelFloat="true" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Name">
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
+                                          </JFXTextField>
+                                          <Label text="*" textFill="RED">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <children>
+                                          <JFXTextField fx:id="txtFieldAddVolunteerLName" focusColor="#5fc552" labelFloat="true" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Last Name">
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
+                                          </JFXTextField>
+                                          <Label text="*" textFill="RED">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <JFXTextField fx:id="txtFieldAddVolunteerEmail" focusColor="#5fc552" labelFloat="true" layoutX="243.0" layoutY="83.0" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Email" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                       <cursor>
+                                          <Cursor fx:constant="TEXT" />
+                                       </cursor></JFXTextField>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="18.0" prefWidth="393.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <Label alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" text="Field required:" textFill="RED">
+                                             <graphic>
+                                                <Label text="*" textFill="RED">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                             </graphic>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Label layoutX="10.0" layoutY="247.0" prefHeight="23.0" prefWidth="129.0" text="Nationality:" GridPane.rowIndex="6">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                                       <children>
+                                          <ComboBox fx:id="comboBoxNationality" prefHeight="25.0" prefWidth="292.0" promptText="none selected...">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
-                                             </cursor></ComboBox>
+                                             </cursor>
+                                             <HBox.margin>
+                                                <Insets left="13.0" />
+                                             </HBox.margin>
+                                          </ComboBox>
+                                          <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="0.0" text="*" textFill="RED">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                          </Label>
                                        </children>
-                                    </VBox>
-                                    <JFXTextField fx:id="txtFieldAddVolunteerFName" focusColor="#69dd5a" labelFloat="true" layoutX="243.0" layoutY="117.0" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Name" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <cursor>
-                                          <Cursor fx:constant="TEXT" />
-                                       </cursor></JFXTextField>
-                                    <JFXTextField fx:id="txtFieldAddVolunteerLName" focusColor="#69dd5a" labelFloat="true" layoutX="243.0" layoutY="39.0" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Last Name" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                       <cursor>
-                                          <Cursor fx:constant="TEXT" />
-                                       </cursor></JFXTextField>
-                                    <JFXTextField fx:id="txtFieldAddVolunteerEmail" focusColor="#69dd5a" labelFloat="true" layoutX="243.0" layoutY="83.0" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Email" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                       <cursor>
-                                          <Cursor fx:constant="TEXT" />
-                                       </cursor></JFXTextField>
+                                    </HBox>
                                  </children>
                                  <GridPane.margin>
                                     <Insets left="50.0" />
@@ -189,38 +255,97 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label prefHeight="61.0" prefWidth="225.0" text="First Name :">
+                              <Label prefHeight="61.0" prefWidth="225.0" text="First Name :" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label prefHeight="61.0" prefWidth="225.0" text="Last Name :" GridPane.rowIndex="1">
+                              <Label prefHeight="61.0" prefWidth="225.0" text="Last Name :" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label prefHeight="61.0" prefWidth="225.0" text="Username :" GridPane.rowIndex="3">
+                              <Label prefHeight="61.0" prefWidth="225.0" text="Username :" GridPane.rowIndex="4">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label prefHeight="61.0" prefWidth="225.0" text="Email :" GridPane.rowIndex="2">
+                              <Label prefHeight="61.0" prefWidth="225.0" text="Email :" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label prefHeight="61.0" prefWidth="225.0" text="Password :" GridPane.rowIndex="4">
+                              <Label prefHeight="61.0" prefWidth="225.0" text="Password :" GridPane.rowIndex="5">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <JFXTextField fx:id="addTFNameTxtF" focusColor="#25adfc" promptText="Name" GridPane.columnIndex="1" />
-                              <JFXTextField fx:id="addTLNameTxtF" focusColor="#25adfc" layoutX="90.0" layoutY="19.0" promptText="Last Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <JFXTextField fx:id="addTEmailTxtF" focusColor="#25adfc" layoutX="90.0" layoutY="68.0" promptText="Email" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <JFXTextField fx:id="addTUNameTxtF" focusColor="#25adfc" layoutX="90.0" layoutY="117.0" promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <JFXTextField fx:id="addTPassTxtF" focusColor="#25adfc" layoutX="90.0" layoutY="166.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <JFXTextField fx:id="addTFNameTxtF" focusColor="#25adfc" minWidth="330.0" promptText="Name" />
+                                    <Label text="*" textFill="RED">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <JFXTextField fx:id="addTLNameTxtF" focusColor="#25adfc" minWidth="330.0" promptText="Last Name" />
+                                    <Label text="*" textFill="RED">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <JFXTextField fx:id="addTEmailTxtF" focusColor="#25adfc" minWidth="330.0" promptText="Email" />
+                                    <Label textFill="RED">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <children>
+                                    <JFXTextField fx:id="addTUNameTxtF" focusColor="#25adfc" minWidth="330.0" promptText="Username" />
+                                    <Label text="*" textFill="RED">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <children>
+                                    <JFXTextField fx:id="addTPassTxtF" focusColor="#25adfc" minWidth="330.0" promptText="Password" />
+                                    <Label text="*" textFill="RED">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="BOTTOM_RIGHT" prefHeight="18.0" prefWidth="393.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" text="Field required:" textFill="RED">
+                                       <graphic>
+                                          <Label text="*" textFill="RED">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                       </graphic>
+                                    </Label>
+                                 </children>
+                              </HBox>
                            </children>
                         </GridPane>
                         <ButtonBar layoutX="315.0" layoutY="363.0" prefHeight="40.0" prefWidth="179.0">
@@ -257,7 +382,16 @@
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <JFXTextField fx:id="txtFieldAddGuildName" focusColor="#25adfc" GridPane.columnIndex="1" />
+                              <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <children>
+                                    <JFXTextField fx:id="txtFieldAddGuildName" focusColor="#25adfc" minWidth="350.0" />
+                                    <Label text="*" textFill="RED">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
                               <VBox alignment="CENTER" fillWidth="false" spacing="30.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                  <children>
                                     <ComboBox fx:id="comboBoxAddGuildManager" prefHeight="25.0" prefWidth="402.0" promptText="none selected..." />

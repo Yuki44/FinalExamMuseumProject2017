@@ -52,6 +52,12 @@ public class Guild extends BusinessEntity
         return name.get();
       }
 
+    @Override
+    public String toString()
+      {
+        return getNameAsString();
+      }
+
     /** ----------------------------------GUILD MANAGER----------------------------------------------. */
     /**
      * We get GUILD managerId

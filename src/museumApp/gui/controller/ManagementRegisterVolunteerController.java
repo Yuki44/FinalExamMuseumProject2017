@@ -37,6 +37,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
+import museumApp.be.Volunteer;
 import museumApp.gui.model.UserModel;
 
 public class ManagementRegisterVolunteerController extends Controller implements Initializable
@@ -75,6 +76,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private ComboBox<Manager> comboBoxAddGuildManager;
     @FXML
+    private ComboBox<Volunteer> comboBoxNationality;
+    @FXML
     private TableColumn<Guild, String> tblColGuildName;
     @FXML
     private TableColumn<Guild, String> tblColGuildManager;
@@ -89,7 +92,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private JFXTextField txtFieldAddVolunteerEmail;
     @FXML
-    private ComboBox<?> comboBoxFirstGuildSelection;
+    private ComboBox<Guild> comboBoxFirstGuildSelection;
     @FXML
     private JFXButton buttonAddMoreManagersToGuild;
     @FXML
@@ -109,6 +112,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
     public void initialize(URL url, ResourceBundle rb)
       {
         initializeManagers();
+        initializeGuilds();
       }
 
     public ManagementRegisterVolunteerController() throws IOException, SQLException
@@ -160,6 +164,38 @@ public class ManagementRegisterVolunteerController extends Controller implements
                   };
               }
           });
+      }
+
+    public void initializeGuilds()
+      {
+        comboBoxFirstGuildSelection.setItems(userModel.getGuilds());
+        comboBoxFirstGuildSelection.setCellFactory(new Callback<ListView<Guild>, ListCell<Guild>>()
+          {
+            @Override
+            public ListCell<Guild> call(ListView<Guild> param)
+              {
+                return new ListCell<Guild>()
+                  {
+                    @Override
+                    protected void updateItem(Guild guild, boolean empty)
+                      {
+                        super.updateItem(guild, empty);
+                        if (guild == null || empty)
+                        {
+                            setGraphic(null);
+                        }
+                        else
+                        {
+                            setText(guild.getNameAsString());
+                        }
+                      }
+                  };
+              }
+          });
+      }
+
+    public void initializeNationailities()
+      {
       }
 
     /**

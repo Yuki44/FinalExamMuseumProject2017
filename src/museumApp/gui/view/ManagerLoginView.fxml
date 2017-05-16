@@ -136,9 +136,9 @@
                   </ImageView>
                </children>
             </GridPane>
-            <VBox alignment="CENTER" prefHeight="165.0" prefWidth="356.0" spacing="50.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+            <VBox alignment="CENTER" fillWidth="false" prefHeight="165.0" prefWidth="411.0" spacing="50.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
                <children>
-                  <JFXTextField fx:id="txtUserName" focusColor="#757575" labelFloat="true" onKeyPressed="#handleGoToPassword" promptText="Username">
+                  <JFXTextField fx:id="txtUserName" focusColor="#757575" labelFloat="true" minWidth="304.0" onKeyPressed="#handleGoToPassword" prefHeight="38.0" promptText="Username">
                      <font>
                         <Font name="Rockwell" size="25.0" />
                      </font>
@@ -146,7 +146,7 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </JFXTextField>
-                  <JFXPasswordField fx:id="txtPassword" focusColor="#757575" labelFloat="true" onKeyPressed="#handleGoToLogin" promptText="Password">
+                  <JFXPasswordField fx:id="txtPassword" focusColor="#757575" labelFloat="true" maxWidth="327.0" minWidth="304.0" onKeyPressed="#handleGoToLogin" prefHeight="61.0" prefWidth="327.0" promptText="Password">
                      <font>
                         <Font size="25.0" />
                      </font>

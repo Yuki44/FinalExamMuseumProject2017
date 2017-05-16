@@ -58,6 +58,12 @@ public class Volunteer extends User
         return nationality.get();
       }
 
+    @Override
+    public String toString()
+      {
+        return getNationalityAsString();
+      }
+
     /** --------------------------VOLUNTEER PHONE NUMBER------------------------------------------. */
     /**
      * Get the VOLUNTEER phone number as a StringProperty so it can update the view.
