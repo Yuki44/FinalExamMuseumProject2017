@@ -48,8 +48,7 @@ public class AddData extends DatabaseManager
 
     /** ----------------------------------------MANAGER-----------------------------------------------------. */
     /**
-     * Makes it possible to add a manager to the system through the database
-     * by use of the manager parameters:
+     * This method makes it possible to add a manager to the system.
      *
      * @param mg
      * @throws SQLException
@@ -69,8 +68,7 @@ public class AddData extends DatabaseManager
 
     /** -----------------------------------------HOURS-----------------------------------------------------. */
     /**
-     * Makes it possible to add a manager to the system through the database
-     * by use of the VolunteerTime parameters:
+     * This method makes it possible to register hours to the database.
      *
      * @param vTime
      * @throws SQLException
@@ -87,8 +85,7 @@ public class AddData extends DatabaseManager
 
     /** ------------------------------------------GUILD--------------------------------------------------. */
     /**
-     * Makes it possible to add a manager to the system through the database
-     * by use of the guild parameters:
+     * This method makes it possible to add a guild to the system.
      *
      * @param gd
      * @throws SQLException
