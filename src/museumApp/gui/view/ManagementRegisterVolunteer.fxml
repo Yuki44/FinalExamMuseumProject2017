@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTabPane?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -25,7 +24,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagementRegisterVolunteerController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" styleClass="onlyTheBorder" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagementRegisterVolunteerController">
    <center>
       <JFXTabPane prefHeight="242.0" prefWidth="546.0" BorderPane.alignment="CENTER">
          <tabs>
@@ -44,7 +43,7 @@
                            <children>
                               <GridPane minHeight="441.0" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
                                 <columnConstraints>
-                                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="199.0" />
+                                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="199.0" />
                                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="367.0" />
                                 </columnConstraints>
                                 <rowConstraints>
@@ -71,34 +70,30 @@
                                        <font>
                                           <Font size="20.0" />
                                        </font></Label>
-                                    <Label prefHeight="23.0" prefWidth="129.0" text="Guild:" GridPane.rowIndex="5">
+                                    <Label prefHeight="23.0" prefWidth="129.0" text="Main guild:" GridPane.rowIndex="5">
                                        <font>
                                           <Font size="20.0" />
                                        </font></Label>
-                                    <Label prefHeight="23.0" prefWidth="129.0" text="First Name" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                                    <Label contentDisplay="TOP" prefHeight="30.0" prefWidth="130.0" text="First Name" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="txtFieldAddVolunteerPhoneNum" labelFloat="true" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <JFXTextField fx:id="txtFieldAddVolunteerPhoneNum" focusColor="#69dd5a" labelFloat="true" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Phone Number" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                        <cursor>
                                           <Cursor fx:constant="TEXT" />
                                        </cursor></JFXTextField>
-                                    <Label prefHeight="23.0" prefWidth="129.0" text="Joined Date :" GridPane.rowIndex="6">
+                                    <Label prefHeight="23.0" prefWidth="129.0" text="Joining Date:" GridPane.rowIndex="6">
                                        <font>
                                           <Font size="20.0" />
                                        </font></Label>
-                                    <JFXDatePicker fx:id="regJoinedDatePicker" prefHeight="31.0" prefWidth="275.0" promptText="Select a date..." GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                    <JFXDatePicker fx:id="regJoinedDatePicker" defaultColor="#69dd5a" prefHeight="31.0" prefWidth="275.0" promptText="Select a date..." GridPane.columnIndex="1" GridPane.rowIndex="6">
                                        <cursor>
                                           <Cursor fx:constant="TEXT" />
                                        </cursor></JFXDatePicker>
                                     <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                        <buttons>
-                                          <JFXButton fx:id="clearFieldsButton" onAction="#clearAllFields" prefHeight="35.0" prefWidth="131.0" text="Clear  All">
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor></JFXButton>
-                                          <JFXButton fx:id="saveInfoButton" onAction="#handleAddVolunteer" prefHeight="37.0" prefWidth="182.0" text="Save">
+                                          <JFXButton fx:id="buttonSaveInfo" onAction="#handleAddVolunteer" prefHeight="37.0" prefWidth="182.0" text="Save">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor></JFXButton>
@@ -110,46 +105,54 @@
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor></ComboBox>
-                                          <JFXButton fx:id="addExtraGuildButton" onAction="#addExtraGuild" text="Add Extra Guild">
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor></JFXButton>
                                        </children>
                                     </VBox>
-                                    <JFXTextField fx:id="txtFieldAddVolunteerFName" labelFloat="true" layoutX="243.0" layoutY="117.0" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Name" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <JFXTextField fx:id="txtFieldAddVolunteerFName" focusColor="#69dd5a" labelFloat="true" layoutX="243.0" layoutY="117.0" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Name" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <cursor>
                                           <Cursor fx:constant="TEXT" />
                                        </cursor></JFXTextField>
-                                    <JFXTextField fx:id="txtFieldAddVolunteerLName" labelFloat="true" layoutX="243.0" layoutY="39.0" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Last Name" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <JFXTextField fx:id="txtFieldAddVolunteerLName" focusColor="#69dd5a" labelFloat="true" layoutX="243.0" layoutY="39.0" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Last Name" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <cursor>
                                           <Cursor fx:constant="TEXT" />
                                        </cursor></JFXTextField>
-                                    <JFXTextField fx:id="txtFieldAddVolunteerEmail" labelFloat="true" layoutX="243.0" layoutY="83.0" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Email" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                    <JFXTextField fx:id="txtFieldAddVolunteerEmail" focusColor="#69dd5a" labelFloat="true" layoutX="243.0" layoutY="83.0" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Email" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                        <cursor>
                                           <Cursor fx:constant="TEXT" />
                                        </cursor></JFXTextField>
                                  </children>
+                                 <GridPane.margin>
+                                    <Insets left="50.0" />
+                                 </GridPane.margin>
                               </GridPane>
-                              <VBox prefHeight="441.0" prefWidth="255.0" GridPane.columnIndex="1">
+                              <VBox alignment="CENTER" fillWidth="false" prefHeight="441.0" prefWidth="255.0" spacing="15.0" GridPane.columnIndex="1" GridPane.valignment="CENTER">
                                  <children>
-                                    <Label fx:id="regUploadPhotoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="345.0" text="Upload a photo:">
+                                    <Label fx:id="regUploadPhotoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="345.0" text="Profile photo:">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
                                     </Label>
-                                    <Pane prefHeight="167.0" prefWidth="343.0" VBox.vgrow="SOMETIMES">
+                                    <Pane fx:id="imgPane" onMouseClicked="#handleUploadImage" prefHeight="200.0" prefWidth="200.0" styleClass="dragAndDropBackgroundImage" stylesheets="@../css/ManagerViewCss.css" VBox.vgrow="NEVER">
                                        <children>
-                                          <ImageView fitHeight="174.0" fitWidth="170.0" layoutX="90.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../img/doodle-refresh-arrow-sign-22006725.png" />
-                                             </image>
+                                          <ImageView fx:id="imgViewProfilePic" fitHeight="200.0" fitWidth="200.0" onDragDropped="#handleDrop" onDragOver="#handleDragOver" pickOnBounds="true" preserveRatio="true">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </ImageView>
                                        </children>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </Pane>
-                                    <HBox alignment="TOP_CENTER" prefHeight="44.0" prefWidth="255.0" spacing="180.0">
+                                    <HBox alignment="TOP_CENTER" prefHeight="41.0" prefWidth="354.0" spacing="20.0">
                                        <children>
-                                          <JFXButton fx:id="chooseImageButton" prefHeight="44.0" prefWidth="77.0" text="Choose File" />
-                                          <JFXButton fx:id="uploadImageButton" prefHeight="52.0" prefWidth="55.0" text="Upload" />
+                                          <JFXButton onAction="#handleClearImage" prefHeight="41.0" prefWidth="107.0" text="Clear Image">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></JFXButton>
+                                          <JFXButton fx:id="buttonUseWebcam" prefHeight="41.0" prefWidth="100.0" text="Use Webcam">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></JFXButton>
                                        </children>
                                     </HBox>
                                     <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="352.0">
@@ -157,13 +160,6 @@
                                           <Font size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextArea fx:id="txtAreaAddVolunteerComment" maxWidth="343.0" minWidth="343.0" prefWidth="343.0" promptText="Add a comment..." style="-fx-border-color: gray;" unFocusColor="WHITE" wrapText="true" VBox.vgrow="SOMETIMES">
-                                       <font>
-                                          <Font name="System Bold" size="17.0" />
-                                       </font>
-                                       <cursor>
-                                          <Cursor fx:constant="TEXT" />
-                                       </cursor></JFXTextArea>
                                  </children>
                                  <opaqueInsets>
                                     <Insets />

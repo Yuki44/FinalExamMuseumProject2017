@@ -24,3 +24,11 @@ and open the template in the editor.
     -fx-background-color: #d2d8db;
     -fx-text-fill: #303233;
 }
+
+.dragAndDropBackgroundImage
+{
+    -fx-background-image: url("../img/dragAndDrop.png");
+    -fx-background-size: stretch;
+    -fx-background-repeat: stretch; 
+    -fx-background-position: center center;
+}

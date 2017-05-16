@@ -2,11 +2,14 @@ package museumApp.gui.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,9 +23,16 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import museumApp.be.Guild;
@@ -39,19 +49,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private JFXDatePicker regJoinedDatePicker;
     @FXML
-    private JFXButton clearFieldsButton;
-    @FXML
-    private JFXButton saveInfoButton;
-    @FXML
-    private ComboBox<?> firstGuildSelectionComboBox;
-    @FXML
-    private JFXButton addExtraGuildButton;
-    @FXML
     private Label regUploadPhotoLabel;
-    @FXML
-    private JFXButton chooseImageButton;
-    @FXML
-    private JFXButton uploadImageButton;
     @FXML
     private JFXTextField addTFNameTxtF;
     @FXML
@@ -91,7 +89,17 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private JFXTextField txtFieldAddVolunteerEmail;
     @FXML
-    private JFXTextArea txtAreaAddVolunteerComment;
+    private ComboBox<?> comboBoxFirstGuildSelection;
+    @FXML
+    private JFXButton buttonAddMoreManagersToGuild;
+    @FXML
+    private ImageView imgViewProfilePic;
+    @FXML
+    private Pane imgPane;
+    @FXML
+    private JFXButton buttonSaveInfo;
+    @FXML
+    private JFXButton buttonUseWebcam;
 
     /** -------------------------------------------------------------------------------------------. */
     /**
@@ -273,26 +281,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
         //TO DO
       }
 
-    /**
-     * Clear all fields, to start again.
-     *
-     * @param event
-     */
-    @FXML
-    private void clearAllFields(ActionEvent event)
-      {
-      }
-
-    /**
-     * If you want to add more guilds to that volunteer.
-     *
-     * @param event
-     */
-    @FXML
-    private void addExtraGuild(ActionEvent event)
-      {
-      }
-
     /** -------------------------------------------------------------------------------------------. */
     /** ----------------------------------GENERAL SETTINGS-----------------------------------------. */
     /**
@@ -322,6 +310,71 @@ public class ManagementRegisterVolunteerController extends Controller implements
         {
             System.err.println(ex);
         }
+      }
+
+    /**
+     * This method accepts any kind of file when you drag over it
+     *
+     * @param event
+     */
+    @FXML
+    private void handleDragOver(DragEvent event)
+      {
+        if (event.getDragboard().hasFiles())
+        {
+            event.acceptTransferModes(TransferMode.ANY);
+        }
+      }
+
+    /**
+     * This method gets the dropped image file, sets the ImageView with that image and removes the background of the pane on top of it.
+     *
+     * @param event
+     * @throws FileNotFoundException
+     */
+    @FXML
+    private void handleDrop(DragEvent event) throws FileNotFoundException
+      {
+        List<File> files = event.getDragboard().getFiles();
+        Image img = new Image(new FileInputStream(files.get(0)));
+        imgViewProfilePic.setImage(img);
+        imgPane.setStyle("-fx-background-image: null");
+      }
+
+    /**
+     * The standard upload of images
+     *
+     * @param event
+     */
+    @FXML
+    private void handleUploadImage(MouseEvent event)
+      {
+        FileChooser fileChooser = new FileChooser();
+
+        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Image Files", "*.JPG", "*.jpg", "*.png", "*.JPEG", "*.jpeg"));
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null)
+        {
+            Image image = new Image(file.toURI().toString());
+            imgViewProfilePic.setImage(image);
+            imgPane.setStyle("-fx-background-image: null");
+        }
+      }
+
+    /**
+     * Clears the image and sets the background again.
+     *
+     * @param event
+     */
+    @FXML
+    private void handleClearImage(ActionEvent event)
+      {
+        imgViewProfilePic.setImage(null);
+        imgPane.setStyle("-fx-background-image: url(\"../img/dragAndDrop.png\")");
+        imgPane.setStyle("-fx-background-size: stretch");
+        imgPane.setStyle("-fx-background-repeat: stretch");
+        imgPane.setStyle("-fx-background-position: center center");
+
       }
 
     /** -------------------------------------------------------------------------------------------. */
