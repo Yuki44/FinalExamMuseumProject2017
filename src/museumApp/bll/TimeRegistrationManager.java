@@ -1,10 +1,14 @@
 package museumApp.bll;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import museumApp.be.Guild;
+import museumApp.be.GuildVolunteer;
+import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
 import museumApp.dal.AddData;
 import museumApp.dal.GetData;
@@ -26,15 +30,13 @@ public class TimeRegistrationManager implements IManager<VolunteerTime>
      *
      * @param obj
      */
-    @Override
-    public void Add(VolunteerTime obj)
+    public void Add(VolunteerTime obj, GuildVolunteer gvObj)
       {
-        try
+        try 
         {
-//            System.out.println("time: " + obj.getHours());
-            addData.addHours(obj);
+            addData.addHours(obj, gvObj);
         }
-        catch (SQLException ex)
+        catch (SQLException ex) 
         {
             Logger.getLogger(TimeRegistrationManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,5 +96,22 @@ public class TimeRegistrationManager implements IManager<VolunteerTime>
       {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
       }
+ public void AddTime(Date date, int hours, Volunteer vt, Guild gd)
+      {
+        try
+        {
+       //     getData.getVolunteerGuldIdBasedOnVolunteerIdAndGuldId(vt, gd);
+//            
+            addData.addVolunteerTimeHours(date, hours,vt, gd );
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(TimeRegistrationManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
 
+    @Override
+    public void Add(VolunteerTime objToAdd) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
   }

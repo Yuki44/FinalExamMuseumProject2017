@@ -91,8 +91,8 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
         BorderPane bPane;
         try
         {
-//            userModel.addTime(
-//                    Date.valueOf(LocalDate.now()), Integer.parseInt(setHoursLabel.getText()), volunteer, guild);
+            userModel.addTime(
+                    Date.valueOf(LocalDate.now()), Integer.parseInt(setHoursLabel.getText()), volunteer, guild);
             bPane = FXMLLoader.load(getClass().getResource("/museumApp/gui/view/ThankYouSplash.fxml"));
             borderPane.getChildren().setAll(bPane);
             /** ------------------------------------------------------------------------------------------ */

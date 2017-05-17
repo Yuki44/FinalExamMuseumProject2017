@@ -1,9 +1,12 @@
 package museumApp.dal;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import museumApp.be.Guild;
+import museumApp.be.GuildVolunteer;
 import museumApp.be.Manager;
 import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
@@ -73,13 +76,14 @@ public class AddData extends DatabaseManager
      * @param vTime
      * @throws SQLException
      */
-    public void addHours(VolunteerTime vTime) throws SQLException
+    public void addHours(VolunteerTime vTime, GuildVolunteer gv) throws SQLException
       {
-        String sql = "INSERT INTO volunteer_time (guild_volunteer_id, date, hours) VALUES ( ? , ?) ";
+        String sql = "INSERT INTO volunteer_time (guild_id, volunteer_id, date, hours) VALUES ( ? ,?, '?', ?) ";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-        pstmt.setInt(1, vTime.getId());
-        pstmt.setDate(2, vTime.getDate());
-        pstmt.setInt(3, vTime.getHours());
+        pstmt.setInt(1, gv.getGuildID());
+        pstmt.setInt(2, gv.getVolunteerId());
+        pstmt.setDate(3, vTime.getDate());
+        pstmt.setInt(4, vTime.getHours());
         pstmt.executeUpdate();
         //TODO: add update id on vTime.
       }
@@ -99,5 +103,17 @@ public class AddData extends DatabaseManager
         pstmt.setInt(2, gd.getManagerId());
         pstmt.executeUpdate();
       }
+
+    public void addVolunteerTimeHours(Date date, int hours, Volunteer vt, Guild gd) throws SQLException {
+         String sql = "INSERT INTO volunteer_time (volunteer_id, guild_id, date, hours) VALUES (?,?,'?',?) ";
+        PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
+        pstmt.setInt(1,vt.getId() );
+        pstmt.setInt(2, gd.getId());
+        pstmt.setDate(3, date);
+        pstmt.setInt(4,hours);
+        pstmt.execute();
+        
+    }
     /** ----------------------------------------------------------------------------------------------------. */
+  
   }

@@ -13,6 +13,7 @@ import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
 import museumApp.bll.MuseumManager;
 import museumApp.bll.TimeRegistrationManager;
+import museumApp.dal.GetData;
 
 public class UserModel extends Model
   {
@@ -26,7 +27,6 @@ public class UserModel extends Model
     private ObservableList<Guild> guilds;
     private ObservableList<Administrator> admins;
     private ObservableList<VolunteerTime> volunteerTime;
-
     /**
      * REFACTOR
      *
@@ -128,9 +128,10 @@ public class UserModel extends Model
         museumManager.addGuild(gd);
       }
 
-    public void addTime(Date valueOf, int parseInt, Volunteer volunteer, Guild guild)
+    public void addTime(Date date, int hours, Volunteer volunteer, Guild guild)
       {
-        // Create guild volunteer in db and get object
+        timeRegistrationManager.AddTime(date,hours, volunteer, guild );
+// Create guild volunteer in db and get object
       }
 
     /** -------------------------------------------------------------------------------------------. */

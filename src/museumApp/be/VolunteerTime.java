@@ -3,12 +3,11 @@ package museumApp.be;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
-public class VolunteerTime extends BusinessEntity
+public class VolunteerTime 
   {
 
     protected Date date;
     protected int hours;
-//    private int id;
     private Volunteer volunteer;
     private Guild guild;
 
@@ -19,14 +18,10 @@ public class VolunteerTime extends BusinessEntity
      * @param hours
      * @param id
      */
-    public VolunteerTime(Date date, int hours, Volunteer volunteer, Guild guild)
-      {
-        this(-1, date, hours, volunteer, guild);
-      }
+  
     
-     public VolunteerTime(int id, Date date, int hours, Volunteer volunteer, Guild guild)
+     public VolunteerTime(Date date, int hours, Volunteer volunteer, Guild guild)
       {
-        super(id);
         this.guild = guild;
         this.volunteer = volunteer;
         this.date = date;
@@ -68,4 +63,5 @@ public class VolunteerTime extends BusinessEntity
         return hours;
       }
     /** ----------------------------------------------------------------------------------------------------. */
+    
   }
