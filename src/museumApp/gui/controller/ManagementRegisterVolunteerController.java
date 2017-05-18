@@ -4,6 +4,7 @@ import com.github.sarxos.webcam.Webcam;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.embed.swing.SwingFXUtils;
@@ -38,6 +40,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javax.imageio.ImageIO;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.be.Volunteer;
@@ -108,18 +111,25 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private JFXButton buttonUseWebcam;
     @FXML
     private JFXButton buttonTakePhoto;
-    Webcam webcam;
-    BufferedImage webcamImage;
+    @FXML
+    private Label lblWebcamOperation;
+    private Webcam webcam;
+    private BufferedImage webcamImage;
+    private Dimension dimension = new Dimension(640, 480);
+    BufferedImage takenImage;
 
     /** -------------------------------------------------------------------------------------------. */
     /**
      * Initializes the controller class.
      */
     @Override
+
     public void initialize(URL url, ResourceBundle rb)
       {
         initializeManagers();
         initializeGuilds();
+        lblWebcamOperation.setText("Webcam is closed");
+        lblWebcamOperation.setStyle("-fx-text-fill: #a04124;");
       }
 
     public ManagementRegisterVolunteerController() throws IOException, SQLException
@@ -321,9 +331,16 @@ public class ManagementRegisterVolunteerController extends Controller implements
      * @param event
      */
     @FXML
-    private void handleAddVolunteer(ActionEvent event)
+    private void handleAddVolunteer(ActionEvent event) throws IOException
       {
-        //TO DO
+        String firstName = txtFieldAddVolunteerFName.getText().trim();
+        String lastName = txtFieldAddVolunteerLName.getText().trim();
+        String fullName = firstName + lastName;
+        if (!txtFieldAddVolunteerFName.getText().isEmpty() && !txtFieldAddVolunteerLName.getText().isEmpty())
+        {
+            File myImageFile = new File("C:\\Users\\Yuki\\Dropbox\\FinalProjectPhotos\\VolunteerPhotos", fullName + LocalDate.now() + ".png");
+            ImageIO.write(takenImage, "PNG", myImageFile);
+        }
       }
 
     /** -------------------------------------------------------------------------------------------. */
@@ -426,18 +443,57 @@ public class ManagementRegisterVolunteerController extends Controller implements
     protected void handleUseWebcam(ActionEvent event)
       {
         this.webcam = Webcam.getDefault();
-        webcam.open();
+        if (!webcam.isOpen())
+        {
+            webcam.setViewSize(dimension);
+        }
+        if (webcam != null)
+        {
+            webcam.open();
+            System.out.println("Webcam found...");
+
+            if (webcam.isOpen())
+            {
+                lblWebcamOperation.setText("Webcam is working");
+                lblWebcamOperation.setStyle("-fx-text-fill: #4b9e40;");
+            }
+        }
       }
 
     @FXML
     private void handleTakePhoto(ActionEvent event)
       {
-        if (webcam.isOpen())
+        try
         {
-            this.webcamImage = webcam.getImage();
-            Image myImage = SwingFXUtils.toFXImage(webcamImage, null); //convert to JavaFX image
-            imgPane.setStyle("-fx-background-image: null");
-            imgViewProfilePic.setImage(myImage); //show on ImageView
+            if (webcam.isOpen())
+            {
+
+                this.webcamImage = webcam.getImage();
+                Image myImage = SwingFXUtils.toFXImage(webcamImage, null); //convert to JavaFX image
+                imgPane.setStyle("-fx-background-image: null");
+                imgViewProfilePic.setImage(myImage); //show on ImageView
+                this.takenImage = webcam.getImage();
+
+            }
+        }
+        catch (Exception ex)
+        {
+            System.err.println("Must open webcam first!");
+        }
+      }
+
+    @FXML
+    private void handleCloseWebcam(ActionEvent event)
+      {
+        try
+        {
+            webcam.close();
+            lblWebcamOperation.setText("Webcam is closed");
+            lblWebcamOperation.setStyle("-fx-text-fill: #a04124;");
+        }
+        catch (Exception ex)
+        {
+            System.err.println("Webcam hasn't been opened");
         }
       }
 

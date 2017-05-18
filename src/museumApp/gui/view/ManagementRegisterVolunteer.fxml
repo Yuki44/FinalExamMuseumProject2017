@@ -211,13 +211,23 @@
                                     </Pane>
                                     <HBox alignment="TOP_CENTER" prefHeight="41.0" prefWidth="354.0" spacing="5.0">
                                        <children>
-                                          <JFXButton onAction="#handleClearImage" prefHeight="41.0" prefWidth="107.0" text="Clear Image">
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor></JFXButton>
                                           <VBox spacing="5.0">
                                              <children>
-                                                <JFXButton fx:id="buttonUseWebcam" onAction="#handleUseWebcam" prefHeight="41.0" prefWidth="100.0" text="Use Webcam">
+                                                <JFXButton onAction="#handleClearImage" prefHeight="41.0" prefWidth="107.0" text="Clear Image">
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </JFXButton>
+                                                <JFXButton onAction="#handleCloseWebcam" prefHeight="41.0" prefWidth="107.0" text="Close Webcam">
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </JFXButton>
+                                             </children>
+                                          </VBox>
+                                          <VBox spacing="5.0">
+                                             <children>
+                                                <JFXButton fx:id="buttonUseWebcam" onAction="#handleUseWebcam" prefHeight="41.0" prefWidth="100.0" text="Start Webcam">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
@@ -231,6 +241,11 @@
                                           </VBox>
                                        </children>
                                     </HBox>
+                                    <Label fx:id="lblWebcamOperation">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
                                     <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="352.0">
                                        <font>
                                           <Font size="15.0" />
