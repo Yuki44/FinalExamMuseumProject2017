@@ -27,6 +27,7 @@ public class UserModel extends Model
     private ObservableList<Guild> guilds;
     private ObservableList<Administrator> admins;
     private ObservableList<VolunteerTime> volunteerTime;
+
     /**
      * REFACTOR
      *
@@ -128,9 +129,15 @@ public class UserModel extends Model
         museumManager.addGuild(gd);
       }
 
+    public List<Manager> getManagerBasedOnGuild(Guild guild) throws SQLException
+      {
+        return museumManager.getManagerFromGuild(guild);
+      }
+
+    /** ------------------------------------HOURS--------------------------------------------------. */
     public void addTime(Date date, int hours, Volunteer volunteer, Guild guild)
       {
-        timeRegistrationManager.AddTime(date,hours, volunteer, guild );
+        timeRegistrationManager.AddTime(date, hours, volunteer, guild);
 // Create guild volunteer in db and get object
       }
 

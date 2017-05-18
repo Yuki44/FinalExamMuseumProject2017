@@ -3,6 +3,8 @@ package museumApp.bll;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
@@ -205,7 +207,12 @@ public class MuseumManager
      */
     public void addGuild(Guild gd) throws SQLException
       {
-//        addDbMgr.addGuild(gd);  TO DO
+        addDbMgr.addGuild(gd);
+      }
+
+    public List<Manager> getManagerFromGuild(Guild guild) throws SQLException
+      {
+        return getDbMgr.getManagerBasedOnGuild(guild);
       }
 
     /** ------------------------------REMOVE DATA IN DATABASE---------------------------------------------. */

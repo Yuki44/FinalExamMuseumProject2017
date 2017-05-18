@@ -8,6 +8,7 @@ public class Guild extends BusinessEntity
 
     protected StringProperty name;
     protected int managerId;
+    protected Manager manager;
 
     /** ----------------------------TO DO REFACTOR BEGINNING---------------------------------------------. */
     /**
@@ -68,6 +69,6 @@ public class Guild extends BusinessEntity
       {
         return managerId;
       }
-
+    
     /** -------------------------------------------------------------------------------------------. */
   }

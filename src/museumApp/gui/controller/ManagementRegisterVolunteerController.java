@@ -140,12 +140,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
         managerTbl.setItems(userModel.getManagers());
         managerTblColFname.setCellValueFactory(manager -> manager.getValue().getFirstName());
         managerTblColLname.setCellValueFactory(manager -> manager.getValue().getLastName());
-        /**
-         * We set the items on the guild table and with a lambda expression we set the individual
-         * columns first name and last name.
-         */
-        tblGuild.setItems(userModel.getGuilds());
-        tblColGuildName.setCellValueFactory(guild -> guild.getValue().getName());
 
         comboBoxAddGuildManager.setItems(userModel.getManagers());
         comboBoxAddGuildManager.setCellFactory(new Callback<ListView<Manager>, ListCell<Manager>>()
@@ -175,6 +169,13 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
     public void initializeGuilds()
       {
+        /**
+         * We set the items on the guild table and with a lambda expression we set the individual
+         * columns first name and last name.
+         */
+        tblGuild.setItems(userModel.getGuilds());
+        tblColGuildName.setCellValueFactory(guild -> guild.getValue().getName());
+//        tblColGuildManager.setCellValueFactory(manager -> manager.getValue());
         comboBoxFirstGuildSelection.setItems(userModel.getGuilds());
         comboBoxFirstGuildSelection.setCellFactory(new Callback<ListView<Guild>, ListCell<Guild>>()
           {
@@ -264,16 +265,17 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
     /** -----------------------------------------GUILD--------------------------------------------. */
     /**
-     * We make the Register Guild methods.
+     * This method makes it possible to add a guild to the system.
+     * And choose a manager for the guild.
      */
     @FXML
     private void handleAddingGuild(ActionEvent event) throws SQLException
       {
         String guildName = txtFieldAddGuildName.getText().trim();
-        Guild gd = new Guild(0, guildName, 0);
+        int managerName = comboBoxAddGuildManager.getSelectionModel().getSelectedItem().getId();
+        Guild gd = new Guild(0, guildName, managerName);
         userModel.addGuild(gd);
         txtFieldAddGuildName.clear();
-        //TO DO
       }
 
     /**

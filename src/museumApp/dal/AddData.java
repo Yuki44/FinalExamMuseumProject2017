@@ -97,7 +97,7 @@ public class AddData extends DatabaseManager
      */
     public void addGuild(Guild gd) throws SQLException
       {
-        String sql = "INSERT INTO guild (name, manager_id) VALUES ('?',?) ";
+        String sql = "INSERT INTO guild (name, manager_id) VALUES (?,?) ";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
         pstmt.setString(1, gd.getNameAsString());
         pstmt.setInt(2, gd.getManagerId());
