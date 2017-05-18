@@ -105,7 +105,7 @@ public class AddData extends DatabaseManager
       }
 
     public void addVolunteerTimeHours(Date date, int hours, Volunteer vt, Guild gd) throws SQLException {
-         String sql = "INSERT INTO volunteer_time (volunteer_id, guild_id, date, hours) VALUES (?,?,'?',?) ";
+         String sql = "INSERT INTO volunteer_time (volunteer_id, guild_id, date, hours) VALUES (?,?,?,?);";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
         pstmt.setInt(1,vt.getId() );
         pstmt.setInt(2, gd.getId());

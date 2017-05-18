@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" styleClass="programBorderAfterLanguage" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.VolunteerRegisterHoursViewController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" styleClass="programBorderAfterLanguage" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.VolunteerRegisterHoursViewController">
    <top>
       <GridPane fx:id="mainGridPane" alignment="TOP_CENTER" onMouseDragged="#getXYForMouseDrag" onMousePressed="#getXYClickLocation" BorderPane.alignment="TOP_CENTER">
          <columnConstraints>
@@ -109,7 +109,7 @@
                   <RowConstraints minHeight="10.0" valignment="BOTTOM" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <ImageView fitHeight="92.0" fitWidth="170.0" onMouseClicked="#goToFinalView" pickOnBounds="true" preserveRatio="true" styleClass="buttonNextHovered">
+                  <ImageView fx:id="next" fitHeight="92.0" fitWidth="170.0" onMouseClicked="#goToFinalView" pickOnBounds="true" preserveRatio="true" styleClass="buttonNextHovered">
                      <image>
                         <Image url="@../img/arrowNext2.png" />
                      </image>
@@ -130,7 +130,7 @@
                   <RowConstraints minHeight="10.0" valignment="BOTTOM" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <ImageView fitHeight="95.0" fitWidth="176.0" onMouseClicked="#goBackToGuildSelection" pickOnBounds="true" preserveRatio="true" styleClass="buttonBackHovered">
+                  <ImageView fx:id="back" fitHeight="95.0" fitWidth="176.0" onMouseClicked="#goBackToGuildSelection" pickOnBounds="true" preserveRatio="true" styleClass="buttonBackHovered">
                      <image>
                         <Image url="@../img/arrowBack2.png" />
                      </image>
@@ -175,7 +175,7 @@
                   </Pane>
                   <HBox spacing="15.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Member Since:">
+                        <Label fx:id="memberSince" alignment="CENTER" contentDisplay="CENTER" text="Member Since:">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -192,7 +192,7 @@
                   </HBox>
                   <HBox spacing="15.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Laug:">
+                        <Label fx:id="guild" alignment="CENTER" contentDisplay="CENTER" text="Laug:">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -237,7 +237,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="How many hours have you spent with us today?" wrapText="true" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                  <Label fx:id="howManyHoursSpend" alignment="CENTER" contentDisplay="CENTER" text="How many hours have you spent with us today?" wrapText="true" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
                      <font>
                         <Font size="43.0" />
                      </font>
@@ -263,7 +263,7 @@
                         </GridPane>
                         <VBox alignment="CENTER" fillWidth="false" prefHeight="142.0" prefWidth="161.0">
                            <children>
-                              <Label prefWidth="161.0" text="Aproximate amount of hours:" wrapText="true">
+                              <Label fx:id="aproximateHours" prefWidth="161.0" text="Aproximate amount of hours:" wrapText="true">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
