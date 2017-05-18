@@ -1,8 +1,10 @@
 package museumApp.gui.controller;
 
+import com.github.sarxos.webcam.Webcam;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,6 +13,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -103,6 +106,10 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private JFXButton buttonSaveInfo;
     @FXML
     private JFXButton buttonUseWebcam;
+    @FXML
+    private JFXButton buttonTakePhoto;
+    Webcam webcam;
+    BufferedImage webcamImage;
 
     /** -------------------------------------------------------------------------------------------. */
     /**
@@ -411,6 +418,25 @@ public class ManagementRegisterVolunteerController extends Controller implements
         imgPane.setStyle("-fx-background-repeat: stretch");
         imgPane.setStyle("-fx-background-position: center center");
 
+      }
+
+    @FXML
+    protected void handleUseWebcam(ActionEvent event)
+      {
+        this.webcam = Webcam.getDefault();
+        webcam.open();
+      }
+
+    @FXML
+    private void handleTakePhoto(ActionEvent event)
+      {
+        if (webcam.isOpen())
+        {
+            this.webcamImage = webcam.getImage();
+            Image myImage = SwingFXUtils.toFXImage(webcamImage, null); //convert to JavaFX image
+            imgPane.setStyle("-fx-background-image: null");
+            imgViewProfilePic.setImage(myImage); //show on ImageView
+        }
       }
 
     /** -------------------------------------------------------------------------------------------. */
