@@ -57,6 +57,8 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
     private Label howManyHoursSpend;
     @FXML
     private Label aproximateHours;
+    @FXML
+    private Label lblGuild;
 
     public VolunteerRegisterHoursViewController() throws IOException, SQLException
       {

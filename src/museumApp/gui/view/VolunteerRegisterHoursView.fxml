@@ -192,7 +192,7 @@
                   </HBox>
                   <HBox spacing="15.0">
                      <children>
-                        <Label fx:id="guild" alignment="CENTER" contentDisplay="CENTER" text="Laug:">
+                        <Label fx:id="lblGuild" alignment="CENTER" contentDisplay="CENTER" text="Laug:">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
