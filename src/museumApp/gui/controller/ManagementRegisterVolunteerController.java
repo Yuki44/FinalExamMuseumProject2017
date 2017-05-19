@@ -355,8 +355,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String phoneNumber = txtFieldAddVolunteerPhoneNum.getText().trim();
         String email = txtFieldAddVolunteerEmail.getText().trim();
      //   String date = regJoinedDatePicker.
-     //   String nationality = comboBoxNationality.getSelectionModel().toString();
-        userModel.addVolunteer(firstName,lastName,phoneNumber,email);
+        String nationality = comboBoxNationality.getSelectionModel().toString();
+        userModel.addVolunteer(firstName,lastName,phoneNumber,email,nationality);
 
      //   if (!txtFieldAddVolunteerFName.getText().isEmpty() && !txtFieldAddVolunteerLName.getText().isEmpty())
       //  {

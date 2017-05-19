@@ -101,12 +101,12 @@
          <children>
             <VBox>
                <children>
-                  <Label fx:id="thankYouFor" alignment="CENTER" contentDisplay="CENTER" styleClass="textFont" stylesheets="@../css/thankyousplash.css" text="Thank you for your contribution to Ringkøbing-skjern museum!" textAlignment="CENTER" wrapText="true">
+                  <Label fx:id="lblThankYouFor" alignment="CENTER" contentDisplay="CENTER" styleClass="textFont" stylesheets="@../css/thankyousplash.css" text="Thank you for your contribution to Ringkøbing-skjern museum!" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="46.0" />
                      </font>
                   </Label>
-                  <Label fx:id="haveANiceDay" alignment="CENTER" contentDisplay="CENTER" prefHeight="92.0" prefWidth="988.0" style="-fx-font-size: 45px;" styleClass="textFont" stylesheets="@../css/thankyousplash.css" text="Have a nice day!!" textAlignment="CENTER">
+                  <Label fx:id="lblHaveANiceDay" alignment="CENTER" contentDisplay="CENTER" prefHeight="92.0" prefWidth="988.0" style="-fx-font-size: 45px;" styleClass="textFont" stylesheets="@../css/thankyousplash.css" text="Have a nice day!!" textAlignment="CENTER">
                      <font>
                         <Font size="46.0" />
                      </font>

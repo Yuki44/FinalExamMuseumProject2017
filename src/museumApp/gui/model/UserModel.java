@@ -108,10 +108,11 @@ public class UserModel extends Model
       }
 
     /** --------------------------------VOLUNTEER--------------------------------------------------. */
-    public void addVolunteer(String firstName, String lastName, String phoneNumber,String email) throws SQLException
+    public void addVolunteer(String firstName, String lastName, String phoneNumber,String email,String nationality) throws SQLException
       {
      
-        museumManager.addVolunteer(firstName,lastName,phoneNumber,email);
+        museumManager.addVolunteer(firstName,lastName,phoneNumber,email,nationality);
+
       }
 
     public void removeVolunteer(Volunteer vtr) throws SQLException

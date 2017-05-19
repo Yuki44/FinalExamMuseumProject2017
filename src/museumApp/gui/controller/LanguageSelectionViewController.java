@@ -47,18 +47,21 @@ public class LanguageSelectionViewController extends Controller implements Initi
     @FXML
     private void goToDanishView(MouseEvent event)
       {
+        super.loadLang("da", "Danish");
         goToChooseVolunteerGuildView();
       }
 
     @FXML
     private void goToEnglishView(MouseEvent event)
       {
+        super.loadLang("en", "English");
         goToChooseVolunteerGuildView();
       }
 
     @FXML
     private void goToGermanView(MouseEvent event)
       {
+        super.loadLang("de", "German");
         goToChooseVolunteerGuildView();
       }
 

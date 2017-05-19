@@ -1,5 +1,7 @@
 package museumApp.gui.controller;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -21,6 +23,8 @@ public abstract class Controller
     @FXML
     protected GridPane mainGridPane;
     protected UserModel userModel;
+    protected ResourceBundle bundle;
+    protected Locale locale;
 
     /** ----------------------------------------------------------------------------------------------------------------. */
     /**
@@ -106,6 +110,35 @@ public abstract class Controller
         {
             stage.setMaximized(false);
         }
+      }
+
+    /** -------------------------------------------------------------------------------------------------------------------------. */
+    /** --------------------------------------------LANGUAGES--------------------------------------------------------.
+     *
+     * @param lang
+     * @param country */
+    protected void loadLang(String lang, String country)
+      {
+        locale = new Locale(lang, country);
+        bundle = ResourceBundle.getBundle("museumApp.gui.util.lang", locale);
+//     lblStep1.setText(bundle.getString("lblStep1"));
+//     lblStep2.setText(bundle.getString("lblStep2"));
+//     lblMemberSince.setText(bundle.getString("lblMemberSince"));
+//     lblGuild.setText(bundle.getString("lblGuild"));
+//     lblHowManyHoursSpend.setText(bundle.getString("lblHowManyHoursSpend"));
+//     lblAproximateHours.setText(bundle.getString("lblAproximateHours"));
+//     lblThankYouFor.setText(bundle.getString("lblThankYouFor"));
+//     lblHaveANiceDay.setText(bundle.getString("lblHaveANiceDay"));
+        System.out.println(bundle.getString("lblStep1"));
+        System.out.println(bundle.getString("lblStep2"));
+        System.out.println(bundle.getString("lblMemberSince"));
+        System.out.println(bundle.getString("lblGuild"));
+        System.out.println(bundle.getString("lblHowManyHoursSpend"));
+        System.out.println(bundle.getString("lblAproximateHours"));
+        System.out.println(bundle.getString("lblThankYouFor"));
+        System.out.println(bundle.getString("lblHaveANiceDay"));
+        System.out.println("--------------------------------------------------------------------------------------------");
+
       }
     /** -------------------------------------------------------------------------------------------------------------------------. */
 

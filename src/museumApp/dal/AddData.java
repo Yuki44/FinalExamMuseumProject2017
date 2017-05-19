@@ -31,17 +31,17 @@ public class AddData extends DatabaseManager
      * @param vtr
      * @throws SQLException
      */
-    public void addVolunteer(String firstName, String lastName, String phoneNumber, String email) throws SQLException
+    public void addVolunteer(String firstName, String lastName, String phoneNumber, String email,String nationality) throws SQLException
       {
         {
-          String sql = "INSERT INTO volunteer(first_name, last_name,  phone_number,email) VALUES (?,?,?,?);";
+          String sql = "INSERT INTO volunteer(first_name, last_name,  phone_number,email,nationality) VALUES (?,?,?,?,?);";
           PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
 
             pstmt.setString(1, firstName);
             pstmt.setString(2, lastName);
             pstmt.setString(3, phoneNumber);
             pstmt.setString(4, email);
-         //  pstmt.setString(5, nationality);
+           pstmt.setString(5, nationality);
             pstmt.execute();
         }
       }

@@ -197,8 +197,8 @@ public class MuseumManager
      * @param vtr
      * @throws SQLException
      */
-      public void addVolunteer(String firstName, String lastName, String phoneNumber, String email) throws SQLException {
-           addDbMgr.addVolunteer(firstName, lastName, phoneNumber, email);
+      public void addVolunteer(String firstName, String lastName, String phoneNumber, String email,String nationality) throws SQLException {
+           addDbMgr.addVolunteer(firstName, lastName, phoneNumber, email,nationality);
     }
 
     /**
