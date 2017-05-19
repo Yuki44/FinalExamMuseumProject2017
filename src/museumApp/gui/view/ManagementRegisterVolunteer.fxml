@@ -117,7 +117,7 @@
                                     </ComboBox>
                                     <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <JFXTextField fx:id="txtFieldAddVolunteerFName" focusColor="#5fc552" labelFloat="true" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Name">
+                                          <JFXTextField fx:id="txtFieldAddVolunteerFName" focusColor="#5fc552" labelFloat="true" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="First Name">
                                              <cursor>
                                                 <Cursor fx:constant="TEXT" />
                                              </cursor>
@@ -310,7 +310,7 @@
                               </Label>
                               <HBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
-                                    <JFXTextField fx:id="addTFNameTxtF" focusColor="#25adfc" minWidth="330.0" promptText="Name" />
+                                    <JFXTextField fx:id="addTFNameTxtF" focusColor="#25adfc" minWidth="330.0" promptText="First Name" />
                                     <Label text="*" textFill="RED">
                                        <font>
                                           <Font size="20.0" />

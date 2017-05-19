@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
+import museumApp.be.Nationality;
 import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
 import museumApp.bll.MuseumManager;
@@ -27,6 +28,7 @@ public class UserModel extends Model
     private ObservableList<Guild> guilds;
     private ObservableList<Administrator> admins;
     private ObservableList<VolunteerTime> volunteerTime;
+    private ObservableList<Nationality> nationalities;
 
     /**
      * REFACTOR
@@ -49,6 +51,8 @@ public class UserModel extends Model
         guilds = FXCollections.observableArrayList(museumManager.getAllGuilds());
         admins = FXCollections.observableArrayList(museumManager.getAllAdmins());
         volunteerTime = FXCollections.observableArrayList(museumManager.getAllVTime());
+        nationalities = FXCollections.observableArrayList(museumManager.getNationality());
+        
       }
 
     /** -------------------------------------------------------------------------------------------. */
@@ -140,6 +144,11 @@ public class UserModel extends Model
         timeRegistrationManager.AddTime(date, hours, volunteer, guild);
 // Create guild volunteer in db and get object
       }
+
+    public ObservableList<Nationality> getNationalities() {
+        return nationalities;
+    }
+
 
     /** -------------------------------------------------------------------------------------------. */
   }

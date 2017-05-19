@@ -12,10 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
 import museumApp.be.GuildVolunteer;
 import museumApp.be.Manager;
+import museumApp.be.Nationality;
 import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
 
@@ -531,6 +533,29 @@ public class GetData extends DatabaseManager
             return 0;
         }
       }
+
+    public List<Nationality> getNationality() throws SQLException {
+        List<Nationality> nationalities = new ArrayList<>();
+        
+         try (Connection con = connectionManager.getConnection())
+        {
+            String query = "SELECT country FROM nationality;";
+           Statement st = con.createStatement();
+           ResultSet rs =st.executeQuery(query);
+           while (rs.next()){
+           nationalities.add(getOneNationality(rs));
+           }
+           return nationalities;
+           
+        }
+        
+    }
+
+    private Nationality getOneNationality(ResultSet rs) throws SQLException {
+         
+                String country = rs.getString("country");
+                 return new Nationality(country);
+    }
 
     /**
      * ----------------------------------------------------------------------------------------------------.

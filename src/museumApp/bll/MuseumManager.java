@@ -5,9 +5,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
+import museumApp.be.Nationality;
 import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
 import museumApp.dal.AddData;
@@ -237,6 +239,10 @@ public class MuseumManager
       {
         removeDbMgr.removeManager(mg);
       }
+
+    public List<Nationality> getNationality() throws SQLException {
+        return getDbMgr.getNationality();
+    }
     /** ---------------------------------------------------------------------------------------------------. */
 
   }
