@@ -36,6 +36,7 @@ public class MuseumManager
         {
             getDbMgr = new GetData(); // Instantiate a new getData Database Manager
             addDbMgr = new AddData(); // Instantiate a new addData Database Manager
+            removeDbMgr = new RemoveData();
         }
         catch (IOException ex)
         {
@@ -235,14 +236,20 @@ public class MuseumManager
      * @param mg
      * @throws SQLException
      */
-    public void removeManager(Manager mg) throws SQLException
+    public void removeManager(String fName, String lName, String uName, String password) throws SQLException
       {
-        removeDbMgr.removeManager(mg);
+        removeDbMgr.removeManager(fName, lName, uName, password);
       }
 
-    public List<Nationality> getNationality() throws SQLException {
+    public void removeGuild(String guildName) throws SQLException
+      {
+        removeDbMgr.removeGuild(guildName);
+      }
+
+    public List<Nationality> getNationality() throws SQLException
+      {
         return getDbMgr.getNationality();
-    }
+      }
     /** ---------------------------------------------------------------------------------------------------. */
 
   }

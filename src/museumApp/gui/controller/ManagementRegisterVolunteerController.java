@@ -273,7 +273,16 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private void handleRemoveManager(ActionEvent event) throws SQLException
       {
-
+        String fName = addTFNameTxtF.getText().trim();
+        String lName = addTLNameTxtF.getText().trim();
+        String uName = addTUNameTxtF.getText().trim();
+        String password = addTPassTxtF.getText().trim();
+        userModel.removeManager(fName, lName, uName, password);
+        addTFNameTxtF.clear();
+        addTLNameTxtF.clear();
+        addTUNameTxtF.clear();
+        addTPassTxtF.clear();
+        addTEmailTxtF.clear();
       }
 
     /** -----------------------------------------GUILD--------------------------------------------. */
@@ -297,8 +306,11 @@ public class ManagementRegisterVolunteerController extends Controller implements
      * @param event
      */
     @FXML
-    private void handleRemoveGuild(ActionEvent event)
+    private void handleRemoveGuild(ActionEvent event) throws SQLException
       {
+        String guildName = txtFieldAddGuildName.getText().trim();
+        userModel.removeGuild(guildName);
+        txtFieldAddGuildName.clear();
       }
 
     /**

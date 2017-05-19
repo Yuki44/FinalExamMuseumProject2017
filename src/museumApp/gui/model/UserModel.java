@@ -52,7 +52,7 @@ public class UserModel extends Model
         admins = FXCollections.observableArrayList(museumManager.getAllAdmins());
         volunteerTime = FXCollections.observableArrayList(museumManager.getAllVTime());
         nationalities = FXCollections.observableArrayList(museumManager.getNationality());
-        
+
       }
 
     /** -------------------------------------------------------------------------------------------. */
@@ -102,10 +102,9 @@ public class UserModel extends Model
         museumManager.addManager(mg); //updates database
       }
 
-    public void removeManager(Manager mg) throws SQLException
+    public void removeManager(String fName, String lName, String uName, String password) throws SQLException
       {
-        managers.remove(mg);
-        museumManager.removeManager(mg);
+        museumManager.removeManager(fName, lName, uName, password);
       }
 
     /** --------------------------------VOLUNTEER--------------------------------------------------. */
@@ -138,6 +137,11 @@ public class UserModel extends Model
         return museumManager.getManagerFromGuild(guild);
       }
 
+    public void removeGuild(String guildName) throws SQLException
+      {
+        museumManager.removeGuild(guildName);
+      }
+
     /** ------------------------------------HOURS--------------------------------------------------. */
     public void addTime(Date date, int hours, Volunteer volunteer, Guild guild)
       {
@@ -145,10 +149,10 @@ public class UserModel extends Model
 // Create guild volunteer in db and get object
       }
 
-    public ObservableList<Nationality> getNationalities() {
+    public ObservableList<Nationality> getNationalities()
+      {
         return nationalities;
-    }
-
+      }
 
     /** -------------------------------------------------------------------------------------------. */
   }
