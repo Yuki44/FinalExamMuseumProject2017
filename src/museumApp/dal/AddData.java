@@ -31,21 +31,18 @@ public class AddData extends DatabaseManager
      * @param vtr
      * @throws SQLException
      */
-    public void addVolunteer(Volunteer vtr) throws SQLException
+    public void addVolunteer(String firstName, String lastName, String phoneNumber, String email) throws SQLException
       {
         {
-//            String sql = "INSERT INTO volunteer(first_name, last_name, date_of_birth, phone_number, "
-//                    + "email, nationality, join_date,guild_location_id, country) Values (?,?,?,?,?,?,?,?);";
-//            PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-//
-//            pstmt.setString(1, vtr.getFirstNameAsString());
-//            pstmt.setString(2, vtr.getLastNameAsString());
-//            pstmt.setDate(3, vtr.getBirthDate());
-//            pstmt.setString(4, vtr.getPhoneNumberAsString());
-//            pstmt.setString(5, vtr.getEmailAsString());
-//            pstmt.setString(6, vtr.getNationalityAsString());
-//            pstmt.setDate(7, vtr.getRegisteredDate());
-//            pstmt.execute();
+          String sql = "INSERT INTO volunteer(first_name, last_name,  phone_number,email) VALUES (?,?,?,?);";
+          PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
+
+            pstmt.setString(1, firstName);
+            pstmt.setString(2, lastName);
+            pstmt.setString(3, phoneNumber);
+            pstmt.setString(4, email);
+         //  pstmt.setString(5, nationality);
+            pstmt.execute();
         }
       }
 

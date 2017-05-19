@@ -197,10 +197,9 @@ public class MuseumManager
      * @param vtr
      * @throws SQLException
      */
-    public void addVolunteer(Volunteer vtr) throws SQLException
-      {
-        addDbMgr.addVolunteer(vtr);
-      }
+      public void addVolunteer(String firstName, String lastName, String phoneNumber, String email) throws SQLException {
+           addDbMgr.addVolunteer(firstName, lastName, phoneNumber, email);
+    }
 
     /**
      * Adds a Guild, Method call to DAL layer.
@@ -250,6 +249,10 @@ public class MuseumManager
       {
         return getDbMgr.getNationality();
       }
+
+ 
+
+ 
     /** ---------------------------------------------------------------------------------------------------. */
 
   }

@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
@@ -346,19 +347,22 @@ public class ManagementRegisterVolunteerController extends Controller implements
      * @param event
      */
     @FXML
-    private void handleAddVolunteer(ActionEvent event) throws IOException
+    private void handleAddVolunteer(ActionEvent event) throws IOException, SQLException
       {
         String firstName = txtFieldAddVolunteerFName.getText().trim();
         String lastName = txtFieldAddVolunteerLName.getText().trim();
-        String fullName = firstName + lastName;
+       String fullName = firstName + lastName;
         String phoneNumber = txtFieldAddVolunteerPhoneNum.getText().trim();
         String email = txtFieldAddVolunteerEmail.getText().trim();
+     //   String date = regJoinedDatePicker.
+     //   String nationality = comboBoxNationality.getSelectionModel().toString();
+        userModel.addVolunteer(firstName,lastName,phoneNumber,email);
 
-        if (!txtFieldAddVolunteerFName.getText().isEmpty() && !txtFieldAddVolunteerLName.getText().isEmpty())
-        {
-            File myImageFile = new File("C:\\Users\\Yuki\\Dropbox\\FinalProjectPhotos\\VolunteerPhotos", fullName + LocalDate.now() + ".png");
-            ImageIO.write(takenImage, "PNG", myImageFile);
-        }
+     //   if (!txtFieldAddVolunteerFName.getText().isEmpty() && !txtFieldAddVolunteerLName.getText().isEmpty())
+      //  {
+      //      File myImageFile = new File("C:\\Users\\Yuki\\Dropbox\\FinalProjectPhotos\\VolunteerPhotos", fullName + LocalDate.now() + ".png");
+        //    ImageIO.write(takenImage, "PNG", myImageFile);
+     //   }
       }
 
     /** -------------------------------------------------------------------------------------------. */
