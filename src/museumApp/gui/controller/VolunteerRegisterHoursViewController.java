@@ -50,15 +50,15 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
     @FXML
     private ImageView back;
     @FXML
-    private ImageView volunteerImage;
+    private ImageView imgVolunteer;
     @FXML
-    private Label memberSince;
+    protected Label lblGuild;
     @FXML
-    private Label howManyHoursSpend;
+    protected Label lblMemberSince;
     @FXML
-    private Label aproximateHours;
+    protected Label lblHowManyHoursSpend;
     @FXML
-    private Label lblGuild;
+    protected Label lblAproximateHours;
 
     public VolunteerRegisterHoursViewController() throws IOException, SQLException
       {

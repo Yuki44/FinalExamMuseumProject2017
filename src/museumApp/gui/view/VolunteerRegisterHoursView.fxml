@@ -160,7 +160,7 @@
                <children>
                   <Pane maxHeight="300.0" maxWidth="300.0">
                      <children>
-                        <ImageView fx:id="volunteerImage" cache="true" cacheHint="SCALE" fitHeight="199.0" fitWidth="230.0" layoutX="61.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imgVolunteer" cache="true" cacheHint="SCALE" fitHeight="199.0" fitWidth="230.0" layoutX="61.0" pickOnBounds="true" preserveRatio="true">
                            <viewport>
                               <Rectangle2D />
                            </viewport>
@@ -175,7 +175,7 @@
                   </Pane>
                   <HBox spacing="15.0">
                      <children>
-                        <Label fx:id="memberSince" alignment="CENTER" contentDisplay="CENTER" text="Member Since:">
+                        <Label fx:id="lblMemberSince" alignment="CENTER" contentDisplay="CENTER" text="Member Since:">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -237,7 +237,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Label fx:id="howManyHoursSpend" alignment="CENTER" contentDisplay="CENTER" text="How many hours have you spent with us today?" wrapText="true" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                  <Label fx:id="lblHowManyHoursSpend" alignment="CENTER" contentDisplay="CENTER" text="How many hours have you spent with us today?" wrapText="true" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
                      <font>
                         <Font size="43.0" />
                      </font>
@@ -263,7 +263,7 @@
                         </GridPane>
                         <VBox alignment="CENTER" fillWidth="false" prefHeight="142.0" prefWidth="161.0">
                            <children>
-                              <Label fx:id="aproximateHours" prefWidth="161.0" text="Aproximate amount of hours:" wrapText="true">
+                              <Label fx:id="lblAproximateHours" prefWidth="161.0" text="Aproximate amount of hours:" wrapText="true">
                                  <font>
                                     <Font size="20.0" />
                                  </font>

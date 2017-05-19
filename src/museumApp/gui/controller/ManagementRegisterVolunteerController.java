@@ -353,10 +353,11 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String fullName = firstName + lastName;
         String phoneNumber = txtFieldAddVolunteerPhoneNum.getText().trim();
         String email = txtFieldAddVolunteerEmail.getText().trim();
+        String imageFileName = fullName + LocalDate.now() + "_" + System.currentTimeMillis();
 
         if (!txtFieldAddVolunteerFName.getText().isEmpty() && !txtFieldAddVolunteerLName.getText().isEmpty())
         {
-            File myImageFile = new File("C:\\Users\\Yuki\\Dropbox\\FinalProjectPhotos\\VolunteerPhotos", fullName + LocalDate.now() + ".png");
+            File myImageFile = new File("C:\\Users\\Yuki\\Dropbox\\FinalProjectPhotos\\VolunteerPhotos", imageFileName + ".png");
             ImageIO.write(takenImage, "PNG", myImageFile);
         }
       }

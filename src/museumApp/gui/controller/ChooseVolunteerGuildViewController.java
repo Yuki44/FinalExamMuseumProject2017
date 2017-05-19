@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
@@ -21,7 +22,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import museumApp.be.Guild;
 import museumApp.be.Volunteer;
-import museumApp.be.VolunteerTime;
 import museumApp.gui.model.UserModel;
 
 public class ChooseVolunteerGuildViewController extends Controller implements Initializable
@@ -39,6 +39,10 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
     private TableColumn<Guild, String> guildTblColName;
     @FXML
     private TableColumn<Volunteer, String> volunteerTblColName;
+    @FXML
+    protected Label lblStep1;
+    @FXML
+    protected Label lblStep2;
 
     /**
      * Initializes the controller class.
@@ -113,7 +117,7 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
                 stage = (Stage) borderPane.getScene().getWindow();
                 URL location = this.getClass().getResource("/museumApp/gui/view/VolunteerRegisterHoursView.fxml");
                 FXMLLoader loader = new FXMLLoader(location);
-                
+
                 root = loader.load();
                 /** -------------------------------------------REFACTOR START-------------------------------------------. */
                 /* It should pass the value to the method in model of the next controller not to the controller directly */
@@ -160,5 +164,6 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
             System.err.println(ex);
         }
       }
+
     /** ----------------------------------------------------------------------------------------------------------------. */
   }

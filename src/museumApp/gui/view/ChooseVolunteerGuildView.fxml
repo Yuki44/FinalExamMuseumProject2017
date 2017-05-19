@@ -166,7 +166,7 @@
                      </rowConstraints>
                      <children>
                         <Pane prefHeight="144.0" prefWidth="200.0" />
-                        <Label fx:id="step1" alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="883.0" text="Step 1: Choose your Laug" textAlignment="CENTER">
+                        <Label fx:id="lblStep1" alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="883.0" text="Step 1: Choose your Laug" textAlignment="CENTER">
                            <font>
                               <Font name="Bodoni MT Bold" size="40.0" />
                            </font>
@@ -211,7 +211,7 @@
                      </rowConstraints>
                      <children>
                         <Pane prefHeight="144.0" prefWidth="200.0" />
-                        <Label fx:id="step2" alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="883.0" text="Step 2: Select your name" textAlignment="CENTER">
+                        <Label fx:id="lblStep2" alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="883.0" text="Step 2: Select your name" textAlignment="CENTER">
                            <font>
                               <Font name="Bodoni MT Bold" size="40.0" />
                            </font>
