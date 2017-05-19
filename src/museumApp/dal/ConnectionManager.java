@@ -30,6 +30,7 @@ public class ConnectionManager
         ds.setPortNumber(Integer.parseInt(props.getProperty("PORT")));
         ds.setUser(props.getProperty("USER"));
         ds.setPassword(props.getProperty("PASSWORD"));
+
       }
 
     /** ----------------------------------------------------------------------------------------------------. */

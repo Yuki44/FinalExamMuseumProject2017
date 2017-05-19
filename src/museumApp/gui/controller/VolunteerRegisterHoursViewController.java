@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -44,6 +45,18 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
     private Label lblVolunteerFullName;
     @FXML
     private Label lblJoinedDate;
+    @FXML
+    private ImageView next;
+    @FXML
+    private ImageView back;
+    @FXML
+    private ImageView volunteerImage;
+    @FXML
+    private Label memberSince;
+    @FXML
+    private Label howManyHoursSpend;
+    @FXML
+    private Label aproximateHours;
 
     public VolunteerRegisterHoursViewController() throws IOException, SQLException
       {
@@ -91,8 +104,7 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
         BorderPane bPane;
         try
         {
-            userModel.addTime(
-                    Date.valueOf(LocalDate.now()), Integer.parseInt(setHoursLabel.getText()), volunteer, guild);
+            userModel.addTime(Date.valueOf(LocalDate.now()), Integer.parseInt(setHoursLabel.getText()), volunteer, guild);
             bPane = FXMLLoader.load(getClass().getResource("/museumApp/gui/view/ThankYouSplash.fxml"));
             borderPane.getChildren().setAll(bPane);
             /** ------------------------------------------------------------------------------------------ */
@@ -128,4 +140,5 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
         }
 
       }
+
   }

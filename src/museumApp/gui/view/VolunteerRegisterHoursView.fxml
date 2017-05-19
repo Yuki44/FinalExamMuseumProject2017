@@ -160,7 +160,7 @@
                <children>
                   <Pane maxHeight="300.0" maxWidth="300.0">
                      <children>
-                        <ImageView cache="true" cacheHint="SCALE" fitHeight="199.0" fitWidth="230.0" layoutX="61.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="volunteerImage" cache="true" cacheHint="SCALE" fitHeight="199.0" fitWidth="230.0" layoutX="61.0" pickOnBounds="true" preserveRatio="true">
                            <viewport>
                               <Rectangle2D />
                            </viewport>

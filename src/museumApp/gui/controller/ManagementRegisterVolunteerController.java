@@ -44,7 +44,6 @@ import javax.imageio.ImageIO;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.be.Nationality;
-import museumApp.be.Volunteer;
 import museumApp.gui.model.UserModel;
 
 public class ManagementRegisterVolunteerController extends Controller implements Initializable
@@ -129,6 +128,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
       {
         initializeManagers();
         initializeGuilds();
+        initializeNationailities();
         lblWebcamOperation.setText("Webcam is closed");
         lblWebcamOperation.setStyle("-fx-text-fill: #a04124;");
       }
@@ -151,11 +151,12 @@ public class ManagementRegisterVolunteerController extends Controller implements
         managerTbl.setItems(userModel.getManagers());
         managerTblColFname.setCellValueFactory(manager -> manager.getValue().getFirstName());
         managerTblColLname.setCellValueFactory(manager -> manager.getValue().getLastName());
-       comboBoxAddGuildManager.setItems(userModel.getManagers());
-        comboBoxNationality.setItems(userModel.getNationalities());
-        comboBoxAddGuildManager.setCellFactory(new Callback<ListView<Manager>, ListCell<Manager>>() {
+        comboBoxAddGuildManager.setItems(userModel.getManagers());
+        comboBoxAddGuildManager.setCellFactory(new Callback<ListView<Manager>, ListCell<Manager>>()
+          {
             @Override
-            public ListCell<Manager> call(ListView<Manager> param) {
+            public ListCell<Manager> call(ListView<Manager> param)
+              {
                 return new ListCell<Manager>()
                   {
                     @Override
@@ -172,8 +173,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
                         }
                       }
                   };
-            }
-        });
+              }
+          });
 
       }
 
@@ -214,6 +215,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
     public void initializeNationailities()
       {
+        comboBoxNationality.setItems(userModel.getNationalities());
+
       }
 
     /**
@@ -338,7 +341,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String fullName = firstName + lastName;
         String phoneNumber = txtFieldAddVolunteerPhoneNum.getText().trim();
         String email = txtFieldAddVolunteerEmail.getText().trim();
-        
+
         if (!txtFieldAddVolunteerFName.getText().isEmpty() && !txtFieldAddVolunteerLName.getText().isEmpty())
         {
             File myImageFile = new File("C:\\Users\\Yuki\\Dropbox\\FinalProjectPhotos\\VolunteerPhotos", fullName + LocalDate.now() + ".png");
