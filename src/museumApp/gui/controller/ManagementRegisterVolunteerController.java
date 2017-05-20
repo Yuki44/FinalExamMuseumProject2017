@@ -27,8 +27,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
@@ -118,6 +120,42 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private BufferedImage webcamImage;
     private Dimension dimension = new Dimension(640, 480);
     BufferedImage takenImage;
+    @FXML
+    private Tab TbColumnFilterVolunteerId;
+    @FXML
+    private TextField txtLbFilterFName;
+    @FXML
+    private TextField txtLbFilterLName;
+    @FXML
+    private TextField txtLbFilterGuild;
+    @FXML
+    private TextField txtLbFilterFmTime;
+    @FXML
+    private TextField txtLbFilterToTime;
+    @FXML
+    private TextField txtLbFilterComment;
+    @FXML
+    private TableColumn<?, ?> tbViewVolunteerFilter;
+    @FXML
+    private TableColumn<?, ?> TbColumnFilterVolunteerFName;
+    @FXML
+    private TableColumn<?, ?> TbColumnFilterVolunteerLName;
+    @FXML
+    private TableColumn<?, ?> TbColumnFilterVolunteerGuild;
+       @FXML
+    private TableColumn<?, ?> TbColumnFilterVolunteerTel;
+    @FXML
+    private TableColumn<?, ?> TbColumnFilterVolunteerEmail;
+    @FXML
+    private TableColumn<?, ?> TbColumnFilterVolunteerComment;
+    @FXML
+    private TextField txtLbFilterHours;
+    @FXML
+    private TextField txtLbFilterTimeFName;
+    @FXML
+    private TextField txtLbFilterTimeLName;
+    @FXML
+    private TextField txtLbFilterTimeGuild;
 
     /** -------------------------------------------------------------------------------------------. */
     /**
@@ -154,6 +192,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         managerTblColLname.setCellValueFactory(manager -> manager.getValue().getLastName());
         comboBoxAddGuildManager.setItems(userModel.getManagers());
         comboBoxAddGuildManager.setCellFactory(new Callback<ListView<Manager>, ListCell<Manager>>()
+               
           {
             @Override
             public ListCell<Manager> call(ListView<Manager> param)
@@ -354,7 +393,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
        String fullName = firstName + lastName;
         String phoneNumber = txtFieldAddVolunteerPhoneNum.getText().trim();
         String email = txtFieldAddVolunteerEmail.getText().trim();
-     //   String date = regJoinedDatePicker.
+     //   Date date =Date.valueOf( regJoinedDatePicker.getValue());
         String nationality = comboBoxNationality.getSelectionModel().toString();
         userModel.addVolunteer(firstName,lastName,phoneNumber,email,nationality);
 
@@ -518,6 +557,23 @@ public class ManagementRegisterVolunteerController extends Controller implements
             System.err.println("Webcam hasn't been opened");
         }
       }
+
+    
+
+  
+    
+
+
+    @FXML
+    private void handleFilterVol(ActionEvent event) {
+    
+    }
+
+    @FXML
+    private void handleFilterTime(ActionEvent event) {
+
+    }
+
 
     /** -------------------------------------------------------------------------------------------. */
   }

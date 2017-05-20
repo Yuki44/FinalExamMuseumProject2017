@@ -34,7 +34,7 @@ public class AddData extends DatabaseManager
     public void addVolunteer(String firstName, String lastName, String phoneNumber, String email,String nationality) throws SQLException
       {
         {
-          String sql = "INSERT INTO volunteer(first_name, last_name,  phone_number,email,nationality) VALUES (?,?,?,?,?);";
+          String sql = "INSERT INTO volunteer(first_name, last_name,  phone_number,email,nationality,join_date) VALUES (?,?,?,?,?);";
           PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
 
             pstmt.setString(1, firstName);
@@ -42,6 +42,7 @@ public class AddData extends DatabaseManager
             pstmt.setString(3, phoneNumber);
             pstmt.setString(4, email);
            pstmt.setString(5, nationality);
+    //       pstmt.setDate(6,date);
             pstmt.execute();
         }
       }
