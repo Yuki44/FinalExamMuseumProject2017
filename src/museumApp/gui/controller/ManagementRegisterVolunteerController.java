@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -182,10 +183,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
         initializeManagers();
         initializeGuilds();
         initializeNationailities();
-        volunteerListViewColumns();
+        updateList();
         lblWebcamOperation.setText("Webcam is closed");
         lblWebcamOperation.setStyle("-fx-text-fill: #a04124;");
-        updateList();
       }
 
     public ManagementRegisterVolunteerController() throws IOException, SQLException
@@ -590,11 +590,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         allVolunteersList = new ArrayList<>();
         try
         {
-            List<Volunteer> listOfAllVolunteers = userModel.getVolunteers();
-            for (Volunteer vtr : listOfAllVolunteers)
-            {
-                allVolunteersList.addAll(userModel.getVolunteers());
-            }
+            allVolunteersList.addAll(userModel.getVolunteers());
         }
         catch (Exception ex)
         {
@@ -602,6 +598,13 @@ public class ManagementRegisterVolunteerController extends Controller implements
         }
         volunteerInfo = FXCollections.observableArrayList(allVolunteersList);
         volunteerListViewColumns();
+      }
+
+    private void volunteerListViewColumns()
+      {
+        volunteerTbl.setItems(volunteerInfo);
+        volunteerTblColFname.setCellValueFactory(volunteer -> volunteer.getValue().getFirstName());
+        volunteerTblColLname.setCellValueFactory(volunteer -> volunteer.getValue().getLastName());
       }
 
     @FXML
@@ -618,21 +621,23 @@ public class ManagementRegisterVolunteerController extends Controller implements
             else
             {
                 List<Volunteer> searchResults = new ArrayList<>();
-                for (Volunteer volunteer : allVolunteersList)
+                for (Volunteer vtrs : allVolunteersList)
                 {
-                    String volunteerFirstName = volunteer.getFirstName().getValue().toLowerCase();
-                    String volunteerLastName = volunteer.getLastName().getValue().toLowerCase();
-                    String volunteerNationality = volunteer.getNationality().getValue().toLowerCase();
-                    String volunteerPhoneNumber = volunteer.getPhoneNumber().getValue().toLowerCase();
-                    String volunteerAdress = volunteer.getAddress().getValue().toLowerCase();
-                    String volunteerZipcode = volunteer.getZipCode().getValue().toLowerCase();
-                    if (volunteerFirstName.contains(query.toLowerCase()) || volunteerLastName.contains(query.toLowerCase()))
-//                            || volunteerNationality.contains(query.toLowerCase())
-//                            || volunteerPhoneNumber.contains(query.toLowerCase())
-//                            || volunteerAdress.contains(query.toLowerCase())
-//                            || volunteerZipcode.contains(query.toLowerCase()))
+                    String volunteerFirstName = vtrs.getFirstNameAsString().toLowerCase();
+                    String volunteerLastName = vtrs.getLastNameAsString().toLowerCase();
+                    String volunteerEmail = vtrs.getEmailAsString().toLowerCase();
+                    String volunteerNationality = vtrs.getNationality().get().toLowerCase();
+                    String volunteerPhoneNumber = vtrs.getPhoneNumber().get().toLowerCase();
+                    String volunteerCity = vtrs.getCity().get().toLowerCase();
+                    String volunteerZipcode = vtrs.getZipCode().get().toLowerCase();
+                    if (volunteerFirstName.contains(query.toLowerCase()) || volunteerLastName.contains(query.toLowerCase())
+                            || volunteerEmail.contains(query.toLowerCase())
+                            || volunteerNationality.contains(query.toLowerCase())
+                            || volunteerPhoneNumber.contains(query.toLowerCase())
+                            || volunteerCity.contains(query.toLowerCase())
+                            || volunteerZipcode.contains(query.toLowerCase()))
                     {
-                        searchResults.add(volunteer);
+                        searchResults.add(vtrs);
                     }
 
                 }
@@ -642,16 +647,15 @@ public class ManagementRegisterVolunteerController extends Controller implements
         }
         catch (Exception ex)
         {
-            System.out.println(ex.getStackTrace());
+            System.out.println(ex.getCause());
         }
 
       }
 
-    private void volunteerListViewColumns()
+    @FXML
+    private void handleFocusOnSearch(Event event)
       {
-        volunteerTbl.setItems(volunteerInfo);
-        volunteerTblColFname.setCellValueFactory(volunteer -> volunteer.getValue().getFirstName());
-        volunteerTblColLname.setCellValueFactory(volunteer -> volunteer.getValue().getLastName());
+        txtFieldSearchText.requestFocus();
       }
 
     /** -------------------------------------------------------------------------------------------. */
