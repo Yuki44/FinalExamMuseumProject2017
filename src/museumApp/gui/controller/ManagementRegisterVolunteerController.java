@@ -632,7 +632,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
 //                            || volunteerAdress.contains(query.toLowerCase())
 //                            || volunteerZipcode.contains(query.toLowerCase()))
                     {
-                        searchResults.add(0, volunteer);
+                        searchResults.add(volunteer);
                     }
 
                 }
@@ -642,7 +642,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         }
         catch (Exception ex)
         {
-
+            System.out.println(ex.getStackTrace());
         }
 
       }
