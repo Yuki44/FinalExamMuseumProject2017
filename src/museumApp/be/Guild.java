@@ -69,6 +69,6 @@ public class Guild extends BusinessEntity
       {
         return managerId;
       }
-    
+
     /** -------------------------------------------------------------------------------------------. */
   }

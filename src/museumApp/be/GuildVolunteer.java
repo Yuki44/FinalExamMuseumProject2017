@@ -1,6 +1,6 @@
 package museumApp.be;
 
-public class GuildVolunteer 
+public class GuildVolunteer
   {
 
     private Guild guild;
@@ -12,14 +12,11 @@ public class GuildVolunteer
      * @param guild
      * @param volunteer
      */
-
     public GuildVolunteer(Guild guild, Volunteer volunteer)
       {
         this.guild = guild;
         this.volunteer = volunteer;
       }
-
-    
 
     /**
      * We get a Guild.
@@ -28,17 +25,19 @@ public class GuildVolunteer
      */
     public int getGuildID()
       {
-       return guild.getId();
-       
+        return guild.getId();
+
       }
 
-    public Guild getGuild() {
+    public Guild getGuild()
+      {
         return guild;
-    }
+      }
 
-    public Volunteer getVolunteer() {
+    public Volunteer getVolunteer()
+      {
         return volunteer;
-    }
+      }
 
     /**
      * We get a Volunteer.
@@ -48,7 +47,7 @@ public class GuildVolunteer
     public int getVolunteerId()
       {
         return volunteer.getId();
-       
+
       }
 
   }

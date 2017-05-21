@@ -36,7 +36,7 @@ public class LanguageSelectionViewController extends Controller implements Initi
       {
         /** ------------------------------------------------------------------------------------------ */
         FadeTransition fadeIn = new FadeTransition(Duration.seconds(1.5), borderPane);
-        fadeIn.setFromValue(0);
+        fadeIn.setFromValue(0.1);
         fadeIn.setToValue(1);
         fadeIn.setCycleCount(1);
         fadeIn.play(); //Plays the transition
@@ -86,11 +86,15 @@ public class LanguageSelectionViewController extends Controller implements Initi
             URL location = this.getClass().getResource("/museumApp/gui/view/ChooseVolunteerGuildView.fxml");
             FXMLLoader loader = new FXMLLoader(location);
             root = loader.load();
+            ChooseVolunteerGuildViewController chooseGuild = loader.getController();
+            chooseGuild.lblStep1.setText(bundle.getString("lblStep1"));
+            chooseGuild.lblStep2.setText(bundle.getString("lblStep2"));
+            chooseGuild.guildTblColName.setText(bundle.getString("guildTblColName"));
+            chooseGuild.volunteerTblColName.setText(bundle.getString("volunteerTblColName"));
+            chooseGuild.getLanguageBundle(bundle);
             Scene scene = new Scene(root);
-            stage.hide();
             stage.setScene(scene);
-            stage.show();
-            stage.centerOnScreen();
+            ResizeHelper.addResizeListener(stage);
         }
         catch (IOException ex)
         {
@@ -125,5 +129,6 @@ public class LanguageSelectionViewController extends Controller implements Initi
             System.err.println(ex);
         }
       }
+
     /** ----------------------------------------------------------------------------------------------------------------. */
   }

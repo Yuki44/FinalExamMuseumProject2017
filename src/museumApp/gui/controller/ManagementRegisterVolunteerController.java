@@ -11,9 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.embed.swing.SwingFXUtils;
@@ -43,7 +41,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import javax.imageio.ImageIO;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.be.Nationality;
@@ -142,7 +139,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private TableColumn<?, ?> TbColumnFilterVolunteerLName;
     @FXML
     private TableColumn<?, ?> TbColumnFilterVolunteerGuild;
-       @FXML
+    @FXML
     private TableColumn<?, ?> TbColumnFilterVolunteerTel;
     @FXML
     private TableColumn<?, ?> TbColumnFilterVolunteerEmail;
@@ -192,7 +189,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         managerTblColLname.setCellValueFactory(manager -> manager.getValue().getLastName());
         comboBoxAddGuildManager.setItems(userModel.getManagers());
         comboBoxAddGuildManager.setCellFactory(new Callback<ListView<Manager>, ListCell<Manager>>()
-               
+
           {
             @Override
             public ListCell<Manager> call(ListView<Manager> param)
@@ -256,7 +253,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
     public void initializeNationailities()
       {
         comboBoxNationality.setItems(userModel.getNationalities());
-
       }
 
     /**
@@ -390,18 +386,18 @@ public class ManagementRegisterVolunteerController extends Controller implements
       {
         String firstName = txtFieldAddVolunteerFName.getText().trim();
         String lastName = txtFieldAddVolunteerLName.getText().trim();
-       String fullName = firstName + lastName;
+        String fullName = firstName + lastName;
         String phoneNumber = txtFieldAddVolunteerPhoneNum.getText().trim();
         String email = txtFieldAddVolunteerEmail.getText().trim();
-     //   Date date =Date.valueOf( regJoinedDatePicker.getValue());
+        //   Date date =Date.valueOf( regJoinedDatePicker.getValue());
         String nationality = comboBoxNationality.getSelectionModel().toString();
-        userModel.addVolunteer(firstName,lastName,phoneNumber,email,nationality);
+        userModel.addVolunteer(firstName, lastName, phoneNumber, email, nationality);
 
-     //   if (!txtFieldAddVolunteerFName.getText().isEmpty() && !txtFieldAddVolunteerLName.getText().isEmpty())
-      //  {
-      //      File myImageFile = new File("C:\\Users\\Yuki\\Dropbox\\FinalProjectPhotos\\VolunteerPhotos", fullName + LocalDate.now() + ".png");
+        //   if (!txtFieldAddVolunteerFName.getText().isEmpty() && !txtFieldAddVolunteerLName.getText().isEmpty())
+        //  {
+        //      File myImageFile = new File("C:\\Users\\Yuki\\Dropbox\\FinalProjectPhotos\\VolunteerPhotos", fullName + LocalDate.now() + ".png");
         //    ImageIO.write(takenImage, "PNG", myImageFile);
-     //   }
+        //   }
       }
 
     /** -------------------------------------------------------------------------------------------. */
@@ -558,22 +554,17 @@ public class ManagementRegisterVolunteerController extends Controller implements
         }
       }
 
-    
+    @FXML
+    private void handleFilterVol(ActionEvent event)
+      {
 
-  
-    
-
+      }
 
     @FXML
-    private void handleFilterVol(ActionEvent event) {
-    
-    }
+    private void handleFilterTime(ActionEvent event)
+      {
 
-    @FXML
-    private void handleFilterTime(ActionEvent event) {
-
-    }
-
+      }
 
     /** -------------------------------------------------------------------------------------------. */
   }

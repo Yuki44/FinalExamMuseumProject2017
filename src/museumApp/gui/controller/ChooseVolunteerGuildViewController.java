@@ -36,13 +36,13 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
     @FXML
     private GridPane mainGridPane;
     @FXML
-    private TableColumn<Guild, String> guildTblColName;
+    public TableColumn<Guild, String> guildTblColName;
     @FXML
-    private TableColumn<Volunteer, String> volunteerTblColName;
+    public TableColumn<Volunteer, String> volunteerTblColName;
     @FXML
-    protected Label lblStep1;
+    public Label lblStep1;
     @FXML
-    protected Label lblStep2;
+    public Label lblStep2;
 
     /**
      * Initializes the controller class.
@@ -53,6 +53,7 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
+
         /**
          * Initializes the Guild listView.
          */
@@ -123,12 +124,18 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
                 /* It should pass the value to the method in model of the next controller not to the controller directly */
                 VolunteerRegisterHoursViewController vrhvc = loader.getController();
                 vrhvc.setVolunteer(volunteerSelected, guildSelected);
+
+                vrhvc.lblMemberSince.setText(bundle.getString("lblMemberSince"));
+                vrhvc.lblGuild.setText(bundle.getString("lblGuild"));
+                vrhvc.lblHowManyHoursSpend.setText(bundle.getString("lblHowManyHoursSpend"));
+                vrhvc.lblAproximateHours.setText(bundle.getString("lblAproximateHours"));
+                vrhvc.getLanguageBundle(bundle);
+
                 /** --------------------------------------------REFACTOR END-------------------------------------------. */
                 Scene scene = new Scene(root);
                 stage.hide();
                 stage.setScene(scene);
                 stage.show();
-                stage.centerOnScreen();
             }
         }
         catch (IOException ex)
@@ -163,6 +170,11 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
         {
             System.err.println(ex);
         }
+      }
+
+    void getLanguageBundle(ResourceBundle bundle)
+      {
+        this.bundle = bundle;
       }
 
     /** ----------------------------------------------------------------------------------------------------------------. */

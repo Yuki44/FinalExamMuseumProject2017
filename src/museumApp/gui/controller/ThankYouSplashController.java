@@ -32,9 +32,10 @@ public class ThankYouSplashController extends Controller implements Initializabl
     @FXML
     private GridPane mainGridPane;
     @FXML
-    protected Label lblThankYouFor;
+    public Label lblThankYouFor;
     @FXML
-    protected Label lblHaveANiceDay;
+    public Label lblHaveANiceDay;
+    VolunteerRegisterHoursViewController vhgs;
 
     /**
      * Initializes the controller class.

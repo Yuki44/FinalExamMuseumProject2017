@@ -52,13 +52,13 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
     @FXML
     private ImageView imgVolunteer;
     @FXML
-    protected Label lblGuild;
+    public Label lblGuild;
     @FXML
-    protected Label lblMemberSince;
+    public Label lblMemberSince;
     @FXML
-    protected Label lblHowManyHoursSpend;
+    public Label lblHowManyHoursSpend;
     @FXML
-    protected Label lblAproximateHours;
+    public Label lblAproximateHours;
 
     public VolunteerRegisterHoursViewController() throws IOException, SQLException
       {
@@ -103,15 +103,25 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
     @FXML
     private void goToFinalView(MouseEvent event)
       {
-        BorderPane bPane;
+//        BorderPane bPane;
         try
         {
             userModel.addTime(Date.valueOf(LocalDate.now()), Integer.parseInt(setHoursLabel.getText()), volunteer, guild);
-            bPane = FXMLLoader.load(getClass().getResource("/museumApp/gui/view/ThankYouSplash.fxml"));
-            borderPane.getChildren().setAll(bPane);
+
+            Stage stage;
+            Parent root;
+            stage = (Stage) borderPane.getScene().getWindow();
+            URL location = this.getClass().getResource("/museumApp/gui/view/ThankYouSplash.fxml");
+            FXMLLoader loader = new FXMLLoader(location);
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            ThankYouSplashController tys = loader.getController();
+            tys.lblThankYouFor.setText(bundle.getString("lblThankYouFor"));
+            tys.lblHaveANiceDay.setText(bundle.getString("lblHaveANiceDay"));
             /** ------------------------------------------------------------------------------------------ */
-            FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), bPane);
-            fadeIn.setFromValue(0);
+            FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), root);
+            fadeIn.setFromValue(0.1);
             fadeIn.setToValue(1);
             fadeIn.setCycleCount(1);
             fadeIn.play(); //Plays the transition
@@ -141,6 +151,11 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
             lblJoinedDate.setText(volunteer.getRegisteredDateAsString());
         }
 
+      }
+
+    void getLanguageBundle(ResourceBundle bundle)
+      {
+        this.bundle = bundle;
       }
 
   }
