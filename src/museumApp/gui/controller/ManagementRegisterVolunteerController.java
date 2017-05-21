@@ -647,7 +647,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         }
         catch (Exception ex)
         {
-            System.out.println(ex.getCause());
+            System.out.println(ex.getMessage());
         }
 
       }
