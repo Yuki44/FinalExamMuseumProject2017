@@ -495,6 +495,59 @@
                   </AnchorPane>
                </content>
             </Tab>
+            <Tab text="Carlos Filter">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="25.0" layoutY="28.0" prefHeight="329.0" prefWidth="509.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="28.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="109.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" minWidth="10.0" prefWidth="341.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <Label textFill="RED">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <HBox GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <HBox alignment="BOTTOM_RIGHT" prefHeight="18.0" prefWidth="393.0" GridPane.columnIndex="1" />
+                           </children>
+                        </GridPane>
+                        <ButtonBar layoutX="315.0" layoutY="363.0" prefHeight="40.0" prefWidth="179.0" />
+                        <TableView fx:id="volunteerTbl" layoutX="622.0" layoutY="89.0" prefHeight="314.0" prefWidth="210.0">
+                           <columns>
+                              <TableColumn fx:id="volunteerTblColFname" prefWidth="105.0" text="First name" />
+                              <TableColumn fx:id="volunteerTblColLname" prefWidth="104.0" text="Last name" />
+                           </columns>
+                        </TableView>
+                        <JFXTextField fx:id="txtFieldSearchText" layoutX="622.0" layoutY="36.0" onKeyReleased="#handleSearchOnInput" promptText="Search">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </JFXTextField>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
          </tabs>
       </JFXTabPane>
    </center>

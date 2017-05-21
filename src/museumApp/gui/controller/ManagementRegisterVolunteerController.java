@@ -12,8 +12,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,6 +36,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
@@ -41,9 +46,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javax.imageio.ImageIO;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.be.Nationality;
+import museumApp.be.Volunteer;
 import museumApp.gui.model.UserModel;
 
 public class ManagementRegisterVolunteerController extends Controller implements Initializable
@@ -67,10 +74,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private JFXTextField addTUNameTxtF;
     @FXML
     private JFXTextField addTPassTxtF;
-    @FXML
-    private JFXButton addManagerBTN;
-    @FXML
-    private JFXButton deleteManagerBTN;
     @FXML
     private TableView<Manager> managerTbl;
     @FXML
@@ -153,6 +156,20 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private TextField txtLbFilterTimeLName;
     @FXML
     private TextField txtLbFilterTimeGuild;
+    @FXML
+    private JFXButton addManagerBTN;
+    @FXML
+    private JFXButton deleteManagerBTN;
+    @FXML
+    private TableView<Volunteer> volunteerTbl;
+    @FXML
+    private TableColumn<Volunteer, String> volunteerTblColFname;
+    @FXML
+    private TableColumn<Volunteer, String> volunteerTblColLname;
+    @FXML
+    private JFXTextField txtFieldSearchText;
+    List<Volunteer> allVolunteersList;
+    ObservableList<Volunteer> volunteerInfo;
 
     /** -------------------------------------------------------------------------------------------. */
     /**
@@ -165,8 +182,10 @@ public class ManagementRegisterVolunteerController extends Controller implements
         initializeManagers();
         initializeGuilds();
         initializeNationailities();
+        volunteerListViewColumns();
         lblWebcamOperation.setText("Webcam is closed");
         lblWebcamOperation.setStyle("-fx-text-fill: #a04124;");
+        updateList();
       }
 
     public ManagementRegisterVolunteerController() throws IOException, SQLException
@@ -387,17 +406,17 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String firstName = txtFieldAddVolunteerFName.getText().trim();
         String lastName = txtFieldAddVolunteerLName.getText().trim();
         String fullName = firstName + lastName;
-        String phoneNumber = txtFieldAddVolunteerPhoneNum.getText().trim();
-        String email = txtFieldAddVolunteerEmail.getText().trim();
-        //   Date date =Date.valueOf( regJoinedDatePicker.getValue());
-        String nationality = comboBoxNationality.getSelectionModel().toString();
-        userModel.addVolunteer(firstName, lastName, phoneNumber, email, nationality);
+//        String phoneNumber = txtFieldAddVolunteerPhoneNum.getText().trim();
+//        String email = txtFieldAddVolunteerEmail.getText().trim();
+//        //   Date date =Date.valueOf( regJoinedDatePicker.getValue());
+//        String nationality = comboBoxNationality.getSelectionModel().toString();
+//        userModel.addVolunteer(firstName, lastName, phoneNumber, email, nationality);
 
-        //   if (!txtFieldAddVolunteerFName.getText().isEmpty() && !txtFieldAddVolunteerLName.getText().isEmpty())
-        //  {
-        //      File myImageFile = new File("C:\\Users\\Yuki\\Dropbox\\FinalProjectPhotos\\VolunteerPhotos", fullName + LocalDate.now() + ".png");
-        //    ImageIO.write(takenImage, "PNG", myImageFile);
-        //   }
+        if (!txtFieldAddVolunteerFName.getText().isEmpty() && !txtFieldAddVolunteerLName.getText().isEmpty())
+        {
+            File myImageFile = new File("C:\\Users\\Yuki\\Dropbox\\FinalProjectPhotos\\VolunteerPhotos", fullName + LocalDate.now() + "_" + System.currentTimeMillis() + ".png");
+            ImageIO.write(takenImage, "PNG", myImageFile);
+        }
       }
 
     /** -------------------------------------------------------------------------------------------. */
@@ -564,6 +583,75 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private void handleFilterTime(ActionEvent event)
       {
 
+      }
+
+    public void updateList()
+      {
+        allVolunteersList = new ArrayList<>();
+        try
+        {
+            List<Volunteer> listOfAllVolunteers = userModel.getVolunteers();
+            for (Volunteer vtr : listOfAllVolunteers)
+            {
+                allVolunteersList.addAll(userModel.getVolunteers());
+            }
+        }
+        catch (Exception ex)
+        {
+            System.err.println(ex);
+        }
+        volunteerInfo = FXCollections.observableArrayList(allVolunteersList);
+        volunteerListViewColumns();
+      }
+
+    @FXML
+    private void handleSearchOnInput(KeyEvent event)
+      {
+        try
+        {
+            String query = txtFieldSearchText.getText().trim();
+            if (query.isEmpty())
+            {
+                volunteerInfo.clear();
+                volunteerInfo.addAll(allVolunteersList);
+            }
+            else
+            {
+                List<Volunteer> searchResults = new ArrayList<>();
+                for (Volunteer volunteer : allVolunteersList)
+                {
+                    String volunteerFirstName = volunteer.getFirstName().getValue().toLowerCase();
+                    String volunteerLastName = volunteer.getLastName().getValue().toLowerCase();
+                    String volunteerNationality = volunteer.getNationality().getValue().toLowerCase();
+                    String volunteerPhoneNumber = volunteer.getPhoneNumber().getValue().toLowerCase();
+                    String volunteerAdress = volunteer.getAddress().getValue().toLowerCase();
+                    String volunteerZipcode = volunteer.getZipCode().getValue().toLowerCase();
+                    if (volunteerFirstName.contains(query.toLowerCase()) || volunteerLastName.contains(query.toLowerCase()))
+//                            || volunteerNationality.contains(query.toLowerCase())
+//                            || volunteerPhoneNumber.contains(query.toLowerCase())
+//                            || volunteerAdress.contains(query.toLowerCase())
+//                            || volunteerZipcode.contains(query.toLowerCase()))
+                    {
+                        searchResults.add(0, volunteer);
+                    }
+
+                }
+                volunteerInfo.clear();
+                volunteerInfo.addAll(searchResults);
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
+
+      }
+
+    private void volunteerListViewColumns()
+      {
+        volunteerTbl.setItems(volunteerInfo);
+        volunteerTblColFname.setCellValueFactory(volunteer -> volunteer.getValue().getFirstName());
+        volunteerTblColLname.setCellValueFactory(volunteer -> volunteer.getValue().getLastName());
       }
 
     /** -------------------------------------------------------------------------------------------. */

@@ -14,7 +14,6 @@ import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
 import museumApp.bll.MuseumManager;
 import museumApp.bll.TimeRegistrationManager;
-import museumApp.dal.GetData;
 
 public class UserModel extends Model
   {
@@ -85,6 +84,11 @@ public class UserModel extends Model
         return volunteers;
       }
 
+    public void setVolunteers(ObservableList<Volunteer> volunteers)
+      {
+        this.volunteers = volunteers;
+      }
+
     public ObservableList<Administrator> getAdministrators()
       {
         return admins;
@@ -108,10 +112,10 @@ public class UserModel extends Model
       }
 
     /** --------------------------------VOLUNTEER--------------------------------------------------. */
-    public void addVolunteer(String firstName, String lastName, String phoneNumber,String email,String nationality) throws SQLException
+    public void addVolunteer(String firstName, String lastName, String phoneNumber, String email, String nationality) throws SQLException
       {
-     
-        museumManager.addVolunteer(firstName,lastName,phoneNumber,email,nationality);
+
+        museumManager.addVolunteer(firstName, lastName, phoneNumber, email, nationality);
 
       }
 
