@@ -1,6 +1,5 @@
 package museumApp.dal;
 
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -12,10 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.ObservableList;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
-import museumApp.be.GuildVolunteer;
 import museumApp.be.Manager;
 import museumApp.be.Nationality;
 import museumApp.be.Volunteer;
@@ -279,7 +276,7 @@ public class GetData extends DatabaseManager
         String lastName = rs.getString("last_name");
         String email = rs.getString("email");
         String phoneNumber = rs.getString("phone_number");
-        Date birthDate = rs.getDate("date_of_birth");
+        String birthDate = rs.getString("date_of_birth");
         String nationality = rs.getString("nationality");
         Date registeredDate = rs.getDate("join_date");
         String comment = rs.getString("comment");
@@ -330,7 +327,7 @@ public class GetData extends DatabaseManager
 
 //    private GuildVolunteer getOneGuildVolunteer(ResultSet rs) throws SQLException
 //      {
-//        
+//
 //      }
     /**
      * TO REFACTOR

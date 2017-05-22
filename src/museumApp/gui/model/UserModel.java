@@ -114,7 +114,7 @@ public class UserModel extends Model
     /** --------------------------------VOLUNTEER--------------------------------------------------. */
     public void addVolunteer(Volunteer vtr) throws SQLException
       {
-
+        volunteers.add(vtr);
         museumManager.addVolunteer(vtr);
 
       }

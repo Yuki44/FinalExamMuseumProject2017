@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -51,12 +52,10 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
-import javax.imageio.ImageIO;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.be.Nationality;
 import museumApp.be.Volunteer;
-import museumApp.dal.DropboxConnection;
 import museumApp.gui.model.UserModel;
 
 public class ManagementRegisterVolunteerController extends Controller implements Initializable
@@ -193,6 +192,12 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private TextArea txtAreaAddVolunteerComment;
     @FXML
     private GridPane gridPaneRegVtr;
+    @FXML
+    private Label lblAddVtrSuccess;
+    @FXML
+    private Label lblFieldsRequired;
+    @FXML
+    private Label lblFieldRequiredStar;
 
     /** -------------------------------------------------------------------------------------------. */
     /**
@@ -209,6 +214,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
         lblWebcamOperation.setText("Webcam is closed");
         lblWebcamOperation.setStyle("-fx-text-fill: #a04124;");
         txtFieldAddVolunteerFName.requestFocus();
+        lblFieldsRequired.setText("");
+        lblFieldRequiredStar.setText("");
       }
 
     public ManagementRegisterVolunteerController() throws IOException, SQLException
@@ -373,6 +380,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         Guild gd = new Guild(0, guildName, manager);
         userModel.addGuild(gd);
         txtFieldAddGuildName.clear();
+
       }
 
     /**
@@ -423,23 +431,67 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private void handleAddVolunteer(ActionEvent event) throws IOException, SQLException
       {
-        String firstName = txtFieldAddVolunteerFName.getText().trim();
-        String lastName = txtFieldAddVolunteerLName.getText().trim();
-        String fullName = firstName + lastName;
-        String phoneNumber = txtFieldAddVolunteerPhoneNum.getText().trim();
-        String email = txtFieldAddVolunteerEmail.getText().trim();
-        LocalDate date = regJoinedDatePicker.getValue();
-        String nationality = comboBoxNationality.getSelectionModel().getSelectedItem().getCountryAsString();
-
-        if (!txtFieldAddVolunteerFName.getText().isEmpty() && !txtFieldAddVolunteerLName.getText().isEmpty())
+        if (!txtFieldAddVolunteerFName.getText().isEmpty() && !txtFieldAddVolunteerLName.getText().isEmpty()
+                && !comboBoxNationality.getSelectionModel().getSelectedItem().getCountryAsString().isEmpty()
+                && !regJoinedDatePicker.getValue().toString().isEmpty())
         {
-            DropboxConnection dbc = new DropboxConnection();
-            String imageName = fullName + LocalDate.now() + "_" + System.currentTimeMillis() + ".png";
-            myImageFile = new File(dbc.getVolunteerImgFilePath(), imageName);
-            ImageIO.write(takenImage, "PNG", myImageFile);
+            String firstName = txtFieldAddVolunteerFName.getText().trim();
+            String lastName = txtFieldAddVolunteerLName.getText().trim();
+            String fullName = firstName + lastName;
+            String phoneNumber = txtFieldAddVolunteerPhoneNum.getText().trim();
+            String email = txtFieldAddVolunteerEmail.getText().trim();
+            LocalDate localDate = regJoinedDatePicker.getValue();
+            Date registeredDate = java.sql.Date.valueOf(localDate);
+            String nationality = comboBoxNationality.getSelectionModel().getSelectedItem().getCountryAsString();
+            String city = txtFieldAddVolunteerCity.getText().trim();
+            String address = txtFieldAddVolunteerAddress.getText().trim();
+            String birthDate = txtFieldAddVolunteerBirthdate.getText().trim();
+            String zipCode = txtFieldAddVolunteerZipcode.getText().trim();
+            String comment = txtAreaAddVolunteerComment.getText().trim();
+            String country = comboBoxNationality.getSelectionModel().getSelectedItem().getCountryAsString();
+            Volunteer vtr = new Volunteer(0, firstName, lastName, birthDate, phoneNumber, email,
+                    nationality, registeredDate, comment, address, city, zipCode, country);
+            userModel.addVolunteer(vtr);
+            lblFieldsRequired.setText("");
+            lblFieldRequiredStar.setText("");
+//            DropboxConnection dbc = new DropboxConnection();
+//            String imageName = fullName + LocalDate.now() + "_" + System.currentTimeMillis() + ".png";
+//            myImageFile = new File(dbc.getVolunteerImgFilePath(), imageName);
+//            ImageIO.write(takenImage, "PNG", myImageFile);
+            updateList();
+            lblAddVtrSuccess.setText(firstName + " " + lastName + " saved!");
+
+            clearFields();
         }
-//        Volunteer vtr = new Volunteer(0, firstName, lastName, birthDate, phoneNumber, email,
-//                nationality, registeredDate, comment, address, city, zipCode, country);
+        else
+        {
+            lblFieldsRequired.setText("Fields required:");
+            lblFieldRequiredStar.setText("*");
+        }
+
+      }
+
+    public void clearFields()
+      {
+        txtFieldAddVolunteerFName.clear();
+        txtFieldAddVolunteerLName.clear();
+        txtFieldAddVolunteerPhoneNum.clear();
+        txtFieldAddVolunteerEmail.clear();
+        regJoinedDatePicker.setValue(null);
+        comboBoxNationality.getSelectionModel().clearSelection();
+        txtFieldAddVolunteerCity.clear();
+        txtFieldAddVolunteerAddress.clear();
+        txtFieldAddVolunteerBirthdate.clear();
+        txtFieldAddVolunteerZipcode.clear();
+        txtAreaAddVolunteerComment.clear();
+        comboBoxNationality.getSelectionModel().clearSelection();
+        /** ------------------------------------------------------------------------------------------ */
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(4), lblAddVtrSuccess);
+        fadeOut.setFromValue(1);
+        fadeOut.setToValue(0);
+        fadeOut.setCycleCount(1);
+        fadeOut.play(); //Plays the transition
+        /** ------------------------------------------------------------------------------------------ */
       }
 
     @FXML

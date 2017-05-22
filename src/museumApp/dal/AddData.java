@@ -32,22 +32,24 @@ public class AddData extends DatabaseManager
     public void addVolunteer(Volunteer vtr) throws SQLException
       {
         {
-            String sql = "INSERT INTO volunteer(first_name, last_name, date_of_birth,  phone_number,nationality,email,join_date, photo, comment, address, city, zip_code, country) VALUES (?,?,?,?,?);";
+            String sql = "INSERT INTO volunteer(first_name, last_name, date_of_birth,  "
+                    + "phone_number,nationality,email,join_date, comment, "
+                    + "address, city, zip_code, country) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
             PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
 
             pstmt.setString(1, vtr.getFirstNameAsString());
             pstmt.setString(2, vtr.getLastNameAsString());
-            pstmt.setDate(3, vtr.getBirthDate());
+            pstmt.setString(3, vtr.getBirthDateAString());
             pstmt.setString(4, vtr.getPhoneNumberAsString());
             pstmt.setString(5, vtr.getNationalityAsString());
             pstmt.setString(6, vtr.getEmailAsString());
             pstmt.setDate(7, vtr.getRegisteredDate());
 //            pstmt.setString(8, vtr.getPhoto());
-            pstmt.setString(9, vtr.getCommentAsString());
-            pstmt.setString(10, vtr.getAddressAsString());
-            pstmt.setString(11, vtr.getCityAsString());
-            pstmt.setString(12, vtr.getZipCodeAsString());
-            pstmt.setString(13, vtr.getCountryAsString());
+            pstmt.setString(8, vtr.getCommentAsString());
+            pstmt.setString(9, vtr.getAddressAsString());
+            pstmt.setString(10, vtr.getCityAsString());
+            pstmt.setString(11, vtr.getZipCodeAsString());
+            pstmt.setString(12, vtr.getCountryAsString());
 
             pstmt.execute();
         }

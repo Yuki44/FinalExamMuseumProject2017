@@ -88,6 +88,12 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
             URL location = this.getClass().getResource("/museumApp/gui/view/ChooseVolunteerGuildView.fxml");
             FXMLLoader loader = new FXMLLoader(location);
             root = loader.load();
+            ChooseVolunteerGuildViewController chooseGuild = loader.getController();
+            chooseGuild.lblStep1.setText(bundle.getString("lblStep1"));
+            chooseGuild.lblStep2.setText(bundle.getString("lblStep2"));
+            chooseGuild.guildTblColName.setText(bundle.getString("guildTblColName"));
+            chooseGuild.volunteerTblColName.setText(bundle.getString("volunteerTblColName"));
+            chooseGuild.getLanguageBundle(bundle);
             Scene scene = new Scene(root);
             stage.hide();
             stage.setScene(scene);

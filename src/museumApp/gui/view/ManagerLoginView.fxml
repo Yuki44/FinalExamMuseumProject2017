@@ -146,9 +146,9 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </JFXTextField>
-                  <JFXPasswordField fx:id="txtPassword" focusColor="#757575" labelFloat="true" maxWidth="327.0" minWidth="304.0" onKeyPressed="#handleGoToLogin" prefHeight="61.0" prefWidth="327.0" promptText="Password">
+                  <JFXPasswordField fx:id="txtPassword" focusColor="#757575" labelFloat="true" minWidth="304.0" onKeyPressed="#handleGoToLogin" prefHeight="38.0" promptText="Password">
                      <font>
-                        <Font size="25.0" />
+                        <Font name="Rockwell" size="25.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="TEXT" />

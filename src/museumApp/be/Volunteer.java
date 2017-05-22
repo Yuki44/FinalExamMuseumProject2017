@@ -11,14 +11,14 @@ public class Volunteer extends User
     protected StringProperty nationality;
     protected StringProperty phoneNumber;
     protected Date registeredDate;
-    protected Date birthDate;
+    protected StringProperty birthDate;
     protected StringProperty address;
     protected StringProperty city;
     protected StringProperty zipCode;
     protected StringProperty country;
     protected StringProperty comment;
 
-    public Volunteer(int id, String firstName, String lastName, Date birthDate, String phoneNumber, String email,
+    public Volunteer(int id, String firstName, String lastName, String birthDate, String phoneNumber, String email,
             String nationality, Date registeredDate, String comment,
             String address, String city, String zipCode, String country)
       {
@@ -26,8 +26,8 @@ public class Volunteer extends User
         this.nationality = new SimpleStringProperty(nationality);
         this.phoneNumber = new SimpleStringProperty(phoneNumber);
         this.registeredDate = registeredDate;
-        this.birthDate = birthDate;
-        this.comment = new SimpleStringProperty();
+        this.birthDate = new SimpleStringProperty(birthDate);
+        this.comment = new SimpleStringProperty(comment);
         this.address = new SimpleStringProperty(address);
         this.city = new SimpleStringProperty(city);
         this.zipCode = new SimpleStringProperty(zipCode);
@@ -122,9 +122,14 @@ public class Volunteer extends User
      *
      * @return
      */
-    public Date getBirthDate()
+    public StringProperty getBirthDate()
       {
         return birthDate;
+      }
+
+    public String getBirthDateAString()
+      {
+        return birthDate.get();
       }
 
     /** -----------------------------ADDRESS----------------------------------------------. */
