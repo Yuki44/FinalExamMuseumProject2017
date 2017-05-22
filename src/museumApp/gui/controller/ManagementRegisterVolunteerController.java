@@ -242,7 +242,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
          */
         tblGuild.setItems(userModel.getGuilds());
         tblColGuildName.setCellValueFactory(guild -> guild.getValue().getName());
-//        tblColGuildManager.setCellValueFactory(manager -> manager.getValue());
+        tblColGuildManager.setCellValueFactory(guild -> guild.getValue().getManager().getFullName());
         comboBoxFirstGuildSelection.setItems(userModel.getGuilds());
         comboBoxFirstGuildSelection.setCellFactory(new Callback<ListView<Guild>, ListCell<Guild>>()
           {
@@ -328,11 +328,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private void handleRemoveManager(ActionEvent event) throws SQLException
       {
-        String fName = addTFNameTxtF.getText().trim();
-        String lName = addTLNameTxtF.getText().trim();
-        String uName = addTUNameTxtF.getText().trim();
-        String password = addTPassTxtF.getText().trim();
-        userModel.removeManager(fName, lName, uName, password);
+        Manager selectedManager = managerTbl.getSelectionModel().getSelectedItem();
+        userModel.removeManager(selectedManager);
         addTFNameTxtF.clear();
         addTLNameTxtF.clear();
         addTUNameTxtF.clear();
@@ -349,8 +346,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private void handleAddingGuild(ActionEvent event) throws SQLException
       {
         String guildName = txtFieldAddGuildName.getText().trim();
-        int managerName = comboBoxAddGuildManager.getSelectionModel().getSelectedItem().getId();
-        Guild gd = new Guild(0, guildName, managerName);
+        Manager manager = comboBoxAddGuildManager.getSelectionModel().getSelectedItem();
+        Guild gd = new Guild(0, guildName, manager);
         userModel.addGuild(gd);
         txtFieldAddGuildName.clear();
       }
@@ -363,8 +360,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private void handleRemoveGuild(ActionEvent event) throws SQLException
       {
-        String guildName = txtFieldAddGuildName.getText().trim();
-        userModel.removeGuild(guildName);
+        Guild selectedGuild = tblGuild.getSelectionModel().getSelectedItem();
+        userModel.removeGuild(selectedGuild);
         txtFieldAddGuildName.clear();
       }
 
@@ -414,7 +411,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
         if (!txtFieldAddVolunteerFName.getText().isEmpty() && !txtFieldAddVolunteerLName.getText().isEmpty())
         {
-            File myImageFile = new File("C:\\Users\\Yuki\\Dropbox\\FinalProjectPhotos\\VolunteerPhotos", fullName + LocalDate.now() + "_" + System.currentTimeMillis() + ".png");
+            File myImageFile = new File("/Images/", fullName + LocalDate.now() + "_" + System.currentTimeMillis() + ".png");
             ImageIO.write(takenImage, "PNG", myImageFile);
         }
       }

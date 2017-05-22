@@ -7,28 +7,17 @@ public class Guild extends BusinessEntity
   {
 
     protected StringProperty name;
-    protected int managerId;
     protected Manager manager;
 
     /** ----------------------------TO DO REFACTOR BEGINNING---------------------------------------------. */
     /**
      * 1st Constructor.
      */
-    public Guild(int id, String name, int managerId)
+    public Guild(int id, String name, Manager manager)
       {
         super(id);
         this.name = new SimpleStringProperty(name);
-        this.managerId = managerId;
-      }
-
-    /**
-     * 2nd Constructor.
-     */
-    public Guild(String id, String name, String managerId)
-      {
-        super(Integer.parseInt(id));
-        this.name = new SimpleStringProperty(name);
-        this.managerId = Integer.parseInt(managerId);
+        this.manager = manager;
       }
 
     /** ------------------------------------TO DO REFACTOR END---------------------------------------------. */
@@ -61,13 +50,13 @@ public class Guild extends BusinessEntity
 
     /** ----------------------------------GUILD MANAGER----------------------------------------------. */
     /**
-     * We get GUILD managerId
+     * We get GUILD manager
      *
      * @return
      */
-    public int getManagerId()
+    public Manager getManager()
       {
-        return managerId;
+        return manager;
       }
 
     /** -------------------------------------------------------------------------------------------. */

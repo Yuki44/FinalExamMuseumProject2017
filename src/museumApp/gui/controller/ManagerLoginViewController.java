@@ -133,8 +133,7 @@ public class ManagerLoginViewController extends Controller implements Initializa
 
             if (loginState == loggedIn)
             {
-                try
-                {
+                
                     Stage stage;
                     Parent root;
                     URL location;
@@ -149,11 +148,7 @@ public class ManagerLoginViewController extends Controller implements Initializa
                     stage.setScene(scene);
                     stage.show();
                     stage.centerOnScreen();
-                }
-                catch (IOException ex)
-                {
-                    System.err.println(ex);
-                }
+                
             }
             if (loginState != loggedIn && employee == null)
             {

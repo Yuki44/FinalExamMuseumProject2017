@@ -14,7 +14,7 @@ import museumApp.be.Volunteer;
  */
 public interface Criteria {
     
-   public List<Volunteer> meetCriteria(List<Volunteer> volunteer);
+   public List<Volunteer> meetCriteria(List<Volunteer> volunteer, String criteria);
 
     
 }

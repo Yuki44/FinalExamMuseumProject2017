@@ -236,14 +236,14 @@ public class MuseumManager
      * @param mg
      * @throws SQLException
      */
-    public void removeManager(String fName, String lName, String uName, String password) throws SQLException
+    public void removeManager(Manager manager) throws SQLException
       {
-        removeDbMgr.removeManager(fName, lName, uName, password);
+        removeDbMgr.removeManager(manager);
       }
 
-    public void removeGuild(String guildName) throws SQLException
+    public void removeGuild(Guild guild) throws SQLException
       {
-        removeDbMgr.removeGuild(guildName);
+        removeDbMgr.removeGuild(guild);
       }
 
     public List<Nationality> getNationality() throws SQLException

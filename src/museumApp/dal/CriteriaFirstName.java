@@ -16,19 +16,24 @@ import museumApp.be.Volunteer;
  *
  * @author min
  */
-public class CriteriaFirstName implements Criteria {
-        @Override
-    public List<Volunteer> meetCriteria(List<Volunteer> volunteer) {
-        GetData getData;
-            try {
-                getData = new GetData();
-            } catch (IOException ex) {
-                Logger.getLogger(CriteriaFirstName.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-   //   return getData.getVolunteersByFirstName(firstName);
-   return volunteer;
-    }
+public class CriteriaFirstName implements Criteria
+  {
 
-    
-}
+    @Override
+    public List<Volunteer> meetCriteria(List<Volunteer> volunteer, String criteria)
+      {
+        GetData getData;
+        try
+        {
+            getData = new GetData();
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(CriteriaFirstName.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //   return getData.getVolunteersByFirstName(firstName);
+        return volunteer;
+      }
+
+  }

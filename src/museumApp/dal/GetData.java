@@ -60,18 +60,17 @@ public class GetData extends DatabaseManager
         }
       }
 
-     public List<Volunteer> getVolunteersByFirstName(String firstName) throws SQLException
+    public List<Volunteer> getVolunteersByFirstName(String firstName) throws SQLException
       {
         List<Volunteer> volunteersByFirstName = new ArrayList<>();
 
-       
-         try (Connection con = connectionManager.getConnection())
+        try (Connection con = connectionManager.getConnection())
         {
             String sql = "SELECT * FROM volunteer WHERE first_name = ?";
             PreparedStatement pstmt = con.prepareStatement(sql);
             pstmt.setString(1, firstName);
             ResultSet rs = pstmt.executeQuery();
-       
+
             while (rs.next())
             {
                 volunteersByFirstName.add(getOneVolunteer(rs));
@@ -79,18 +78,18 @@ public class GetData extends DatabaseManager
             return volunteersByFirstName;
         }
       }
-     public List<Volunteer> getVolunteersByLastName(String lastName) throws SQLException
+
+    public List<Volunteer> getVolunteersByLastName(String lastName) throws SQLException
       {
         List<Volunteer> volunteersByLastName = new ArrayList<>();
 
-       
-         try (Connection con = connectionManager.getConnection())
+        try (Connection con = connectionManager.getConnection())
         {
             String sql = "SELECT * FROM volunteer WHERE first_name = ?";
             PreparedStatement pstmt = con.prepareStatement(sql);
             pstmt.setString(1, lastName);
             ResultSet rs = pstmt.executeQuery();
-       
+
             while (rs.next())
             {
                 volunteersByLastName.add(getOneVolunteer(rs));
@@ -98,18 +97,18 @@ public class GetData extends DatabaseManager
             return volunteersByLastName;
         }
       }
-     public List<Volunteer> getVolunteersByComment(String comment) throws SQLException
+
+    public List<Volunteer> getVolunteersByComment(String comment) throws SQLException
       {
         List<Volunteer> volunteersByComment = new ArrayList<>();
 
-       
-         try (Connection con = connectionManager.getConnection())
+        try (Connection con = connectionManager.getConnection())
         {
             String sql = "SELECT * FROM volunteer WHERE comment like '%comment%'";
             PreparedStatement pstmt = con.prepareStatement(sql);
             pstmt.setString(1, comment);
             ResultSet rs = pstmt.executeQuery();
-       
+
             while (rs.next())
             {
                 volunteersByComment.add(getOneVolunteer(rs));
@@ -117,6 +116,7 @@ public class GetData extends DatabaseManager
             return volunteersByComment;
         }
       }
+
     /**
      * Selects the managers in the database, through a SELECT statement.
      *
@@ -173,7 +173,7 @@ public class GetData extends DatabaseManager
       {
         List<Guild> guild = new ArrayList<>();
 
-        String sql = "SELECT * FROM guild";
+        String sql = "SELECT * FROM guild g INNER JOIN employee e ON g.manager_id = e.employee_id";
         try (Connection con = connectionManager.getConnection())
         {
             Statement st = con.createStatement();
@@ -230,8 +230,16 @@ public class GetData extends DatabaseManager
         {
             int id = rs.getInt("guild_id");
             String guildName = rs.getString("name");
+
             int manager_id = rs.getInt("manager_id");
-            return new Guild(id, guildName, manager_id);
+            String firstName = rs.getString("first_name");
+            String lastName = rs.getString("last_name");
+            String email = rs.getString("email");
+            String userName = rs.getString("user_name");
+            String password = rs.getString("password");
+
+            Manager manager = new Manager(manager_id, firstName, lastName, email, userName, password);
+            return new Guild(id, guildName, manager);
         }
         catch (SQLException ex)
         {
@@ -252,9 +260,7 @@ public class GetData extends DatabaseManager
         Date date = rs.getDate("date");
         int hours = rs.getInt("hours");
         Volunteer volunteer = getOneVolunteer(rs);
-        int volunteerId = rs.getInt("volunteer_id");
         Guild guild = getOneGuild(rs);
-        int guildId = rs.getInt("guild_id");
 
         return new VolunteerTime(date, hours, volunteer, guild);
       }
@@ -591,28 +597,31 @@ public class GetData extends DatabaseManager
         }
       }
 
-    public List<Nationality> getNationality() throws SQLException {
+    public List<Nationality> getNationality() throws SQLException
+      {
         List<Nationality> nationalities = new ArrayList<>();
-        
-         try (Connection con = connectionManager.getConnection())
+
+        try (Connection con = connectionManager.getConnection())
         {
             String query = "SELECT country FROM nationality;";
-           Statement st = con.createStatement();
-           ResultSet rs =st.executeQuery(query);
-           while (rs.next()){
-           nationalities.add(getOneNationality(rs));
-           }
-           return nationalities;
-           
-        }
-        
-    }
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next())
+            {
+                nationalities.add(getOneNationality(rs));
+            }
+            return nationalities;
 
-    private Nationality getOneNationality(ResultSet rs) throws SQLException {
-         
-                String country = rs.getString("country");
-                 return new Nationality(country);
-    }
+        }
+
+      }
+
+    private Nationality getOneNationality(ResultSet rs) throws SQLException
+      {
+
+        String country = rs.getString("country");
+        return new Nationality(country);
+      }
 
     /**
      * ----------------------------------------------------------------------------------------------------.

@@ -106,9 +106,10 @@ public class UserModel extends Model
         museumManager.addManager(mg); //updates database
       }
 
-    public void removeManager(String fName, String lName, String uName, String password) throws SQLException
+    public void removeManager(Manager manager) throws SQLException
       {
-        museumManager.removeManager(fName, lName, uName, password);
+        managers.remove(manager);
+        museumManager.removeManager(manager);
       }
 
     /** --------------------------------VOLUNTEER--------------------------------------------------. */
@@ -142,9 +143,10 @@ public class UserModel extends Model
         return museumManager.getManagerFromGuild(guild);
       }
 
-    public void removeGuild(String guildName) throws SQLException
+    public void removeGuild(Guild guild) throws SQLException
       {
-        museumManager.removeGuild(guildName);
+        guilds.remove(guild);
+        museumManager.removeGuild(guild);
       }
 
     /** ------------------------------------HOURS--------------------------------------------------. */

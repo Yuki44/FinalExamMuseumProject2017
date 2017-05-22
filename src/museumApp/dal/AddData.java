@@ -31,18 +31,18 @@ public class AddData extends DatabaseManager
      * @param vtr
      * @throws SQLException
      */
-    public void addVolunteer(String firstName, String lastName, String phoneNumber, String email,String nationality) throws SQLException
+    public void addVolunteer(String firstName, String lastName, String phoneNumber, String email, String nationality) throws SQLException
       {
         {
-          String sql = "INSERT INTO volunteer(first_name, last_name,  phone_number,email,nationality,join_date) VALUES (?,?,?,?,?);";
-          PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
+            String sql = "INSERT INTO volunteer(first_name, last_name,  phone_number,email,nationality,join_date) VALUES (?,?,?,?,?);";
+            PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
 
             pstmt.setString(1, firstName);
             pstmt.setString(2, lastName);
             pstmt.setString(3, phoneNumber);
             pstmt.setString(4, email);
-           pstmt.setString(5, nationality);
-    //       pstmt.setDate(6,date);
+            pstmt.setString(5, nationality);
+            //       pstmt.setDate(6,date);
             pstmt.execute();
         }
       }
@@ -98,20 +98,21 @@ public class AddData extends DatabaseManager
         String sql = "INSERT INTO guild (name, manager_id) VALUES (?,?) ";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
         pstmt.setString(1, gd.getNameAsString());
-        pstmt.setInt(2, gd.getManagerId());
+        pstmt.setInt(2, gd.getManager().getId());
         pstmt.executeUpdate();
       }
 
-    public void addVolunteerTimeHours(Date date, int hours, Volunteer vt, Guild gd) throws SQLException {
-         String sql = "INSERT INTO volunteer_time (volunteer_id, guild_id, date, hours) VALUES (?,?,?,?);";
+    public void addVolunteerTimeHours(Date date, int hours, Volunteer vt, Guild gd) throws SQLException
+      {
+        String sql = "INSERT INTO volunteer_time (volunteer_id, guild_id, date, hours) VALUES (?,?,?,?);";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-        pstmt.setInt(1,vt.getId() );
+        pstmt.setInt(1, vt.getId());
         pstmt.setInt(2, gd.getId());
         pstmt.setDate(3, date);
-        pstmt.setInt(4,hours);
+        pstmt.setInt(4, hours);
         pstmt.execute();
-        
-    }
+
+      }
     /** ----------------------------------------------------------------------------------------------------. */
-  
+
   }

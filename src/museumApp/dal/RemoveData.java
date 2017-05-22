@@ -3,6 +3,7 @@ package museumApp.dal;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.be.Volunteer;
 
@@ -38,22 +39,19 @@ public class RemoveData extends DatabaseManager
      * @param mg
      * @throws SQLException
      */
-    public void removeManager(String fName, String lName, String uName, String password) throws SQLException
+    public void removeManager(Manager manager) throws SQLException
       {
-        String sql = "DELETE FROM employee WHERE first_name = ? AND last_name = ? AND user_name = ? AND password = ?";
+        String sql = "DELETE FROM employee WHERE employee_id = ? AND employee_type_id = 1 ";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-        pstmt.setString(1, fName);
-        pstmt.setString(2, lName);
-        pstmt.setString(3, uName);
-        pstmt.setString(4, password);
+        pstmt.setInt(1, manager.getId());
         pstmt.execute();
       }
 
-    public void removeGuild(String guildName) throws SQLException
+    public void removeGuild(Guild guild) throws SQLException
       {
-        String sql = "DELETE FROM guild WHERE name = ?";
+        String sql = "DELETE FROM guild WHERE guild_id = ?";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-        pstmt.setString(1, guildName);
+        pstmt.setInt(1, guild.getId());
         pstmt.execute();
       }
     /** ----------------------------------------------------------------------------------------------------. */
