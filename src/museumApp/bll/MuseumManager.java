@@ -1,12 +1,8 @@
 package museumApp.bll;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.collections.ObservableList;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
@@ -198,9 +194,10 @@ public class MuseumManager
      * @param vtr
      * @throws SQLException
      */
-      public void addVolunteer(String firstName, String lastName, String phoneNumber, String email,String nationality) throws SQLException {
-           addDbMgr.addVolunteer(firstName, lastName, phoneNumber, email,nationality);
-    }
+    public void addVolunteer(Volunteer vtr) throws SQLException
+      {
+        addDbMgr.addVolunteer(vtr);
+      }
 
     /**
      * Adds a Guild, Method call to DAL layer.
@@ -251,9 +248,5 @@ public class MuseumManager
         return getDbMgr.getNationality();
       }
 
- 
-
- 
     /** ---------------------------------------------------------------------------------------------------. */
-
   }

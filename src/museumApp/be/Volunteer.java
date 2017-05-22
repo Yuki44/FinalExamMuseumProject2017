@@ -16,6 +16,7 @@ public class Volunteer extends User
     protected StringProperty city;
     protected StringProperty zipCode;
     protected StringProperty country;
+    protected StringProperty comment;
 
     public Volunteer(int id, String firstName, String lastName, Date birthDate, String phoneNumber, String email,
             String nationality, Date registeredDate, String comment,
@@ -26,15 +27,22 @@ public class Volunteer extends User
         this.phoneNumber = new SimpleStringProperty(phoneNumber);
         this.registeredDate = registeredDate;
         this.birthDate = birthDate;
+        this.comment = new SimpleStringProperty();
         this.address = new SimpleStringProperty(address);
         this.city = new SimpleStringProperty(city);
         this.zipCode = new SimpleStringProperty(zipCode);
         this.country = new SimpleStringProperty(country);
+
       }
 
     public StringProperty getCountry()
       {
         return country;
+      }
+
+    public String getCountryAsString()
+      {
+        return country.get();
       }
 
     /** ------------------------------VOLUNTEER NATIONALITY-----------------------------------------. */
@@ -180,5 +188,21 @@ public class Volunteer extends User
     public String getZipCodeAsString()
       {
         return zipCode.get();
+      }
+
+    public String getPhoto()
+      {
+        //TO DO
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      }
+
+    public StringProperty getComment()
+      {
+        return comment;
+      }
+
+    public String getCommentAsString()
+      {
+        return comment.get();
       }
   }

@@ -112,10 +112,10 @@ public class UserModel extends Model
       }
 
     /** --------------------------------VOLUNTEER--------------------------------------------------. */
-    public void addVolunteer(String firstName, String lastName, String phoneNumber, String email, String nationality) throws SQLException
+    public void addVolunteer(Volunteer vtr) throws SQLException
       {
 
-        museumManager.addVolunteer(firstName, lastName, phoneNumber, email, nationality);
+        museumManager.addVolunteer(vtr);
 
       }
 
@@ -149,12 +149,21 @@ public class UserModel extends Model
       }
 
     /** ------------------------------------HOURS--------------------------------------------------. */
+    /**
+     *
+     * @param vTime
+     */
     public void addTime(VolunteerTime vTime)
       {
+        volunteerTime.add(vTime);
         timeRegistrationManager.AddTime(vTime);
-// Create guild volunteer in db and get object
       }
 
+    /** ------------------------------------NATIONALITIES--------------------------------------------------. */
+    /**
+     *
+     * @return
+     */
     public ObservableList<Nationality> getNationalities()
       {
         return nationalities;

@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -33,6 +34,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -40,6 +42,7 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -47,6 +50,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
@@ -173,6 +177,22 @@ public class ManagementRegisterVolunteerController extends Controller implements
     List<Volunteer> allVolunteersList;
     ObservableList<Volunteer> volunteerInfo;
     File myImageFile;
+    @FXML
+    private AnchorPane paneRegisterVtr;
+    @FXML
+    private AnchorPane anchorpane;
+    @FXML
+    private JFXTextField txtFieldAddVolunteerCity;
+    @FXML
+    private JFXTextField txtFieldAddVolunteerBirthdate;
+    @FXML
+    private JFXTextField txtFieldAddVolunteerAddress;
+    @FXML
+    private JFXTextField txtFieldAddVolunteerZipcode;
+    @FXML
+    private TextArea txtAreaAddVolunteerComment;
+    @FXML
+    private GridPane gridPaneRegVtr;
 
     /** -------------------------------------------------------------------------------------------. */
     /**
@@ -188,6 +208,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         updateList();
         lblWebcamOperation.setText("Webcam is closed");
         lblWebcamOperation.setStyle("-fx-text-fill: #a04124;");
+        txtFieldAddVolunteerFName.requestFocus();
       }
 
     public ManagementRegisterVolunteerController() throws IOException, SQLException
@@ -409,16 +430,45 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String email = txtFieldAddVolunteerEmail.getText().trim();
         LocalDate date = regJoinedDatePicker.getValue();
         String nationality = comboBoxNationality.getSelectionModel().getSelectedItem().getCountryAsString();
-//        Volunteer vtr = new Volunteer(0, firstName, lastName, birthDate, phoneNumber, email,
-//                nationality, registeredDate, comment, address, city, zipCode, country);
 
         if (!txtFieldAddVolunteerFName.getText().isEmpty() && !txtFieldAddVolunteerLName.getText().isEmpty())
         {
             DropboxConnection dbc = new DropboxConnection();
-            myImageFile = new File(dbc.getVolunteerImgFilePath(), fullName + LocalDate.now() + "_" + System.currentTimeMillis() + ".png");
+            String imageName = fullName + LocalDate.now() + "_" + System.currentTimeMillis() + ".png";
+            myImageFile = new File(dbc.getVolunteerImgFilePath(), imageName);
             ImageIO.write(takenImage, "PNG", myImageFile);
         }
+//        Volunteer vtr = new Volunteer(0, firstName, lastName, birthDate, phoneNumber, email,
+//                nationality, registeredDate, comment, address, city, zipCode, country);
+      }
 
+    @FXML
+    private void handleAddMoreVtrInfo(ActionEvent event) throws IOException
+      {
+        paneRegisterVtr.setLeftAnchor(anchorpane, 0.0);
+        gridPaneRegVtr.setVisible(false);
+        /** ------------------------------------------------------------------------------------------ */
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), anchorpane);
+        fadeIn.setFromValue(0.1);
+        fadeIn.setToValue(1);
+        fadeIn.setCycleCount(1);
+        fadeIn.play(); //Plays the transition
+        /** ------------------------------------------------------------------------------------------ */
+      }
+
+    @FXML
+    private void handleGoToNecessaryInfo(ActionEvent event)
+      {
+        paneRegisterVtr.setLeftAnchor(anchorpane, -900.0);
+        gridPaneRegVtr.setVisible(true);
+        txtFieldAddVolunteerFName.requestFocus();
+        /** ------------------------------------------------------------------------------------------ */
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), gridPaneRegVtr);
+        fadeIn.setFromValue(0.1);
+        fadeIn.setToValue(1);
+        fadeIn.setCycleCount(1);
+        fadeIn.play(); //Plays the transition
+        /** ------------------------------------------------------------------------------------------ */
       }
 
     /** -------------------------------------------------------------------------------------------. */
