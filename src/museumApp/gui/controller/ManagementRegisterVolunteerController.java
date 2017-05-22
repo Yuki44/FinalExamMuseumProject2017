@@ -52,6 +52,7 @@ import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.be.Nationality;
 import museumApp.be.Volunteer;
+import museumApp.dal.DropboxConnection;
 import museumApp.gui.model.UserModel;
 
 public class ManagementRegisterVolunteerController extends Controller implements Initializable
@@ -171,6 +172,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private JFXTextField txtFieldSearchText;
     List<Volunteer> allVolunteersList;
     ObservableList<Volunteer> volunteerInfo;
+    File myImageFile;
 
     /** -------------------------------------------------------------------------------------------. */
     /**
@@ -406,17 +408,20 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String firstName = txtFieldAddVolunteerFName.getText().trim();
         String lastName = txtFieldAddVolunteerLName.getText().trim();
         String fullName = firstName + lastName;
-//        String phoneNumber = txtFieldAddVolunteerPhoneNum.getText().trim();
-//        String email = txtFieldAddVolunteerEmail.getText().trim();
-//        //   Date date =Date.valueOf( regJoinedDatePicker.getValue());
-//        String nationality = comboBoxNationality.getSelectionModel().toString();
-//        userModel.addVolunteer(firstName, lastName, phoneNumber, email, nationality);
+        String phoneNumber = txtFieldAddVolunteerPhoneNum.getText().trim();
+        String email = txtFieldAddVolunteerEmail.getText().trim();
+        LocalDate date = regJoinedDatePicker.getValue();
+        String nationality = comboBoxNationality.getSelectionModel().getSelectedItem().getCountryAsString();
+//        Volunteer vtr = new Volunteer(0, firstName, lastName, birthDate, phoneNumber, email,
+//                nationality, registeredDate, comment, address, city, zipCode, country);
 
         if (!txtFieldAddVolunteerFName.getText().isEmpty() && !txtFieldAddVolunteerLName.getText().isEmpty())
         {
-            File myImageFile = new File("C:\\Users\\Yuki\\Dropbox\\FinalProjectPhotos\\VolunteerPhotos", fullName + LocalDate.now() + "_" + System.currentTimeMillis() + ".png");
+            DropboxConnection dbc = new DropboxConnection();
+            myImageFile = new File(dbc.getVolunteerImgFilePath(), fullName + LocalDate.now() + "_" + System.currentTimeMillis() + ".png");
             ImageIO.write(takenImage, "PNG", myImageFile);
         }
+
       }
 
     /** -------------------------------------------------------------------------------------------. */
