@@ -187,6 +187,7 @@
                                           </Label>
                                        </children>
                                     </HBox>
+                                    <JFXButton onAction="#handleAddMoreVtrInfo" prefHeight="39.0" prefWidth="117.0" style="-fx-background-color: grey;" text="Add more info" textFill="#fff1f1" GridPane.rowIndex="8" />
                                  </children>
                                  <GridPane.margin>
                                     <Insets left="50.0" />
