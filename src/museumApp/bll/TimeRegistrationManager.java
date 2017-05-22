@@ -1,14 +1,11 @@
 package museumApp.bll;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import museumApp.be.Guild;
 import museumApp.be.GuildVolunteer;
-import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
 import museumApp.dal.AddData;
 import museumApp.dal.GetData;
@@ -32,11 +29,11 @@ public class TimeRegistrationManager implements IManager<VolunteerTime>
      */
     public void Add(VolunteerTime obj, GuildVolunteer gvObj)
       {
-        try 
+        try
         {
             addData.addHours(obj, gvObj);
         }
-        catch (SQLException ex) 
+        catch (SQLException ex)
         {
             Logger.getLogger(TimeRegistrationManager.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -96,22 +93,25 @@ public class TimeRegistrationManager implements IManager<VolunteerTime>
       {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
       }
- public void AddTime(Date date, int hours, Volunteer vt, Guild gd)
+
+    public void AddTime(VolunteerTime vTime)
       {
         try
         {
-       //     getData.getVolunteerGuldIdBasedOnVolunteerIdAndGuldId(vt, gd);
-//            
-            addData.addVolunteerTimeHours(date, hours,vt, gd );
+            //     getData.getVolunteerGuldIdBasedOnVolunteerIdAndGuldId(vt, gd);
+//
+            addData.addVolunteerTimeHours(vTime);
         }
         catch (SQLException ex)
         {
-            Logger.getLogger(TimeRegistrationManager.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getCause());
         }
       }
 
     @Override
-    public void Add(VolunteerTime objToAdd) {
+    public void Add(VolunteerTime objToAdd)
+      {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+      }
+
   }

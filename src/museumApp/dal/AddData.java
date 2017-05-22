@@ -1,14 +1,11 @@
 package museumApp.dal;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import museumApp.be.Guild;
 import museumApp.be.GuildVolunteer;
 import museumApp.be.Manager;
-import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
 
 public class AddData extends DatabaseManager
@@ -102,14 +99,14 @@ public class AddData extends DatabaseManager
         pstmt.executeUpdate();
       }
 
-    public void addVolunteerTimeHours(Date date, int hours, Volunteer vt, Guild gd) throws SQLException
+    public void addVolunteerTimeHours(VolunteerTime vTime) throws SQLException
       {
         String sql = "INSERT INTO volunteer_time (volunteer_id, guild_id, date, hours) VALUES (?,?,?,?);";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-        pstmt.setInt(1, vt.getId());
-        pstmt.setInt(2, gd.getId());
-        pstmt.setDate(3, date);
-        pstmt.setInt(4, hours);
+        pstmt.setInt(1, vTime.getVolunteer().getId());
+        pstmt.setInt(2, vTime.getGuild().getId());
+        pstmt.setDate(3, vTime.getDate());
+        pstmt.setInt(4, vTime.getHours());
         pstmt.execute();
 
       }

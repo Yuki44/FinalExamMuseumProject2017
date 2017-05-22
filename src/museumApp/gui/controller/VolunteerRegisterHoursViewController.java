@@ -106,7 +106,8 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
 //        BorderPane bPane;
         try
         {
-            userModel.addTime(Date.valueOf(LocalDate.now()), Integer.parseInt(setHoursLabel.getText()), volunteer, guild);
+            VolunteerTime vTime = new VolunteerTime(Date.valueOf(LocalDate.now()), Integer.parseInt(setHoursLabel.getText()), volunteer, guild);
+            userModel.addTime(vTime);
 
             Stage stage;
             Parent root;

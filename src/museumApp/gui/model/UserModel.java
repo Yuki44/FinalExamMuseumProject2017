@@ -1,7 +1,6 @@
 package museumApp.gui.model;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -150,9 +149,9 @@ public class UserModel extends Model
       }
 
     /** ------------------------------------HOURS--------------------------------------------------. */
-    public void addTime(Date date, int hours, Volunteer volunteer, Guild guild)
+    public void addTime(VolunteerTime vTime)
       {
-        timeRegistrationManager.AddTime(date, hours, volunteer, guild);
+        timeRegistrationManager.AddTime(vTime);
 // Create guild volunteer in db and get object
       }
 
