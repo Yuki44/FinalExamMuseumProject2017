@@ -146,7 +146,7 @@ public class MuseumManager
         catch (SQLException ex)
         {
             System.err.println(ex);
-            throw new MuseumManagerException("Unable to fetch volunteer time.");
+            throw new MuseumManagerException("Unable to fetch guild volunteer.");
         }
       }
 

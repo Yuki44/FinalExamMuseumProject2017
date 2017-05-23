@@ -18,16 +18,14 @@ import museumApp.bll.TimeRegistrationManager;
 public class UserModel extends Model
   {
 
-    private final MuseumManager museumManager;
-    private final TimeRegistrationManager timeRegistrationManager;
     private VolunteerTime vTime;
     private ObservableList<GuildVolunteer> guildVolunteers;
     private ObservableList<Manager> managers;
     private ObservableList<Volunteer> volunteers;
-    private final ObservableList<Guild> guilds;
-    private final ObservableList<Administrator> admins;
-    private final ObservableList<VolunteerTime> volunteerTime;
-    private final ObservableList<Nationality> nationalities;
+    private ObservableList<Guild> guilds;
+    private ObservableList<Administrator> admins;
+    private ObservableList<VolunteerTime> volunteerTime;
+    private ObservableList<Nationality> nationalities;
 
     /**
      * REFACTOR
@@ -37,9 +35,7 @@ public class UserModel extends Model
      */
     public UserModel() throws IOException, SQLException
       {
-
-        museumManager = new MuseumManager();
-        timeRegistrationManager = new TimeRegistrationManager();
+        super();
 
         /**
          * We create observable array lists for each element we want to display later
@@ -49,9 +45,8 @@ public class UserModel extends Model
         volunteers = FXCollections.observableArrayList(museumManager.getAllVolunteers());
         guilds = FXCollections.observableArrayList(museumManager.getAllGuilds());
         admins = FXCollections.observableArrayList(museumManager.getAllAdmins());
-        volunteerTime = FXCollections.observableArrayList(timeRegistrationManager.getAllVTime());
         nationalities = FXCollections.observableArrayList(museumManager.getNationality());
-        guildVolunteers = FXCollections.observableArrayList(museumManager.getAllGuildVolunteer());
+        volunteerTime = FXCollections.observableArrayList(timeRegistrationManager.ReadAll());
 
       }
 
@@ -158,7 +153,7 @@ public class UserModel extends Model
     public void addTime(VolunteerTime vTime)
       {
         volunteerTime.add(vTime);
-        timeRegistrationManager.AddTime(vTime);
+        timeRegistrationManager.Add(vTime);
       }
 
     /** ------------------------------------NATIONALITIES--------------------------------------------------. */
@@ -171,10 +166,10 @@ public class UserModel extends Model
         return nationalities;
       }
 
-    public void addGuildVolunteer(GuildVolunteer gv) throws SQLException
+    public void addGuildVolunteer(Volunteer v) throws SQLException
       {
-        guildVolunteers.add(gv);
-        museumManager.addGuildVolunteer(gv);
+        volunteers.add(v);
+        museumManager.addVolunteer(v);
       }
 
     /** -------------------------------------------------------------------------------------------. */

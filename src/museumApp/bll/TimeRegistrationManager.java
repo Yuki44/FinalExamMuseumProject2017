@@ -27,11 +27,11 @@ public class TimeRegistrationManager implements IManager<VolunteerTime>
      *
      * @param obj
      */
-    public void Add(VolunteerTime obj, GuildVolunteer gvObj)
+    public void Add(VolunteerTime obj)
       {
         try
         {
-            addData.addHours(obj, gvObj);
+            addData.addVolunteerTimeHours(obj);
         }
         catch (SQLException ex)
         {
@@ -66,8 +66,10 @@ public class TimeRegistrationManager implements IManager<VolunteerTime>
         catch (SQLException ex)
         {
             System.err.println("Unable to get time.");
+            System.err.println(ex);
         }
         return null;
+
       }
 
     /**
@@ -94,43 +96,26 @@ public class TimeRegistrationManager implements IManager<VolunteerTime>
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
       }
 
-    public void AddTime(VolunteerTime vTime)
-      {
-        try
-        {
-            //     getData.getVolunteerGuldIdBasedOnVolunteerIdAndGuldId(vt, gd);
-//
-            addData.addVolunteerTimeHours(vTime);
-        }
-        catch (SQLException ex)
-        {
-            System.err.println(ex.getCause());
-        }
-      }
-
-    @Override
-    public void Add(VolunteerTime objToAdd)
-      {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-      }
-    
+//    public void AddTime(VolunteerTime vTime)
+//      {
+//        try
+//        {
+//            addData.addVolunteerTimeHours(vTime);
+//        }
+//        catch (SQLException ex)
+//        {
+//            System.err.println(ex.getCause());
+//        }
+//      }
+//    @Override
+//    public void Add(VolunteerTime objToAdd)
+//      {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//      }
     /**
      * Creates a List to fetch the Volunteer time in the database.
      *
      * @return method from GetData
      * @throws SQLException
      */
-    public List<VolunteerTime> getAllVTime() throws SQLException
-      {
-        try
-        {
-            return getData.getAllVTime();
-        }
-        catch (SQLException ex)
-        {
-            System.err.println(ex);
-            throw new MuseumManagerException("Unable to fetch volunteer time.");
-        }
-      }
-
   }

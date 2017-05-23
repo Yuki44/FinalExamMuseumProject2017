@@ -2,6 +2,7 @@ package museumApp.gui.model;
 
 import java.io.IOException;
 import museumApp.bll.MuseumManager;
+import museumApp.bll.TimeRegistrationManager;
 
 public abstract class Model
   {
@@ -11,6 +12,7 @@ public abstract class Model
      * only connect to the BLL.
      */
     protected final MuseumManager museumManager;
+    protected final TimeRegistrationManager timeRegistrationManager;
 
     /** ---------------------------------------------------------------------------------------------------------------------------. */
     /**
@@ -21,6 +23,7 @@ public abstract class Model
     public Model() throws IOException
       {
         museumManager = new MuseumManager();
+        timeRegistrationManager = new TimeRegistrationManager();
 
       }
     /** ---------------------------------------------------------------------------------------------------------------------------. */

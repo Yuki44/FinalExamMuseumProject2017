@@ -459,11 +459,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
             String country = comboBoxNationality.getSelectionModel().getSelectedItem().getCountryAsString();
             Volunteer vtr = new Volunteer(0, firstName, lastName, birthDate, phoneNumber, email,
                     nationality, registeredDate, comment, address, city, zipCode, country);
-            if(comboBoxFirstGuildSelection.getSelectionModel().getSelectedItem() != null)
+            if (comboBoxFirstGuildSelection.getSelectionModel().getSelectedItem() != null)
             {
-              Guild guild =  comboBoxFirstGuildSelection.getSelectionModel().getSelectedItem();
-            GuildVolunteer gv = new GuildVolunteer(guild, vtr);
-            userModel.addGuildVolunteer(gv);
+                Guild guild = comboBoxFirstGuildSelection.getSelectionModel().getSelectedItem();
             }
             userModel.addVolunteer(vtr);
             lblFieldsRequired.setText("");
@@ -538,17 +536,19 @@ public class ManagementRegisterVolunteerController extends Controller implements
         fadeIn.play(); //Plays the transition
         /** ------------------------------------------------------------------------------------------ */
       }
- @FXML
+
+    @FXML
     private void handleSelectVolunteer(MouseEvent event)
       {
         if (event.getClickCount() == 1)
         {
             Volunteer selectedVolunteer = volunteerTbl.getSelectionModel().getSelectedItem();
             txtFieldSearchText.setText(selectedVolunteer.getFullNameAsString());
-            
+
         }
-        
+
       }
+
     /** -------------------------------------------------------------------------------------------. */
     /** ----------------------------------MANAGER REGISTER VTR HOURS-----------------------------------------. */
 //    public void getInfoFromList()
@@ -808,13 +808,15 @@ public class ManagementRegisterVolunteerController extends Controller implements
       {
         txtFieldSearchText.requestFocus();
       }
-@FXML
-private void handleManagerAddHour(ActionEvent event) throws IOException{
 
-  LocalDate localDate = addVtDatePicker.getValue();
-            Date date = java.sql.Date.valueOf(localDate);
-            int hours =Integer.parseInt(textLbSetHours.getText().trim());
-  
-}
+    @FXML
+    private void handleManagerAddHour(ActionEvent event) throws IOException
+      {
+
+        LocalDate localDate = addVtDatePicker.getValue();
+        Date date = java.sql.Date.valueOf(localDate);
+        int hours = Integer.parseInt(textLbSetHours.getText().trim());
+
+      }
     /** -------------------------------------------------------------------------------------------. */
   }
