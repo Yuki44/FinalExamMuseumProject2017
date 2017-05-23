@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
+import museumApp.be.GuildVolunteer;
 import museumApp.be.Manager;
 import museumApp.be.Nationality;
 import museumApp.be.Volunteer;
@@ -117,7 +118,37 @@ public class MuseumManager
         }
       }
 
-    
+    /**
+     * Creates a List to fetch the Volunteer time in the database.
+     *
+     * @return method from GetData
+     * @throws SQLException
+     */
+    public List<VolunteerTime> getAllVTime() throws SQLException
+      {
+        try
+        {
+            return getDbMgr.getAllVTime();
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex);
+            throw new MuseumManagerException("Unable to fetch volunteer time.");
+        }
+      }
+
+    public List<GuildVolunteer> getAllGuildVolunteer() throws SQLException
+      {
+        try
+        {
+            return getDbMgr.getAllGuildVolunteer();
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex);
+            throw new MuseumManagerException("Unable to fetch volunteer time.");
+        }
+      }
 
     /** --------------------------------GET DATA FROM DATABASE METHODS----------------------------------------------------. */
     /**
@@ -229,6 +260,11 @@ public class MuseumManager
     public List<Nationality> getNationality() throws SQLException
       {
         return getDbMgr.getNationality();
+      }
+
+    public void addGuildVolunteer(GuildVolunteer gv) throws SQLException
+      {
+        addDbMgr.addGuildVolunteer(gv);
       }
 
     /** ---------------------------------------------------------------------------------------------------. */

@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
+import museumApp.be.GuildVolunteer;
 import museumApp.be.Manager;
 import museumApp.be.Nationality;
 import museumApp.be.Volunteer;
@@ -20,8 +21,8 @@ public class UserModel extends Model
     private final MuseumManager museumManager;
     private final TimeRegistrationManager timeRegistrationManager;
     private VolunteerTime vTime;
-
-    private final ObservableList<Manager> managers;
+    private ObservableList<GuildVolunteer> guildVolunteers;
+    private ObservableList<Manager> managers;
     private ObservableList<Volunteer> volunteers;
     private final ObservableList<Guild> guilds;
     private final ObservableList<Administrator> admins;
@@ -36,6 +37,7 @@ public class UserModel extends Model
      */
     public UserModel() throws IOException, SQLException
       {
+
         museumManager = new MuseumManager();
         timeRegistrationManager = new TimeRegistrationManager();
 
@@ -49,6 +51,7 @@ public class UserModel extends Model
         admins = FXCollections.observableArrayList(museumManager.getAllAdmins());
         volunteerTime = FXCollections.observableArrayList(timeRegistrationManager.getAllVTime());
         nationalities = FXCollections.observableArrayList(museumManager.getNationality());
+        guildVolunteers = FXCollections.observableArrayList(museumManager.getAllGuildVolunteer());
 
       }
 
@@ -166,6 +169,12 @@ public class UserModel extends Model
     public ObservableList<Nationality> getNationalities()
       {
         return nationalities;
+      }
+
+    public void addGuildVolunteer(GuildVolunteer gv) throws SQLException
+      {
+        guildVolunteers.add(gv);
+        museumManager.addGuildVolunteer(gv);
       }
 
     /** -------------------------------------------------------------------------------------------. */

@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
+import museumApp.be.GuildVolunteer;
 import museumApp.be.Manager;
 import museumApp.be.Nationality;
 import museumApp.be.Volunteer;
@@ -193,10 +194,7 @@ public class GetData extends DatabaseManager
       {
         List<VolunteerTime> vTime = new ArrayList<>();
 
-        String sql = "SELECT * FROM volunteer_time vt "
-                + "INNER JOIN guild_volunteer gv ON vt.volunteer_id = gv.volunteer_id AND vt.guild_id=gv.guild_id "
-                + "INNER JOIN volunteer v ON gv.volunteer_id = v.volunteer_id "
-                + "INNER JOIN guild g ON g.guild_id = gv.guild_id ";
+        String sql = "SELECT * FROM volunteer_time ";
 
         try (Connection con = connectionManager.getConnection())
         {
@@ -209,6 +207,26 @@ public class GetData extends DatabaseManager
             return vTime;
         }
       }
+      public List<GuildVolunteer> getAllGuildVolunteer() throws SQLException {
+             List<GuildVolunteer> gv = new ArrayList<>();
+
+        String sql = "SELECT * FROM guild_volunteer gv INNER JOIN guild g on  "
+                + "gv.guild=g.guild_id INNER JOIN guild_volunteer ON gv.guild=g.guild_id"
+                + " INNER JOIN volunteer ON gv.volunteer_id = v.volunteer_id INNER JOIN guild_volunteer ON v.volunteer_id = gv.volunteer_id INNER JOIN guild ON gv.guild_id = g.guild_id INNER JOIN employee e ON g.manager_id = e.employee_type_id";
+                
+
+        try (Connection con = connectionManager.getConnection())
+        {
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next())
+            {
+                gv.add(getOneGuildVolunteer(rs));
+            }
+            return gv;
+        }
+    }
+
 
     /**
      * ---------------------------------getOne FROM DATABASE
@@ -620,6 +638,13 @@ public class GetData extends DatabaseManager
         return new Nationality(country);
       }
 
+    private GuildVolunteer getOneGuildVolunteer(ResultSet rs) throws SQLException {
+        Guild guild = getOneGuild(rs);
+        Volunteer volunteer = getOneVolunteer(rs);
+        return new GuildVolunteer(guild, volunteer);
+    }
+   
+  
     /**
      * ----------------------------------------------------------------------------------------------------.
      */
