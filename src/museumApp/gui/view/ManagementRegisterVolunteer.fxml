@@ -515,7 +515,7 @@
                               <JFXButton fx:id="deleteManagerBTN" layoutX="114.0" layoutY="17.0" onAction="#handleRemoveManager" prefHeight="13.0" styleClass="managementViewButtons" text="Delete" />
                            </buttons>
                         </ButtonBar>
-                        <TableView fx:id="managerTbl" layoutX="589.0" layoutY="35.0" onMouseClicked="#handleSelectManager" prefHeight="314.0" prefWidth="210.0">
+                        <TableView fx:id="managerTbl" layoutX="589.0" layoutY="35.0" prefHeight="314.0" prefWidth="210.0">
                            <columns>
                               <TableColumn fx:id="managerTblColFname" prefWidth="105.0" text="First name" />
                               <TableColumn fx:id="managerTblColLname" prefWidth="104.0" text="Last name" />
@@ -573,7 +573,7 @@
                               <JFXButton layoutX="114.0" layoutY="17.0" onAction="#handleRemoveGuild" prefHeight="13.0" styleClass="managementViewButtons" text="Delete" />
                            </buttons>
                         </ButtonBar>
-                        <TableView fx:id="tblGuild" layoutX="578.0" layoutY="39.0" onMouseClicked="#handleSelectGuild" prefHeight="379.0" prefWidth="352.0">
+                        <TableView fx:id="tblGuild" layoutX="578.0" layoutY="39.0" prefHeight="379.0" prefWidth="352.0">
                           <columns>
                             <TableColumn fx:id="tblColGuildName" prefWidth="75.0" text="Guild Name" />
                             <TableColumn fx:id="tblColGuildManager" prefWidth="75.0" text="Guild Manager" />
@@ -641,7 +641,7 @@
                            </children>
                         </GridPane>
                         <ButtonBar layoutX="315.0" layoutY="363.0" prefHeight="40.0" prefWidth="179.0" />
-                        <TableView fx:id="volunteerTbl" layoutX="622.0" layoutY="89.0" onMouseClicked="#handleSelectVolunteer" prefHeight="314.0" prefWidth="210.0">
+                        <TableView fx:id="volunteerTbl" layoutX="622.0" layoutY="89.0" prefHeight="314.0" prefWidth="210.0">
                            <columns>
                               <TableColumn fx:id="volunteerTblColFname" prefWidth="105.0" text="First name" />
                               <TableColumn fx:id="volunteerTblColLname" prefWidth="104.0" text="Last name" />

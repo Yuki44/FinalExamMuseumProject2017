@@ -12,19 +12,25 @@ import museumApp.be.Manager;
 import museumApp.be.Nationality;
 import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
-import museumApp.bll.MuseumManager;
-import museumApp.bll.TimeRegistrationManager;
 
 public class UserModel extends Model
   {
 
-    private VolunteerTime vTime;
-    private ObservableList<GuildVolunteer> guildVolunteers;
+    /**
+     * CAUTION: PROBLEM AHEAD.
+     */
+//    private VolunteerTime vTime;
+//    private GuildVolunteer guildVolunteers;
+    private ObservableList<GuildVolunteer> guildVolunteer;
+    private ObservableList<VolunteerTime> volunteerTime;
+    /**
+     * END OF PROBLEM.
+     */
+
     private ObservableList<Manager> managers;
     private ObservableList<Volunteer> volunteers;
     private ObservableList<Guild> guilds;
     private ObservableList<Administrator> admins;
-    private ObservableList<VolunteerTime> volunteerTime;
     private ObservableList<Nationality> nationalities;
 
     /**
@@ -46,30 +52,39 @@ public class UserModel extends Model
         guilds = FXCollections.observableArrayList(museumManager.getAllGuilds());
         admins = FXCollections.observableArrayList(museumManager.getAllAdmins());
         nationalities = FXCollections.observableArrayList(museumManager.getNationality());
-        volunteerTime = FXCollections.observableArrayList(timeRegistrationManager.ReadAll());
+        /**
+         * CAUTION: PROBLEM AHEAD.
+         */
+//        volunteerTime = FXCollections.observableArrayList(timeRegistrationManager.ReadAll());
+//        guildVolunteer = FXCollections.observableArrayList(museumManager.getAllGuildVolunteer());
+        /**
+         * END OF PROBLEM.
+         */
+      }
 
+    public ObservableList<VolunteerTime> getVolunteerTime()
+      {
+        return volunteerTime;
       }
 
     /** -------------------------------------------------------------------------------------------. */
     /**
      *
      */
-    public void addTime()
+//    public void setvTime(VolunteerTime vTime)
+//      {
+//        this.vTime = vTime;
+//      }
+    public void setGuildVolunteer(ObservableList<GuildVolunteer> guildVolunteer)
       {
-        timeRegistrationManager.Add(vTime);
-      }
-
-    public void setvTime(VolunteerTime vTime)
-      {
-        this.vTime = vTime;
+        this.guildVolunteer = guildVolunteer;
       }
 
     /** --------------------------------------------------GET METHODS------------------------------------------------------------. */
-    public ObservableList<VolunteerTime> getVTime()
-      {
-        return volunteerTime;
-      }
-
+//    public ObservableList<VolunteerTime> getVTime()
+//      {
+//        return volunteerTime;
+//      }
     public ObservableList<Manager> getManagers()
       {
         return managers;
@@ -95,6 +110,11 @@ public class UserModel extends Model
         return guilds;
       }
 
+    public ObservableList<GuildVolunteer> getGuildVolunteers()
+      {
+        return guildVolunteer;
+      }
+
     /** ------------------------------------MANAGER---------------------------------------------. */
     public void addManager(Manager mg) throws SQLException
       {
@@ -104,8 +124,8 @@ public class UserModel extends Model
 
     public void removeManager(Manager manager) throws SQLException
       {
-        managers.remove(manager);
         museumManager.removeManager(manager);
+        managers.remove(manager);
       }
 
     /** --------------------------------VOLUNTEER--------------------------------------------------. */
@@ -118,8 +138,8 @@ public class UserModel extends Model
 
     public void removeVolunteer(Volunteer vtr) throws SQLException
       {
-        volunteers.remove(vtr);
         museumManager.removeVolunteer(vtr);
+        volunteers.remove(vtr);
       }
 
     public List<Volunteer> getVolunteerFromGuild(Guild newValue)
@@ -141,8 +161,8 @@ public class UserModel extends Model
 
     public void removeGuild(Guild guild) throws SQLException
       {
-        guilds.remove(guild);
         museumManager.removeGuild(guild);
+        guilds.remove(guild);
       }
 
     /** ------------------------------------HOURS--------------------------------------------------. */
@@ -150,9 +170,9 @@ public class UserModel extends Model
      *
      * @param vTime
      */
-    public void addTime(VolunteerTime vTime)
+    public void addTime(VolunteerTime vTime) throws SQLException
       {
-        volunteerTime.add(vTime);
+//        volunteerTime.add(vTime);
         timeRegistrationManager.Add(vTime);
       }
 
@@ -166,10 +186,10 @@ public class UserModel extends Model
         return nationalities;
       }
 
-    public void addGuildVolunteer(Volunteer v) throws SQLException
+    public void addGuildVolunteer(GuildVolunteer gv) throws SQLException
       {
-        volunteers.add(v);
-        museumManager.addVolunteer(v);
+//        guildVolunteer.add(gv);
+        museumManager.addGuildVolunteer(gv);
       }
 
     /** -------------------------------------------------------------------------------------------. */

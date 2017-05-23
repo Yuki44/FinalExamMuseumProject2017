@@ -77,7 +77,7 @@ public class MuseumManager
         }
         catch (SQLException ex)
         {
-            System.err.println(ex);
+            System.err.println(ex.getCause());
             throw new MuseumManagerException("Unable to fetch guilds.");
         }
       }
@@ -95,7 +95,7 @@ public class MuseumManager
         }
         catch (SQLException ex)
         {
-            System.err.println(ex);
+            System.err.println(ex.getCause());
             throw new MuseumManagerException("Unable to fetch managers.");
         }
       }
@@ -113,7 +113,7 @@ public class MuseumManager
         }
         catch (SQLException ex)
         {
-            System.err.println(ex);
+            System.err.println(ex.getCause());
             throw new MuseumManagerException("Unable to fetch administrators.");
         }
       }
@@ -132,7 +132,7 @@ public class MuseumManager
         }
         catch (SQLException ex)
         {
-            System.err.println(ex);
+            System.err.println(ex.getCause());
             throw new MuseumManagerException("Unable to fetch volunteer time.");
         }
       }
@@ -145,7 +145,7 @@ public class MuseumManager
         }
         catch (SQLException ex)
         {
-            System.err.println(ex);
+            System.err.println(ex.getCause());
             throw new MuseumManagerException("Unable to fetch guild volunteer.");
         }
       }
@@ -165,7 +165,7 @@ public class MuseumManager
         }
         catch (SQLException ex)
         {
-            System.err.println(ex);
+            System.err.println(ex.getCause());
             throw new MuseumManagerException("Unable to find new value");
         }
       }
@@ -184,7 +184,7 @@ public class MuseumManager
         }
         catch (SQLException ex)
         {
-            System.err.println(ex);
+            System.err.println(ex.getCause());
             throw new MuseumManagerException("Unable to get Volunteer hours.");
         }
 

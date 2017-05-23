@@ -37,7 +37,7 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
 
     private UserModel userModel;
     private Volunteer volunteer;
-    private VolunteerTime vTime;
+//    private VolunteerTime vTime;
     private Guild guild;
     @FXML
     private Label lblGuildName;
@@ -107,38 +107,39 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
       }
 
     @FXML
-    private void goToFinalView(MouseEvent event)
+    private void goToFinalView(MouseEvent event) throws SQLException
       {
-//        BorderPane bPane;
-        try
+        if (!setHoursLabel.getText().isEmpty())
         {
-            VolunteerTime vTime = new VolunteerTime(Date.valueOf(LocalDate.now()), Integer.parseInt(setHoursLabel.getText()), volunteer, guild);
-            userModel.addTime(vTime);
+            try
+            {
+                VolunteerTime vTime = new VolunteerTime(Date.valueOf(LocalDate.now()), Integer.parseInt(setHoursLabel.getText()), volunteer, guild);
+                userModel.addTime(vTime);
 
-            Stage stage;
-            Parent root;
-            stage = (Stage) borderPane.getScene().getWindow();
-            URL location = this.getClass().getResource("/museumApp/gui/view/ThankYouSplash.fxml");
-            FXMLLoader loader = new FXMLLoader(location);
-            root = loader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            ThankYouSplashController tys = loader.getController();
-            tys.lblThankYouFor.setText(bundle.getString("lblThankYouFor"));
-            tys.lblHaveANiceDay.setText(bundle.getString("lblHaveANiceDay"));
-            /** ------------------------------------------------------------------------------------------ */
-            FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), root);
-            fadeIn.setFromValue(0.1);
-            fadeIn.setToValue(1);
-            fadeIn.setCycleCount(1);
-            fadeIn.play(); //Plays the transition
-            /** ------------------------------------------------------------------------------------------ */
+                Stage stage;
+                Parent root;
+                stage = (Stage) borderPane.getScene().getWindow();
+                URL location = this.getClass().getResource("/museumApp/gui/view/ThankYouSplash.fxml");
+                FXMLLoader loader = new FXMLLoader(location);
+                root = loader.load();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                ThankYouSplashController tys = loader.getController();
+                tys.lblThankYouFor.setText(bundle.getString("lblThankYouFor"));
+                tys.lblHaveANiceDay.setText(bundle.getString("lblHaveANiceDay"));
+                /** ------------------------------------------------------------------------------------------ */
+                FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), root);
+                fadeIn.setFromValue(0.1);
+                fadeIn.setToValue(1);
+                fadeIn.setCycleCount(1);
+                fadeIn.play(); //Plays the transition
+                /** ------------------------------------------------------------------------------------------ */
+            }
+            catch (IOException ex)
+            {
+                System.err.println(ex.getCause());
+            }
         }
-        catch (IOException ex)
-        {
-            System.err.println(ex);
-        }
-
       }
 
     /**

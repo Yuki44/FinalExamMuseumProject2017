@@ -9,8 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
 import museumApp.be.GuildVolunteer;
@@ -215,9 +213,14 @@ public class GetData extends DatabaseManager
       {
         List<GuildVolunteer> gv = new ArrayList<>();
 
-        String sql = "SELECT * FROM guild_volunteer gv INNER JOIN guild g on  "
-                + "gv.guild=g.guild_id INNER JOIN guild_volunteer ON gv.guild=g.guild_id"
-                + " INNER JOIN volunteer ON gv.volunteer_id = v.volunteer_id INNER JOIN guild_volunteer ON v.volunteer_id = gv.volunteer_id INNER JOIN guild ON gv.guild_id = g.guild_id INNER JOIN employee e ON g.manager_id = e.employee_type_id";
+        String sql = "SELECT * FROM guild_volunteer gv "
+                + "INNER JOIN guild g on  "
+                + "gv.guild=g.guild_id "
+                + "INNER JOIN guild_volunteer ON gv.guild=g.guild_id "
+                + "INNER JOIN volunteer ON gv.volunteer_id = v.volunteer_id "
+                + "INNER JOIN guild_volunteer ON v.volunteer_id = gv.volunteer_id "
+                + "INNER JOIN guild ON gv.guild_id = g.guild_id "
+                + "INNER JOIN employee e ON g.manager_id = e.employee_id";
 
         try (Connection con = connectionManager.getConnection())
         {
@@ -242,28 +245,13 @@ public class GetData extends DatabaseManager
      * @return Guild
      * @throws SQLException
      */
-    private Guild getOneGuild(ResultSet rs)
+    private Guild getOneGuild(ResultSet rs) throws SQLException
       {
-        try
-        {
-            int id = rs.getInt("guild_id");
-            String guildName = rs.getString("name");
+        int id = rs.getInt("guild_id");
+        String guildName = rs.getString("name");
 
-            int manager_id = rs.getInt("manager_id");
-            String firstName = rs.getString("first_name");
-            String lastName = rs.getString("last_name");
-            String email = rs.getString("email");
-            String userName = rs.getString("user_name");
-            String password = rs.getString("password");
-
-            Manager manager = new Manager(manager_id, firstName, lastName, email, userName, password);
-            return new Guild(id, guildName, manager);
-        }
-        catch (SQLException ex)
-        {
-            Logger.getLogger(GetData.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        Manager manager = getOneManager(rs);
+        return new Guild(id, guildName, manager);
       }
 
     /**
@@ -647,27 +635,4 @@ public class GetData extends DatabaseManager
         Volunteer volunteer = getOneVolunteer(rs);
         return new GuildVolunteer(guild, volunteer);
       }
-
-    /**
-     * ----------------------------------------------------------------------------------------------------.
-     */
-    /**
-     * get volunteerGuildId with given volunteer and guild
-     *
-     * @param vt
-     * @param gd
-     * @return
-     */
-    // public int getVolunteerGuldIdBasedOnVolunteerIdAndGuldId(Volunteer vt, Guild gd) throws SQLException
-    // {
-    //   try (Connection con = connectionManager.getConnection()) {
-    //      String sql = "SELECT guild_volunteer_id FROM guild_volunteer WHERE  volunteer_id=? AND guild_id= ? ";
-    //     PreparedStatement pstmt = con.prepareStatement(sql);
-    //    pstmt.setInt(1, vt.getId());
-    //    pstmt.setInt(2, gd.getId());
-    //  pstmt.executeQuery();
-    //   } catch (SQLException ex) {
-    //     Logger.getLogger(GetData.class.getName()).log(Level.SEVERE, null, ex);
-    //  }
-    //   }
   }

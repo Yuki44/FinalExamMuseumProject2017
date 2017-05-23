@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -203,6 +205,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private JFXDatePicker addVtDatePicker;
     @FXML
     private TextField textLbSetHours;
+    @FXML
     private Label lblJoinedGuild;
 
     /** -------------------------------------------------------------------------------------------. */
@@ -223,6 +226,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
         lblFieldsRequired.setText("");
         lblFieldRequiredStar.setText("");
 //        getInfoFromList();
+        handleSelectGuild();
+        handleSelectManager();
+        handleSelectVolunteer();
       }
 
     public ManagementRegisterVolunteerController() throws IOException, SQLException
@@ -317,18 +323,30 @@ public class ManagementRegisterVolunteerController extends Controller implements
      *
      * @param event
      */
-    @FXML
-    private void handleSelectManager(MouseEvent event)
+    private void handleSelectManager()
       {
-        if (event.getClickCount() == 1)
-        {
-            Manager selectedManager = managerTbl.getSelectionModel().getSelectedItem();
-            addTFNameTxtF.setText(selectedManager.getFirstNameAsString());
-            addTLNameTxtF.setText(selectedManager.getLastNameAsString());
-            addTEmailTxtF.setText(selectedManager.getEmailAsString());
-            addTUNameTxtF.setText(selectedManager.getUserNameAsString());
-            addTPassTxtF.setText(selectedManager.getPasswordAsString());
-        }
+        managerTbl.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Manager>()
+          {
+            /**
+             * Creates an observable list of the volunteers contained in the chosen guild.
+             * Which is then shown in the volunteer list with their full names diplayed.
+             *
+             * @param observable
+             * @param oldValue
+             * @param newValue
+             */
+            @Override
+            public void changed(ObservableValue<? extends Manager> observable, Manager oldValue, Manager newValue)
+              {
+                Manager selectedManager = newValue;
+                addTFNameTxtF.setText(selectedManager.getFirstNameAsString());
+                addTLNameTxtF.setText(selectedManager.getLastNameAsString());
+                addTEmailTxtF.setText(selectedManager.getEmailAsString());
+                addTUNameTxtF.setText(selectedManager.getUserNameAsString());
+                addTPassTxtF.setText(selectedManager.getPasswordAsString());
+              }
+          });
+
       }
 
     /**
@@ -366,12 +384,14 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private void handleRemoveManager(ActionEvent event) throws SQLException
       {
         Manager selectedManager = managerTbl.getSelectionModel().getSelectedItem();
-        userModel.removeManager(selectedManager);
-        addTFNameTxtF.clear();
-        addTLNameTxtF.clear();
-        addTUNameTxtF.clear();
-        addTPassTxtF.clear();
-        addTEmailTxtF.clear();
+        if (selectedManager != null)
+        {
+            userModel.removeManager(selectedManager);
+            addTFNameTxtF.clear();
+            addTLNameTxtF.clear();
+            addTUNameTxtF.clear();
+            addTPassTxtF.clear();
+        }
       }
 
     /** -----------------------------------------GUILD--------------------------------------------. */
@@ -399,8 +419,12 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private void handleRemoveGuild(ActionEvent event) throws SQLException
       {
         Guild selectedGuild = tblGuild.getSelectionModel().getSelectedItem();
-        userModel.removeGuild(selectedGuild);
-        txtFieldAddGuildName.clear();
+        if (selectedGuild != null)
+        {
+            userModel.removeGuild(selectedGuild);
+            txtFieldAddGuildName.clear();
+        }
+
       }
 
     /**
@@ -408,15 +432,26 @@ public class ManagementRegisterVolunteerController extends Controller implements
      *
      * @param event
      */
-    @FXML
-    private void handleSelectGuild(MouseEvent event)
+    private void handleSelectGuild()
       {
-        if (event.getClickCount() == 1)
-        {
-            Guild selectedGuild = tblGuild.getSelectionModel().getSelectedItem();
-            txtFieldAddGuildName.setText(selectedGuild.getNameAsString());
-            Manager guildManager = selectedGuild.getManager();
-        }
+        tblGuild.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Guild>()
+          {
+            /**
+             * Creates an observable list of the volunteers contained in the chosen guild.
+             * Which is then shown in the volunteer list with their full names diplayed.
+             *
+             * @param observable
+             * @param oldValue
+             * @param newValue
+             */
+            @Override
+            public void changed(ObservableValue<? extends Guild> observable, Guild oldValue, Guild newValue)
+              {
+                Guild selectedGuild = newValue;
+                txtFieldAddGuildName.setText(selectedGuild.getNameAsString());
+                Manager guildManager = selectedGuild.getManager();
+              }
+          });
       }
 
     /**
@@ -459,9 +494,11 @@ public class ManagementRegisterVolunteerController extends Controller implements
             String country = comboBoxNationality.getSelectionModel().getSelectedItem().getCountryAsString();
             Volunteer vtr = new Volunteer(0, firstName, lastName, birthDate, phoneNumber, email,
                     nationality, registeredDate, comment, address, city, zipCode, country);
-            if (comboBoxFirstGuildSelection.getSelectionModel().getSelectedItem() != null)
+            Guild guild = comboBoxFirstGuildSelection.getSelectionModel().getSelectedItem();
+            if (guild != null)
             {
-                Guild guild = comboBoxFirstGuildSelection.getSelectionModel().getSelectedItem();
+                GuildVolunteer gv = new GuildVolunteer(guild, vtr);
+                userModel.addGuildVolunteer(gv);
             }
             userModel.addVolunteer(vtr);
             lblFieldsRequired.setText("");
@@ -498,7 +535,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         txtFieldAddVolunteerBirthdate.clear();
         txtFieldAddVolunteerZipcode.clear();
         txtAreaAddVolunteerComment.clear();
-        comboBoxNationality.getSelectionModel().clearSelection();
+        comboBoxFirstGuildSelection.getSelectionModel().clearSelection();
         /** ------------------------------------------------------------------------------------------ */
         FadeTransition fadeOut = new FadeTransition(Duration.seconds(4), lblAddVtrSuccess);
         fadeOut.setFromValue(1);
@@ -537,15 +574,25 @@ public class ManagementRegisterVolunteerController extends Controller implements
         /** ------------------------------------------------------------------------------------------ */
       }
 
-    @FXML
-    private void handleSelectVolunteer(MouseEvent event)
+    private void handleSelectVolunteer()
       {
-        if (event.getClickCount() == 1)
-        {
-            Volunteer selectedVolunteer = volunteerTbl.getSelectionModel().getSelectedItem();
-            txtFieldSearchText.setText(selectedVolunteer.getFullNameAsString());
-
-        }
+        volunteerTbl.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Volunteer>()
+          {
+            /**
+             * Creates an observable list of the volunteers contained in the chosen guild.
+             * Which is then shown in the volunteer list with their full names diplayed.
+             *
+             * @param observable
+             * @param oldValue
+             * @param newValue
+             */
+            @Override
+            public void changed(ObservableValue<? extends Volunteer> observable, Volunteer oldValue, Volunteer newValue)
+              {
+                Volunteer selectedVolunteer = newValue;
+                txtFieldSearchText.setText(selectedVolunteer.getFullNameAsString());
+              }
+          });
 
       }
 
@@ -818,5 +865,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
         int hours = Integer.parseInt(textLbSetHours.getText().trim());
 
       }
+
     /** -------------------------------------------------------------------------------------------. */
   }

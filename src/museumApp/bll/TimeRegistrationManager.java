@@ -3,9 +3,6 @@ package museumApp.bll;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import museumApp.be.GuildVolunteer;
 import museumApp.be.VolunteerTime;
 import museumApp.dal.AddData;
 import museumApp.dal.GetData;
@@ -25,17 +22,19 @@ public class TimeRegistrationManager implements IManager<VolunteerTime>
     /**
      * This method connects through the IManager to call the addHours function
      *
+     * @param vTime
      * @param obj
      */
-    public void Add(VolunteerTime obj)
+    @Override
+    public void Add(VolunteerTime vTime)
       {
         try
         {
-            addData.addVolunteerTimeHours(obj);
+            addData.addVolunteerTimeHours(vTime);
         }
         catch (SQLException ex)
         {
-            Logger.getLogger(TimeRegistrationManager.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getCause());
         }
 
       }
@@ -66,7 +65,7 @@ public class TimeRegistrationManager implements IManager<VolunteerTime>
         catch (SQLException ex)
         {
             System.err.println("Unable to get time.");
-            System.err.println(ex);
+            System.err.println(ex.getCause());
         }
         return null;
 
@@ -96,26 +95,4 @@ public class TimeRegistrationManager implements IManager<VolunteerTime>
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
       }
 
-//    public void AddTime(VolunteerTime vTime)
-//      {
-//        try
-//        {
-//            addData.addVolunteerTimeHours(vTime);
-//        }
-//        catch (SQLException ex)
-//        {
-//            System.err.println(ex.getCause());
-//        }
-//      }
-//    @Override
-//    public void Add(VolunteerTime objToAdd)
-//      {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//      }
-    /**
-     * Creates a List to fetch the Volunteer time in the database.
-     *
-     * @return method from GetData
-     * @throws SQLException
-     */
   }
