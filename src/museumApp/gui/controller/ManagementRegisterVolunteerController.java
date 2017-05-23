@@ -198,6 +198,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private Label lblFieldsRequired;
     @FXML
     private Label lblFieldRequiredStar;
+    @FXML
+    private Label lblJoinedGuild;
 
     /** -------------------------------------------------------------------------------------------. */
     /**
@@ -216,6 +218,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         txtFieldAddVolunteerFName.requestFocus();
         lblFieldsRequired.setText("");
         lblFieldRequiredStar.setText("");
+//        getInfoFromList();
       }
 
     public ManagementRegisterVolunteerController() throws IOException, SQLException
@@ -408,6 +411,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         {
             Guild selectedGuild = tblGuild.getSelectionModel().getSelectedItem();
             txtFieldAddGuildName.setText(selectedGuild.getNameAsString());
+            Manager guildManager = selectedGuild.getManager();
         }
       }
 
@@ -454,10 +458,12 @@ public class ManagementRegisterVolunteerController extends Controller implements
             userModel.addVolunteer(vtr);
             lblFieldsRequired.setText("");
             lblFieldRequiredStar.setText("");
+            //
 //            DropboxConnection dbc = new DropboxConnection();
 //            String imageName = fullName + LocalDate.now() + "_" + System.currentTimeMillis() + ".png";
 //            myImageFile = new File(dbc.getVolunteerImgFilePath(), imageName);
 //            ImageIO.write(takenImage, "PNG", myImageFile);
+            //
             updateList();
             lblAddVtrSuccess.setText(firstName + " " + lastName + " saved!");
 
@@ -524,6 +530,94 @@ public class ManagementRegisterVolunteerController extends Controller implements
       }
 
     /** -------------------------------------------------------------------------------------------. */
+    /** ----------------------------------MANAGER REGISTER VTR HOURS-----------------------------------------. */
+//    public void getInfoFromList()
+//      {
+//        volunteerTbl.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Volunteer>()
+//          {
+//            /**
+//             * Creates an observable list of the volunteers contained in the chosen guild.
+//             * Which is then shown in the volunteer list with their full names diplayed.
+//             *
+//             * @param observable
+//             * @param oldValue
+//             * @param newValue
+//             */
+//            @Override
+//            public void changed(ObservableValue<? extends Volunteer> observable, Volunteer oldValue, Volunteer newValue)
+//              {
+//
+//              }
+//          });
+//      }
+    public void updateList()
+      {
+        allVolunteersList = new ArrayList<>();
+        try
+        {
+            allVolunteersList.addAll(userModel.getVolunteers());
+        }
+        catch (Exception ex)
+        {
+            System.err.println(ex);
+        }
+        volunteerInfo = FXCollections.observableArrayList(allVolunteersList);
+        volunteerListViewColumns();
+      }
+
+    private void volunteerListViewColumns()
+      {
+        volunteerTbl.setItems(volunteerInfo);
+        volunteerTblColFname.setCellValueFactory(volunteer -> volunteer.getValue().getFirstName());
+        volunteerTblColLname.setCellValueFactory(volunteer -> volunteer.getValue().getLastName());
+      }
+
+    @FXML
+    private void handleSearchOnInput(KeyEvent event)
+      {
+        try
+        {
+            String query = txtFieldSearchText.getText().trim();
+            if (query.isEmpty())
+            {
+                volunteerInfo.clear();
+                volunteerInfo.addAll(allVolunteersList);
+            }
+            else
+            {
+                List<Volunteer> searchResults = new ArrayList<>();
+                for (Volunteer vtrs : allVolunteersList)
+                {
+                    String volunteerFirstName = vtrs.getFirstNameAsString().toLowerCase();
+                    String volunteerLastName = vtrs.getLastNameAsString().toLowerCase();
+                    String volunteerEmail = vtrs.getEmailAsString().toLowerCase();
+                    String volunteerNationality = vtrs.getNationality().get().toLowerCase();
+                    String volunteerPhoneNumber = vtrs.getPhoneNumber().get().toLowerCase();
+                    String volunteerCity = vtrs.getCity().get().toLowerCase();
+                    String volunteerZipcode = vtrs.getZipCode().get().toLowerCase();
+                    if (volunteerFirstName.contains(query.toLowerCase())
+                            || volunteerLastName.contains(query.toLowerCase())
+                            || volunteerEmail.contains(query.toLowerCase())
+                            || volunteerNationality.contains(query.toLowerCase())
+                            || volunteerPhoneNumber.contains(query.toLowerCase())
+                            || volunteerCity.contains(query.toLowerCase())
+                            || volunteerZipcode.contains(query.toLowerCase()))
+                    {
+                        searchResults.add(vtrs);
+                    }
+
+                }
+                volunteerInfo.clear();
+                volunteerInfo.addAll(searchResults);
+            }
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+
+      }
+
     /** ----------------------------------GENERAL SETTINGS-----------------------------------------. */
     /**
      * Needed to Logout and go back to the ManagerLoginView
@@ -686,73 +780,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private void handleFilterTime(ActionEvent event)
       {
-
-      }
-
-    public void updateList()
-      {
-        allVolunteersList = new ArrayList<>();
-        try
-        {
-            allVolunteersList.addAll(userModel.getVolunteers());
-        }
-        catch (Exception ex)
-        {
-            System.err.println(ex);
-        }
-        volunteerInfo = FXCollections.observableArrayList(allVolunteersList);
-        volunteerListViewColumns();
-      }
-
-    private void volunteerListViewColumns()
-      {
-        volunteerTbl.setItems(volunteerInfo);
-        volunteerTblColFname.setCellValueFactory(volunteer -> volunteer.getValue().getFirstName());
-        volunteerTblColLname.setCellValueFactory(volunteer -> volunteer.getValue().getLastName());
-      }
-
-    @FXML
-    private void handleSearchOnInput(KeyEvent event)
-      {
-        try
-        {
-            String query = txtFieldSearchText.getText().trim();
-            if (query.isEmpty())
-            {
-                volunteerInfo.clear();
-                volunteerInfo.addAll(allVolunteersList);
-            }
-            else
-            {
-                List<Volunteer> searchResults = new ArrayList<>();
-                for (Volunteer vtrs : allVolunteersList)
-                {
-                    String volunteerFirstName = vtrs.getFirstNameAsString().toLowerCase();
-                    String volunteerLastName = vtrs.getLastNameAsString().toLowerCase();
-                    String volunteerEmail = vtrs.getEmailAsString().toLowerCase();
-                    String volunteerNationality = vtrs.getNationality().get().toLowerCase();
-                    String volunteerPhoneNumber = vtrs.getPhoneNumber().get().toLowerCase();
-                    String volunteerCity = vtrs.getCity().get().toLowerCase();
-                    String volunteerZipcode = vtrs.getZipCode().get().toLowerCase();
-                    if (volunteerFirstName.contains(query.toLowerCase()) || volunteerLastName.contains(query.toLowerCase())
-                            || volunteerEmail.contains(query.toLowerCase())
-                            || volunteerNationality.contains(query.toLowerCase())
-                            || volunteerPhoneNumber.contains(query.toLowerCase())
-                            || volunteerCity.contains(query.toLowerCase())
-                            || volunteerZipcode.contains(query.toLowerCase()))
-                    {
-                        searchResults.add(vtrs);
-                    }
-
-                }
-                volunteerInfo.clear();
-                volunteerInfo.addAll(searchResults);
-            }
-        }
-        catch (Exception ex)
-        {
-            System.out.println(ex.getMessage());
-        }
 
       }
 
