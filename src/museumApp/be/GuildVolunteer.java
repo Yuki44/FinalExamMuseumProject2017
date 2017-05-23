@@ -23,7 +23,7 @@ public class GuildVolunteer
      *
      * @return
      */
-    public int getGuildID()
+    public int getGuildId()
       {
         return guild.getId();
 

@@ -86,7 +86,7 @@ public class AddData extends DatabaseManager
       {
         String sql = "INSERT INTO volunteer_time (guild_id, volunteer_id, date, hours) VALUES ( ? ,?, '?', ?) ";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-        pstmt.setInt(1, gv.getGuildID());
+        pstmt.setInt(1, gv.getGuildId());
         pstmt.setInt(2, gv.getVolunteerId());
         pstmt.setDate(3, vTime.getDate());
         pstmt.setInt(4, vTime.getHours());
@@ -121,6 +121,14 @@ public class AddData extends DatabaseManager
         pstmt.execute();
 
       }
+
+    public void addGuildVolunteer(GuildVolunteer gv) throws SQLException {
+        String sql = "INSERT INTO guild_volunteer (guild_id, volunteer_id) VALUES (?,?)";
+        PreparedStatement pstmt= connectionManager.getConnection().prepareStatement(sql);
+        pstmt.setInt(1, gv.getGuildId());
+        pstmt.setInt(2, gv.getVolunteerId());
+        pstmt.execute();
+    }
     /** ----------------------------------------------------------------------------------------------------. */
 
   }
