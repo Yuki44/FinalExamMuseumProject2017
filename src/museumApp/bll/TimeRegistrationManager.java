@@ -113,5 +113,24 @@ public class TimeRegistrationManager implements IManager<VolunteerTime>
       {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
       }
+    
+    /**
+     * Creates a List to fetch the Volunteer time in the database.
+     *
+     * @return method from GetData
+     * @throws SQLException
+     */
+    public List<VolunteerTime> getAllVTime() throws SQLException
+      {
+        try
+        {
+            return getData.getAllVTime();
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex);
+            throw new MuseumManagerException("Unable to fetch volunteer time.");
+        }
+      }
 
   }

@@ -117,24 +117,7 @@ public class MuseumManager
         }
       }
 
-    /**
-     * Creates a List to fetch the Volunteer time in the database.
-     *
-     * @return method from GetData
-     * @throws SQLException
-     */
-    public List<VolunteerTime> getAllVTime() throws SQLException
-      {
-        try
-        {
-            return getDbMgr.getAllVTime();
-        }
-        catch (SQLException ex)
-        {
-            System.err.println(ex);
-            throw new MuseumManagerException("Unable to fetch volunteer time.");
-        }
-      }
+    
 
     /** --------------------------------GET DATA FROM DATABASE METHODS----------------------------------------------------. */
     /**

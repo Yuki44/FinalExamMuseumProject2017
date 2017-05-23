@@ -416,7 +416,7 @@ public class GetData extends DatabaseManager
 
         try (Connection con = connectionManager.getConnection())
         {
-            String query = "SELECT first_name, last_name, FROM employee e "
+            String query = "SELECT * FROM employee e "
                     + "INNER JOIN guild g ON g.manager_id = e.employee_id, WHERE g.guild_id = ?";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setInt(1, guild.getId());

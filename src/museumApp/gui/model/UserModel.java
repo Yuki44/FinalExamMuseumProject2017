@@ -17,16 +17,16 @@ import museumApp.bll.TimeRegistrationManager;
 public class UserModel extends Model
   {
 
-    private MuseumManager museumManager;
-    private TimeRegistrationManager timeRegistrationManager;
+    private final MuseumManager museumManager;
+    private final TimeRegistrationManager timeRegistrationManager;
     private VolunteerTime vTime;
 
-    private ObservableList<Manager> managers;
+    private final ObservableList<Manager> managers;
     private ObservableList<Volunteer> volunteers;
-    private ObservableList<Guild> guilds;
-    private ObservableList<Administrator> admins;
-    private ObservableList<VolunteerTime> volunteerTime;
-    private ObservableList<Nationality> nationalities;
+    private final ObservableList<Guild> guilds;
+    private final ObservableList<Administrator> admins;
+    private final ObservableList<VolunteerTime> volunteerTime;
+    private final ObservableList<Nationality> nationalities;
 
     /**
      * REFACTOR
@@ -36,7 +36,6 @@ public class UserModel extends Model
      */
     public UserModel() throws IOException, SQLException
       {
-        super();
         museumManager = new MuseumManager();
         timeRegistrationManager = new TimeRegistrationManager();
 
@@ -48,7 +47,7 @@ public class UserModel extends Model
         volunteers = FXCollections.observableArrayList(museumManager.getAllVolunteers());
         guilds = FXCollections.observableArrayList(museumManager.getAllGuilds());
         admins = FXCollections.observableArrayList(museumManager.getAllAdmins());
-        volunteerTime = FXCollections.observableArrayList(museumManager.getAllVTime());
+        volunteerTime = FXCollections.observableArrayList(timeRegistrationManager.getAllVTime());
         nationalities = FXCollections.observableArrayList(museumManager.getNationality());
 
       }
