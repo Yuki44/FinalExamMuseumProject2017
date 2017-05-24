@@ -1,5 +1,6 @@
 package museumApp.gui.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -20,6 +22,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import museumApp.be.Guild;
 import museumApp.be.Volunteer;
+import museumApp.dal.DropboxConnection;
 import museumApp.gui.model.GuildModel;
 import museumApp.gui.model.VolunteerModel;
 
@@ -150,14 +153,22 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
      * @param volunteer
      * @param guild
      */
-    public void setVolunteer(Volunteer volunteer, Guild guild)
+    public void setVolunteer(Volunteer volunteer, Guild guild) throws IOException
       {
         {
+            DropboxConnection dbc = new DropboxConnection();
             this.volunteer = volunteer;
             this.guild = guild;
             lblVolunteerFullName.setText(volunteer.getFullNameAsString());
             lblGuildName.setText(guild.getNameAsString());
             lblJoinedDate.setText(volunteer.getRegisteredDateAsString());
+            String photoName = volunteer.getPhotoAString();
+            String photoPath = dbc.getVolunteerImgFilePath();
+            String absoluteImgPath = (photoPath + "\\" + photoName);
+            System.out.println(absoluteImgPath);
+            File file = new File(absoluteImgPath);
+            Image img = new Image(file.toURI().toString());
+            imgVolunteer.setImage(img);
         }
 
       }

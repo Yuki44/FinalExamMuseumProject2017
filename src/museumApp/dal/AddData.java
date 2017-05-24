@@ -35,8 +35,8 @@ public class AddData extends DatabaseManager
       {
         {
             String sql = "INSERT INTO volunteer(first_name, last_name, date_of_birth,  "
-                    + "phone_number,nationality,email,join_date, comment, "
-                    + "address, city, zip_code, country) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
+                    + "phone_number,nationality,email,join_date, photo, comment, "
+                    + "address, city, zip_code, country) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
             PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
 
             pstmt.setString(1, vtr.getFirstNameAsString());
@@ -46,12 +46,12 @@ public class AddData extends DatabaseManager
             pstmt.setString(5, vtr.getNationalityAsString());
             pstmt.setString(6, vtr.getEmailAsString());
             pstmt.setDate(7, vtr.getRegisteredDate());
-//            pstmt.setString(8, vtr.getPhoto());
-            pstmt.setString(8, vtr.getCommentAsString());
-            pstmt.setString(9, vtr.getAddressAsString());
-            pstmt.setString(10, vtr.getCityAsString());
-            pstmt.setString(11, vtr.getZipCodeAsString());
-            pstmt.setString(12, vtr.getCountryAsString());
+            pstmt.setString(8, vtr.getPhotoAString());
+            pstmt.setString(9, vtr.getCommentAsString());
+            pstmt.setString(10, vtr.getAddressAsString());
+            pstmt.setString(11, vtr.getCityAsString());
+            pstmt.setString(12, vtr.getZipCodeAsString());
+            pstmt.setString(13, vtr.getCountryAsString());
 
             pstmt.execute();
         }
@@ -112,18 +112,21 @@ public class AddData extends DatabaseManager
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-
+    /**
+     *
+     * @param gv
+     * @throws SQLException
+     */
     public void addGuildVolunteer(GuildVolunteer gv) throws SQLException
       {
         String sql = "INSERT INTO guild_volunteer (guild_id, volunteer_id) VALUES (?,?)";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-        pstmt.setInt(1, gv.getGuildId());
-        pstmt.setInt(2, gv.getVolunteerId());
+        pstmt.setInt(1, gv.getGuild().getId());
+        pstmt.setInt(2, gv.getVolunteer().getId());
         pstmt.execute();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-
     public void addAdministrator(Administrator ad) throws SQLException
       {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -54,11 +54,12 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
+import javax.imageio.ImageIO;
 import museumApp.be.Guild;
-import museumApp.be.GuildVolunteer;
 import museumApp.be.Manager;
 import museumApp.be.Nationality;
 import museumApp.be.Volunteer;
+import museumApp.dal.DropboxConnection;
 import museumApp.gui.model.GuildModel;
 import museumApp.gui.model.GuildVolunteerModel;
 import museumApp.gui.model.ManagerModel;
@@ -493,27 +494,29 @@ public class ManagementRegisterVolunteerController extends Controller implements
             String zipCode = txtFieldAddVolunteerZipcode.getText().trim();
             String comment = txtAreaAddVolunteerComment.getText().trim();
             String country = comboBoxNationality.getSelectionModel().getSelectedItem().getCountryAsString();
+            String photo = null;
+            if (takenImage != null)
+            {
+                DropboxConnection dbc = new DropboxConnection();
+                photo = fullName + LocalDate.now() + "_" + System.currentTimeMillis() + ".png";
+                myImageFile = new File(dbc.getVolunteerImgFilePath(), photo);
+                ImageIO.write(takenImage, "PNG", myImageFile);
+            }
             Volunteer vtr = new Volunteer(0, firstName, lastName, birthDate, phoneNumber, email,
-                    nationality, registeredDate, comment, address, city, zipCode, country);
+                    nationality, registeredDate, photo, comment, address, city, zipCode, country);
             Guild guild = comboBoxFirstGuildSelection.getSelectionModel().getSelectedItem();
             if (guild != null)
             {
-                GuildVolunteer gv = new GuildVolunteer(guild, vtr);
-                guildVolunteerModel.addGuildVolunteer(gv);
+                System.out.println("Guild: " + guild.getId());
+                System.out.println("Volunteer: " + vtr.getId());
+//                GuildVolunteer gv = new GuildVolunteer(guild, vtr);
+//                guildVolunteerModel.addGuildVolunteer(gv); 
             }
-            volunteerModel.addVolunteer(vtr);
+//            volunteerModel.addVolunteer(vtr);
             lblFieldsRequired.setText("");
             lblFieldRequiredStar.setText("");
-            //
-//            DropboxConnection dbc = new DropboxConnection();
-//            String imageName = fullName + LocalDate.now() + "_" + System.currentTimeMillis() + ".png";
-//            myImageFile = new File(dbc.getVolunteerImgFilePath(), imageName);
-//            ImageIO.write(takenImage, "PNG", myImageFile);
-            //
-
             updateList();
             lblAddVtrSuccess.setText(firstName + " " + lastName + " saved!");
-
             clearFields();
         }
         else
@@ -521,7 +524,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
             lblFieldsRequired.setText("Fields required:");
             lblFieldRequiredStar.setText("*");
         }
-
       }
 
     public void clearFields()
@@ -538,6 +540,11 @@ public class ManagementRegisterVolunteerController extends Controller implements
         txtFieldAddVolunteerZipcode.clear();
         txtAreaAddVolunteerComment.clear();
         comboBoxFirstGuildSelection.getSelectionModel().clearSelection();
+        imgViewProfilePic.setImage(null);
+        imgPane.setStyle("-fx-background-image: url(\"../img/dragAndDrop.png\")");
+        imgPane.setStyle("-fx-background-size: stretch");
+        imgPane.setStyle("-fx-background-repeat: stretch");
+        imgPane.setStyle("-fx-background-position: center center");
         /** ------------------------------------------------------------------------------------------ */
         FadeTransition fadeOut = new FadeTransition(Duration.seconds(4), lblAddVtrSuccess);
         fadeOut.setFromValue(1);

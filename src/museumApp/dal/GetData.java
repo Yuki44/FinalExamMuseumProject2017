@@ -251,13 +251,14 @@ public class GetData extends DatabaseManager
         String birthDate = vtrResultSet.getString("date_of_birth");
         String nationality = vtrResultSet.getString("nationality");
         Date registeredDate = vtrResultSet.getDate("join_date");
+        String photo = vtrResultSet.getString("photo");
         String comment = vtrResultSet.getString("comment");
         String address = vtrResultSet.getString("address");
         String city = vtrResultSet.getString("city");
         String zipCode = vtrResultSet.getString("zip_code");
         String country = vtrResultSet.getString("country");
 
-        return new Volunteer(id, firstName, lastName, birthDate, phoneNumber, email, nationality, registeredDate, comment, address, city, zipCode, country);
+        return new Volunteer(id, firstName, lastName, birthDate, phoneNumber, email, nationality, registeredDate, photo, comment, address, city, zipCode, country);
 
       }
 
