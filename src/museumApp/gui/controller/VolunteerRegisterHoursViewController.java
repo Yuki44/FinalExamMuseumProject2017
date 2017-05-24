@@ -2,9 +2,7 @@ package museumApp.gui.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
@@ -22,8 +20,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import museumApp.be.Guild;
 import museumApp.be.Volunteer;
-import museumApp.be.VolunteerTime;
-import museumApp.gui.model.UserModel;
+import museumApp.gui.model.GuildModel;
+import museumApp.gui.model.VolunteerModel;
 
 public class VolunteerRegisterHoursViewController extends Controller implements Initializable
   {
@@ -35,7 +33,6 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
     @FXML
     private GridPane mainGridPane;
 
-    private UserModel userModel;
     private Volunteer volunteer;
 //    private VolunteerTime vTime;
     private Guild guild;
@@ -60,9 +57,12 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
     @FXML
     public Label lblAproximateHours;
 
-    public VolunteerRegisterHoursViewController() throws IOException, SQLException
+    public VolunteerRegisterHoursViewController() throws IOException
       {
-        this.userModel = new UserModel();
+        super();
+        volunteerModel = new VolunteerModel();
+        guildModel = new GuildModel();
+
       }
 
     /**
@@ -74,6 +74,7 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
+//        setVolunteer(volunteer, guild);
       }
 
     /** ---------------------------------------------------------------------------------------------------------------------------. */
@@ -113,9 +114,9 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
         {
             try
             {
-                VolunteerTime vTime = new VolunteerTime(Date.valueOf(LocalDate.now()), Integer.parseInt(setHoursLabel.getText()), volunteer, guild);
-                userModel.addTime(vTime);
-
+//                timeModel = new TimeModel();
+//                VolunteerTime vTime = new VolunteerTime(Date.valueOf(LocalDate.now()), Integer.parseInt(setHoursLabel.getText()), volunteer, guild);
+//                timeModel.addVolunteerTime(vTime);
                 Stage stage;
                 Parent root;
                 stage = (Stage) borderPane.getScene().getWindow();

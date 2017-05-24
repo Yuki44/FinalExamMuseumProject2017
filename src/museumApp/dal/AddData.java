@@ -3,6 +3,7 @@ package museumApp.dal;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import museumApp.be.Administrator;
 import museumApp.be.Guild;
 import museumApp.be.GuildVolunteer;
 import museumApp.be.Manager;
@@ -21,6 +22,7 @@ public class AddData extends DatabaseManager
       {
       }
 
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** -----------------------------------VOLUNTEER-------------------------------------------------------. */
     /**
      * Makes it possible to add a volunteer to the system through the database
@@ -82,17 +84,17 @@ public class AddData extends DatabaseManager
      * @param vTime
      * @throws SQLException
      */
-//    public void addHours(VolunteerTime vTime, GuildVolunteer gv) throws SQLException
-//      {
-//        String sql = "INSERT INTO volunteer_time (guild_id, volunteer_id, date, hours) VALUES ( ? ,?, '?', ?) ";
-//        PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-//        pstmt.setInt(1, gv.getGuildId());
-//        pstmt.setInt(2, gv.getVolunteerId());
-//        pstmt.setDate(3, vTime.getDate());
-//        pstmt.setInt(4, vTime.getHours());
-//        pstmt.executeUpdate();
-//        //TODO: add update id on vTime.
-//      }
+    public void addVolunteerTime(VolunteerTime vTime) throws SQLException
+      {
+        String sql = "INSERT INTO volunteer_time (volunteer_id, guild_id, date, hours) VALUES (?,?,?,?);";
+        PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
+        pstmt.setInt(1, vTime.getVolunteer().getId());
+        pstmt.setInt(2, vTime.getGuild().getId());
+        pstmt.setDate(3, vTime.getDate());
+        pstmt.setInt(4, vTime.getHours());
+        pstmt.execute();
+      }
+
     /** ------------------------------------------GUILD--------------------------------------------------. */
     /**
      * This method makes it possible to add a guild to the system.
@@ -109,17 +111,7 @@ public class AddData extends DatabaseManager
         pstmt.executeUpdate();
       }
 
-    public void addVolunteerTimeHours(VolunteerTime vTime) throws SQLException
-      {
-        String sql = "INSERT INTO volunteer_time (volunteer_id, guild_id, date, hours) VALUES (?,?,?,?);";
-        PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-        pstmt.setInt(1, vTime.getVolunteer().getId());
-        pstmt.setInt(2, vTime.getGuild().getId());
-        pstmt.setDate(3, vTime.getDate());
-        pstmt.setInt(4, vTime.getHours());
-        pstmt.execute();
-
-      }
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
 
     public void addGuildVolunteer(GuildVolunteer gv) throws SQLException
       {
@@ -129,6 +121,13 @@ public class AddData extends DatabaseManager
         pstmt.setInt(2, gv.getVolunteerId());
         pstmt.execute();
       }
-    /** ----------------------------------------------------------------------------------------------------. */
 
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+
+    public void addAdministrator(Administrator ad) throws SQLException
+      {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      }
+
+    /** ----------------------------------------------------------------------------------------------------. */
   }

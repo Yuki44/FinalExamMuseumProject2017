@@ -6,11 +6,8 @@ import museumApp.be.Employee;
 import museumApp.dal.AdministratorLoginHandler;
 import museumApp.dal.ManagerLoginHandler;
 
-public class LoginManager
+public class LoginManager extends BllFacade
   {
-
-    private final ManagerLoginHandler managerLoginHandler;
-    private final AdministratorLoginHandler adminLoginHandler;
 
     /**
      * Constructor
@@ -19,11 +16,12 @@ public class LoginManager
      */
     public LoginManager() throws IOException
       {
-        this.managerLoginHandler = new ManagerLoginHandler();
-        this.adminLoginHandler = new AdministratorLoginHandler();
+        managerLoginHandler = new ManagerLoginHandler();
+        adminLoginHandler = new AdministratorLoginHandler();
       }
 
-    /** ---------------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      * Checks whether the user login in is a manager or an administrator.
      *
@@ -47,4 +45,6 @@ public class LoginManager
             return null;
         }
       }
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
   }

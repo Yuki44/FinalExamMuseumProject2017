@@ -1,31 +1,30 @@
 package museumApp.gui.model;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import museumApp.be.Employee;
-import museumApp.bll.MuseumManager;
+import museumApp.bll.AdminBll;
+import museumApp.bll.ManagerBll;
 
-public class EmployeeModel extends UserModel
+public class EmployeeModel extends Model
   {
 
     private List<Employee> employee;
-    private MuseumManager museumManager;
 
     /**
      * Constructor.
      *
      * @throws IOException
-     * @throws SQLException
      */
-    public EmployeeModel() throws IOException, SQLException
+    public EmployeeModel() throws IOException
       {
-        super();
-        museumManager = new MuseumManager();
-        this.employee = new ArrayList<>();
+        managerBll = new ManagerBll();
+        adminBll = new AdminBll();
+        employee = new ArrayList<>();
       }
 
+    /** ---------------------------------------------------------------------------------------------------------------------------. */
     /** ---------------------------------------------------------------------------------------------------------------------------. */
     /**
      * to get the list of employees
@@ -35,8 +34,11 @@ public class EmployeeModel extends UserModel
     public List<Employee> getAllEmployees()
       {
         List<Employee> result = new ArrayList<>();
-        result.addAll(museumManager.getAllManagers());
-        result.addAll(museumManager.getAllAdmins());
+        result.addAll(managerBll.getAllManagers());
+        result.addAll(adminBll.getAllAdmins());
         return result;
       }
+    /** ---------------------------------------------------------------------------------------------------------------------------. */
+    /** ---------------------------------------------------------------------------------------------------------------------------. */
+
   }

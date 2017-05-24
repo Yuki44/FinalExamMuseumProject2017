@@ -1,38 +1,37 @@
-package museumApp.gui.model;
+package museumApp.bll;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import museumApp.be.Employee;
-import museumApp.bll.LoginManager;
+import java.util.List;
+import museumApp.be.Nationality;
+import museumApp.dal.GetData;
 
-public class LoginModel extends Model
+public class NationalityBll extends BllFacade
   {
 
-    /**
-     * Constructor
-     *
-     * @throws IOException
-     */
-    public LoginModel() throws IOException
+    public NationalityBll() throws IOException
       {
-        loginManager = new LoginManager();
+        getDbMgr = new GetData();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
-     * Method call to the loginManager
      *
-     * @param username
-     * @param password
      * @return
-     * @throws SQLException
      */
-    public Employee LoginChecker(String username, String password) throws SQLException
+    public List<Nationality> getAllNationalities()
       {
-        return loginManager.LoginChecker(username, password);
+        try
+        {
+            return getDbMgr.getAllNationalities();
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
+            throw new MuseumManagerException("Unable to fetch nationalities.");
+        }
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-
   }

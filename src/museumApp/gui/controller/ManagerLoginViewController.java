@@ -45,14 +45,16 @@ public class ManagerLoginViewController extends Controller implements Initializa
     private static final int loggedIn = 2;
     private static final int wrongPassword = 3;
     private int loginState;
-    private final LoginModel loginModel;
     private Employee employee = null;
 
     public ManagerLoginViewController() throws IOException
       {
-        this.loginModel = new LoginModel();
+        super();
+        loginModel = new LoginModel();
       }
 
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      * Initializes the controller class.
      */
@@ -62,7 +64,7 @@ public class ManagerLoginViewController extends Controller implements Initializa
         loginState = notLoggedIn; // Sets the program as not logged in.
       }
 
-    /** -----------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      * Method call to the login method below.
      *
@@ -76,6 +78,7 @@ public class ManagerLoginViewController extends Controller implements Initializa
         login();
       }
 
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      * When you click ENTER it will go to password field.
      *
@@ -91,6 +94,7 @@ public class ManagerLoginViewController extends Controller implements Initializa
         }
       }
 
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      * When you click ENTER it will login.
      *
@@ -108,6 +112,7 @@ public class ManagerLoginViewController extends Controller implements Initializa
         }
       }
 
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      * This method handles the login feature, It checks the text fields to determine
      * whether or not the username and the password is correct,
@@ -133,22 +138,22 @@ public class ManagerLoginViewController extends Controller implements Initializa
 
             if (loginState == loggedIn)
             {
-                
-                    Stage stage;
-                    Parent root;
-                    URL location;
-                    location = this.getClass().getResource("/museumApp/gui/view/ManagementRegisterVolunteer.fxml");
-                    FXMLLoader loader;
-                    loader = new FXMLLoader(location);
-                    root = loader.load();
-                    Scene scene;
-                    scene = new Scene(root);
-                    stage = (Stage) borderPane.getScene().getWindow();
-                    stage.hide();
-                    stage.setScene(scene);
-                    stage.show();
-                    stage.centerOnScreen();
-                
+
+                Stage stage;
+                Parent root;
+                URL location;
+                location = this.getClass().getResource("/museumApp/gui/view/ManagementRegisterVolunteer.fxml");
+                FXMLLoader loader;
+                loader = new FXMLLoader(location);
+                root = loader.load();
+                Scene scene;
+                scene = new Scene(root);
+                stage = (Stage) borderPane.getScene().getWindow();
+                stage.hide();
+                stage.setScene(scene);
+                stage.show();
+                stage.centerOnScreen();
+
             }
             if (loginState != loggedIn && employee == null)
             {
@@ -162,6 +167,7 @@ public class ManagerLoginViewController extends Controller implements Initializa
         }
       }
 
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      * If the password is wrong then the label will appear red.
      */
@@ -174,6 +180,7 @@ public class ManagerLoginViewController extends Controller implements Initializa
         lblWrongLogin.setText("This user ID or password is not recognized.");
       }
 
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      * If the password is correct or the user is trying to change it then from red it will go back to grey.
      */
@@ -186,6 +193,7 @@ public class ManagerLoginViewController extends Controller implements Initializa
         txtPassword.setStyle("-jfx-focus-color:#757575");
       }
 
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      * It goes back to language selection when clicked.
      *
@@ -213,5 +221,7 @@ public class ManagerLoginViewController extends Controller implements Initializa
             System.err.println(ex);
         }
       }
-    /** -----------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+
   }

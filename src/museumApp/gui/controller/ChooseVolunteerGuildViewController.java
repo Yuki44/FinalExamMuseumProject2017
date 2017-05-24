@@ -2,9 +2,7 @@ package museumApp.gui.controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,7 +20,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import museumApp.be.Guild;
 import museumApp.be.Volunteer;
-import museumApp.gui.model.UserModel;
+import museumApp.gui.model.GuildModel;
+import museumApp.gui.model.VolunteerModel;
 
 public class ChooseVolunteerGuildViewController extends Controller implements Initializable
   {
@@ -45,6 +44,18 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
     public Label lblStep2;
 
     /**
+     * Constructor
+     *
+     * @throws IOException
+     */
+    public ChooseVolunteerGuildViewController() throws IOException
+      {
+        super();
+        guildModel = new GuildModel();
+        volunteerModel = new VolunteerModel();
+      }
+
+    /**
      * Initializes the controller class.
      *
      * @param url
@@ -53,23 +64,12 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
-
         /**
          * Initializes the Guild listView.
          */
-        guildListView.setItems(userModel.getGuilds());
+        guildListView.setItems(guildModel.getGuilds());
         guildTblColName.setCellValueFactory(guild -> guild.getValue().getName()); //Lambda expression sets values into laug name column
         listGenerator();
-      }
-
-    /**
-     * Constructor
-     *
-     * @throws IOException
-     */
-    public ChooseVolunteerGuildViewController() throws IOException, SQLException
-      {
-        userModel = new UserModel(); // New userModel Instance
       }
 
     /** ----------------------------------------------------------------------------------------------------------------. */
@@ -78,25 +78,21 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
      */
     public void listGenerator()
       {
-        guildListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Guild>()
-          {
-            /**
-             * Creates an observable list of the volunteers contained in the chosen guild.
-             * Which is then shown in the volunteer list with their full names diplayed.
-             *
-             * @param observable
-             * @param oldValue
-             * @param newValue
-             */
-            @Override
-            public void changed(ObservableValue<? extends Guild> observable, Guild oldValue, Guild newValue)
-              {
-                ObservableList<Volunteer> volunteerList = FXCollections.observableArrayList();
-                volunteerList.addAll(userModel.getVolunteerFromGuild(newValue));
-                volunterListView.setItems(volunteerList);
-                volunteerTblColName.setCellValueFactory(volunteer -> volunteer.getValue().getFullName());
-              }
-          });
+        guildListView.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Guild> observable, Guild oldValue, Guild newValue) ->
+        {
+            ObservableList<Volunteer> volunteerList = FXCollections.observableArrayList();
+            volunteerList.addAll(volunteerModel.getVolunteerFromGuild(newValue));
+            volunterListView.setItems(volunteerList);
+            volunteerTblColName.setCellValueFactory(volunteer -> volunteer.getValue().getFullName());
+        } /**
+         * Creates an observable list of the volunteers contained in the chosen guild.
+         * Which is then shown in the volunteer list with their full names diplayed.
+         *
+         * @param observable
+         * @param oldValue
+         * @param newValue
+         */
+        );
       }
 
     /**
@@ -140,7 +136,7 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
         }
         catch (IOException ex)
         {
-            System.err.println(ex);
+            System.err.println(ex.getCause());
         }
       }
 
@@ -168,7 +164,7 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
         }
         catch (IOException ex)
         {
-            System.err.println(ex);
+            System.err.println(ex.getCause());
         }
       }
 

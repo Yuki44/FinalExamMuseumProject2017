@@ -3,15 +3,15 @@ package museumApp.bll;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import museumApp.be.VolunteerTime;
+import museumApp.be.Administrator;
 import museumApp.dal.AddData;
 import museumApp.dal.GetData;
 import museumApp.dal.RemoveData;
 
-public class TimeRegistrationManager extends BllFacade
+public class AdminBll extends BllFacade
   {
 
-    public TimeRegistrationManager() throws IOException
+    public AdminBll() throws IOException
       {
         getDbMgr = new GetData();
         addDbMgr = new AddData();
@@ -21,51 +21,43 @@ public class TimeRegistrationManager extends BllFacade
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * Creates a List to fetch the Administrator in the database.
      *
-     * @return
+     * @return method from GetData
      */
-    public List<VolunteerTime> getAllVolunteerTime()
+    public List<Administrator> getAllAdmins()
       {
         try
         {
-            return getDbMgr.getAllVolunteerTime();
+            return getDbMgr.getAllAdmins();
         }
         catch (SQLException ex)
         {
             System.err.println(ex.getCause());
-            throw new MuseumManagerException("Unable to fetch Volunteer Time.");
-
+            throw new MuseumManagerException("Unable to fetch administrators.");
         }
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      *
-     * @param vTime
-     */
-    public void addVolunteerTime(VolunteerTime vTime)
-      {
-        try
-        {
-            addDbMgr.addVolunteerTime(vTime);
-        }
-        catch (SQLException ex)
-        {
-            System.err.println(ex.getCause());
-            throw new MuseumManagerException("Unable to add Volunteer Time.");
-        }
-
-      }
-
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /**
-     *
-     * @param vTime
+     * @param ad
      * @throws SQLException
      */
-    public void removeVolunteerTime(VolunteerTime vTime) throws SQLException
+    public void addAdministrator(Administrator ad) throws SQLException
       {
-        removeDbMgr.removeVolunteerTime(vTime);
+        addDbMgr.addAdministrator(ad);
+      }
+
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /**
+     *
+     * @param ad
+     * @throws SQLException
+     */
+    public void removeAdministrator(Administrator ad) throws SQLException
+      {
+        removeDbMgr.removeAdministrator(ad);
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

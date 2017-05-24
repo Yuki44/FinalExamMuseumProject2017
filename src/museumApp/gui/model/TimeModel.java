@@ -1,60 +1,44 @@
-package museumApp.bll;
+package museumApp.gui.model;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import museumApp.be.VolunteerTime;
-import museumApp.dal.AddData;
-import museumApp.dal.GetData;
-import museumApp.dal.RemoveData;
+import museumApp.bll.TimeRegistrationManager;
 
-public class TimeRegistrationManager extends BllFacade
+public class TimeModel extends Model
   {
 
-    public TimeRegistrationManager() throws IOException
+    private ObservableList<VolunteerTime> volunteerTime;
+
+    public TimeModel() throws IOException
       {
-        getDbMgr = new GetData();
-        addDbMgr = new AddData();
-        removeDbMgr = new RemoveData();
+        timeRegistrationManager = new TimeRegistrationManager();
+        volunteerTime = FXCollections.observableArrayList(timeRegistrationManager.getAllVolunteerTime());
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      *
-     * @return
+     * @return volunteerTime
      */
-    public List<VolunteerTime> getAllVolunteerTime()
+    public ObservableList<VolunteerTime> getVolunteerTime()
       {
-        try
-        {
-            return getDbMgr.getAllVolunteerTime();
-        }
-        catch (SQLException ex)
-        {
-            System.err.println(ex.getCause());
-            throw new MuseumManagerException("Unable to fetch Volunteer Time.");
-
-        }
+        return volunteerTime;
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      *
      * @param vTime
+     * @throws SQLException
      */
-    public void addVolunteerTime(VolunteerTime vTime)
+    public void addVolunteerTime(VolunteerTime vTime) throws SQLException
       {
-        try
-        {
-            addDbMgr.addVolunteerTime(vTime);
-        }
-        catch (SQLException ex)
-        {
-            System.err.println(ex.getCause());
-            throw new MuseumManagerException("Unable to add Volunteer Time.");
-        }
-
+        volunteerTime.add(vTime); //updates gui through observable
+        timeRegistrationManager.addVolunteerTime(vTime); //updates database
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -65,7 +49,8 @@ public class TimeRegistrationManager extends BllFacade
      */
     public void removeVolunteerTime(VolunteerTime vTime) throws SQLException
       {
-        removeDbMgr.removeVolunteerTime(vTime);
+        timeRegistrationManager.removeVolunteerTime(vTime);
+        volunteerTime.remove(vTime);
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

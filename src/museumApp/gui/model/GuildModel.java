@@ -1,71 +1,56 @@
-package museumApp.bll;
+package museumApp.gui.model;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
-import museumApp.be.VolunteerTime;
-import museumApp.dal.AddData;
-import museumApp.dal.GetData;
-import museumApp.dal.RemoveData;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import museumApp.be.Guild;
+import museumApp.bll.GuildBll;
 
-public class TimeRegistrationManager extends BllFacade
+public class GuildModel extends Model
   {
 
-    public TimeRegistrationManager() throws IOException
+    private ObservableList<Guild> guilds;
+
+    public GuildModel() throws IOException
       {
-        getDbMgr = new GetData();
-        addDbMgr = new AddData();
-        removeDbMgr = new RemoveData();
+        guildBll = new GuildBll();
+        guilds = FXCollections.observableArrayList(guildBll.getAllGuilds());
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      *
-     * @return
+     * @return guilds
      */
-    public List<VolunteerTime> getAllVolunteerTime()
+    public ObservableList<Guild> getGuilds()
       {
-        try
-        {
-            return getDbMgr.getAllVolunteerTime();
-        }
-        catch (SQLException ex)
-        {
-            System.err.println(ex.getCause());
-            throw new MuseumManagerException("Unable to fetch Volunteer Time.");
-
-        }
+        return guilds;
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      *
-     * @param vTime
-     */
-    public void addVolunteerTime(VolunteerTime vTime)
-      {
-        try
-        {
-            addDbMgr.addVolunteerTime(vTime);
-        }
-        catch (SQLException ex)
-        {
-            System.err.println(ex.getCause());
-            throw new MuseumManagerException("Unable to add Volunteer Time.");
-        }
-
-      }
-
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /**
-     *
-     * @param vTime
+     * @param gd
      * @throws SQLException
      */
-    public void removeVolunteerTime(VolunteerTime vTime) throws SQLException
+    public void addGuild(Guild gd) throws SQLException
       {
-        removeDbMgr.removeVolunteerTime(vTime);
+        guilds.add(gd);
+        guildBll.addGuild(gd);
+      }
+
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /**
+     *
+     * @param gd
+     * @throws SQLException
+     */
+    public void removeGuild(Guild gd) throws SQLException
+      {
+        guildBll.removeGuild(gd);
+        guilds.remove(gd);
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

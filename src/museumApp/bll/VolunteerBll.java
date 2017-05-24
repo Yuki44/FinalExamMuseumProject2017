@@ -3,15 +3,16 @@ package museumApp.bll;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import museumApp.be.VolunteerTime;
+import museumApp.be.Guild;
+import museumApp.be.Volunteer;
 import museumApp.dal.AddData;
 import museumApp.dal.GetData;
 import museumApp.dal.RemoveData;
 
-public class TimeRegistrationManager extends BllFacade
+public class VolunteerBll extends BllFacade
   {
 
-    public TimeRegistrationManager() throws IOException
+    public VolunteerBll() throws IOException
       {
         getDbMgr = new GetData();
         addDbMgr = new AddData();
@@ -21,51 +22,65 @@ public class TimeRegistrationManager extends BllFacade
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * Creates a List to fetch the volunteers in the database.
      *
-     * @return
+     * @return method from GetData
      */
-    public List<VolunteerTime> getAllVolunteerTime()
+    public List<Volunteer> getAllVolunteers()
       {
         try
         {
-            return getDbMgr.getAllVolunteerTime();
+            return getDbMgr.getAllVolunteers();
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
-            throw new MuseumManagerException("Unable to fetch Volunteer Time.");
-
+            System.err.println(ex);
+            throw new MuseumManagerException("Unable to fetch volunteers.");
         }
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * Adds a Volunteer, Method call to DAL layer.
      *
-     * @param vTime
-     */
-    public void addVolunteerTime(VolunteerTime vTime)
-      {
-        try
-        {
-            addDbMgr.addVolunteerTime(vTime);
-        }
-        catch (SQLException ex)
-        {
-            System.err.println(ex.getCause());
-            throw new MuseumManagerException("Unable to add Volunteer Time.");
-        }
-
-      }
-
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /**
-     *
-     * @param vTime
+     * @param vtr
      * @throws SQLException
      */
-    public void removeVolunteerTime(VolunteerTime vTime) throws SQLException
+    public void addVolunteer(Volunteer vtr) throws SQLException
       {
-        removeDbMgr.removeVolunteerTime(vTime);
+        addDbMgr.addVolunteer(vtr);
+      }
+
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /**
+     * RemoveVolunteer vtr, is a method call to DAL remove Database class.
+     *
+     * @param vtr
+     * @throws SQLException
+     */
+    public void removeVolunteer(Volunteer vtr) throws SQLException
+      {
+        removeDbMgr.removeVolunteer(vtr);
+      }
+
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /**
+     * Method call to the getData Database Manager.
+     *
+     * @param newValue
+     * @return
+     */
+    public List<Volunteer> getVolunteersFromGuild(Guild newValue)
+      {
+        try
+        {
+            return getDbMgr.getVolunteerBasedOnGuild(newValue);
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
+            throw new MuseumManagerException("Unable to find new value");
+        }
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

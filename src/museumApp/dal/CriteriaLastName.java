@@ -5,13 +5,6 @@
  */
 package museumApp.dal;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import museumApp.be.Volunteer;
-
 /**
  *
  * @author min
@@ -19,21 +12,20 @@ import museumApp.be.Volunteer;
 public class CriteriaLastName implements Criteria
   {
 
-    @Override
-    public List<Volunteer> meetCriteria(List<Volunteer> volunteer, String criteria)
-      {
-        GetData getData;
-        try
-        {
-            getData = new GetData();
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(CriteriaFirstName.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        //   return getData.getVolunteersByLasttName(lastName);
-        return volunteer;
-      }
-
+//    @Override
+//    public List<Volunteer> meetCriteria(List<Volunteer> volunteer, String criteria)
+//      {
+//        GetData getData;
+//        try
+//        {
+//            getData = new GetData();
+//        }
+//        catch (IOException ex)
+//        {
+//            Logger.getLogger(CriteriaFirstName.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        //   return getData.getVolunteersByLasttName(lastName);
+//        return volunteer;
+//      }
   }

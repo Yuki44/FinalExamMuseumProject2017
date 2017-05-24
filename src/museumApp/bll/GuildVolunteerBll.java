@@ -3,15 +3,15 @@ package museumApp.bll;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import museumApp.be.VolunteerTime;
+import museumApp.be.GuildVolunteer;
 import museumApp.dal.AddData;
 import museumApp.dal.GetData;
 import museumApp.dal.RemoveData;
 
-public class TimeRegistrationManager extends BllFacade
+public class GuildVolunteerBll extends BllFacade
   {
 
-    public TimeRegistrationManager() throws IOException
+    public GuildVolunteerBll() throws IOException
       {
         getDbMgr = new GetData();
         addDbMgr = new AddData();
@@ -24,48 +24,39 @@ public class TimeRegistrationManager extends BllFacade
      *
      * @return
      */
-    public List<VolunteerTime> getAllVolunteerTime()
+    public List<GuildVolunteer> getAllGuildVolunteer()
       {
         try
         {
-            return getDbMgr.getAllVolunteerTime();
+            return getDbMgr.getAllGuildVolunteer();
         }
         catch (SQLException ex)
         {
             System.err.println(ex.getCause());
             throw new MuseumManagerException("Unable to fetch Volunteer Time.");
-
         }
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      *
-     * @param vTime
-     */
-    public void addVolunteerTime(VolunteerTime vTime)
-      {
-        try
-        {
-            addDbMgr.addVolunteerTime(vTime);
-        }
-        catch (SQLException ex)
-        {
-            System.err.println(ex.getCause());
-            throw new MuseumManagerException("Unable to add Volunteer Time.");
-        }
-
-      }
-
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /**
-     *
-     * @param vTime
+     * @param gv
      * @throws SQLException
      */
-    public void removeVolunteerTime(VolunteerTime vTime) throws SQLException
+    public void addGuildVolunteer(GuildVolunteer gv) throws SQLException
       {
-        removeDbMgr.removeVolunteerTime(vTime);
+        addDbMgr.addGuildVolunteer(gv);
+      }
+
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /**
+     *
+     * @param gv
+     * @throws SQLException
+     */
+    public void removeGuildVolunteer(GuildVolunteer gv) throws SQLException
+      {
+        removeDbMgr.removeGuildVolunteer(gv);
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

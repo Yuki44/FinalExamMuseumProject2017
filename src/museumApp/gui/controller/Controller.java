@@ -10,7 +10,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import museumApp.gui.model.UserModel;
+import museumApp.gui.model.AdminModel;
+import museumApp.gui.model.EmployeeModel;
+import museumApp.gui.model.GuildModel;
+import museumApp.gui.model.GuildVolunteerModel;
+import museumApp.gui.model.LoginModel;
+import museumApp.gui.model.ManagerModel;
+import museumApp.gui.model.NationalityModel;
+import museumApp.gui.model.TimeModel;
+import museumApp.gui.model.VolunteerModel;
 
 public abstract class Controller
   {
@@ -18,13 +26,21 @@ public abstract class Controller
     //This is necessary for the mouse click location
     double xMouse;
     double yMouse;
+    protected Locale locale;
+    protected TimeModel timeModel;
+    protected AdminModel adminModel;
+    protected GuildModel guildModel;
     @FXML
     protected BorderPane borderPane;
     @FXML
     protected GridPane mainGridPane;
-    protected UserModel userModel;
     protected ResourceBundle bundle;
-    protected Locale locale;
+    protected LoginModel loginModel;
+    protected ManagerModel managerModel;
+    protected VolunteerModel volunteerModel;
+    protected EmployeeModel employeeModel;
+    protected NationalityModel nationalityModel;
+    protected GuildVolunteerModel guildVolunteerModel;
 
     /** ----------------------------------------------------------------------------------------------------------------. */
     /**

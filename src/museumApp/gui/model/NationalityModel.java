@@ -1,36 +1,31 @@
 package museumApp.gui.model;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import museumApp.be.Employee;
-import museumApp.bll.LoginManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import museumApp.be.Nationality;
+import museumApp.bll.NationalityBll;
 
-public class LoginModel extends Model
+public class NationalityModel extends Model
   {
 
-    /**
-     * Constructor
-     *
-     * @throws IOException
-     */
-    public LoginModel() throws IOException
+    private ObservableList<Nationality> nationalities;
+
+    public NationalityModel() throws IOException
       {
-        loginManager = new LoginManager();
+        nationalityBll = new NationalityBll();
+        nationalities = FXCollections.observableArrayList(nationalityBll.getAllNationalities());
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
-     * Method call to the loginManager
      *
-     * @param username
-     * @param password
-     * @return
-     * @throws SQLException
+     * @return nationalities
      */
-    public Employee LoginChecker(String username, String password) throws SQLException
+    public ObservableList<Nationality> getNationalities()
       {
-        return loginManager.LoginChecker(username, password);
+        return nationalities;
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

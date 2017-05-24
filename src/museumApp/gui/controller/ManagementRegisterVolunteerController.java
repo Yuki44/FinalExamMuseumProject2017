@@ -59,7 +59,11 @@ import museumApp.be.GuildVolunteer;
 import museumApp.be.Manager;
 import museumApp.be.Nationality;
 import museumApp.be.Volunteer;
-import museumApp.gui.model.UserModel;
+import museumApp.gui.model.GuildModel;
+import museumApp.gui.model.GuildVolunteerModel;
+import museumApp.gui.model.ManagerModel;
+import museumApp.gui.model.NationalityModel;
+import museumApp.gui.model.VolunteerModel;
 
 public class ManagementRegisterVolunteerController extends Controller implements Initializable
   {
@@ -231,9 +235,14 @@ public class ManagementRegisterVolunteerController extends Controller implements
         handleSelectVolunteer();
       }
 
-    public ManagementRegisterVolunteerController() throws IOException, SQLException
+    public ManagementRegisterVolunteerController() throws IOException
       {
-        userModel = new UserModel();
+        super();
+        guildModel = new GuildModel();
+        managerModel = new ManagerModel();
+        volunteerModel = new VolunteerModel();
+        nationalityModel = new NationalityModel();
+        guildVolunteerModel = new GuildVolunteerModel();
       }
 
     /** --------------------------------------MANAGER-------------------------------------------. */
@@ -246,32 +255,24 @@ public class ManagementRegisterVolunteerController extends Controller implements
          * We set the items on the manager table and with a lambda expression we set the individual
          * columns first name and last name.
          */
-        managerTbl.setItems(userModel.getManagers());
+        managerTbl.setItems(managerModel.getManagers());
         managerTblColFname.setCellValueFactory(manager -> manager.getValue().getFirstName());
         managerTblColLname.setCellValueFactory(manager -> manager.getValue().getLastName());
-        comboBoxAddGuildManager.setItems(userModel.getManagers());
-        comboBoxAddGuildManager.setCellFactory(new Callback<ListView<Manager>, ListCell<Manager>>()
-
+        comboBoxAddGuildManager.setItems(managerModel.getManagers());
+        comboBoxAddGuildManager.setCellFactory((ListView<Manager> param) -> new ListCell<Manager>()
           {
             @Override
-            public ListCell<Manager> call(ListView<Manager> param)
+            protected void updateItem(Manager manager, boolean empty)
               {
-                return new ListCell<Manager>()
-                  {
-                    @Override
-                    protected void updateItem(Manager manager, boolean empty)
-                      {
-                        super.updateItem(manager, empty);
-                        if (manager == null || empty)
-                        {
-                            setGraphic(null);
-                        }
-                        else
-                        {
-                            setText(manager.getFullNameAsString());
-                        }
-                      }
-                  };
+                super.updateItem(manager, empty);
+                if (manager == null || empty)
+                {
+                    setGraphic(null);
+                }
+                else
+                {
+                    setText(manager.getFullNameAsString());
+                }
               }
           });
 
@@ -283,10 +284,10 @@ public class ManagementRegisterVolunteerController extends Controller implements
          * We set the items on the guild table and with a lambda expression we set the individual
          * columns first name and last name.
          */
-        tblGuild.setItems(userModel.getGuilds());
+        tblGuild.setItems(guildModel.getGuilds());
         tblColGuildName.setCellValueFactory(guild -> guild.getValue().getName());
         tblColGuildManager.setCellValueFactory(guild -> guild.getValue().getManager().getFullName());
-        comboBoxFirstGuildSelection.setItems(userModel.getGuilds());
+        comboBoxFirstGuildSelection.setItems(guildModel.getGuilds());
         comboBoxFirstGuildSelection.setCellFactory(new Callback<ListView<Guild>, ListCell<Guild>>()
           {
             @Override
@@ -314,7 +315,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
     public void initializeNationailities()
       {
-        comboBoxNationality.setItems(userModel.getNationalities());
+        comboBoxNationality.setItems(nationalityModel.getNationalities());
       }
 
     /**
@@ -366,7 +367,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String username = addTUNameTxtF.getText().trim();
         String password = addTPassTxtF.getText().trim();
         Manager mg = new Manager(0, fName, lName, email, username, password);
-        userModel.addManager(mg);
+        managerModel.addManager(mg);
         addTFNameTxtF.clear();
         addTLNameTxtF.clear();
         addTEmailTxtF.clear();
@@ -383,10 +384,10 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private void handleRemoveManager(ActionEvent event) throws SQLException
       {
-        Manager selectedManager = managerTbl.getSelectionModel().getSelectedItem();
-        if (selectedManager != null)
+        Manager mg = managerTbl.getSelectionModel().getSelectedItem();
+        if (mg != null)
         {
-            userModel.removeManager(selectedManager);
+            managerModel.removeManager(mg);
             addTFNameTxtF.clear();
             addTLNameTxtF.clear();
             addTUNameTxtF.clear();
@@ -405,7 +406,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String guildName = txtFieldAddGuildName.getText().trim();
         Manager manager = comboBoxAddGuildManager.getSelectionModel().getSelectedItem();
         Guild gd = new Guild(0, guildName, manager);
-        userModel.addGuild(gd);
+        guildModel.addGuild(gd);
         txtFieldAddGuildName.clear();
 
       }
@@ -418,10 +419,10 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private void handleRemoveGuild(ActionEvent event) throws SQLException
       {
-        Guild selectedGuild = tblGuild.getSelectionModel().getSelectedItem();
-        if (selectedGuild != null)
+        Guild gd = tblGuild.getSelectionModel().getSelectedItem();
+        if (gd != null)
         {
-            userModel.removeGuild(selectedGuild);
+            guildModel.removeGuild(gd);
             txtFieldAddGuildName.clear();
         }
 
@@ -498,9 +499,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
             if (guild != null)
             {
                 GuildVolunteer gv = new GuildVolunteer(guild, vtr);
-                userModel.addGuildVolunteer(gv);
+                guildVolunteerModel.addGuildVolunteer(gv);
             }
-            userModel.addVolunteer(vtr);
+            volunteerModel.addVolunteer(vtr);
             lblFieldsRequired.setText("");
             lblFieldRequiredStar.setText("");
             //
@@ -509,6 +510,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
 //            myImageFile = new File(dbc.getVolunteerImgFilePath(), imageName);
 //            ImageIO.write(takenImage, "PNG", myImageFile);
             //
+
             updateList();
             lblAddVtrSuccess.setText(firstName + " " + lastName + " saved!");
 
@@ -622,7 +624,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         allVolunteersList = new ArrayList<>();
         try
         {
-            allVolunteersList.addAll(userModel.getVolunteers());
+            allVolunteersList.addAll(volunteerModel.getVolunteers());
         }
         catch (Exception ex)
         {

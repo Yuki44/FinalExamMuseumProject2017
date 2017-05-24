@@ -5,16 +5,12 @@
  */
 package museumApp.dal;
 
-import java.util.List;
-import museumApp.be.Volunteer;
-
 /**
  *
  * @author min
  */
-public interface Criteria {
-    
-   public List<Volunteer> meetCriteria(List<Volunteer> volunteer, String criteria);
+public interface Criteria
+  {
 
-    
-}
+//   public List<Volunteer> meetCriteria(List<Volunteer> volunteer, String criteria);
+  }
