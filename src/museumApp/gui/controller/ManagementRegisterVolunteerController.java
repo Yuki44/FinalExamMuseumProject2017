@@ -56,6 +56,7 @@ import javafx.util.Callback;
 import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import museumApp.be.Guild;
+import museumApp.be.GuildVolunteer;
 import museumApp.be.Manager;
 import museumApp.be.Nationality;
 import museumApp.be.Volunteer;
@@ -504,15 +505,16 @@ public class ManagementRegisterVolunteerController extends Controller implements
             }
             Volunteer vtr = new Volunteer(0, firstName, lastName, birthDate, phoneNumber, email,
                     nationality, registeredDate, photo, comment, address, city, zipCode, country);
+            volunteerModel.addVolunteer(vtr);
             Guild guild = comboBoxFirstGuildSelection.getSelectionModel().getSelectedItem();
             if (guild != null)
             {
-                System.out.println("Guild: " + guild.getId());
-                System.out.println("Volunteer: " + vtr.getId());
-//                GuildVolunteer gv = new GuildVolunteer(guild, vtr);
-//                guildVolunteerModel.addGuildVolunteer(gv); 
+//                System.out.println("Guild: " + guild.getId());
+//                System.out.println("Volunteer: " + vtr.getId());
+                GuildVolunteer gv = new GuildVolunteer(guild, vtr);
+                guildVolunteerModel.addGuildVolunteer(gv);
             }
-//            volunteerModel.addVolunteer(vtr);
+
             lblFieldsRequired.setText("");
             lblFieldRequiredStar.setText("");
             updateList();

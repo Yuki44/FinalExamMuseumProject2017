@@ -3,7 +3,7 @@ package museumApp.be;
 public abstract class BusinessEntity
   {
 
-    protected final int id;
+    protected int id;
 
     public BusinessEntity(int id)
       {
@@ -13,6 +13,11 @@ public abstract class BusinessEntity
     public int getId()
       {
         return id;
+      }
+
+    public void setId(int id)
+      {
+        this.id = id;
       }
 
   }
