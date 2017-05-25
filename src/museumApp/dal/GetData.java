@@ -154,15 +154,12 @@ public class GetData extends DatabaseManager
         }
       }
 
-    public List<VolunteerTime> getAllVolunteerTime() throws SQLException
+    public List<VolunteerTime> getAllVolunteerTimes() throws SQLException
       {
         List<VolunteerTime> vTime = new ArrayList<>();
 
-        String sql = "SELECT * FROM volunteer_time vt "
-                + "INNER JOIN guild_volunteer gv ON vt.volunteer_id = "
-                + "gv.volunteer_id AND vt.guild_id = gv.guild_id "
-                + "INNER JOIN volunteer v ON gv.volunteer_id = v.volunteer_id "
-                + "INNER JOIN guild g ON g.guild_id = gv.guild_id";
+        String sql = "SELECT * FROM volunteer_time";
+              
 
         try (Connection con = connectionManager.getConnection())
         {
@@ -584,6 +581,8 @@ public class GetData extends DatabaseManager
             return volunteersByComment;
         }
       }
+
+   
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
 

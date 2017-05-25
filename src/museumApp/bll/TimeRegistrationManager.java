@@ -30,7 +30,7 @@ public class TimeRegistrationManager extends BllFacade
       {
         try
         {
-            return getDbMgr.getAllVolunteerTime();
+            return getDbMgr.getAllVolunteerTimes();
         }
         catch (SQLException ex)
         {
