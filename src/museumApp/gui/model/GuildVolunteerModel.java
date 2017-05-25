@@ -52,6 +52,17 @@ public class GuildVolunteerModel extends Model
         guildVolunteerBll.removeGuildVolunteer(gv);
         guildVolunteer.remove(gv);
       }
+
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /**
+     *
+     * @param gv
+     * @throws SQLException
+     */
+    public void updateGuildVolunteer(GuildVolunteer gv) throws SQLException
+      {
+        guildVolunteerBll.updateGuildVolunteer(gv);
+      }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
 

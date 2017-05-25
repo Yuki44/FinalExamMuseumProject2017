@@ -8,6 +8,7 @@ import museumApp.be.Manager;
 import museumApp.dal.AddData;
 import museumApp.dal.GetData;
 import museumApp.dal.RemoveData;
+import museumApp.dal.UpdateData;
 
 public class ManagerBll extends BllFacade
   {
@@ -17,6 +18,7 @@ public class ManagerBll extends BllFacade
         getDbMgr = new GetData();
         addDbMgr = new AddData();
         removeDbMgr = new RemoveData();
+        updateDbMgr = new UpdateData();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -80,6 +82,11 @@ public class ManagerBll extends BllFacade
             System.err.println(ex.getCause());
             throw new MuseumManagerException("Unable to find get manager from guild");
         }
+      }
+
+    public void updateManager(Manager mg) throws SQLException
+      {
+        updateDbMgr.updateManager(mg);
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

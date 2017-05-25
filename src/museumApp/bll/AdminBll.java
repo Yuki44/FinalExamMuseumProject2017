@@ -7,6 +7,7 @@ import museumApp.be.Administrator;
 import museumApp.dal.AddData;
 import museumApp.dal.GetData;
 import museumApp.dal.RemoveData;
+import museumApp.dal.UpdateData;
 
 public class AdminBll extends BllFacade
   {
@@ -15,6 +16,7 @@ public class AdminBll extends BllFacade
       {
         getDbMgr = new GetData();
         addDbMgr = new AddData();
+        updateDbMgr = new UpdateData();
         removeDbMgr = new RemoveData();
       }
 
@@ -59,7 +61,18 @@ public class AdminBll extends BllFacade
       {
         removeDbMgr.removeAdministrator(ad);
       }
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
 
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /**
+     *
+     * @param ad
+     * @throws SQLException
+     */
+    public void updateAdministrator(Administrator ad) throws SQLException
+      {
+        updateDbMgr.updateAdministrator(ad);
+      }
+
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
   }

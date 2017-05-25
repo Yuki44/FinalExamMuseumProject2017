@@ -58,6 +58,17 @@ public class VolunteerModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     *
+     * @param vtr
+     * @throws SQLException
+     */
+    public void updateVolunteer(Volunteer vtr) throws SQLException
+      {
+        volunteerBll.updateVolunteer(vtr);
+      }
+
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /**
      * Comes from listGenerator() in ChooseVolunterGuildViewController
      *
      * @param newValue

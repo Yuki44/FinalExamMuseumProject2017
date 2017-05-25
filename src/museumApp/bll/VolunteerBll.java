@@ -8,6 +8,7 @@ import museumApp.be.Volunteer;
 import museumApp.dal.AddData;
 import museumApp.dal.GetData;
 import museumApp.dal.RemoveData;
+import museumApp.dal.UpdateData;
 
 public class VolunteerBll extends BllFacade
   {
@@ -16,6 +17,7 @@ public class VolunteerBll extends BllFacade
       {
         getDbMgr = new GetData();
         addDbMgr = new AddData();
+        updateDbMgr = new UpdateData();
         removeDbMgr = new RemoveData();
       }
 
@@ -81,6 +83,11 @@ public class VolunteerBll extends BllFacade
             System.err.println(ex.getCause());
             throw new MuseumManagerException("Unable to find new value");
         }
+      }
+
+    public void updateVolunteer(Volunteer vtr) throws SQLException
+      {
+        updateDbMgr.updateVolunteer(vtr);
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

@@ -7,6 +7,7 @@ import museumApp.be.Guild;
 import museumApp.dal.AddData;
 import museumApp.dal.GetData;
 import museumApp.dal.RemoveData;
+import museumApp.dal.UpdateData;
 
 public class GuildBll extends BllFacade
   {
@@ -15,6 +16,7 @@ public class GuildBll extends BllFacade
       {
         getDbMgr = new GetData();
         addDbMgr = new AddData();
+        updateDbMgr = new UpdateData();
         removeDbMgr = new RemoveData();
       }
 
@@ -59,6 +61,11 @@ public class GuildBll extends BllFacade
     public void removeGuild(Guild gd) throws SQLException
       {
         removeDbMgr.removeGuild(gd);
+      }
+
+    public void updateGuild(Guild gd) throws SQLException
+      {
+        updateDbMgr.updateGuild(gd);
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

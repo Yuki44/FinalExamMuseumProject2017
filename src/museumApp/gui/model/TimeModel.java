@@ -52,6 +52,17 @@ public class TimeModel extends Model
         timeRegistrationManager.removeVolunteerTime(vTime);
         volunteerTime.remove(vTime);
       }
+
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /**
+     *
+     * @param vTime
+     * @throws SQLException
+     */
+    public void updateVolunteerTime(VolunteerTime vTime) throws SQLException
+      {
+        timeRegistrationManager.updateVolunteerTime(vTime);
+      }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
 

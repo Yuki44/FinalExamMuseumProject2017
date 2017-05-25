@@ -7,6 +7,7 @@ import museumApp.be.VolunteerTime;
 import museumApp.dal.AddData;
 import museumApp.dal.GetData;
 import museumApp.dal.RemoveData;
+import museumApp.dal.UpdateData;
 
 public class TimeRegistrationManager extends BllFacade
   {
@@ -16,6 +17,7 @@ public class TimeRegistrationManager extends BllFacade
         getDbMgr = new GetData();
         addDbMgr = new AddData();
         removeDbMgr = new RemoveData();
+        updateDbMgr = new UpdateData();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -66,6 +68,11 @@ public class TimeRegistrationManager extends BllFacade
     public void removeVolunteerTime(VolunteerTime vTime) throws SQLException
       {
         removeDbMgr.removeVolunteerTime(vTime);
+      }
+
+    public void updateVolunteerTime(VolunteerTime vTime) throws SQLException
+      {
+        updateDbMgr.updateVolunteerTime(vTime);
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
