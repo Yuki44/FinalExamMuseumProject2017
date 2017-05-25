@@ -29,9 +29,9 @@
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" styleClass="onlyTheBorder" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagementRegisterVolunteerController">
    <center>
-      <JFXTabPane prefHeight="242.0" prefWidth="546.0" BorderPane.alignment="CENTER">
+      <JFXTabPane fx:id="mainTabPane" prefHeight="242.0" prefWidth="546.0" BorderPane.alignment="CENTER">
          <tabs>
-            <Tab text="Register Volunteer">
+            <Tab fx:id="tabRegVtr" onSelectionChanged="#handleClearRegVolunteerTab" text="Register Volunteer">
               <content>
                 <AnchorPane fx:id="paneRegisterVtr" minHeight="0.0" minWidth="0.0">
                      <children>
@@ -401,7 +401,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Register a Manager">
+            <Tab fx:id="tabRegMg" text="Register a Manager">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -524,7 +524,7 @@
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab text="Register a Guild">
+            <Tab fx:id="tabRegGd" text="Register a Guild">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -586,7 +586,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab onSelectionChanged="#handleFocusOnSearch" text="Add Volunteer Hours">
+            <Tab fx:id="tabVtrFilter" onSelectionChanged="#handleFocusOnSearch" text="Add Volunteer Hours">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -646,7 +646,19 @@
                                  </children></HBox>
                            </children>
                         </GridPane>
-                        <ButtonBar layoutX="315.0" layoutY="363.0" prefHeight="40.0" prefWidth="179.0" />
+                        <ButtonBar layoutX="219.0" layoutY="340.0" prefHeight="63.0" prefWidth="373.0">
+                           <buttons>
+                              <JFXButton fx:id="buttonSetVolunteerTime" onAction="#handleManagerAddHour" prefHeight="44.0" prefWidth="185.0" style="-fx-border-color: grey;" text="Set Time for this Volunteer">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                              <JFXButton fx:id="buttonSeeVolunterTab" layoutX="198.0" layoutY="20.0" onAction="#handleSendVolunteerToRegisterTab" prefHeight="44.0" prefWidth="185.0" style="-fx-border-color: grey;" text="See this Volunteer Info">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXButton>
+                           </buttons></ButtonBar>
                         <TableView fx:id="volunteerTbl" layoutX="622.0" layoutY="89.0" prefHeight="314.0" prefWidth="210.0">
                            <columns>
                               <TableColumn fx:id="volunteerTblColFname" prefWidth="105.0" text="First name" />
@@ -705,7 +717,6 @@
                               </Label>
                            </children>
                         </Pane>
-                        <JFXButton buttonType="RAISED" layoutX="483.0" layoutY="263.0" onAction="#handleManagerAddHour" prefHeight="25.0" prefWidth="52.0" ripplerFill="#22709e" text="Go" />
                      </children>
                   </AnchorPane>
                </content>

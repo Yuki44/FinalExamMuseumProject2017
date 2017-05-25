@@ -3,6 +3,7 @@ package museumApp.gui.controller;
 import com.github.sarxos.webcam.Webcam;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
@@ -213,8 +214,23 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private TextField textLbSetHours;
     @FXML
     private Label lblJoinedGuild;
+    @FXML
+    private JFXTabPane mainTabPane;
+    @FXML
+    private Tab tabRegVtr;
+    @FXML
+    private Tab tabRegMg;
+    @FXML
+    private Tab tabRegGd;
+    @FXML
+    private Tab tabVtrFilter;
+    @FXML
+    private JFXButton buttonSetVolunteerTime;
+    @FXML
+    private JFXButton buttonSeeVolunterTab;
 
-    /** -------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      * Initializes the controller class.
      */
@@ -247,6 +263,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
         guildVolunteerModel = new GuildVolunteerModel();
       }
 
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** --------------------------------------MANAGER-------------------------------------------. */
     /**
      * Managers in the tables.
@@ -397,6 +415,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
         }
       }
 
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** -----------------------------------------GUILD--------------------------------------------. */
     /**
      * This method makes it possible to add a guild to the system.
@@ -468,6 +488,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
       }
 
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** --------------------------------------VOLUNTEER--------------------------------------------. */
     /**
      * Add new volunteers.
@@ -607,27 +629,52 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
       }
 
-    /** -------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ----------------------------------MANAGER REGISTER VTR HOURS-----------------------------------------. */
-//    public void getInfoFromList()
-//      {
-//        volunteerTbl.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Volunteer>()
-//          {
-//            /**
-//             * Creates an observable list of the volunteers contained in the chosen guild.
-//             * Which is then shown in the volunteer list with their full names diplayed.
-//             *
-//             * @param observable
-//             * @param oldValue
-//             * @param newValue
-//             */
-//            @Override
-//            public void changed(ObservableValue<? extends Volunteer> observable, Volunteer oldValue, Volunteer newValue)
-//              {
-//
-//              }
-//          });
-//      }
+    @FXML
+    private void handleManagerAddHour(ActionEvent event) throws IOException
+      {
+
+//        LocalDate localDate = addVtDatePicker.getValue();
+//        Date date = java.sql.Date.valueOf(localDate);
+//        int hours = Integer.parseInt(textLbSetHours.getText().trim());
+      }
+
+    @FXML
+    private void handleSendVolunteerToRegisterTab(ActionEvent event) throws IOException
+      {
+        Volunteer vtr = volunteerTbl.getSelectionModel().getSelectedItem();
+        mainTabPane.getSelectionModel().select(tabRegVtr);
+        String firstName = vtr.getFirstNameAsString();
+        String lastName = vtr.getLastNameAsString();
+        String phoneNumber = vtr.getPhoneNumberAsString();
+        String email = vtr.getEmailAsString();
+
+        Date registeredDate = vtr.getRegisteredDate();
+        String nationality = vtr.getCountryAsString();
+        String city = vtr.getCityAsString();
+        String address = vtr.getAddressAsString();
+        String birthDate = vtr.getBirthDateAString();
+        String zipCode = vtr.getZipCodeAsString();
+        String comment = vtr.getCommentAsString();
+        String photoName = vtr.getPhotoAString();
+
+        txtFieldAddVolunteerFName.setText(firstName);
+        txtFieldAddVolunteerLName.setText(lastName);
+        txtFieldAddVolunteerPhoneNum.setText(phoneNumber);
+        txtFieldAddVolunteerEmail.setText(email);
+//        regJoinedDatePicker.setValue(null);
+//        comboBoxNationality.getSelectionModel().clearSelection();
+        txtFieldAddVolunteerCity.setText(city);
+        txtFieldAddVolunteerAddress.setText(address);
+        txtFieldAddVolunteerBirthdate.setText(birthDate);
+        txtFieldAddVolunteerZipcode.setText(zipCode);
+        txtAreaAddVolunteerComment.setText(comment);
+//        comboBoxFirstGuildSelection.getSelectionModel().clearSelection();
+//        imgViewProfilePic.setImage(null);
+      }
+
     public void updateList()
       {
         allVolunteersList = new ArrayList<>();
@@ -696,6 +743,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
       }
 
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ----------------------------------GENERAL SETTINGS-----------------------------------------. */
     /**
      * Needed to Logout and go back to the ManagerLoginView
@@ -868,14 +917,12 @@ public class ManagementRegisterVolunteerController extends Controller implements
       }
 
     @FXML
-    private void handleManagerAddHour(ActionEvent event) throws IOException
+    private void handleClearRegVolunteerTab(Event event)
       {
-
-        LocalDate localDate = addVtDatePicker.getValue();
-        Date date = java.sql.Date.valueOf(localDate);
-        int hours = Integer.parseInt(textLbSetHours.getText().trim());
-
+        clearFields();
       }
 
-    /** -------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
   }
