@@ -6,7 +6,7 @@ import java.util.List;
 import museumApp.be.Nationality;
 import museumApp.dal.GetData;
 
-public class NationalityBll extends BllFacade
+public class NationalityBll extends BllManager
   {
 
     public NationalityBll() throws IOException

@@ -556,13 +556,11 @@
                               <VBox alignment="CENTER" fillWidth="false" spacing="30.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                  <children>
                                     <ComboBox fx:id="comboBoxAddGuildManager" prefHeight="25.0" prefWidth="402.0" promptText="none selected..." />
-                                    <JFXButton fx:id="buttonAddMoreManagersToGuild" alignment="CENTER" contentDisplay="CENTER" onAction="#handleAddAnotherManager" prefHeight="25.0" prefWidth="220.0" text="Add another manager for this guild" />
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" fillWidth="false" layoutX="163.0" layoutY="175.0" spacing="30.0" GridPane.rowIndex="1">
+                              <VBox alignment="CENTER" fillWidth="false" layoutX="163.0" layoutY="175.0" GridPane.rowIndex="1">
                                  <children>
                                     <Label text="Guild Manager:" />
-                                    <Label />
                                  </children>
                               </VBox>
                            </children>
@@ -685,7 +683,7 @@
                               <Cursor fx:constant="TEXT" />
                            </cursor>
                         </JFXTextField>
-                        <Pane layoutX="500.0" layoutY="27.0" opacity="0.41">
+                        <Pane layoutX="500.0" layoutY="27.0" opacity="0.24">
                            <children>
                               <Label text="You can search by:">
                                  <font>

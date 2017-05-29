@@ -10,7 +10,7 @@ import museumApp.dal.GetData;
 import museumApp.dal.RemoveData;
 import museumApp.dal.UpdateData;
 
-public class ManagerBll extends BllFacade
+public class ManagerBll extends BllManager
   {
 
     public ManagerBll() throws IOException

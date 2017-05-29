@@ -53,7 +53,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import museumApp.be.Guild;
@@ -67,6 +66,7 @@ import museumApp.gui.model.GuildVolunteerModel;
 import museumApp.gui.model.ManagerModel;
 import museumApp.gui.model.NationalityModel;
 import museumApp.gui.model.PrintModel;
+import museumApp.gui.model.TimeModel;
 import museumApp.gui.model.VolunteerModel;
 
 public class ManagementRegisterVolunteerController extends Controller implements Initializable
@@ -262,17 +262,24 @@ public class ManagementRegisterVolunteerController extends Controller implements
         handleSelectGuild();
         handleSelectManager();
         handleSelectVolunteer();
+//        ObservableList<VolunteerTime> vTime = timeModel.getVolunteerTime();
+//        for (VolunteerTime volunteerTime : vTime)
+//        {
+//            System.out.println(volunteerTime);
+//        }
+
       }
 
     public ManagementRegisterVolunteerController() throws IOException
       {
         super();
+        timeModel = new TimeModel();
         guildModel = new GuildModel();
+        printModel = new PrintModel();
         managerModel = new ManagerModel();
         volunteerModel = new VolunteerModel();
         nationalityModel = new NationalityModel();
         guildVolunteerModel = new GuildVolunteerModel();
-        printModel = new PrintModel();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -320,51 +327,37 @@ public class ManagementRegisterVolunteerController extends Controller implements
         tblColGuildName.setCellValueFactory(guild -> guild.getValue().getName());
         tblColGuildManager.setCellValueFactory(guild -> guild.getValue().getManager().getFullName());
         comboBoxFirstGuildSelection.setItems(guildModel.getGuilds());
-        comboBoxFirstGuildSelection.setCellFactory(new Callback<ListView<Guild>, ListCell<Guild>>()
+        comboBoxFirstGuildSelection.setCellFactory((ListView<Guild> param) -> new ListCell<Guild>()
           {
             @Override
-            public ListCell<Guild> call(ListView<Guild> param)
+            protected void updateItem(Guild guild, boolean empty)
               {
-                return new ListCell<Guild>()
-                  {
-                    @Override
-                    protected void updateItem(Guild guild, boolean empty)
-                      {
-                        super.updateItem(guild, empty);
-                        if (guild == null || empty)
-                        {
-                            setGraphic(null);
-                        }
-                        else
-                        {
-                            setText(guild.getNameAsString());
-                        }
-                      }
-                  };
+                super.updateItem(guild, empty);
+                if (guild == null || empty)
+                {
+                    setGraphic(null);
+                }
+                else
+                {
+                    setText(guild.getNameAsString());
+                }
               }
           });
         comboBoxSelectGuildCsv.setItems(guildModel.getGuilds());
-        comboBoxSelectGuildCsv.setCellFactory(new Callback<ListView<Guild>, ListCell<Guild>>()
+        comboBoxSelectGuildCsv.setCellFactory((ListView<Guild> param) -> new ListCell<Guild>()
           {
             @Override
-            public ListCell<Guild> call(ListView<Guild> param)
+            protected void updateItem(Guild guild, boolean empty)
               {
-                return new ListCell<Guild>()
-                  {
-                    @Override
-                    protected void updateItem(Guild guild, boolean empty)
-                      {
-                        super.updateItem(guild, empty);
-                        if (guild == null || empty)
-                        {
-                            setGraphic(null);
-                        }
-                        else
-                        {
-                            setText(guild.getNameAsString());
-                        }
-                      }
-                  };
+                super.updateItem(guild, empty);
+                if (guild == null || empty)
+                {
+                    setGraphic(null);
+                }
+                else
+                {
+                    setText(guild.getNameAsString());
+                }
               }
           });
 
@@ -383,27 +376,19 @@ public class ManagementRegisterVolunteerController extends Controller implements
      */
     private void handleSelectManager()
       {
-        managerTbl.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Manager>()
-          {
-            /**
-             * Creates an observable list of the volunteers contained in the chosen guild.
-             * Which is then shown in the volunteer list with their full names diplayed.
-             *
-             * @param observable
-             * @param oldValue
-             * @param newValue
-             */
-            @Override
-            public void changed(ObservableValue<? extends Manager> observable, Manager oldValue, Manager newValue)
-              {
-                Manager selectedManager = newValue;
-                addTFNameTxtF.setText(selectedManager.getFirstNameAsString());
-                addTLNameTxtF.setText(selectedManager.getLastNameAsString());
-                addTEmailTxtF.setText(selectedManager.getEmailAsString());
-                addTUNameTxtF.setText(selectedManager.getUserNameAsString());
-                addTPassTxtF.setText(selectedManager.getPasswordAsString());
-              }
-          });
+        managerTbl.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Manager> observable, Manager oldValue, Manager newValue) ->
+        {
+            Manager selectedManager = newValue;
+            addTFNameTxtF.setText(selectedManager.getFirstNameAsString());
+            addTLNameTxtF.setText(selectedManager.getLastNameAsString());
+            addTEmailTxtF.setText(selectedManager.getEmailAsString());
+            addTUNameTxtF.setText(selectedManager.getUserNameAsString());
+            addTPassTxtF.setText(selectedManager.getPasswordAsString());
+        } /**
+         * Creates an observable list of the volunteers contained in the chosen guild.
+         * Which is then shown in the volunteer list with their full names diplayed.
+         */
+        );
 
       }
 
@@ -467,7 +452,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
         Guild gd = new Guild(0, guildName, manager);
         guildModel.addGuild(gd);
         txtFieldAddGuildName.clear();
-
       }
 
     /**
@@ -494,35 +478,16 @@ public class ManagementRegisterVolunteerController extends Controller implements
      */
     private void handleSelectGuild()
       {
-        tblGuild.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Guild>()
-          {
-            /**
-             * Creates an observable list of the volunteers contained in the chosen guild.
-             * Which is then shown in the volunteer list with their full names diplayed.
-             *
-             * @param observable
-             * @param oldValue
-             * @param newValue
-             */
-            @Override
-            public void changed(ObservableValue<? extends Guild> observable, Guild oldValue, Guild newValue)
-              {
-                Guild selectedGuild = newValue;
-                txtFieldAddGuildName.setText(selectedGuild.getNameAsString());
-                Manager guildManager = selectedGuild.getManager();
-              }
-          });
-      }
-
-    /**
-     * If you want to add more managers to the same guild.
-     *
-     * @param event
-     */
-    @FXML
-    private void handleAddAnotherManager(ActionEvent event)
-      {
-
+        tblGuild.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Guild> observable, Guild oldValue, Guild newValue) ->
+        {
+            Guild selectedGuild = newValue;
+            txtFieldAddGuildName.setText(selectedGuild.getNameAsString());
+            Manager guildManager = selectedGuild.getManager();
+        } /**
+         * Creates an observable list of the volunteers contained in the chosen guild.
+         * Which is then shown in the volunteer list with their full names diplayed.
+         */
+        );
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -568,8 +533,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
             Guild guild = comboBoxFirstGuildSelection.getSelectionModel().getSelectedItem();
             if (guild != null)
             {
-//                System.out.println("Guild: " + guild.getId());
-//                System.out.println("Volunteer: " + vtr.getId());
                 GuildVolunteer gv = new GuildVolunteer(guild, vtr);
                 guildVolunteerModel.addGuildVolunteer(gv);
             }

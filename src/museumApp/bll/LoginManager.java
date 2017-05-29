@@ -6,7 +6,7 @@ import museumApp.be.Employee;
 import museumApp.dal.AdministratorLoginHandler;
 import museumApp.dal.ManagerLoginHandler;
 
-public class LoginManager extends BllFacade
+public class LoginManager extends BllManager
   {
 
     /**

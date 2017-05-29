@@ -9,7 +9,7 @@ import museumApp.dal.GetData;
 import museumApp.dal.RemoveData;
 import museumApp.dal.UpdateData;
 
-public class GuildBll extends BllFacade
+public class GuildBll extends BllManager
   {
 
     public GuildBll() throws IOException

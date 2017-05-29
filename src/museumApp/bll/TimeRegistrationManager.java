@@ -9,7 +9,7 @@ import museumApp.dal.GetData;
 import museumApp.dal.RemoveData;
 import museumApp.dal.UpdateData;
 
-public class TimeRegistrationManager extends BllFacade
+public class TimeRegistrationManager extends BllManager
   {
 
     public TimeRegistrationManager() throws IOException

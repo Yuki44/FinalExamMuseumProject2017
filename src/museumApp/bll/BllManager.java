@@ -8,7 +8,7 @@ import museumApp.dal.ManagerLoginHandler;
 import museumApp.dal.RemoveData;
 import museumApp.dal.UpdateData;
 
-public class BllFacade
+public class BllManager
   {
 
     protected GetData getDbMgr;
@@ -19,7 +19,7 @@ public class BllFacade
     protected ManagerLoginHandler managerLoginHandler;
     protected AdministratorLoginHandler adminLoginHandler;
 
-    public BllFacade()
+    public BllManager()
       {
 
       }
