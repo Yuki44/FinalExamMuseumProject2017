@@ -1,6 +1,7 @@
 package museumApp.dal;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import museumApp.be.Administrator;
@@ -45,17 +46,23 @@ public class RemoveData extends DatabaseManager
     public void removeManager(Manager mg) throws SQLException
       {
         String sql = "DELETE FROM employee WHERE employee_id = ? AND employee_type_id = 1 ";
-        PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-        pstmt.setInt(1, mg.getId());
-        pstmt.execute();
+        try (Connection con = connectionManager.getConnection())
+        {
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, mg.getId());
+            pstmt.execute();
+        }
       }
 
     public void removeGuild(Guild gd) throws SQLException
       {
         String sql = "DELETE FROM guild WHERE guild_id = ?";
-        PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-        pstmt.setInt(1, gd.getId());
-        pstmt.execute();
+        try (Connection con = connectionManager.getConnection())
+        {
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, gd.getId());
+            pstmt.execute();
+        }
       }
 
     public void removeAdministrator(Administrator ad) throws SQLException
@@ -73,8 +80,9 @@ public class RemoveData extends DatabaseManager
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
       }
 
-    public void removeVolunteerTime(Volunteer vtrTime) {
+    public void removeVolunteerTime(Volunteer vtrTime)
+      {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+      }
     /** ----------------------------------------------------------------------------------------------------. */
   }

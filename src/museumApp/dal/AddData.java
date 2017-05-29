@@ -80,13 +80,16 @@ public class AddData extends DatabaseManager
       {
         String sql = "INSERT INTO employee (e_first_name, e_last_name, e_email, user_name, password) "
                 + "Values (?,?,?,?,?);";
-        PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-        pstmt.setString(1, mg.getFirstNameAsString());
-        pstmt.setString(2, mg.getLastNameAsString());
-        pstmt.setString(3, mg.getEmailAsString());
-        pstmt.setString(4, mg.getUserNameAsString());
-        pstmt.setString(5, mg.getPasswordAsString());
-        pstmt.executeUpdate();
+        try (Connection con = connectionManager.getConnection())
+        {
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, mg.getFirstNameAsString());
+            pstmt.setString(2, mg.getLastNameAsString());
+            pstmt.setString(3, mg.getEmailAsString());
+            pstmt.setString(4, mg.getUserNameAsString());
+            pstmt.setString(5, mg.getPasswordAsString());
+            pstmt.executeUpdate();
+        }
       }
 
     /** -----------------------------------------HOURS-----------------------------------------------------. */
@@ -99,12 +102,15 @@ public class AddData extends DatabaseManager
     public void addVolunteerTime(VolunteerTime vTime) throws SQLException
       {
         String sql = "INSERT INTO volunteer_time (volunteer_id, guild_id, date, hours) VALUES (?,?,?,?);";
-        PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-        pstmt.setInt(1, vTime.getVolunteer().getId());
-        pstmt.setInt(2, vTime.getGuild().getId());
-        pstmt.setDate(3, vTime.getDate());
-        pstmt.setInt(4, vTime.getHours());
-        pstmt.execute();
+        try (Connection con = connectionManager.getConnection())
+        {
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, vTime.getVolunteer().getId());
+            pstmt.setInt(2, vTime.getGuild().getId());
+            pstmt.setDate(3, vTime.getDate());
+            pstmt.setInt(4, vTime.getHours());
+            pstmt.execute();
+        }
       }
 
     /** ------------------------------------------GUILD--------------------------------------------------. */
@@ -117,10 +123,13 @@ public class AddData extends DatabaseManager
     public void addGuild(Guild gd) throws SQLException
       {
         String sql = "INSERT INTO guild (name, manager_id) VALUES (?,?) ";
-        PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-        pstmt.setString(1, gd.getNameAsString());
-        pstmt.setInt(2, gd.getManager().getId());
-        pstmt.executeUpdate();
+        try (Connection con = connectionManager.getConnection())
+        {
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, gd.getNameAsString());
+            pstmt.setInt(2, gd.getManager().getId());
+            pstmt.executeUpdate();
+        }
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -132,10 +141,13 @@ public class AddData extends DatabaseManager
     public void addGuildVolunteer(GuildVolunteer gv) throws SQLException
       {
         String sql = "INSERT INTO guild_volunteer (guild_id, volunteer_id) VALUES (?,?)";
-        PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
-        pstmt.setInt(1, gv.getGuild().getId());
-        pstmt.setInt(2, gv.getVolunteer().getId());
-        pstmt.execute();
+        try (Connection con = connectionManager.getConnection())
+        {
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, gv.getGuild().getId());
+            pstmt.setInt(2, gv.getVolunteer().getId());
+            pstmt.execute();
+        }
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
