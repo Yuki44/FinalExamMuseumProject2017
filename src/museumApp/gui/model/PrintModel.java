@@ -12,9 +12,7 @@ import javafx.collections.ObservableList;
 import museumApp.be.Guild;
 import museumApp.be.GuildVolunteer;
 import museumApp.be.Volunteer;
-import museumApp.be.VolunteerTime;
 import museumApp.bll.GuildVolunteerBll;
-import museumApp.bll.TimeRegistrationManager;
 import museumApp.bll.VolunteerBll;
 import museumApp.dal.DropboxConnection;
 
@@ -27,16 +25,16 @@ public class PrintModel extends Model
 
     private ObservableList<Volunteer> volunteers;
     private ObservableList<GuildVolunteer> guildsVolunteers;
-    private ObservableList<VolunteerTime> volunteerTime;
+//    private ObservableList<VolunteerTime> volunteerTime;
 
     public PrintModel() throws IOException
       {
         volunteerBll = new VolunteerBll();
         guildVolunteerBll = new GuildVolunteerBll();
-        timeRegistrationManager = new TimeRegistrationManager();
+//        timeRegistrationManager = new TimeRegistrationManager();
         volunteers = FXCollections.observableArrayList(volunteerBll.getAllVolunteers());
         guildsVolunteers = FXCollections.observableArrayList(guildVolunteerBll.getAllGuildVolunteer());
-        volunteerTime = FXCollections.observableArrayList(timeRegistrationManager.getAllVolunteerTime());
+//        volunteerTime = FXCollections.observableArrayList(timeRegistrationManager.getAllVolunteerTime());
       }
 
     public ObservableList<Volunteer> getVolunteers()

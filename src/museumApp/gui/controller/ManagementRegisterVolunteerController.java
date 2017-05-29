@@ -66,7 +66,6 @@ import museumApp.gui.model.GuildVolunteerModel;
 import museumApp.gui.model.ManagerModel;
 import museumApp.gui.model.NationalityModel;
 import museumApp.gui.model.PrintModel;
-import museumApp.gui.model.TimeModel;
 import museumApp.gui.model.VolunteerModel;
 
 public class ManagementRegisterVolunteerController extends Controller implements Initializable
@@ -267,13 +266,13 @@ public class ManagementRegisterVolunteerController extends Controller implements
 //        {
 //            System.out.println(volunteerTime);
 //        }
-
+        showVolunteerGuilds();
       }
 
     public ManagementRegisterVolunteerController() throws IOException
       {
         super();
-        timeModel = new TimeModel();
+//        timeModel = new TimeModel();
         guildModel = new GuildModel();
         printModel = new PrintModel();
         managerModel = new ManagerModel();
@@ -673,6 +672,26 @@ public class ManagementRegisterVolunteerController extends Controller implements
         txtAreaAddVolunteerComment.setText(comment);
 //        comboBoxFirstGuildSelection.getSelectionModel().clearSelection();
 //        imgViewProfilePic.setImage(null);
+      }
+
+    private void showVolunteerGuilds()
+      {
+        Volunteer vtr = volunteerTbl.getSelectionModel().getSelectedItem();
+        int vtrId = vtr.getId();
+        if (vtr != null)
+        {
+            for (GuildVolunteer gv : guildVolunteerModel.getGuildVolunteer())
+            {
+
+                int gvGuildId = gv.getGuildId();
+                String text = gv.getGuild().getName().get();
+                if (gvGuildId == vtrId)
+                {
+                    lblJoinedGuild.setText(text);
+                }
+            }
+
+        }
       }
 
     public void updateList()
