@@ -590,7 +590,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <GridPane layoutY="27.0" prefHeight="329.0" prefWidth="509.0" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="27.0">
+                        <GridPane layoutY="27.0" prefHeight="329.0" prefWidth="509.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="27.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                            </columnConstraints>
@@ -603,9 +603,21 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <HBox GridPane.rowIndex="1" />
+                              <HBox spacing="20.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label text="Print the hours for selected Volunteer">
+                                       <font>
+                                          <Font size="19.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXButton onAction="#handlePrintHoursSelectedVtr" prefHeight="44.0" prefWidth="151.0" style="-fx-border-color: grey;" text="Print">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                 </children></HBox>
                               <HBox GridPane.rowIndex="2" />
-                              <HBox alignment="CENTER" spacing="190.0" GridPane.rowIndex="3">
+                              <HBox alignment="CENTER" spacing="100.0" GridPane.rowIndex="3">
                                  <children>
                                     <Label prefHeight="30.0" prefWidth="113.0" text="Set a guild" textFill="RED">
                                        <font>
@@ -659,13 +671,13 @@
                                  </cursor>
                               </JFXButton>
                            </buttons></ButtonBar>
-                        <TableView fx:id="volunteerTbl" layoutX="622.0" layoutY="89.0" prefHeight="314.0" prefWidth="210.0">
+                        <TableView fx:id="volunteerTbl" layoutX="710.0" layoutY="89.0" prefHeight="314.0" prefWidth="210.0">
                            <columns>
                               <TableColumn fx:id="volunteerTblColFname" prefWidth="105.0" text="First name" />
                               <TableColumn fx:id="volunteerTblColLname" prefWidth="104.0" text="Last name" />
                            </columns>
                         </TableView>
-                        <JFXTextField fx:id="txtFieldSearchText" layoutX="622.0" layoutY="36.0" onKeyReleased="#handleSearchOnInput" promptText="Search">
+                        <JFXTextField fx:id="txtFieldSearchText" layoutX="703.0" layoutY="37.0" onKeyReleased="#handleSearchOnInput" promptText="Search">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -673,7 +685,7 @@
                               <Cursor fx:constant="TEXT" />
                            </cursor>
                         </JFXTextField>
-                        <Pane layoutX="405.0" layoutY="27.0" opacity="0.41">
+                        <Pane layoutX="500.0" layoutY="27.0" opacity="0.41">
                            <children>
                               <Label text="You can search by:">
                                  <font>
@@ -763,6 +775,67 @@
                      </children>
                   </AnchorPane>
               </content>
+            </Tab>
+            <Tab fx:id="tabVtrFilter1" onSelectionChanged="#handleFocusOnSearch" text="Print CSV">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutY="27.0" prefHeight="329.0" prefWidth="509.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="27.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" GridPane.rowIndex="1">
+                                 <children>
+                                    <JFXButton onAction="#handlePrintAllVtrCsv" prefHeight="44.0" prefWidth="185.0" style="-fx-border-color: grey;" text="Print">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" GridPane.rowIndex="3">
+                                 <children>
+                                    <Label text="Print total hours of every guild">
+                                       <font>
+                                          <Font size="19.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="190.0" GridPane.rowIndex="4">
+                                 <children>
+                                    <JFXButton onAction="#handlePrintTotalHoursGd" prefHeight="44.0" prefWidth="185.0" style="-fx-border-color: grey;" text="Print">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="40.0" GridPane.rowIndex="2" />
+                              <HBox GridPane.rowIndex="5" />
+                              <HBox alignment="CENTER" prefHeight="18.0" prefWidth="393.0">
+                                 <children>
+                                    <Label text="Print the info of all the volunteers">
+                                       <font>
+                                          <Font size="19.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
             </Tab>
          </tabs>
       </JFXTabPane>
