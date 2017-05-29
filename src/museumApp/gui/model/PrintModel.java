@@ -5,17 +5,17 @@
  */
 package museumApp.gui.model;
 
-import java.io.IOException;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import museumApp.be.Volunteer;
-import museumApp.bll.VolunteerBll;
 import java.io.*;
 import java.time.LocalDate;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import museumApp.be.Guild;
 import museumApp.be.GuildVolunteer;
-import museumApp.bll.GuildBll;
+import museumApp.be.Volunteer;
+import museumApp.be.VolunteerTime;
 import museumApp.bll.GuildVolunteerBll;
+import museumApp.bll.TimeRegistrationManager;
+import museumApp.bll.VolunteerBll;
 import museumApp.dal.DropboxConnection;
 
 /**
@@ -27,14 +27,16 @@ public class PrintModel extends Model
 
     private ObservableList<Volunteer> volunteers;
     private ObservableList<GuildVolunteer> guildsVolunteers;
+    private ObservableList<VolunteerTime> volunteerTime;
 
     public PrintModel() throws IOException
       {
         volunteerBll = new VolunteerBll();
         guildVolunteerBll = new GuildVolunteerBll();
+        timeRegistrationManager = new TimeRegistrationManager();
         volunteers = FXCollections.observableArrayList(volunteerBll.getAllVolunteers());
         guildsVolunteers = FXCollections.observableArrayList(guildVolunteerBll.getAllGuildVolunteer());
-
+        volunteerTime = FXCollections.observableArrayList(timeRegistrationManager.getAllVolunteerTime());
       }
 
     public ObservableList<Volunteer> getVolunteers()
@@ -91,13 +93,22 @@ public class PrintModel extends Model
             String fileName = "GuildInfo" + LocalDate.now() + "_" + System.currentTimeMillis() + ".csv";
             File file = new File(dbc.getPrintFilePath(), fileName);
             writer = new BufferedWriter(new FileWriter(file));
-            String title = gd.getName().get() + "\n";
-            writer.write(title);
+            String titleGd = "Guild Name" + "," + "Guild Total Hours" + "\n";
+            writer.write(titleGd);
+            String guildName = gd.getName().get() + "\n" + "\n";
+            writer.write(guildName);
+            int gdId = gd.getId();
+            String titleVtrs = "Guild Volunteers" + "," + "Volunteer Hours" + "\n";
+            writer.write(titleVtrs);
             for (GuildVolunteer gv : guildsVolunteers)
             {
-                String text = gv.getVolunteer().getFullName().get() + "\n";
 
-                writer.write(text);
+                int gvGuildId = gv.getGuildId();
+                String text = gv.getVolunteer().getFullName().get() + "\n";
+                if (gvGuildId == gdId)
+                {
+                    writer.write(text);
+                }
             }
         }
         catch (Exception ex)
@@ -111,4 +122,40 @@ public class PrintModel extends Model
             writer.close();
         }
       }
+
+    public void printAllSelectedVolunteerHours(Volunteer vtr) throws IOException
+      {
+        Writer writer = null;
+        try
+        {
+            String vtrFullName = vtr.getFirstNameAsString() + vtr.getLastNameAsString();
+            DropboxConnection dbc = new DropboxConnection();
+            String fileName = "All" + vtrFullName + "Hours" + LocalDate.now() + "_" + System.currentTimeMillis() + ".csv";
+            File file = new File(dbc.getPrintFilePath(), fileName);
+            writer = new BufferedWriter(new FileWriter(file));
+            String title = "Volunteer Name" + "," + "Volunteer Hours" + "\n" + "\n";
+            writer.write(title);
+            int vtrId = vtr.getId();
+            for (Volunteer volunteer : volunteers)
+            {
+                int vtrListId = volunteer.getId();
+                String text = volunteer.getFullName().get() + "\n";
+                if (vtrId == vtrListId)
+                {
+                    writer.write(text);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        finally
+        {
+
+            writer.flush();
+            writer.close();
+        }
+      }
+
   }

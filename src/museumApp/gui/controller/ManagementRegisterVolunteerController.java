@@ -235,6 +235,10 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private Tab tabVtrFilter1;
     @FXML
     private ComboBox<Guild> comboBoxSelectGuildCsv;
+    @FXML
+    private Label lblPrintGdHoursSuccess;
+    @FXML
+    private Label lblPrintAllVtrSuccess;
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -960,21 +964,60 @@ public class ManagementRegisterVolunteerController extends Controller implements
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ---------------------------------------PRINTING AREA (CSV)----------------------------------------------------------------------------------------. */
     @FXML
-    private void handlePrintHoursSelectedVtr(ActionEvent event)
+    private void handlePrintHoursSelectedVtr(ActionEvent event) throws IOException
       {
+        Volunteer vtr = volunteerTbl.getSelectionModel().getSelectedItem();
+        if (vtr != null)
+        {
+            printModel.printAllSelectedVolunteerHours(vtr);
+        }
       }
 
     @FXML
     private void handlePrintAllVtrCsv(ActionEvent event) throws Exception
       {
         printModel.printAllVtrCsv();
+        lblPrintAllVtrSuccess.setText("File creation success!");
+        lblPrintAllVtrSuccess.setStyle("-fx-text-fill: #4b9e40;");
+        /** ------------------------------------------------------------------------------------------ */
+        FadeTransition fadeOut = new FadeTransition(Duration.seconds(4), lblPrintAllVtrSuccess);
+        fadeOut.setFromValue(1);
+        fadeOut.setToValue(0);
+        fadeOut.setCycleCount(1);
+        fadeOut.play(); //Plays the transition
+        /** ------------------------------------------------------------------------------------------ */
       }
 
     @FXML
     private void handlePrintTotalHoursGd(ActionEvent event) throws Exception
       {
         Guild gd = comboBoxSelectGuildCsv.getSelectionModel().getSelectedItem();
-        printModel.printGuildCsv(gd);
+        if (gd != null)
+        {
+            printModel.printGuildCsv(gd);
+            lblPrintGdHoursSuccess.setText("File creation success!");
+            lblPrintGdHoursSuccess.setStyle("-fx-text-fill: #4b9e40;");
+            comboBoxSelectGuildCsv.getSelectionModel().clearSelection();
+            /** ------------------------------------------------------------------------------------------ */
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(4), lblPrintGdHoursSuccess);
+            fadeOut.setFromValue(1);
+            fadeOut.setToValue(0);
+            fadeOut.setCycleCount(1);
+            fadeOut.play(); //Plays the transition
+            /** ------------------------------------------------------------------------------------------ */
+        }
+        else
+        {
+            lblPrintGdHoursSuccess.setText("Please select a guild first");
+            lblPrintGdHoursSuccess.setStyle("-fx-text-fill: #a04124;");
+            /** ------------------------------------------------------------------------------------------ */
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(4), lblPrintGdHoursSuccess);
+            fadeOut.setFromValue(1);
+            fadeOut.setToValue(0);
+            fadeOut.setCycleCount(1);
+            fadeOut.play(); //Plays the transition
+            /** ------------------------------------------------------------------------------------------ */
+        }
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

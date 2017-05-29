@@ -57,9 +57,6 @@ public class FacadeBll
 
       }
 
-    /**
-     * THIS IS THE FACADE CLASS.
-     */
     public void addGuild(Guild gd)
       {
         try
