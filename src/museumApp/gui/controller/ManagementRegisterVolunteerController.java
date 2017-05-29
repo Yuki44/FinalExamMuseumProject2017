@@ -273,6 +273,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
     public ManagementRegisterVolunteerController() throws IOException
       {
         super();
+
         timeModel = new TimeModel();
         guildModel = new GuildModel();
         printModel = new PrintModel();
