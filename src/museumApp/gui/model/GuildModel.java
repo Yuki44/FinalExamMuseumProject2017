@@ -6,16 +6,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumApp.be.Guild;
 import museumApp.bll.FacadeBll;
-import museumApp.bll.GuildBll;
 
 public class GuildModel extends Model
   {
 
     private ObservableList<Guild> guilds;
- FacadeBll facadeBll;
-    public GuildModel() throws IOException, SQLException
+
+    public GuildModel() throws IOException
       {
-       
         facadeBll = new FacadeBll();
         guilds = FXCollections.observableArrayList(facadeBll.getAllGuilds());
       }

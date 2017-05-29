@@ -17,11 +17,13 @@ import museumApp.dal.ManagerLoginHandler;
 import museumApp.dal.RemoveData;
 import museumApp.dal.UpdateData;
 
-/** 
+/**
  *
  * @author min
  */
-public class FacadeBll {
+public class FacadeBll
+  {
+
     protected GetData getDbMgr;
     protected AddData addDbMgr;
     protected UpdateData updateDbMgr;
@@ -30,15 +32,16 @@ public class FacadeBll {
     protected ManagerLoginHandler managerLoginHandler;
     protected AdministratorLoginHandler adminLoginHandler;
     protected GuildBll guildBll;
-    protected  AdminBll adminBll;
-    protected  GuildVolunteerBll guildVolunteerBll;
+    protected AdminBll adminBll;
+    protected GuildVolunteerBll guildVolunteerBll;
     protected LoginManager loginManager;
     protected ManagerBll managerBll;
     protected NationalityBll nationalityBll;
     protected TimeRegistrationManager timeRegistrationManager;
     protected VolunteerBll volunteerBll;
 
-    public FacadeBll() throws IOException {
+    public FacadeBll() throws IOException
+      {
         getDbMgr = new GetData();
         addDbMgr = new AddData();
         updateDbMgr = new UpdateData();
@@ -48,27 +51,54 @@ public class FacadeBll {
         guildVolunteerBll = new GuildVolunteerBll();
         loginManager = new LoginManager();
         managerBll = new ManagerBll();
-        nationalityBll= new NationalityBll();
+        nationalityBll = new NationalityBll();
         timeRegistrationManager = new TimeRegistrationManager();
-        volunteerBll = new VolunteerBll();     
-        
-    }
+        volunteerBll = new VolunteerBll();
 
-    public void addGuild(Guild gd) throws SQLException {
-        guildBll.addGuild(gd);
-    }
+      }
 
-    public void removeGuild(Guild gd) throws SQLException {
-        guildBll.removeGuild(gd);
-    }
+    /**
+     * THIS IS THE FACADE CLASS.
+     */
+    public void addGuild(Guild gd)
+      {
+        try
+        {
+            guildBll.addGuild(gd);
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
+        }
+      }
 
-    public void updateGuild(Guild gd) throws SQLException {
-        guildBll.updateGuild(gd);
-    }
-    
-    public List<Guild> getAllGuilds() throws SQLException{
-    return guildBll.getAllGuilds();
-    }
-    
-    
-}
+    public void removeGuild(Guild gd)
+      {
+        try
+        {
+            guildBll.removeGuild(gd);
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
+        }
+      }
+
+    public void updateGuild(Guild gd)
+      {
+        try
+        {
+            guildBll.updateGuild(gd);
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
+        }
+      }
+
+    public List<Guild> getAllGuilds()
+      {
+        return guildBll.getAllGuilds();
+      }
+
+  }
