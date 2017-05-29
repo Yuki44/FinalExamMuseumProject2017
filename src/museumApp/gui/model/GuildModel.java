@@ -5,17 +5,19 @@ import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumApp.be.Guild;
+import museumApp.bll.FacadeBll;
 import museumApp.bll.GuildBll;
 
 public class GuildModel extends Model
   {
 
     private ObservableList<Guild> guilds;
-
-    public GuildModel() throws IOException
+ FacadeBll facadeBll;
+    public GuildModel() throws IOException, SQLException
       {
-        guildBll = new GuildBll();
-        guilds = FXCollections.observableArrayList(guildBll.getAllGuilds());
+       
+        facadeBll = new FacadeBll();
+        guilds = FXCollections.observableArrayList(facadeBll.getAllGuilds());
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -38,7 +40,7 @@ public class GuildModel extends Model
     public void addGuild(Guild gd) throws SQLException
       {
         guilds.add(gd);
-        guildBll.addGuild(gd);
+        facadeBll.addGuild(gd);
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -49,7 +51,7 @@ public class GuildModel extends Model
      */
     public void removeGuild(Guild gd) throws SQLException
       {
-        guildBll.removeGuild(gd);
+        facadeBll.removeGuild(gd);
         guilds.remove(gd);
       }
 
@@ -61,7 +63,7 @@ public class GuildModel extends Model
      */
     public void updateGuild(Guild gd) throws SQLException
       {
-        guildBll.updateGuild(gd);
+        facadeBll.updateGuild(gd);
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

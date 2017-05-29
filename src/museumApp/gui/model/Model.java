@@ -2,6 +2,7 @@ package museumApp.gui.model;
 
 import java.io.IOException;
 import museumApp.bll.AdminBll;
+import museumApp.bll.FacadeBll;
 import museumApp.bll.GuildBll;
 import museumApp.bll.GuildVolunteerBll;
 import museumApp.bll.LoginManager;
@@ -25,7 +26,7 @@ public abstract class Model
     protected NationalityBll nationalityBll;
     protected GuildVolunteerBll guildVolunteerBll;
     protected TimeRegistrationManager timeRegistrationManager;
-
+    protected FacadeBll facadeBll;
     /** ---------------------------------------------------------------------------------------------------------------------------. */
     /**
      * Instantiates a new MuseumManager
