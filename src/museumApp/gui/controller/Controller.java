@@ -17,6 +17,7 @@ import museumApp.gui.model.GuildVolunteerModel;
 import museumApp.gui.model.LoginModel;
 import museumApp.gui.model.ManagerModel;
 import museumApp.gui.model.NationalityModel;
+import museumApp.gui.model.PrintModel;
 import museumApp.gui.model.TimeModel;
 import museumApp.gui.model.VolunteerModel;
 
@@ -41,6 +42,7 @@ public abstract class Controller
     protected EmployeeModel employeeModel;
     protected NationalityModel nationalityModel;
     protected GuildVolunteerModel guildVolunteerModel;
+    protected PrintModel printModel;
 
     /** ----------------------------------------------------------------------------------------------------------------. */
     /**
