@@ -131,17 +131,10 @@ public class GetData extends DatabaseManager
       {
         List<GuildVolunteer> gv = new ArrayList<>();
 
-        String sql = "SELECT DISTINCT gv.guild_id, gv.volunteer_id, "
-                + "g.name, e.employee_id, e.first_name, e.last_name, "
-                + "e.email,e.user_name, e.password, v.volunteer_id, "
-                + "v.first_name, v.last_name, v.date_of_birth, "
-                + "v.phone_number, v.nationality, v.email, v.join_date,"
-                + "v.photo, v.comment, v.address, v.city, v.zip_code, v.country "
-                + "FROM guild_volunteer gv INNER JOIN volunteer v ON "
-                + "gv.volunteer_id = v.volunteer_id INNER JOIN guild_volunteer ON "
-                + "v.volunteer_id=gv.volunteer_id INNER JOIN guild g ON gv.guild_id = g.guild_id "
-                + "INNER JOIN employee e ON g.manager_id = e.employee_id";
-
+        String sql = "SELECT DISTINCT * FROM employee e "
+                + "JOIN guild g ON e.employee_id = g.manager_id "
+                + "JOIN guild_volunteer gv ON g.guild_id= gv.guild_id "
+                + "JOIN volunteer v ON gv.volunteer_id= v.volunteer_id";
         try (Connection con = connectionManager.getConnection())
         {
             PreparedStatement pstmt = con.prepareStatement(sql);
@@ -159,7 +152,6 @@ public class GetData extends DatabaseManager
         List<VolunteerTime> vTime = new ArrayList<>();
 
         String sql = "SELECT * FROM volunteer_time";
-              
 
         try (Connection con = connectionManager.getConnection())
         {
@@ -269,9 +261,9 @@ public class GetData extends DatabaseManager
     private Manager getOneManager(ResultSet mgResultSet) throws SQLException
       {
         int id = mgResultSet.getInt("employee_id");
-        String firstName = mgResultSet.getString("first_name");
-        String lastName = mgResultSet.getString("last_name");
-        String email = mgResultSet.getString("email");
+        String firstName = mgResultSet.getString("e_first_name");
+        String lastName = mgResultSet.getString("e_last_name");
+        String email = mgResultSet.getString("e_email");
         String userName = mgResultSet.getString("user_name");
         String password = mgResultSet.getString("password");
         return new Manager(id, firstName, lastName, email, userName, password);
@@ -288,9 +280,9 @@ public class GetData extends DatabaseManager
       {
         String userName = adResultSet.getString("user_name");
         String password = adResultSet.getString("password");
-        String firstName = adResultSet.getString("first_name");
-        String lastName = adResultSet.getString("last_name");
-        String email = adResultSet.getString("email");
+        String firstName = adResultSet.getString("e_first_name");
+        String lastName = adResultSet.getString("e_last_name");
+        String email = adResultSet.getString("e_email");
         int id = adResultSet.getInt("employee_id");
         return new Administrator(id, firstName, lastName, email, userName, password);
       }
@@ -582,8 +574,6 @@ public class GetData extends DatabaseManager
         }
       }
 
-   
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-
   }

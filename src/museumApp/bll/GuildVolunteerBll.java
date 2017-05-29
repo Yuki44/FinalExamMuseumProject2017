@@ -35,7 +35,7 @@ public class GuildVolunteerBll extends BllFacade
         catch (SQLException ex)
         {
             System.err.println(ex.getCause());
-            throw new MuseumManagerException("Unable to fetch Volunteer Time.");
+            throw new MuseumManagerException("Unable to fetch Guild Volunteer.");
         }
       }
 

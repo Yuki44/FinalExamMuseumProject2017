@@ -233,6 +233,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private ComboBox<?> comboBoxGuildSelection;
     @FXML
     private Tab tabVtrFilter1;
+    @FXML
+    private ComboBox<Guild> comboBoxSelectGuildCsv;
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -337,6 +339,31 @@ public class ManagementRegisterVolunteerController extends Controller implements
                   };
               }
           });
+        comboBoxSelectGuildCsv.setItems(guildModel.getGuilds());
+        comboBoxSelectGuildCsv.setCellFactory(new Callback<ListView<Guild>, ListCell<Guild>>()
+          {
+            @Override
+            public ListCell<Guild> call(ListView<Guild> param)
+              {
+                return new ListCell<Guild>()
+                  {
+                    @Override
+                    protected void updateItem(Guild guild, boolean empty)
+                      {
+                        super.updateItem(guild, empty);
+                        if (guild == null || empty)
+                        {
+                            setGraphic(null);
+                        }
+                        else
+                        {
+                            setText(guild.getNameAsString());
+                        }
+                      }
+                  };
+              }
+          });
+
       }
 
     public void initializeNationailities()
@@ -944,8 +971,10 @@ public class ManagementRegisterVolunteerController extends Controller implements
       }
 
     @FXML
-    private void handlePrintTotalHoursGd(ActionEvent event)
+    private void handlePrintTotalHoursGd(ActionEvent event) throws Exception
       {
+        Guild gd = comboBoxSelectGuildCsv.getSelectionModel().getSelectedItem();
+        printModel.printGuildCsv(gd);
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

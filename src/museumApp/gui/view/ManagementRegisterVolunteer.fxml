@@ -27,7 +27,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" styleClass="onlyTheBorder" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagementRegisterVolunteerController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" styleClass="onlyTheBorder" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagementRegisterVolunteerController">
    <center>
       <JFXTabPane fx:id="mainTabPane" prefHeight="242.0" prefWidth="546.0" BorderPane.alignment="CENTER">
          <tabs>
@@ -813,15 +813,18 @@
                               </HBox>
                               <HBox alignment="CENTER" spacing="190.0" GridPane.rowIndex="4">
                                  <children>
+                                    <ComboBox fx:id="comboBoxSelectGuildCsv" prefHeight="25.0" prefWidth="225.0" promptText="Select Guild" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="40.0" GridPane.rowIndex="2" />
+                              <HBox alignment="CENTER" GridPane.rowIndex="5">
+                                 <children>
                                     <JFXButton onAction="#handlePrintTotalHoursGd" prefHeight="44.0" prefWidth="185.0" style="-fx-border-color: grey;" text="Print">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </JFXButton>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" spacing="40.0" GridPane.rowIndex="2" />
-                              <HBox GridPane.rowIndex="5" />
+                                 </children></HBox>
                               <HBox alignment="CENTER" prefHeight="18.0" prefWidth="393.0">
                                  <children>
                                     <Label text="Print the info of all the volunteers">

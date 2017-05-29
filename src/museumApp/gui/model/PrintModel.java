@@ -12,6 +12,10 @@ import museumApp.be.Volunteer;
 import museumApp.bll.VolunteerBll;
 import java.io.*;
 import java.time.LocalDate;
+import museumApp.be.Guild;
+import museumApp.be.GuildVolunteer;
+import museumApp.bll.GuildBll;
+import museumApp.bll.GuildVolunteerBll;
 import museumApp.dal.DropboxConnection;
 
 /**
@@ -22,16 +26,25 @@ public class PrintModel extends Model
   {
 
     private ObservableList<Volunteer> volunteers;
+    private ObservableList<GuildVolunteer> guildsVolunteers;
 
     public PrintModel() throws IOException
       {
         volunteerBll = new VolunteerBll();
+        guildVolunteerBll = new GuildVolunteerBll();
         volunteers = FXCollections.observableArrayList(volunteerBll.getAllVolunteers());
+        guildsVolunteers = FXCollections.observableArrayList(guildVolunteerBll.getAllGuildVolunteer());
+
       }
 
     public ObservableList<Volunteer> getVolunteers()
       {
         return volunteers;
+      }
+
+    public ObservableList<GuildVolunteer> getGuildVolunteers()
+      {
+        return guildsVolunteers;
       }
 
     public void printAllVtrCsv() throws Exception
@@ -53,6 +66,36 @@ public class PrintModel extends Model
                         + "," + volunteer.getBirthDate().get() + "," + volunteer.getNationality().get()
                         + "," + volunteer.getAddress().get() + "," + volunteer.getZipCode().get()
                         + "," + volunteer.getCity().get() + "," + volunteer.getRegisteredDate() + "\n";
+
+                writer.write(text);
+            }
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        finally
+        {
+
+            writer.flush();
+            writer.close();
+        }
+      }
+
+    public void printGuildCsv(Guild gd) throws Exception
+      {
+        Writer writer = null;
+        try
+        {
+            DropboxConnection dbc = new DropboxConnection();
+            String fileName = "GuildInfo" + LocalDate.now() + "_" + System.currentTimeMillis() + ".csv";
+            File file = new File(dbc.getPrintFilePath(), fileName);
+            writer = new BufferedWriter(new FileWriter(file));
+            String title = gd.getName().get() + "\n";
+            writer.write(title);
+            for (GuildVolunteer gv : guildsVolunteers)
+            {
+                String text = gv.getVolunteer().getFullName().get() + "\n";
 
                 writer.write(text);
             }
