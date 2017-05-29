@@ -69,9 +69,9 @@ public class AdministratorLoginHandler extends DatabaseManager
       {
         String userName = rs.getString("user_name");
         String password = rs.getString("password");
-        String firstName = rs.getString("first_name");
-        String lastName = rs.getString("last_name");
-        String email = rs.getString("email");
+        String firstName = rs.getString("e_first_name");
+        String lastName = rs.getString("e_last_name");
+        String email = rs.getString("e_email");
         int id = rs.getInt("employee_id");
         return new Administrator(id, firstName, lastName, email, userName, password);
       }
@@ -136,9 +136,9 @@ public class AdministratorLoginHandler extends DatabaseManager
         int idAdm = rs.getInt("employee_id");
         String userName = rs.getString("user_name");
         String password = rs.getString("password");
-        String firstName = rs.getString("first_name");
-        String lastName = rs.getString("last_name");
-        String email = rs.getString("email");
+        String firstName = rs.getString("e_first_name");
+        String lastName = rs.getString("e_last_name");
+        String email = rs.getString("e_email");
 
         Administrator admin = new Administrator(idAdm, firstName, lastName, email, userName, password);
         return admin;

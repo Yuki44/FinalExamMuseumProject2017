@@ -90,9 +90,9 @@ public class ManagerLoginHandler extends DatabaseManager
     public Manager getOneManager(ResultSet rs) throws SQLException
       {
         int id = rs.getInt("employee_id");
-        String firstName = rs.getString("first_name");
-        String lastName = rs.getString("last_name");
-        String email = rs.getString("email");
+        String firstName = rs.getString("e_first_name");
+        String lastName = rs.getString("e_last_name");
+        String email = rs.getString("e_email");
         String userName = rs.getString("user_name");
         String password = rs.getString("password");
         return new Manager(id, firstName, lastName, email, userName, password);
@@ -159,9 +159,9 @@ public class ManagerLoginHandler extends DatabaseManager
         int idMgr = rs.getInt("employee_id");
         String userName = rs.getString("user_name");
         String password = rs.getString("password");
-        String firstName = rs.getString("first_name");
-        String lastName = rs.getString("last_name");
-        String email = rs.getString("email");
+        String firstName = rs.getString("e_first_name");
+        String lastName = rs.getString("e_last_name");
+        String email = rs.getString("e_email");
 
         Manager manager = new Manager(idMgr, firstName, lastName, email, userName, password);
         return manager;

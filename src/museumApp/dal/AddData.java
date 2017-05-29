@@ -78,7 +78,7 @@ public class AddData extends DatabaseManager
      */
     public void addManager(Manager mg) throws SQLException
       {
-        String sql = "INSERT INTO employee (first_name, last_name, email, user_name, password) "
+        String sql = "INSERT INTO employee (e_first_name, e_last_name, e_email, user_name, password) "
                 + "Values (?,?,?,?,?);";
         PreparedStatement pstmt = connectionManager.getConnection().prepareStatement(sql);
         pstmt.setString(1, mg.getFirstNameAsString());
