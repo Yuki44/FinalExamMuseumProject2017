@@ -3,7 +3,9 @@ package museumApp.gui.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
@@ -22,8 +24,10 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import museumApp.be.Guild;
 import museumApp.be.Volunteer;
+import museumApp.be.VolunteerTime;
 import museumApp.dal.DropboxConnection;
 import museumApp.gui.model.GuildModel;
+import museumApp.gui.model.TimeModel;
 import museumApp.gui.model.VolunteerModel;
 
 public class VolunteerRegisterHoursViewController extends Controller implements Initializable
@@ -117,9 +121,9 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
         {
             try
             {
-//                timeModel = new TimeModel();
-//                VolunteerTime vTime = new VolunteerTime(Date.valueOf(LocalDate.now()), Integer.parseInt(setHoursLabel.getText()), volunteer, guild);
-//                timeModel.addVolunteerTime(vTime);
+                timeModel = new TimeModel();
+                VolunteerTime vTime = new VolunteerTime(Date.valueOf(LocalDate.now()), Integer.parseInt(setHoursLabel.getText()), volunteer, guild);
+                timeModel.addVolunteerTime(vTime);
                 Stage stage;
                 Parent root;
                 stage = (Stage) borderPane.getScene().getWindow();

@@ -60,6 +60,7 @@ import museumApp.be.GuildVolunteer;
 import museumApp.be.Manager;
 import museumApp.be.Nationality;
 import museumApp.be.Volunteer;
+import museumApp.be.VolunteerTime;
 import museumApp.dal.DropboxConnection;
 import museumApp.gui.model.GuildModel;
 import museumApp.gui.model.GuildVolunteerModel;
@@ -230,7 +231,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private JFXButton buttonSeeVolunterTab;
     @FXML
-    private ComboBox<?> comboBoxGuildSelection;
+    private ComboBox<Guild> comboBoxGuildSelection;
     @FXML
     private Tab tabVtrFilter1;
     @FXML
@@ -323,7 +324,24 @@ public class ManagementRegisterVolunteerController extends Controller implements
         tblColGuildName.setCellValueFactory(guild -> guild.getValue().getName());
         tblColGuildManager.setCellValueFactory(guild -> guild.getValue().getManager().getFullName());
         comboBoxFirstGuildSelection.setItems(guildModel.getGuilds());
+        comboBoxGuildSelection.setItems(guildModel.getGuilds());
         comboBoxFirstGuildSelection.setCellFactory((ListView<Guild> param) -> new ListCell<Guild>()
+          {
+            @Override
+            protected void updateItem(Guild guild, boolean empty)
+              {
+                super.updateItem(guild, empty);
+                if (guild == null || empty)
+                {
+                    setGraphic(null);
+                }
+                else
+                {
+                    setText(guild.getNameAsString());
+                }
+              }
+          });
+        comboBoxGuildSelection.setCellFactory((ListView<Guild> param) -> new ListCell<Guild>()
           {
             @Override
             protected void updateItem(Guild guild, boolean empty)
@@ -629,12 +647,24 @@ public class ManagementRegisterVolunteerController extends Controller implements
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ----------------------------------MANAGER REGISTER VTR HOURS-----------------------------------------. */
     @FXML
-    private void handleManagerAddHour(ActionEvent event) throws IOException
+    private void handleManagerAddHour(ActionEvent event) throws IOException, SQLException
       {
-
-//        LocalDate localDate = addVtDatePicker.getValue();
-//        Date date = java.sql.Date.valueOf(localDate);
-//        int hours = Integer.parseInt(textLbSetHours.getText().trim());
+           Volunteer vtr= volunteerTbl.getSelectionModel().getSelectedItem();
+           if (vtr!=null){
+        LocalDate localDate = addVtDatePicker.getValue();
+        Date date = java.sql.Date.valueOf(localDate);
+        int hours = Integer.parseInt(textLbSetHours.getText().trim());
+        Guild gd = comboBoxGuildSelection.getSelectionModel().getSelectedItem();
+        VolunteerTime vTime= new VolunteerTime(date, hours, vtr, gd);
+        timeModel.addVolunteerTime(vTime);
+        addVtDatePicker.setValue(null);
+        comboBoxGuildSelection.getSelectionModel().clearSelection();
+        textLbSetHours.clear();
+        txtFieldSearchText.clear();
+        
+           }
+        
+        
       }
 
     @FXML

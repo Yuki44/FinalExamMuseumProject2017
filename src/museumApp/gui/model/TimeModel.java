@@ -36,7 +36,6 @@ public class TimeModel extends Model
      */
     public void addVolunteerTime(VolunteerTime vTime) throws SQLException
       {
-        volunteerTime.add(vTime); //updates gui through observable
         timeRegistrationManager.addVolunteerTime(vTime); //updates database
       }
 
