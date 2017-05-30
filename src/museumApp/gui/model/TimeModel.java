@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javafx.collections.ObservableList;
 import museumApp.be.VolunteerTime;
-import museumApp.bll.TimeRegistrationManager;
 
 public class TimeModel extends Model
   {
@@ -13,8 +12,7 @@ public class TimeModel extends Model
 
     public TimeModel() throws IOException
       {
-        timeRegistrationManager = new TimeRegistrationManager();
-//        volunteerTime = FXCollections.observableArrayList(timeRegistrationManager.getAllVolunteerTime());
+       
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -36,7 +34,7 @@ public class TimeModel extends Model
      */
     public void addVolunteerTime(VolunteerTime vTime) throws SQLException
       {
-        timeRegistrationManager.addVolunteerTime(vTime); //updates database
+       facadeBll .addVolunteerTime(vTime); //updates database
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -47,7 +45,7 @@ public class TimeModel extends Model
      */
     public void removeVolunteerTime(VolunteerTime vTime) throws SQLException
       {
-        timeRegistrationManager.removeVolunteerTime(vTime);
+        facadeBll.removeVolunteerTime(vTime);
         volunteerTime.remove(vTime);
       }
 
@@ -59,7 +57,7 @@ public class TimeModel extends Model
      */
     public void updateVolunteerTime(VolunteerTime vTime) throws SQLException
       {
-        timeRegistrationManager.updateVolunteerTime(vTime);
+        facadeBll.updateVolunteerTime(vTime);
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
