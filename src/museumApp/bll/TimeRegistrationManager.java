@@ -34,7 +34,7 @@ public class TimeRegistrationManager extends BllManager
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
             throw new MuseumManagerException("Unable to fetch Volunteer Time.");
 
         }

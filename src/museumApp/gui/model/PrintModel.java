@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package museumApp.gui.model;
 
 import java.io.*;
@@ -18,10 +13,6 @@ import museumApp.bll.TimeRegistrationManager;
 import museumApp.bll.VolunteerBll;
 import museumApp.dal.DropboxConnection;
 
-/**
- *
- * @author Peder
- */
 public class PrintModel extends Model
   {
 
@@ -58,7 +49,9 @@ public class PrintModel extends Model
             String fileName = "VolunteerInfo" + LocalDate.now() + "_" + System.currentTimeMillis() + ".csv";
             File file = new File(dbc.getPrintFilePath(), fileName);
             writer = new BufferedWriter(new FileWriter(file));
-            String title = "Name" + "," + "Email" + "," + "Phone Number" + "," + "Birthday" + "," + "Nationality" + "," + "Address" + "," + "Zip Code" + "," + "City" + "," + "Joined date" + "\n";
+            String title = "Name" + "," + "Email" + "," + "Phone Number" + ","
+                    + "Birthday" + "," + "Nationality" + "," + "Address"
+                    + "," + "Zip Code" + "," + "City" + "," + "Joined date" + "\n";
             writer.write(title);
             for (Volunteer volunteer : volunteers)
             {
