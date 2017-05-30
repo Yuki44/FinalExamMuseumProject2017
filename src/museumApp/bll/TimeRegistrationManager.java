@@ -40,6 +40,20 @@ public class TimeRegistrationManager extends BllManager
         }
       }
 
+    public List<VolunteerTime> getVolunteerAndGuildTimeBasedOnId(int vtrId, int gdId)
+      {
+        try
+        {
+            return getDbMgr.getVolunteerAndGuildTimeBasedOnId(vtrId, gdId);
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+            throw new MuseumManagerException("Unable to fetch Volunteer Time.");
+
+        }
+      }
+
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      *

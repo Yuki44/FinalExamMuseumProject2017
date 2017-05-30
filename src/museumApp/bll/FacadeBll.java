@@ -254,6 +254,11 @@ public class FacadeBll
         return timeRegistrationManager.getVolunteerTimeBasedOnVtrId(vtrId);
       }
 
+    public List<VolunteerTime> getVolunteerAndGuildTimeBasedOnId(int vtrId, int gdId)
+      {
+        return timeRegistrationManager.getVolunteerAndGuildTimeBasedOnId(vtrId, gdId);
+      }
+
     public void addVolunteerTime(VolunteerTime vTime)
       {
         timeRegistrationManager.addVolunteerTime(vTime);

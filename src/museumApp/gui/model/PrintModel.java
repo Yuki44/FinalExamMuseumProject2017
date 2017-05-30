@@ -96,13 +96,23 @@ public class PrintModel extends Model
             writer.write(titleVtrs);
             for (GuildVolunteer gv : guildsVolunteers)
             {
-
                 int gvGuildId = gv.getGuildId();
                 String text = gv.getVolunteer().getFullName().get() + "\n";
+                int vtrId = gv.getVolunteer().getId();
                 if (gvGuildId == gdId)
                 {
                     writer.write(text);
                 }
+//                List<VolunteerTime> vTimeOnId = timeRegistrationManager.getVolunteerAndGuildTimeBasedOnId(vtrId, gdId);
+//                for (VolunteerTime volunteerTime : vTimeOnId)
+//                {
+//                    int hours = volunteerTime.getHours();
+//                    ObservableList allHoursList = FXCollections.observableArrayList(hours);
+//                    for (Object object : allHoursList)
+//                    {
+//
+//                    }
+//                }
             }
         }
         catch (Exception ex)

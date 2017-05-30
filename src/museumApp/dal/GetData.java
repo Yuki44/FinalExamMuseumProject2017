@@ -166,6 +166,26 @@ public class GetData extends DatabaseManager
         }
       }
 
+    public List<VolunteerTime> getVolunteerAndGuildTimeBasedOnId(int vtrId, int gdId) throws SQLException
+      {
+        List<VolunteerTime> vTime = new ArrayList<>();
+
+        String sql = "SELECT * FROM volunteer_time WHERE volunteer_id = ? AND guild_id = ?";
+
+        try (Connection con = connectionManager.getConnection())
+        {
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, vtrId);
+            pstmt.setInt(2, gdId);
+            ResultSet vTimeSet = pstmt.executeQuery();
+            while (vTimeSet.next())
+            {
+                vTime.add(getOneVTime(vTimeSet));
+            }
+            return vTime;
+        }
+      }
+
     public List<Nationality> getAllNationalities() throws SQLException
       {
         List<Nationality> nationalities = new ArrayList<>();
