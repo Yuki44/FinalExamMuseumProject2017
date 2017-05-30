@@ -2,6 +2,7 @@ package museumApp.gui.model;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumApp.be.Guild;
@@ -18,7 +19,7 @@ public class PrintModel extends Model
 
     private ObservableList<Volunteer> volunteers;
     private ObservableList<GuildVolunteer> guildsVolunteers;
-    private ObservableList<VolunteerTime> volunteerTime;
+//    private ObservableList<VolunteerTime> volunteerTimeBasedOnId;
 
     public PrintModel() throws IOException
       {
@@ -27,7 +28,7 @@ public class PrintModel extends Model
         timeRegistrationManager = new TimeRegistrationManager();
         volunteers = FXCollections.observableArrayList(volunteerBll.getAllVolunteers());
         guildsVolunteers = FXCollections.observableArrayList(guildVolunteerBll.getAllGuildVolunteer());
-        volunteerTime = FXCollections.observableArrayList(timeRegistrationManager.getAllVolunteerTime());
+//        volunteerTimeBasedOnId = FXCollections.observableArrayList(timeRegistrationManager.getVolunteerTimeBasedOnVtrId(vtrId));
       }
 
     public ObservableList<Volunteer> getVolunteers()
@@ -126,18 +127,28 @@ public class PrintModel extends Model
             String fileName = "All" + vtrFullName + "Hours" + LocalDate.now() + "_" + System.currentTimeMillis() + ".csv";
             File file = new File(dbc.getPrintFilePath(), fileName);
             writer = new BufferedWriter(new FileWriter(file));
-            String title = "Volunteer Name" + "," + "Volunteer Hours" + "\n" + "\n";
-            writer.write(title);
             int vtrId = vtr.getId();
             for (Volunteer volunteer : volunteers)
             {
                 int vtrListId = volunteer.getId();
-                String text = volunteer.getFullName().get() + "\n";
+                String text = "Volunteer: " + volunteer.getFullName().get() + "\n" + "\n";
                 if (vtrId == vtrListId)
                 {
                     writer.write(text);
                 }
             }
+            String title = "Dates" + "," + "Hours" + "\n";
+            writer.write(title);
+            List<VolunteerTime> vTimeOnId = timeRegistrationManager.getVolunteerTimeBasedOnVtrId(vtrId);
+            for (VolunteerTime volunteerTime : vTimeOnId)
+            {
+                String date = volunteerTime.getDateAsString();
+                int hours = volunteerTime.getHours();
+                String hoursThing = date + "," + hours
+                        + "\n";
+                writer.write(hoursThing);
+            }
+
         }
         catch (Exception ex)
         {
@@ -150,5 +161,4 @@ public class PrintModel extends Model
             writer.close();
         }
       }
-
   }

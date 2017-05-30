@@ -2,7 +2,6 @@ package museumApp.gui.model;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumApp.be.VolunteerTime;
 import museumApp.bll.TimeRegistrationManager;
@@ -15,7 +14,7 @@ public class TimeModel extends Model
     public TimeModel() throws IOException
       {
         timeRegistrationManager = new TimeRegistrationManager();
-        volunteerTime = FXCollections.observableArrayList(timeRegistrationManager.getAllVolunteerTime());
+//        volunteerTime = FXCollections.observableArrayList(timeRegistrationManager.getAllVolunteerTime());
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

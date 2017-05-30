@@ -262,11 +262,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
         handleSelectGuild();
         handleSelectManager();
         handleSelectVolunteer();
-//        ObservableList<VolunteerTime> vTime = timeModel.getVolunteerTime();
-//        for (VolunteerTime volunteerTime : vTime)
-//        {
-//            System.out.println(volunteerTime);
-//        }
 
       }
 

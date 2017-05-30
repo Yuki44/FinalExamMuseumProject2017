@@ -147,15 +147,16 @@ public class GetData extends DatabaseManager
         }
       }
 
-    public List<VolunteerTime> getAllVolunteerTimes() throws SQLException
+    public List<VolunteerTime> getVolunteerTimeBasedOnVtrId(int vtrId) throws SQLException
       {
         List<VolunteerTime> vTime = new ArrayList<>();
 
-        String sql = "SELECT * FROM volunteer_time";
+        String sql = "SELECT * FROM volunteer_time WHERE volunteer_id = ?";
 
         try (Connection con = connectionManager.getConnection())
         {
             PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, vtrId);
             ResultSet vTimeSet = pstmt.executeQuery();
             while (vTimeSet.next())
             {
@@ -215,11 +216,7 @@ public class GetData extends DatabaseManager
       {
         Date date = vTimeResultSet.getDate("date");
         int hours = vTimeResultSet.getInt("hours");
-//        ResultSet volunteerrs = rs;
-//        ResultSet guildrs = rs;
-        Volunteer volunteer = getOneVolunteer(vTimeResultSet);
-        Guild guild = getOneGuild(vTimeResultSet);
-        VolunteerTime vTime = new VolunteerTime(date, hours, volunteer, guild);
+        VolunteerTime vTime = new VolunteerTime(date, hours, null, null);
         return vTime;
       }
 
@@ -406,37 +403,6 @@ public class GetData extends DatabaseManager
       }
 
     /**
-     * to refactor This method is used to tell how many hours the different
-     * volunteers have registered.
-     *
-     *
-     * @param hours
-     * @return
-     * @throws SQLException
-     */
-    public List<VolunteerTime> getTimeBasedOnVolunteer(Volunteer hours) throws SQLException
-      {
-        List<VolunteerTime> vTime = new ArrayList<>();
-
-        try (Connection con = connectionManager.getConnection())
-        {
-            String query = "SELECT hours FROM volunteer_time vt "
-                    + "INNER JOIN guild_volunteer gv ON vt.volunteer_id = gv.volunteer_id  AND vt.guild_id=gv.guild_id"
-                    + "INNER JOIN volunteer v ON gv.volunteer_id = v.volunteer_id "
-                    + "WHERE v.volunteer_id = ?";
-            PreparedStatement pstmt = con.prepareStatement(query);
-            pstmt.setInt(1, hours.getId());
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next())
-            {
-                vTime.add(getOneVTime(rs));
-            }
-            return vTime;
-        }
-      }
-
-    /**
      * get the manager with given username This method is used to get the
      * manager based on their username. This method is used for the login
      * function.
@@ -484,31 +450,6 @@ public class GetData extends DatabaseManager
         {
             System.err.println(sqle);
             return null;
-        }
-      }
-
-    /**
-     * get the total hours from the given guild name
-     *
-     * @param guildName
-     * @return
-     */
-    public int filterHoursByGuild(String guildName)
-      {
-        try (Connection con = connectionManager.getConnection())
-        {
-            String query = "SELECT COUNT(hours)FROM volunteer_time vt INNER JOIN guild_volunteer gv "
-                    + "ON vt.volunteer_id =gv.volunteer_id AND vt.guild_id=gv.guild_id INNER JOIN guild g "
-                    + "ON gv.guild_id =g.guild_id WHERE g.name='%'?'%";
-            PreparedStatement pstmt = con.prepareStatement(query);
-            pstmt.setString(1, guildName);
-            ResultSet rs = pstmt.executeQuery();
-            return rs.getInt(query);
-        }
-        catch (SQLException sqle)
-        {
-            System.err.println(sqle);
-            return 0;
         }
       }
 

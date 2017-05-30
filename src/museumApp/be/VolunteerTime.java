@@ -12,28 +12,28 @@ public class VolunteerTime
     private Guild guild;
     private GuildVolunteer guildVolunteer;
 
-    /**
-     * VolunteerTime Constructor, we get from it:
-     *
-     * @param date
-     * @param hours
-     * @param id
-     */
-    public VolunteerTime(Date date, int hours, GuildVolunteer guildVolunteer)
+//
+//    /**
+//     * VolunteerTime Constructor, we get from it:
+//     *
+//     * @param date
+//     * @param hours
+//     * @param id
+//     */
+//    public VolunteerTime(Date date, int hours, GuildVolunteer guildVolunteer)
+//      {
+//       this.guildVolunteer = guildVolunteer;
+//        this.date = date;
+//        this.hours = hours;
+//      }
+    public VolunteerTime(Date date, int hours, Volunteer volunteer, Guild guild)
       {
-       this.guildVolunteer = guildVolunteer;
+        this.guild = guild;
+        this.volunteer = volunteer;
         this.date = date;
         this.hours = hours;
       }
-     public VolunteerTime(Date date, int hours,Volunteer volunteer, Guild guild )
-      {
-       this.guild =guild;
-       this.volunteer = volunteer;
-        this.date = date;
-        this.hours = hours;
-      }
-            
-      
+
     /** --------------------------------------------------DATE---------------------------------------------. */
     /**
      * Returns VolunteerTime date as a Date type.
@@ -77,9 +77,11 @@ public class VolunteerTime
       {
         return guild;
       }
-    public GuildVolunteer getGuildVolunteer(){
-    return guildVolunteer;
-    }
+
+    public GuildVolunteer getGuildVolunteer()
+      {
+        return guildVolunteer;
+      }
     /** ----------------------------------------------------------------------------------------------------. */
 
   }

@@ -26,11 +26,11 @@ public class TimeRegistrationManager extends BllManager
      *
      * @return
      */
-    public List<VolunteerTime> getAllVolunteerTime()
+    public List<VolunteerTime> getVolunteerTimeBasedOnVtrId(int vtrId)
       {
         try
         {
-            return getDbMgr.getAllVolunteerTimes();
+            return getDbMgr.getVolunteerTimeBasedOnVtrId(vtrId);
         }
         catch (SQLException ex)
         {

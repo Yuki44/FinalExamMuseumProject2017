@@ -8,8 +8,6 @@ package museumApp.bll;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
 import museumApp.be.GuildVolunteer;
@@ -64,8 +62,9 @@ public class FacadeBll
         volunteerBll = new VolunteerBll();
 
       }
-/*-------------GUILD FACADE---------------------------------------------------------------------------------    
-    */
+
+    /*-------------GUILD FACADE---------------------------------------------------------------------------------
+     */
     public void addGuild(Guild gd)
       {
         try
@@ -106,179 +105,230 @@ public class FacadeBll
       {
         return guildBll.getAllGuilds();
       }
-    /*-------------ADMIN FACADE-----------------------------------------------------------    
-    */
-     public List<Administrator> getAllAdmins()
-           {
-               return adminBll.getAllAdmins();
-           }
-      
-      public void addAdministrator(Administrator ad) 
+
+    /*-------------ADMIN FACADE-----------------------------------------------------------
+     */
+    public List<Administrator> getAllAdmins()
       {
-        try {
+        return adminBll.getAllAdmins();
+      }
+
+    public void addAdministrator(Administrator ad)
+      {
+        try
+        {
             adminBll.addAdministrator(ad);
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
             System.err.println(ex.getCause());
         }
       }
-      
-       public void removeAdministrator(Administrator ad)
+
+    public void removeAdministrator(Administrator ad)
       {
-        try {
+        try
+        {
             adminBll.removeAdministrator(ad);
-        } catch (SQLException ex) {
-             System.err.println(ex.getCause());
         }
-      }
-        public void updateAdministrator(Administrator ad)
-      {
-        try {
-            adminBll.updateAdministrator(ad);
-        } catch (SQLException ex) {
-             System.err.println(ex.getCause());
-        }
-      }
-        /*-----------GUILD VOLUNTEER FACADE-------------------------------------------        
-        */
-        public List<GuildVolunteer> getAllGuildVolunteer()
-      {
-          return guildVolunteerBll.getAllGuildVolunteer();
-      }
-        
-        public void addGuildVolunteer(GuildVolunteer gv) 
-      {
-        try {
-            guildVolunteerBll.addGuildVolunteer(gv);
-        } catch (SQLException ex) {
-             System.err.println(ex.getCause());
-        }
-      }
-         public void removeGuildVolunteer(GuildVolunteer gv) 
-         {
-        try {
-            guildVolunteerBll.removeGuildVolunteer(gv);
-        } catch (SQLException ex) {
+        catch (SQLException ex)
+        {
             System.err.println(ex.getCause());
         }
       }
-         public void updateGuildVolunteer(GuildVolunteer gv)
+
+    public void updateAdministrator(Administrator ad)
       {
-        try {
+        try
+        {
+            adminBll.updateAdministrator(ad);
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
+        }
+      }
+
+    /*-----------GUILD VOLUNTEER FACADE-------------------------------------------
+     */
+    public List<GuildVolunteer> getAllGuildVolunteer()
+      {
+        return guildVolunteerBll.getAllGuildVolunteer();
+      }
+
+    public void addGuildVolunteer(GuildVolunteer gv)
+      {
+        try
+        {
+            guildVolunteerBll.addGuildVolunteer(gv);
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
+        }
+      }
+
+    public void removeGuildVolunteer(GuildVolunteer gv)
+      {
+        try
+        {
+            guildVolunteerBll.removeGuildVolunteer(gv);
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
+        }
+      }
+
+    public void updateGuildVolunteer(GuildVolunteer gv)
+      {
+        try
+        {
             guildVolunteerBll.updateGuildVolunteer(gv);
-        } catch (SQLException ex) {
-           System.err.println(ex.getCause());  
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
         }
       }
-     /*------------MANAGER FACADE---------------------------------------------         
-         */
-          public List<Manager> getAllManagers()
+
+    /*------------MANAGER FACADE---------------------------------------------
+     */
+    public List<Manager> getAllManagers()
       {
-          return managerBll.getAllManagers();
+        return managerBll.getAllManagers();
       }
-          
-            public void addManager(Manager mg)
+
+    public void addManager(Manager mg)
       {
-        try {
+        try
+        {
             managerBll.addManager(mg);
-        } catch (SQLException ex) {
-             System.err.println(ex.getCause());
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
         }
       }
-            
-             public void removeManager(Manager mg) 
+
+    public void removeManager(Manager mg)
       {
-        try {
+        try
+        {
             managerBll.removeManager(mg);
-        } catch (SQLException ex) {
-             System.err.println(ex.getCause());
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
         }
       }
-             
-  public List<Manager> getManagerFromGuild(Guild guild)
+
+    public List<Manager> getManagerFromGuild(Guild guild)
       {
-          return managerBll.getManagerFromGuild(guild);
+        return managerBll.getManagerFromGuild(guild);
       }
-  
-  
+
     public void updateManager(Manager mg)
       {
-        try {
+        try
+        {
             managerBll.updateManager(mg);
-        } catch (SQLException ex) {
-             System.err.println(ex.getCause());
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
         }
       }
-    /*----------------NATIONALITY FACADE----------------------------------------------------------    
-    */
-     public List<Nationality> getAllNationalities()
-      {
-          return nationalityBll.getAllNationalities();
-      }
-     
-     /*----TIME REGISTER FACADE-----------------------------------------     
+
+    /*----------------NATIONALITY FACADE----------------------------------------------------------
      */
-      public List<VolunteerTime> getAllVolunteerTime()
+    public List<Nationality> getAllNationalities()
       {
-          return timeRegistrationManager.getAllVolunteerTime();
+        return nationalityBll.getAllNationalities();
       }
-      
-       public void addVolunteerTime(VolunteerTime vTime)
+
+    /*----TIME REGISTER FACADE-----------------------------------------
+     */
+    public List<VolunteerTime> getVolunteerTimeBasedOnVtrId(int vtrId)
       {
-          timeRegistrationManager.addVolunteerTime(vTime);
+        return timeRegistrationManager.getVolunteerTimeBasedOnVtrId(vtrId);
+      }
+
+    public void addVolunteerTime(VolunteerTime vTime)
+      {
+        timeRegistrationManager.addVolunteerTime(vTime);
 
       }
-       
-        public void removeVolunteerTime(VolunteerTime vTime) 
+
+    public void removeVolunteerTime(VolunteerTime vTime)
       {
-        try {
+        try
+        {
             timeRegistrationManager.removeVolunteerTime(vTime);
-        } catch (SQLException ex) {
-             System.err.println(ex.getCause());
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
         }
       }
 
-    public void updateVolunteerTime(VolunteerTime vTime) 
+    public void updateVolunteerTime(VolunteerTime vTime)
       {
-        try {
+        try
+        {
             timeRegistrationManager.updateVolunteerTime(vTime);
-        } catch (SQLException ex) {
-             System.err.println(ex.getCause());
         }
-      }
-    /*----------VOLUNTEER FACADE--------------------------------------------    
-    */
-      public List<Volunteer> getAllVolunteers()
-      {
-          return volunteerBll.getAllVolunteers();
-      }
-      
-       public void addVolunteer(Volunteer vtr) 
-      {
-        try {
-            volunteerBll.addVolunteer(vtr);
-        } catch (SQLException ex) {
-             System.err.println(ex.getCause());
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
         }
-      }
-         public void removeVolunteer(Volunteer vtr) 
-      {
-        try {
-            volunteerBll.removeVolunteer(vtr);
-        } catch (SQLException ex) {
-             System.err.println(ex.getCause());
-        }
-      }
-           public List<Volunteer> getVolunteersFromGuild(Guild newValue)
-      {
-          return volunteerBll.getVolunteersFromGuild(newValue);
       }
 
-    public void updateVolunteer(Volunteer vtr) 
+    /*----------VOLUNTEER FACADE--------------------------------------------
+     */
+    public List<Volunteer> getAllVolunteers()
       {
-        try {
+        return volunteerBll.getAllVolunteers();
+      }
+
+    public void addVolunteer(Volunteer vtr)
+      {
+        try
+        {
+            volunteerBll.addVolunteer(vtr);
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
+        }
+      }
+
+    public void removeVolunteer(Volunteer vtr)
+      {
+        try
+        {
+            volunteerBll.removeVolunteer(vtr);
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
+        }
+      }
+
+    public List<Volunteer> getVolunteersFromGuild(Guild newValue)
+      {
+        return volunteerBll.getVolunteersFromGuild(newValue);
+      }
+
+    public void updateVolunteer(Volunteer vtr)
+      {
+        try
+        {
             volunteerBll.updateVolunteer(vtr);
-        } catch (SQLException ex) {
-             System.err.println(ex.getCause());
+        }
+        catch (SQLException ex)
+        {
+            System.err.println(ex.getCause());
         }
       }
   }
