@@ -83,37 +83,43 @@ public class PrintModel extends Model
         Writer writer = null;
         try
         {
+
             DropboxConnection dbc = new DropboxConnection();
             String fileName = "GuildInfo" + LocalDate.now() + "_" + System.currentTimeMillis() + ".csv";
             File file = new File(dbc.getPrintFilePath(), fileName);
             writer = new BufferedWriter(new FileWriter(file));
-            String titleGd = "Guild Name" + "," + "Guild Total Hours" + "\n";
+            String titleGd = "Guild Name" + "," + "Guild Total Hours" + String.format("%n");
             writer.write(titleGd);
-            String guildName = gd.getName().get() + "\n" + "\n";
-            writer.write(guildName);
+
             int gdId = gd.getId();
-            String titleVtrs = "Guild Volunteers" + "," + "Volunteer Hours" + "\n";
-            writer.write(titleVtrs);
+            String titleVtrs = "Guild Volunteers" + "," + "Volunteer Hours" + String.format("%n");
+
+            String volunteerText = "";
+            int allTime = 0;
             for (GuildVolunteer gv : guildsVolunteers)
             {
                 int gvGuildId = gv.getGuildId();
-                String text = gv.getVolunteer().getFullName().get() + "\n";
+
                 int vtrId = gv.getVolunteer().getId();
+
+                List<VolunteerTime> vTimeOnId = timeRegistrationManager.getVolunteerAndGuildTimeBasedOnId(vtrId, gdId);
+                int volunteerhours = 0;
+                for (VolunteerTime volTime : vTimeOnId)
+                {
+                    volunteerhours += volTime.getHours();
+                }
+
                 if (gvGuildId == gdId)
                 {
-                    writer.write(text);
+                    allTime += volunteerhours;
+                    volunteerText += gv.getVolunteer().getFullName().get() + "," + volunteerhours + String.format("%n");
                 }
-//                List<VolunteerTime> vTimeOnId = timeRegistrationManager.getVolunteerAndGuildTimeBasedOnId(vtrId, gdId);
-//                for (VolunteerTime volunteerTime : vTimeOnId)
-//                {
-//                    int hours = volunteerTime.getHours();
-//                    ObservableList allHoursList = FXCollections.observableArrayList(hours);
-//                    for (Object object : allHoursList)
-//                    {
-//
-//                    }
-//                }
+
             }
+            String guildText = gd.getName().get() + "," + allTime + String.format("%n") + String.format("%n");
+            writer.write(guildText);
+            writer.write(titleVtrs);
+            writer.write(volunteerText);
         }
         catch (Exception ex)
         {
