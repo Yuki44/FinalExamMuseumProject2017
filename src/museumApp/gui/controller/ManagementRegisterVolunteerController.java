@@ -558,7 +558,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
             }
             Volunteer vtr = new Volunteer(0, firstName, lastName, birthDate, phoneNumber, email,
                     nationality, registeredDate, photo, comment, address, city, zipCode, country);
-//            volunteerModel.addVolunteer(vtr);
+            volunteerModel.addVolunteer(vtr);
             Guild guild = comboBoxFirstGuildSelection.getSelectionModel().getSelectedItem();
             if (guild != null)
             {
@@ -625,8 +625,88 @@ public class ManagementRegisterVolunteerController extends Controller implements
       }
 
     @FXML
-    private void handleUpdateVolunteer(ActionEvent event)
+    private void handleUpdateVolunteer(ActionEvent event) throws IOException, SQLException
       {
+        String firstName = txtFieldAddVolunteerFName.getText().trim();
+        String lastName = txtFieldAddVolunteerLName.getText().trim();
+        String fullName = firstName + lastName;
+        String phoneNumber = txtFieldAddVolunteerPhoneNum.getText().trim();
+        String email = txtFieldAddVolunteerEmail.getText().trim();
+        LocalDate localDate = regJoinedDatePicker.getValue();
+        Date registeredDate = java.sql.Date.valueOf(localDate);
+        String nationality = comboBoxNationality.getSelectionModel().getSelectedItem().getCountryAsString();
+        String city = txtFieldAddVolunteerCity.getText().trim();
+        String address = txtFieldAddVolunteerAddress.getText().trim();
+        String birthDate = txtFieldAddVolunteerBirthdate.getText().trim();
+        String zipCode = txtFieldAddVolunteerZipcode.getText().trim();
+        String comment = txtAreaAddVolunteerComment.getText().trim();
+        String country = comboBoxNationality.getSelectionModel().getSelectedItem().getCountryAsString();
+        int vtrId = volunteerTbl.getSelectionModel().getSelectedItem().getId();;
+        String photo = volunteerTbl.getSelectionModel().getSelectedItem().getPhotoAsString();
+        if (takenImage != null && photo == null && imgViewProfilePic.getImage() == null)
+        {
+            DropboxConnection dbc = new DropboxConnection();
+            photo = fullName + LocalDate.now() + "_" + System.currentTimeMillis() + ".png";
+            myImageFile = new File(dbc.getVolunteerImgFilePath(), photo);
+            BufferedImage image = toBufferedImage(takenImage);
+            ImageIO.write(image, "PNG", myImageFile);
+
+        }
+        Volunteer vtr = new Volunteer(vtrId, firstName, lastName, birthDate, phoneNumber, email,
+                nationality, registeredDate, photo, comment, address, city, zipCode, country);
+        volunteerModel.updateVolunteer(vtr);
+
+        lblFieldsRequired.setText("");
+        lblFieldRequiredStar.setText("");
+        updateList();
+        gridPaneRegVtr.setVisible(false);
+        gridPaneSuccessMsg.setVisible(true);
+        /** ------------------------------------------------------------------------------------------ */
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), gridPaneSuccessMsg);
+        fadeIn.setFromValue(0.1);
+        fadeIn.setToValue(1);
+        fadeIn.setCycleCount(1);
+        fadeIn.play(); //Plays the transition
+        /** ------------------------------------------------------------------------------------------ */
+        lblAddVtrSuccess.setText(firstName + " " + lastName + " updated!");
+        Runnable r = () ->
+        {
+
+            try
+            {
+                Thread.sleep(3500);
+            }
+            catch (InterruptedException ex)
+            {
+                Logger.getLogger(ManagementRegisterVolunteerController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Platform.runLater(() ->
+            {
+                /** ------------------------------------------------------------------------------------------ */
+                FadeTransition fadeOut = new FadeTransition(Duration.seconds(1), gridPaneSuccessMsg);
+                fadeOut.setFromValue(1);
+                fadeOut.setToValue(0);
+                fadeOut.setCycleCount(1);
+                fadeOut.play(); //Plays the transition
+                /** ------------------------------------------------------------------------------------------ */
+                gridPaneRegVtr.setVisible(true);
+                /** ------------------------------------------------------------------------------------------ */
+                FadeTransition fadeInGP = new FadeTransition(Duration.seconds(0.5), gridPaneRegVtr);
+                fadeInGP.setFromValue(0.1);
+                fadeInGP.setToValue(1);
+                fadeInGP.setCycleCount(1);
+                fadeInGP.play(); //Plays the transition
+                /** ------------------------------------------------------------------------------------------ */
+                gridPaneSuccessMsg.setVisible(false);
+
+            });
+
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
+        clearFields();
+
       }
 
     public void clearFields()
@@ -767,7 +847,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String birthDate = vtr.getBirthDateAString();
         String zipCode = vtr.getZipCodeAsString();
         String comment = vtr.getCommentAsString();
-
         txtFieldAddVolunteerFName.setText(firstName);
         txtFieldAddVolunteerLName.setText(lastName);
         txtFieldAddVolunteerPhoneNum.setText(phoneNumber);
@@ -782,16 +861,20 @@ public class ManagementRegisterVolunteerController extends Controller implements
         txtAreaAddVolunteerComment.setText(comment);
         //        comboBoxFirstGuildSelection.getSelectionModel().clearSelection();
         String photoName = vtr.getPhotoAsString();
-        DropboxConnection dbc = new DropboxConnection();
-        String photoPath = dbc.getVolunteerImgFilePath();
-        String absoluteImgPath = (photoPath + "\\" + photoName);
-        System.out.println(absoluteImgPath);
-        File file = new File(absoluteImgPath);
-        Image img = new Image(file.toURI().toString());
-        imgViewProfilePic.setImage(img);
-        imgPane.setStyle("-fx-background-image: null");
+        if (vtr.getPhotoAsString() != null)
+        {
+            DropboxConnection dbc = new DropboxConnection();
+            String photoPath = dbc.getVolunteerImgFilePath();
+            String absoluteImgPath = (photoPath + "\\" + photoName);
+            System.out.println(absoluteImgPath);
+            File file = new File(absoluteImgPath);
+            Image img = new Image(file.toURI().toString());
+            imgViewProfilePic.setImage(img);
+            imgPane.setStyle("-fx-background-image: null");
+        }
         buttonSaveInfo.setVisible(false);
         buttonUpdateInfo.setVisible(true);
+
       }
 
     public void updateList()
@@ -857,7 +940,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         }
         catch (Exception ex)
         {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
 
       }
