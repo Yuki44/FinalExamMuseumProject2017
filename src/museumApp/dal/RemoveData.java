@@ -28,11 +28,18 @@ public class RemoveData extends DatabaseManager
      * This method deletes the record of a volunteer from the volunteer table,
      * by a given id.
      *
+     * @param vtr
      * @throws SQLException
      */
     public void removeVolunteer(Volunteer vtr) throws SQLException
-      {
-//        TODO
+       {
+        String sql = "DELETE FROM volunteer WHERE volunteer_id = ?";
+        try (Connection con = connectionManager.getConnection())
+        {
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, vtr.getId());
+            pstmt.execute();
+        }
       }
 
     /** ---------------------------------------MANAGER----------------------------------------------------. */
@@ -73,23 +80,39 @@ public class RemoveData extends DatabaseManager
       }
 
     public void removeAdministrator(Administrator ad) throws SQLException
-      {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       {
+        String sql = "DELETE FROM employee WHERE employee_id = ?";
+        try (Connection con = connectionManager.getConnection())
+        {
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, ad.getId());
+            pstmt.execute();
+        }
       }
 
     public void removeVolunteerTime(VolunteerTime vTime) throws SQLException
-      {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       {
+        String sql = "DELETE FROM volunteer_time WHERE guild_id = ? AND volunteer_id = ? AND date = ?";
+        try (Connection con = connectionManager.getConnection())
+        {
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, vTime.getGuild().getId());
+            pstmt.setInt(2, vTime.getVolunteer().getId());
+            pstmt.setDate(3, vTime.getDate());
+            pstmt.execute();
+        }
       }
 
     public void removeGuildVolunteer(GuildVolunteer gv) throws SQLException
       {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-      }
-
-    public void removeVolunteerTime(Volunteer vtrTime)
-      {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-      }
+        String sql = "DELETE FROM guild_volunteer WHERE guild_id = ? AND volunteer_id = ? ";
+        try (Connection con = connectionManager.getConnection())
+        {
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, gv.getGuild().getId());
+            pstmt.setInt(2, gv.getVolunteer().getId());
+            pstmt.execute();
+        }
+      }  
     /** ----------------------------------------------------------------------------------------------------. */
   }
