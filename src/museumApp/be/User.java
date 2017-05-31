@@ -22,7 +22,7 @@ public abstract class User extends BusinessEntity
 
     /** ------------------------------FULL NAMES FROM USER---------------------------------------------. */
     /**
-     * We get the name of the user as a StringProperty and this allows us to update the tableView.
+     * This method gets the name of the user as a StringProperty and this allows for the tableView to be updated.
      *
      * @return
      */
@@ -54,7 +54,7 @@ public abstract class User extends BusinessEntity
 
     /** ----------------------------ONLY USER'S FIRST NAME---------------------------------------------. */
     /**
-     * We get USER first name as string property because it can update the view
+     * This method gets the users first name as a string property because it can update the view
      *
      * @return
      */
@@ -64,7 +64,7 @@ public abstract class User extends BusinessEntity
       }
 
     /**
-     * We get the USER first name as simple string, however it cannot update the view automatically
+     * This method gets the users first name as simple string, however it cannot update the view automatically
      *
      * @return
      */
@@ -75,7 +75,7 @@ public abstract class User extends BusinessEntity
 
     /** ---------------------------ONLY USER'S LAST NAME----------------------------------------------. */
     /**
-     * We get USER last name as string property because it can update the view
+     * This method gets users last name as string property because it can update the view
      *
      * @return
      */
@@ -85,7 +85,7 @@ public abstract class User extends BusinessEntity
       }
 
     /**
-     * We get the USER last name as simple string, however it cannot update the view automatically
+     * This method gets the users last name as simple string, however it cannot update the view automatically
      *
      * @return
      */
@@ -96,7 +96,7 @@ public abstract class User extends BusinessEntity
 
     /** ---------------------------------------EMAIL------------------------------------------. */
     /**
-     * We get the USER email as string property because it can update the view
+     * This method gets the users email as string property because it can update the view
      *
      * @return
      */
@@ -106,7 +106,7 @@ public abstract class User extends BusinessEntity
       }
 
     /**
-     * We get the USER email as simple string, however it cannot update the view automatically
+     * This method gets the users email as simple string, however it cannot update the view automatically
      *
      * @return
      */

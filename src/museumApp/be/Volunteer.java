@@ -48,7 +48,7 @@ public class Volunteer extends User
 
     /** ------------------------------VOLUNTEER NATIONALITY-----------------------------------------. */
     /**
-     * Get the VOLUNTEER nationality as a StringProperty so it can update the view.
+     * This method gets the VOLUNTEER nationality as a StringProperty so it can update the view.
      *
      * @return
      */
@@ -58,7 +58,7 @@ public class Volunteer extends User
       }
 
     /**
-     * Get the VOLUNTEER nationality as a string so it cannot update the view.
+     * This method gets the VOLUNTEER nationality as a string so it cannot update the view.
      *
      * @return
      */
@@ -75,7 +75,7 @@ public class Volunteer extends User
 
     /** --------------------------VOLUNTEER PHONE NUMBER------------------------------------------. */
     /**
-     * Get the VOLUNTEER phone number as a StringProperty so it can update the view.
+     * This method gets the VOLUNTEER phone number as a StringProperty so it can update the view.
      *
      * @return
      */
@@ -85,7 +85,7 @@ public class Volunteer extends User
       }
 
     /**
-     * Get the VOLUNTEER phone number as a string so it cannot update the view.
+     * This method gets the VOLUNTEER phone number as a string so it cannot update the view.
      *
      * @return
      */
@@ -96,7 +96,7 @@ public class Volunteer extends User
 
     /** --------------------------REGISTERED OR JOINED DATE----------------------------------------. */
     /**
-     * Get the VOLUNTEER registered date as a Date type.
+     * This method gets the VOLUNTEER registered date as a Date type.
      *
      * @return
      */
@@ -106,7 +106,7 @@ public class Volunteer extends User
       }
 
     /**
-     * VOLUNTEER Registered date gets converted to a string and formatted for displaying.
+     * This method gets VOLUNTEER Registered date converted to a string and formatted for displaying.
      *
      * @return
      */
@@ -119,7 +119,7 @@ public class Volunteer extends User
 
     /** -------------------------------------BIRTHDATE-----------------------------------------------. */
     /**
-     * Get the VOLUNTEER Birth date as a Date type.
+     * This method gets the VOLUNTEER Birth date as a Date type.
      *
      * @return
      */
@@ -135,7 +135,7 @@ public class Volunteer extends User
 
     /** -----------------------------ADDRESS----------------------------------------------. */
     /**
-     * Get the VOLUNTEER address as a StringProperty so it can update the view.
+     * This method gets the VOLUNTEER address as a StringProperty so it can update the view.
      *
      * @return
      */
@@ -145,7 +145,7 @@ public class Volunteer extends User
       }
 
     /**
-     * Get the VOLUNTEER address as a string so it cannot update the view.
+     * This method gets the VOLUNTEER address as a string so it cannot update the view.
      *
      * @return
      */
@@ -156,7 +156,7 @@ public class Volunteer extends User
 
     /** -----------------------------CITY----------------------------------------------. */
     /**
-     * Get the VOLUNTEER city as a StringProperty so it can update the view.
+     * This method gets the VOLUNTEER city as a StringProperty so it can update the view.
      *
      * @return
      */
@@ -166,7 +166,7 @@ public class Volunteer extends User
       }
 
     /**
-     * Get the VOLUNTEER city as a string so it cannot update the view.
+     * This method gets the VOLUNTEER city as a string so it cannot update the view.
      *
      * @return
      */
@@ -177,7 +177,7 @@ public class Volunteer extends User
 
     /** -----------------------------ZIPCODE----------------------------------------------. */
     /**
-     * Get the VOLUNTEER zipCode as a StringProperty so it can update the view.
+     * This method gets the VOLUNTEER zipCode as a StringProperty so it can update the view.
      *
      * @return
      */
@@ -187,7 +187,7 @@ public class Volunteer extends User
       }
 
     /**
-     * Get the VOLUNTEER zipCode as a string so it cannot update the view.
+     * This method gets the VOLUNTEER zipCode as a string so it cannot update the view.
      *
      * @return
      */
@@ -196,21 +196,41 @@ public class Volunteer extends User
         return zipCode.get();
       }
 
+    /**
+     * This method gets the VOLUNTEER photo as a string property so it can update the view.
+     *
+     * @return
+     */
     public StringProperty getPhoto()
       {
         return photo;
       }
 
+    /**
+     * This method gets the VOLUNTEER photo as a string so it cannot update the view.
+     *
+     * @return
+     */
     public String getPhotoAsString()
       {
         return photo.get();
       }
 
+    /**
+     * This method gets the VOLUNTEER comment as a string property so it can update the view.
+     *
+     * @return
+     */
     public StringProperty getComment()
       {
         return comment;
       }
 
+    /**
+     * This method gets the VOLUNTEER comment as a string so it cannot update the view.
+     *
+     * @return
+     */
     public String getCommentAsString()
       {
         return comment.get();

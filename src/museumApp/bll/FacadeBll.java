@@ -65,6 +65,11 @@ public class FacadeBll
 
     /*-------------GUILD FACADE---------------------------------------------------------------------------------
      */
+    /**
+     * Calls the add Guild function
+     *
+     * @param gd
+     */
     public void addGuild(Guild gd)
       {
         try
@@ -77,6 +82,11 @@ public class FacadeBll
         }
       }
 
+    /**
+     * Calls the remove Guild function
+     *
+     * @param gd
+     */
     public void removeGuild(Guild gd)
       {
         try
@@ -89,6 +99,11 @@ public class FacadeBll
         }
       }
 
+    /**
+     * Calls the update Guild function
+     *
+     * @param gd
+     */
     public void updateGuild(Guild gd)
       {
         try
@@ -101,6 +116,11 @@ public class FacadeBll
         }
       }
 
+    /**
+     * Gets a list of guilds
+     *
+     * @return
+     */
     public List<Guild> getAllGuilds()
       {
         return guildBll.getAllGuilds();
@@ -108,11 +128,21 @@ public class FacadeBll
 
     /*-------------ADMIN FACADE-----------------------------------------------------------
      */
+    /**
+     * Gets a list of administrators
+     *
+     * @return
+     */
     public List<Administrator> getAllAdmins()
       {
         return adminBll.getAllAdmins();
       }
 
+    /**
+     * Calls the add Administrator function
+     *
+     * @param ad
+     */
     public void addAdministrator(Administrator ad)
       {
         try
@@ -125,6 +155,11 @@ public class FacadeBll
         }
       }
 
+    /**
+     * Calls the remove Administrator function
+     *
+     * @param ad
+     */
     public void removeAdministrator(Administrator ad)
       {
         try
@@ -137,6 +172,11 @@ public class FacadeBll
         }
       }
 
+    /**
+     * Calls the update Administrator function
+     *
+     * @param ad
+     */
     public void updateAdministrator(Administrator ad)
       {
         try
@@ -151,11 +191,21 @@ public class FacadeBll
 
     /*-----------GUILD VOLUNTEER FACADE-------------------------------------------
      */
+    /**
+     * Gets a list of Guild Volunteers
+     *
+     * @return
+     */
     public List<GuildVolunteer> getAllGuildVolunteer()
       {
         return guildVolunteerBll.getAllGuildVolunteer();
       }
 
+    /**
+     * Calls the add Guild Volunteer function
+     *
+     * @param gv
+     */
     public void addGuildVolunteer(GuildVolunteer gv)
       {
         try
@@ -168,6 +218,11 @@ public class FacadeBll
         }
       }
 
+    /**
+     * Calls the remove Guild Volunteer function
+     *
+     * @param gv
+     */
     public void removeGuildVolunteer(GuildVolunteer gv)
       {
         try
@@ -180,6 +235,11 @@ public class FacadeBll
         }
       }
 
+    /**
+     * Calls the update Guild Volunteer function
+     *
+     * @param gv
+     */
     public void updateGuildVolunteer(GuildVolunteer gv)
       {
         try
@@ -194,11 +254,21 @@ public class FacadeBll
 
     /*------------MANAGER FACADE---------------------------------------------
      */
+    /**
+     * Gets a list of managers
+     *
+     * @return
+     */
     public List<Manager> getAllManagers()
       {
         return managerBll.getAllManagers();
       }
 
+    /**
+     * Calls the add Manager function
+     *
+     * @param mg
+     */
     public void addManager(Manager mg)
       {
         try
@@ -211,6 +281,11 @@ public class FacadeBll
         }
       }
 
+    /**
+     * Calls the remove Manager function
+     *
+     * @param mg
+     */
     public void removeManager(Manager mg)
       {
         try
@@ -223,11 +298,22 @@ public class FacadeBll
         }
       }
 
+    /**
+     * Gets a list of managers based on the guild(s) they manage
+     *
+     * @param guild
+     * @return
+     */
     public List<Manager> getManagerFromGuild(Guild guild)
       {
         return managerBll.getManagerFromGuild(guild);
       }
 
+    /**
+     * Calls the update Manager function
+     *
+     * @param mg
+     */
     public void updateManager(Manager mg)
       {
         try
@@ -242,6 +328,11 @@ public class FacadeBll
 
     /*----------------NATIONALITY FACADE----------------------------------------------------------
      */
+    /**
+     * Gets a list of nationalities
+     *
+     * @return
+     */
     public List<Nationality> getAllNationalities()
       {
         return nationalityBll.getAllNationalities();
@@ -249,22 +340,45 @@ public class FacadeBll
 
     /*----TIME REGISTER FACADE-----------------------------------------
      */
+    /**
+     * Gets a list of time based on a volunteers database id
+     *
+     * @param vtrId
+     * @return
+     */
     public List<VolunteerTime> getVolunteerTimeBasedOnVtrId(int vtrId)
       {
         return timeRegistrationManager.getVolunteerTimeBasedOnVtrId(vtrId);
       }
 
+    /**
+     * Gets a list of time based on the id of volunteers and guilds
+     *
+     * @param vtrId
+     * @param gdId
+     * @return
+     */
     public List<VolunteerTime> getVolunteerAndGuildTimeBasedOnId(int vtrId, int gdId)
       {
         return timeRegistrationManager.getVolunteerAndGuildTimeBasedOnId(vtrId, gdId);
       }
 
+    /**
+     * Calls the add time function
+     *
+     * @param vTime
+     */
     public void addVolunteerTime(VolunteerTime vTime)
       {
         timeRegistrationManager.addVolunteerTime(vTime);
 
       }
 
+    /**
+     * Calls the remove time function
+     *
+     * @param vTime
+     */
     public void removeVolunteerTime(VolunteerTime vTime)
       {
         try
@@ -277,6 +391,11 @@ public class FacadeBll
         }
       }
 
+    /**
+     * Calls the update time function
+     *
+     * @param vTime
+     */
     public void updateVolunteerTime(VolunteerTime vTime)
       {
         try
@@ -291,11 +410,21 @@ public class FacadeBll
 
     /*----------VOLUNTEER FACADE--------------------------------------------
      */
+    /**
+     * Gets a list of volunteers from the database
+     *
+     * @return
+     */
     public List<Volunteer> getAllVolunteers()
       {
         return volunteerBll.getAllVolunteers();
       }
 
+    /**
+     * Calls the add Volunteer function
+     *
+     * @param vtr
+     */
     public void addVolunteer(Volunteer vtr)
       {
         try
@@ -308,6 +437,11 @@ public class FacadeBll
         }
       }
 
+    /**
+     * Calls the remove Volunteer function
+     *
+     * @param vtr
+     */
     public void removeVolunteer(Volunteer vtr)
       {
         try
@@ -320,11 +454,22 @@ public class FacadeBll
         }
       }
 
+    /**
+     * Gets a list of volunteers based on guilds they are a part of
+     *
+     * @param newValue
+     * @return
+     */
     public List<Volunteer> getVolunteersFromGuild(Guild newValue)
       {
         return volunteerBll.getVolunteersFromGuild(newValue);
       }
 
+    /**
+     * Calls the update Volunteer function
+     *
+     * @param vtr
+     */
     public void updateVolunteer(Volunteer vtr)
       {
         try

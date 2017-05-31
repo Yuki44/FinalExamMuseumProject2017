@@ -4,7 +4,7 @@ public class Manager extends Employee
   {
 
     /**
-     * We get these things from the Manager:
+     * The following parameters are extended by the Employee.
      *
      * @param id
      * @param firstName

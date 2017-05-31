@@ -67,6 +67,7 @@ public class ManagerBll extends BllManager
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * Gets a list of managers based on the guild(s) they manage.
      *
      * @param guild
      * @return
@@ -84,6 +85,12 @@ public class ManagerBll extends BllManager
         }
       }
 
+    /**
+     * Calls the update manager function.
+     *
+     * @param mg
+     * @throws SQLException
+     */
     public void updateManager(Manager mg) throws SQLException
       {
         updateDbMgr.updateManager(mg);

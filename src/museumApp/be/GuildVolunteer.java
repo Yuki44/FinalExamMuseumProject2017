@@ -19,7 +19,7 @@ public class GuildVolunteer
       }
 
     /**
-     * We get a Guild.
+     * This method gets the Guild id.
      *
      * @return
      */
@@ -29,18 +29,28 @@ public class GuildVolunteer
 
       }
 
+    /**
+     * This method gets the Guild.
+     *
+     * @return
+     */
     public Guild getGuild()
       {
         return guild;
       }
 
+    /**
+     * This method gets the Volunteer.
+     *
+     * @return
+     */
     public Volunteer getVolunteer()
       {
         return volunteer;
       }
 
     /**
-     * We get a Volunteer.
+     * This method gets the Volunteer id.
      *
      * @return
      */

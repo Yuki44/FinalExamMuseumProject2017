@@ -59,7 +59,7 @@ public class VolunteerTime
 
     /** ---------------------------------------------------HOURS---------------------------------------------. */
     /**
-     * Returns VolunteerTime hours as an integer.
+     * This method gets the VolunteerTime hours as an integer.
      *
      * @return
      */
@@ -68,16 +68,31 @@ public class VolunteerTime
         return hours;
       }
 
+    /**
+     * This method gets the Volunteer
+     *
+     * @return
+     */
     public Volunteer getVolunteer()
       {
         return volunteer;
       }
 
+    /**
+     * This method gets the Guild
+     *
+     * @return
+     */
     public Guild getGuild()
       {
         return guild;
       }
 
+    /**
+     * This method gets the Guild Volunteer
+     *
+     * @return
+     */
     public GuildVolunteer getGuildVolunteer()
       {
         return guildVolunteer;

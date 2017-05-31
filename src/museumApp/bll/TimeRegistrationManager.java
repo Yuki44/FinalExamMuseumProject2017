@@ -23,6 +23,7 @@ public class TimeRegistrationManager extends BllManager
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * Gets a list of VolunteerTime based on the id of the volunteer
      *
      * @return
      */
@@ -40,6 +41,13 @@ public class TimeRegistrationManager extends BllManager
         }
       }
 
+    /**
+     * Gets a list of VolunteerTime based on the id of the volunteers and guilds.
+     *
+     * @param vtrId
+     * @param gdId
+     * @return
+     */
     public List<VolunteerTime> getVolunteerAndGuildTimeBasedOnId(int vtrId, int gdId)
       {
         try
@@ -56,6 +64,7 @@ public class TimeRegistrationManager extends BllManager
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * Calls the add VolunteerTime function
      *
      * @param vTime
      */
@@ -75,6 +84,7 @@ public class TimeRegistrationManager extends BllManager
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * Calls the remove VolunteerTime function
      *
      * @param vTime
      * @throws SQLException
@@ -84,6 +94,12 @@ public class TimeRegistrationManager extends BllManager
         removeDbMgr.removeVolunteerTime(vTime);
       }
 
+    /**
+     * Calls the update VolunteerTime function
+     *
+     * @param vTime
+     * @throws SQLException
+     */
     public void updateVolunteerTime(VolunteerTime vTime) throws SQLException
       {
         updateDbMgr.updateVolunteerTime(vTime);
