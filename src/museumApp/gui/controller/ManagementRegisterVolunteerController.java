@@ -872,32 +872,28 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private void handleUseWebcam(ActionEvent event)
       {
 
-        Runnable r = new Runnable()
-          {
-            @Override
-            public void run()
-              {
-                webcam = Webcam.getDefault();
-                if (!webcam.isOpen())
-                {
-                    webcam.setViewSize(dimension);
-                }
-                if (webcam != null)
-                {
-                    webcam.open();
-                    System.out.println("Webcam found...");
+        Runnable r = () ->
+        {
+            webcam = Webcam.getDefault();
+            if (!webcam.isOpen())
+            {
+                webcam.setViewSize(dimension);
+            }
+            if (webcam != null)
+            {
+                webcam.open();
+                System.out.println("Webcam found...");
 
-                    if (webcam.isOpen())
+                if (webcam.isOpen())
+                {
+                    Platform.runLater(() ->
                     {
-                        Platform.runLater(() ->
-                        {
-                            lblWebcamOperation.setText("Webcam is working");
-                            lblWebcamOperation.setStyle("-fx-text-fill: #4b9e40;");
-                        });
-                    }
+                        lblWebcamOperation.setText("Webcam is working");
+                        lblWebcamOperation.setStyle("-fx-text-fill: #4b9e40;");
+                    });
                 }
-              }
-          };
+            }
+        };
         Thread t = new Thread(r);
         t.setDaemon(true);
         t.start();

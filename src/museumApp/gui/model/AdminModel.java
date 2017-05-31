@@ -10,12 +10,18 @@ import museumApp.bll.AdminBll;
 public class AdminModel extends Model
   {
 
-    private ObservableList<Administrator> admins;
+    private ObservableList<Administrator> admins = FXCollections.observableArrayList();
 
     public AdminModel() throws IOException
       {
         adminBll = new AdminBll();
-        admins = FXCollections.observableArrayList(adminBll.getAllAdmins());
+        Runnable r = () ->
+        {
+            setAdminsIntoObservable();
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -27,6 +33,12 @@ public class AdminModel extends Model
     public ObservableList<Administrator> getAdministrators()
       {
         return admins;
+      }
+
+    public void setAdminsIntoObservable()
+      {
+        admins.clear();
+        admins.addAll(adminBll.getAllAdmins());
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

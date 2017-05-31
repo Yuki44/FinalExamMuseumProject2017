@@ -64,9 +64,6 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
-        /**
-         * Initializes the Guild listView.
-         */
         guildListView.setItems(guildModel.getGuilds());
         guildTblColName.setCellValueFactory(guild -> guild.getValue().getName()); //Lambda expression sets values into laug name column
         listGenerator();
@@ -78,6 +75,7 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
      */
     public void listGenerator()
       {
+
         guildListView.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Guild> observable, Guild oldValue, Guild newValue) ->
         {
             ObservableList<Volunteer> volunteerList = FXCollections.observableArrayList();
@@ -126,7 +124,6 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
                 vrhvc.lblHowManyHoursSpend.setText(bundle.getString("lblHowManyHoursSpend"));
                 vrhvc.lblAproximateHours.setText(bundle.getString("lblAproximateHours"));
                 vrhvc.getLanguageBundle(bundle);
-
                 /** --------------------------------------------REFACTOR END-------------------------------------------. */
                 Scene scene = new Scene(root);
                 stage.hide();

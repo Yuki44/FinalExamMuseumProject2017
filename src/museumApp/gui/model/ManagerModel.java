@@ -12,12 +12,18 @@ import museumApp.bll.ManagerBll;
 public class ManagerModel extends Model
   {
 
-    private ObservableList<Manager> managers;
+    private ObservableList<Manager> managers = FXCollections.observableArrayList();
 
     public ManagerModel() throws IOException
       {
         managerBll = new ManagerBll();
-        managers = FXCollections.observableArrayList(managerBll.getAllManagers());
+        Runnable r = () ->
+        {
+            setManagersIntoObservable();
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -29,6 +35,12 @@ public class ManagerModel extends Model
     public ObservableList<Manager> getManagers()
       {
         return managers;
+      }
+
+    public void setManagersIntoObservable()
+      {
+        managers.clear();
+        managers.addAll(managerBll.getAllManagers());
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

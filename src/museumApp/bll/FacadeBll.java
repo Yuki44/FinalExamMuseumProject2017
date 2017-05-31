@@ -78,7 +78,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
 
@@ -95,7 +95,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
 
@@ -112,7 +112,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
 
@@ -151,7 +151,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
 
@@ -168,7 +168,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
 
@@ -185,7 +185,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
 
@@ -214,7 +214,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
 
@@ -231,7 +231,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
 
@@ -248,7 +248,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
 
@@ -277,7 +277,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
 
@@ -294,7 +294,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
 
@@ -322,7 +322,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
 
@@ -387,7 +387,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
 
@@ -404,7 +404,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
 
@@ -433,7 +433,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
 
@@ -450,7 +450,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
 
@@ -478,7 +478,7 @@ public class FacadeBll
         }
         catch (SQLException ex)
         {
-            System.err.println(ex.getCause());
+            ex.printStackTrace();
         }
       }
   }
