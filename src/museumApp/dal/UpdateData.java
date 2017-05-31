@@ -32,7 +32,7 @@ public class UpdateData extends DatabaseManager
      */
     public void updateAdministrator(Administrator ad) throws SQLException
       {
-         String sql = "UPDATE employee SET e_first_name=? e_last_name=? e_email=? user_name=? password=?"
+         String sql = "UPDATE employee SET e_first_name=?, e_last_name=?, e_email=?, user_name=?, password=?"
                    + " WHERE employee_id=?";
         try (Connection con = connectionManager.getConnection())
         {
@@ -86,7 +86,7 @@ public class UpdateData extends DatabaseManager
      */
     public void updateManager(Manager mg) throws SQLException
       {
-         String sql = "UPDATE employee SET e_first_name=? e_last_name=? e_email=? user_name=? password=?"
+         String sql = "UPDATE employee SET e_first_name=? ,e_last_name=? ,e_email=? ,user_name=? ,password=?"
                    + " WHERE employee_id=?";
         try (Connection con = connectionManager.getConnection())
         {
@@ -130,8 +130,8 @@ public class UpdateData extends DatabaseManager
      */
     public void updateVolunteer(Volunteer vtr) throws SQLException
       {
-        String sql = "UPDATE volunteer SET first_name= ? last_name=? date_of_birth=? phone_number = ? "
-                + "nationality =? email=? join_date=? comment=? address=? city=? zip_code=? country =?"
+        String sql = "UPDATE volunteer SET first_name= ?, last_name=?, date_of_birth=?, phone_number = ?, "
+                + "nationality =?, email=? ,join_date=?, comment=?, address=? ,city=? ,zip_code=? ,country =?,"
                 + " photo=? WHERE volunteer_id = ? ";
         try (Connection con = connectionManager.getConnection())
         {
