@@ -201,7 +201,7 @@ public class Volunteer extends User
         return photo;
       }
 
-    public String getPhotoAString()
+    public String getPhotoAsString()
       {
         return photo.get();
       }

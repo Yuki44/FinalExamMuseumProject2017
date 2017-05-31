@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -649,22 +650,22 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private void handleManagerAddHour(ActionEvent event) throws IOException, SQLException
       {
-           Volunteer vtr= volunteerTbl.getSelectionModel().getSelectedItem();
-           if (vtr!=null){
-        LocalDate localDate = addVtDatePicker.getValue();
-        Date date = java.sql.Date.valueOf(localDate);
-        int hours = Integer.parseInt(textLbSetHours.getText().trim());
-        Guild gd = comboBoxGuildSelection.getSelectionModel().getSelectedItem();
-        VolunteerTime vTime= new VolunteerTime(date, hours, vtr, gd);
-        timeModel.addVolunteerTime(vTime);
-        addVtDatePicker.setValue(null);
-        comboBoxGuildSelection.getSelectionModel().clearSelection();
-        textLbSetHours.clear();
-        txtFieldSearchText.clear();
-        
-           }
-        
-        
+        Volunteer vtr = volunteerTbl.getSelectionModel().getSelectedItem();
+        if (vtr != null)
+        {
+            LocalDate localDate = addVtDatePicker.getValue();
+            Date date = java.sql.Date.valueOf(localDate);
+            int hours = Integer.parseInt(textLbSetHours.getText().trim());
+            Guild gd = comboBoxGuildSelection.getSelectionModel().getSelectedItem();
+            VolunteerTime vTime = new VolunteerTime(date, hours, vtr, gd);
+            timeModel.addVolunteerTime(vTime);
+            addVtDatePicker.setValue(null);
+            comboBoxGuildSelection.getSelectionModel().clearSelection();
+            textLbSetHours.clear();
+            txtFieldSearchText.clear();
+
+        }
+
       }
 
     @FXML
@@ -684,7 +685,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String birthDate = vtr.getBirthDateAString();
         String zipCode = vtr.getZipCodeAsString();
         String comment = vtr.getCommentAsString();
-        String photoName = vtr.getPhotoAString();
+        String photoName = vtr.getPhotoAsString();
 
         txtFieldAddVolunteerFName.setText(firstName);
         txtFieldAddVolunteerLName.setText(lastName);
@@ -867,24 +868,40 @@ public class ManagementRegisterVolunteerController extends Controller implements
       }
 
     @FXML
-    protected void handleUseWebcam(ActionEvent event)
+    private void handleUseWebcam(ActionEvent event)
       {
-        this.webcam = Webcam.getDefault();
-        if (!webcam.isOpen())
-        {
-            webcam.setViewSize(dimension);
-        }
-        if (webcam != null)
-        {
-            webcam.open();
-            System.out.println("Webcam found...");
 
-            if (webcam.isOpen())
-            {
-                lblWebcamOperation.setText("Webcam is working");
-                lblWebcamOperation.setStyle("-fx-text-fill: #4b9e40;");
-            }
-        }
+        Runnable r = new Runnable()
+          {
+            @Override
+            public void run()
+              {
+                webcam = Webcam.getDefault();
+                if (!webcam.isOpen())
+                {
+                    webcam.setViewSize(dimension);
+                }
+                if (webcam != null)
+                {
+                    webcam.open();
+                    System.out.println("Webcam found...");
+
+                    if (webcam.isOpen())
+                    {
+                        Platform.runLater(() ->
+                        {
+                            lblWebcamOperation.setText("Webcam is working");
+                            lblWebcamOperation.setStyle("-fx-text-fill: #4b9e40;");
+                        });
+                    }
+                }
+              }
+          };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
+        lblWebcamOperation.setText("Please wait");
+        lblWebcamOperation.setStyle("-fx-text-fill: #ed9c1a;");
       }
 
     @FXML

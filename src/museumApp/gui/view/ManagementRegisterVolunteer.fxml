@@ -271,7 +271,7 @@
                                     </HBox>
                                     <Label fx:id="lblWebcamOperation">
                                        <font>
-                                          <Font size="15.0" />
+                                          <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
                                     <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="352.0">

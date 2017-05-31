@@ -63,6 +63,8 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
     public Label lblHowManyHoursSpend;
     @FXML
     public Label lblAproximateHours;
+    @FXML
+    private ImageView imgNationalityFlag;
 
     public VolunteerRegisterHoursViewController() throws IOException
       {
@@ -166,13 +168,19 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
             lblVolunteerFullName.setText(volunteer.getFullNameAsString());
             lblGuildName.setText(guild.getNameAsString());
             lblJoinedDate.setText(volunteer.getRegisteredDateAsString());
-            String photoName = volunteer.getPhotoAString();
+
+            String photoName = volunteer.getPhotoAsString();
             String photoPath = dbc.getVolunteerImgFilePath();
             String absoluteImgPath = (photoPath + "\\" + photoName);
             System.out.println(absoluteImgPath);
             File file = new File(absoluteImgPath);
             Image img = new Image(file.toURI().toString());
             imgVolunteer.setImage(img);
+
+            String natPhotoPath = dbc.getNationalityImgFilePath() + "\\" + volunteer.getCountryAsString() + ".png";
+            File natFile = new File(natPhotoPath);
+            Image natImg = new Image(natFile.toURI().toString());
+            imgNationalityFlag.setImage(natImg);
         }
 
       }

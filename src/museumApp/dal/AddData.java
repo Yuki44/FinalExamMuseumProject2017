@@ -51,7 +51,7 @@ public class AddData extends DatabaseManager
                 pstmt.setString(5, vtr.getNationalityAsString());
                 pstmt.setString(6, vtr.getEmailAsString());
                 pstmt.setDate(7, vtr.getRegisteredDate());
-                pstmt.setString(8, vtr.getPhotoAString());
+                pstmt.setString(8, vtr.getPhotoAsString());
                 pstmt.setString(9, vtr.getCommentAsString());
                 pstmt.setString(10, vtr.getAddressAsString());
                 pstmt.setString(11, vtr.getCityAsString());
