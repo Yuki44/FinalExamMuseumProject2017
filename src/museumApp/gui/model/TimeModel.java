@@ -33,7 +33,7 @@ public class TimeModel extends Model
      * @param vTime
      * @throws SQLException
      */
-    public void addVolunteerTime(VolunteerTime vTime) throws SQLException
+    public void addVolunteerTime(VolunteerTime vTime)
       {
         facadeBll.addVolunteerTime(vTime); //updates database
       }

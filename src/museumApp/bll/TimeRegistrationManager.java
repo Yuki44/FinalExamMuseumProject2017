@@ -68,7 +68,7 @@ public class TimeRegistrationManager extends BllManager
      *
      * @param vTime
      */
-    public void addVolunteerTime(VolunteerTime vTime)
+    public void addVolunteerTime(VolunteerTime vTime) throws SQLException
       {
         try
         {

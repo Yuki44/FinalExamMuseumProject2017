@@ -370,7 +370,14 @@ public class FacadeBll
      */
     public void addVolunteerTime(VolunteerTime vTime)
       {
-        timeRegistrationManager.addVolunteerTime(vTime);
+        try
+        {
+            timeRegistrationManager.addVolunteerTime(vTime);
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
 
       }
 

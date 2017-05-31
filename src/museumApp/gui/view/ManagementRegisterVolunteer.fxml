@@ -180,11 +180,6 @@
                                                 </JFXButton>
                                              </buttons>
                                           </ButtonBar>
-                                          <Label fx:id="lblAddVtrSuccess" prefHeight="36.0" prefWidth="296.0" textFill="#34b517" translateX="-70.0" translateY="-35.0" wrapText="true">
-                                             <font>
-                                                <Font size="15.0" />
-                                             </font>
-                                          </Label>
                                        </children>
                                        <GridPane.margin>
                                           <Insets />
@@ -422,6 +417,27 @@
                               </GridPane>
                            </children>
                         </AnchorPane>
+                        <GridPane fx:id="gridPaneSuccessMsg" layoutX="180.0" layoutY="59.0" visible="false" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="59.0">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="50.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label fx:id="lblAddVtrSuccess" alignment="CENTER" prefHeight="36.0" prefWidth="296.0" textFill="#7fe465" wrapText="true" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="215.0" fitWidth="215.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/MnagementPng/maps-and-flags-3.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </GridPane>
                      </children>
                   </AnchorPane>
               </content>

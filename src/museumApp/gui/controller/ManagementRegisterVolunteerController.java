@@ -19,6 +19,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -121,8 +123,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private JFXTextField txtFieldAddVolunteerEmail;
     @FXML
     private ComboBox<Guild> comboBoxFirstGuildSelection;
-    @FXML
-    private JFXButton buttonAddMoreManagersToGuild;
     @FXML
     private ImageView imgViewProfilePic;
     @FXML
@@ -235,13 +235,13 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private ComboBox<Guild> comboBoxGuildSelection;
     @FXML
-    private Tab tabVtrFilter1;
-    @FXML
     private ComboBox<Guild> comboBoxSelectGuildCsv;
-    @FXML
     private Label lblPrintGdHoursSuccess;
-    @FXML
     private Label lblPrintAllVtrSuccess;
+    @FXML
+    private GridPane gridPaneSuccessMsg;
+    @FXML
+    private Tab tabPrintToCsv;
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -547,7 +547,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
             }
             Volunteer vtr = new Volunteer(0, firstName, lastName, birthDate, phoneNumber, email,
                     nationality, registeredDate, photo, comment, address, city, zipCode, country);
-            volunteerModel.addVolunteer(vtr);
+//            volunteerModel.addVolunteer(vtr);
             Guild guild = comboBoxFirstGuildSelection.getSelectionModel().getSelectedItem();
             if (guild != null)
             {
@@ -558,7 +558,17 @@ public class ManagementRegisterVolunteerController extends Controller implements
             lblFieldsRequired.setText("");
             lblFieldRequiredStar.setText("");
             updateList();
+//            gridPaneRegVtr.setVisible(false);
+            gridPaneSuccessMsg.setVisible(true);
+            /** ------------------------------------------------------------------------------------------ */
+            FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), gridPaneSuccessMsg);
+            fadeIn.setFromValue(0.1);
+            fadeIn.setToValue(1);
+            fadeIn.setCycleCount(1);
+            fadeIn.play(); //Plays the transition
+            /** ------------------------------------------------------------------------------------------ */
             lblAddVtrSuccess.setText(firstName + " " + lastName + " saved!");
+
             clearFields();
         }
         else
@@ -587,13 +597,42 @@ public class ManagementRegisterVolunteerController extends Controller implements
         imgPane.setStyle("-fx-background-size: stretch");
         imgPane.setStyle("-fx-background-repeat: stretch");
         imgPane.setStyle("-fx-background-position: center center");
-        /** ------------------------------------------------------------------------------------------ */
-        FadeTransition fadeOut = new FadeTransition(Duration.seconds(4), lblAddVtrSuccess);
-        fadeOut.setFromValue(1);
-        fadeOut.setToValue(0);
-        fadeOut.setCycleCount(1);
-        fadeOut.play(); //Plays the transition
-        /** ------------------------------------------------------------------------------------------ */
+
+        Runnable r = () ->
+        {
+
+            try
+            {
+                Thread.sleep(3500);
+            }
+            catch (InterruptedException ex)
+            {
+                Logger.getLogger(ManagementRegisterVolunteerController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Platform.runLater(() ->
+            {
+                /** ------------------------------------------------------------------------------------------ */
+                FadeTransition fadeOut = new FadeTransition(Duration.seconds(4), gridPaneSuccessMsg);
+                fadeOut.setFromValue(1);
+                fadeOut.setToValue(0);
+                fadeOut.setCycleCount(1);
+                fadeOut.play(); //Plays the transition
+                /** ------------------------------------------------------------------------------------------ */
+            });
+
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
+
+//        gridPaneRegVtr.setVisible(true);
+//        /** ------------------------------------------------------------------------------------------ */
+//        FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), gridPaneRegVtr);
+//        fadeIn.setFromValue(0.1);
+//        fadeIn.setToValue(1);
+//        fadeIn.setCycleCount(1);
+//        fadeIn.play(); //Plays the transition
+//        /** ------------------------------------------------------------------------------------------ */
       }
 
     @FXML
