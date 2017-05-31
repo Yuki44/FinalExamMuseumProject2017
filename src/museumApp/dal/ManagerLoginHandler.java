@@ -25,15 +25,6 @@ public class ManagerLoginHandler extends DatabaseManager
       }
 
     /**
-     * loop all the managers'username and password in the employee table,
-     * to check whether there is record matching the given username and password
-     *
-     * @param username
-     * @param password
-     * @return
-     * @throws SQLException
-     */
-    /**
      * This method checks the username and password of the manager.
      *
      * @param username
