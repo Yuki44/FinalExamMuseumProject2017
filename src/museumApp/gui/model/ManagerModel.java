@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
+import museumApp.bll.FacadeBll;
 import museumApp.bll.ManagerBll;
 
 public class ManagerModel extends Model
@@ -16,8 +17,8 @@ public class ManagerModel extends Model
 
     public ManagerModel() throws IOException
       {
-        managerBll = new ManagerBll();
-        managers = FXCollections.observableArrayList(managerBll.getAllManagers());
+        facadeBll = new FacadeBll();
+        managers = FXCollections.observableArrayList(facadeBll.getAllManagers());
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -40,7 +41,7 @@ public class ManagerModel extends Model
     public void addManager(Manager mg) throws SQLException
       {
         managers.add(mg); //updates gui through observable
-        managerBll.addManager(mg); //updates database
+        facadeBll.addManager(mg); //updates database
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -51,7 +52,7 @@ public class ManagerModel extends Model
      */
     public void removeManager(Manager mg) throws SQLException
       {
-        managerBll.removeManager(mg);
+        facadeBll.removeManager(mg);
         managers.remove(mg);
       }
 
@@ -63,7 +64,7 @@ public class ManagerModel extends Model
      */
     public void updateManager(Manager mg) throws SQLException
       {
-        managerBll.updateManager(mg);
+        facadeBll.updateManager(mg);
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -74,7 +75,7 @@ public class ManagerModel extends Model
      */
     public List<Manager> getManagerBasedOnGuild(Guild guild)
       {
-        return managerBll.getManagerFromGuild(guild);
+        return facadeBll.getManagerFromGuild(guild);
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

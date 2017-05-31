@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumApp.be.GuildVolunteer;
+import museumApp.bll.FacadeBll;
 import museumApp.bll.GuildVolunteerBll;
 
 public class GuildVolunteerModel extends Model
@@ -14,8 +15,8 @@ public class GuildVolunteerModel extends Model
 
     public GuildVolunteerModel() throws IOException
       {
-        guildVolunteerBll = new GuildVolunteerBll();
-        guildVolunteer = FXCollections.observableArrayList(guildVolunteerBll.getAllGuildVolunteer());
+        facadeBll = new FacadeBll();
+        guildVolunteer = FXCollections.observableArrayList(facadeBll.getAllGuildVolunteer());
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -38,7 +39,7 @@ public class GuildVolunteerModel extends Model
     public void addGuildVolunteer(GuildVolunteer gv) throws SQLException
       {
         guildVolunteer.add(gv);
-        guildVolunteerBll.addGuildVolunteer(gv);
+        facadeBll.addGuildVolunteer(gv);
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -49,7 +50,7 @@ public class GuildVolunteerModel extends Model
      */
     public void removeGuildVolunteer(GuildVolunteer gv) throws SQLException
       {
-        guildVolunteerBll.removeGuildVolunteer(gv);
+        facadeBll.removeGuildVolunteer(gv);
         guildVolunteer.remove(gv);
       }
 
@@ -61,7 +62,7 @@ public class GuildVolunteerModel extends Model
      */
     public void updateGuildVolunteer(GuildVolunteer gv) throws SQLException
       {
-        guildVolunteerBll.updateGuildVolunteer(gv);
+        facadeBll.updateGuildVolunteer(gv);
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

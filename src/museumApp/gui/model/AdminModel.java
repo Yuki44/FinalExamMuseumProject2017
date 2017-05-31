@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumApp.be.Administrator;
 import museumApp.bll.AdminBll;
+import museumApp.bll.FacadeBll;
 
 public class AdminModel extends Model
   {
@@ -14,8 +15,8 @@ public class AdminModel extends Model
 
     public AdminModel() throws IOException
       {
-        adminBll = new AdminBll();
-        admins = FXCollections.observableArrayList(adminBll.getAllAdmins());
+       facadeBll = new FacadeBll();
+        admins = FXCollections.observableArrayList(facadeBll.getAllAdmins());
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -38,7 +39,7 @@ public class AdminModel extends Model
     public void addAdministrator(Administrator ad) throws SQLException
       {
         admins.add(ad); //updates gui through observable
-        adminBll.addAdministrator(ad); //updates database
+        facadeBll.addAdministrator(ad); //updates database
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -49,7 +50,7 @@ public class AdminModel extends Model
      */
     public void removeAdministrator(Administrator ad) throws SQLException
       {
-        adminBll.removeAdministrator(ad);
+        facadeBll.removeAdministrator(ad);
         admins.remove(ad);
       }
 
@@ -61,7 +62,7 @@ public class AdminModel extends Model
      */
     public void updateAdministrator(Administrator ad) throws SQLException
       {
-        adminBll.updateAdministrator(ad);
+        facadeBll.updateAdministrator(ad);
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

@@ -1,6 +1,8 @@
 package museumApp.dal;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
@@ -85,7 +87,29 @@ public class UpdateData extends DatabaseManager
      */
     public void updateVolunteer(Volunteer vtr) throws SQLException
       {
-        // TODO
+        String sql = "UPDATE volunteer SET first_name= ? last_name=? date_of_birth=? phone_number = ? "
+                + "nationality =? email=? join_date=? comment=? address=? city=? zip_code=? country =?"
+                + " photo=? WHERE volunteer_id = ? ";
+        try (Connection con = connectionManager.getConnection())
+        {
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1,vtr.getFirstNameAsString());
+            pstmt.setString(2, vtr.getLastNameAsString());
+            pstmt.setString(3,vtr.getBirthDateAString());
+            pstmt.setString(4, vtr.getPhoneNumberAsString());
+            pstmt.setString(5, vtr.getNationalityAsString());
+            pstmt.setString(6, vtr.getEmailAsString());
+            pstmt.setDate(7,vtr.getRegisteredDate());
+            pstmt.setString(8, vtr.getCommentAsString());
+            pstmt.setString(9, vtr.getAddressAsString());
+            pstmt.setString(10, vtr.getCityAsString());
+            pstmt.setString(11, vtr.getZipCodeAsString());
+            pstmt.setString(12, vtr.getCountryAsString());
+            pstmt.setString(13,vtr.getPhotoAsString());
+            pstmt.setInt(14, vtr.getId());
+            
+            pstmt.execute();
+        }
       }
     /** ----------------------------------------------------------------------------------------------------. */
     /** ----------------------------------------------------------------------------------------------------. */

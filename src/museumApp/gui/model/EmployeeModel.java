@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import museumApp.be.Employee;
 import museumApp.bll.AdminBll;
+import museumApp.bll.FacadeBll;
 import museumApp.bll.ManagerBll;
 
 public class EmployeeModel extends Model
@@ -19,8 +20,7 @@ public class EmployeeModel extends Model
      */
     public EmployeeModel() throws IOException
       {
-        managerBll = new ManagerBll();
-        adminBll = new AdminBll();
+       facadeBll= new FacadeBll();
         employee = new ArrayList<>();
       }
 
@@ -34,8 +34,8 @@ public class EmployeeModel extends Model
     public List<Employee> getAllEmployees()
       {
         List<Employee> result = new ArrayList<>();
-        result.addAll(managerBll.getAllManagers());
-        result.addAll(adminBll.getAllAdmins());
+        result.addAll(facadeBll.getAllManagers());
+        result.addAll(facadeBll.getAllAdmins());
         return result;
       }
     /** ---------------------------------------------------------------------------------------------------------------------------. */
