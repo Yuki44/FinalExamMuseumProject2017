@@ -98,7 +98,7 @@ public class AdministratorLoginHandler extends DatabaseManager
      * @param password
      * @return
      */
-    public boolean checkPasswordForAdmin(String username, String password)
+    public boolean checkPasswordForAdmin(String username, String password) throws SQLException
       {
         try (Connection con = connectionManager.getConnection())
         {
@@ -109,11 +109,6 @@ public class AdministratorLoginHandler extends DatabaseManager
             rs.next();
 
             return password.equals(rs.getString("password"));
-        }
-        catch (SQLException sqle)
-        {
-            System.err.println(sqle);
-            return false;
         }
       }
 
@@ -126,20 +121,16 @@ public class AdministratorLoginHandler extends DatabaseManager
      * @param username
      * @return
      */
-    public Administrator getAdminBasedOnUsername(String username)
+    public Administrator getAdminBasedOnUsername(String username) throws SQLException
       {
         try (Connection con = connectionManager.getConnection())
         {
             String query = "SELECT * FROM employee WHERE employee_type_id = 2 AND user_name = ?";
             PreparedStatement pstmt = con.prepareStatement(query);
             ResultSet rs = pstmt.executeQuery(query);
+            rs.next();
             return getOneAdmin(rs);
 
-        }
-        catch (SQLException sqle)
-        {
-            System.err.println(sqle);
-            return null;
         }
       }
 

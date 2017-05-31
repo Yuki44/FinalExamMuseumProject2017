@@ -99,7 +99,7 @@ public class ManagerLoginHandler extends DatabaseManager
      * @param password
      * @return
      */
-    public boolean checkPasswordForManager(String username, String password)
+    public boolean checkPasswordForManager(String username, String password) throws SQLException
       {
         try (Connection con = connectionManager.getConnection())
         {
@@ -111,11 +111,6 @@ public class ManagerLoginHandler extends DatabaseManager
 
             return password.equals(rs.getString("password"));
         }
-        catch (SQLException sqle)
-        {
-            System.err.println(sqle);
-            return false;
-        }
       }
 
     /**
@@ -126,7 +121,7 @@ public class ManagerLoginHandler extends DatabaseManager
      * @param username
      * @return
      */
-    public Manager getManagerBasedOnUsername(String username)
+    public Manager getManagerBasedOnUsername(String username) throws SQLException
       {
         try (Connection con = connectionManager.getConnection())
         {
@@ -134,12 +129,8 @@ public class ManagerLoginHandler extends DatabaseManager
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, username);
             ResultSet rs = pstmt.executeQuery();
+            rs.next();
             return getOneManager(rs);
-        }
-        catch (SQLException sqle)
-        {
-            System.err.println(sqle);
-            return null;
         }
       }
 
