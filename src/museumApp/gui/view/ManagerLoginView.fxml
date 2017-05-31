@@ -97,6 +97,11 @@
                   </ImageView>
                </children>
             </GridPane>
+            <ImageView blendMode="SRC_ATOP" fitHeight="161.0" fitWidth="161.0" opacity="0.76" pickOnBounds="true" preserveRatio="true" translateX="60.0" translateY="60.0" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../img/MnagementPng/boss-1.png" />
+               </image>
+            </ImageView>
          </children>
          <BorderPane.margin>
             <Insets />

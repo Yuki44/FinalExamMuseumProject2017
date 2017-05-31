@@ -223,13 +223,13 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fx:id="imgNationalityFlag" fitHeight="40.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-                     <image>
-                        <Image url="@../img/Denmark%20Flag.png" />
-                     </image>
-                  </ImageView>
                   <HBox alignment="CENTER_LEFT" spacing="20.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES">
                      <children>
+                        <ImageView fx:id="imgNationalityFlag" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/Denmark%20Flag.png" />
+                           </image>
+                        </ImageView>
                         <Label fx:id="lblVolunteerFullName" alignment="CENTER" contentDisplay="CENTER" text="Peder Laugesen">
                            <font>
                               <Font size="53.0" />

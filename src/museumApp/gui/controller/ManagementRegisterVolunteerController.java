@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
+import static com.sun.javafx.webkit.UIClientImpl.toBufferedImage;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -137,7 +138,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private Webcam webcam;
     private BufferedImage webcamImage;
     private Dimension dimension = new Dimension(640, 480);
-    BufferedImage takenImage;
+    Image takenImage;
     @FXML
     private Tab TbColumnFilterVolunteerId;
     @FXML
@@ -540,7 +541,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
                 DropboxConnection dbc = new DropboxConnection();
                 photo = fullName + LocalDate.now() + "_" + System.currentTimeMillis() + ".png";
                 myImageFile = new File(dbc.getVolunteerImgFilePath(), photo);
-                ImageIO.write(takenImage, "PNG", myImageFile);
+                BufferedImage image = toBufferedImage(takenImage);
+                ImageIO.write(image, "PNG", myImageFile);
+
             }
             Volunteer vtr = new Volunteer(0, firstName, lastName, birthDate, phoneNumber, email,
                     nationality, registeredDate, photo, comment, address, city, zipCode, country);
@@ -652,7 +655,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
       {
         Volunteer vtr = volunteerTbl.getSelectionModel().getSelectedItem();
         if (vtr != null)
-        {   
+        {
             LocalDate localDate = addVtDatePicker.getValue();
             Date date = java.sql.Date.valueOf(localDate);
             int hours = Integer.parseInt(textLbSetHours.getText().trim());
@@ -826,9 +829,10 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private void handleDrop(DragEvent event) throws FileNotFoundException
       {
         List<File> files = event.getDragboard().getFiles();
-        Image img = new Image(new FileInputStream(files.get(0)));
-        imgViewProfilePic.setImage(img);
+        Image imgDrop = new Image(new FileInputStream(files.get(0)));
+        imgViewProfilePic.setImage(imgDrop);
         imgPane.setStyle("-fx-background-image: null");
+        takenImage = imgViewProfilePic.getImage();
       }
 
     /**
@@ -848,6 +852,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
             Image image = new Image(file.toURI().toString());
             imgViewProfilePic.setImage(image);
             imgPane.setStyle("-fx-background-image: null");
+            takenImage = imgViewProfilePic.getImage();
         }
       }
 
@@ -913,10 +918,10 @@ public class ManagementRegisterVolunteerController extends Controller implements
             {
 
                 this.webcamImage = webcam.getImage();
-                Image myImage = SwingFXUtils.toFXImage(webcamImage, null); //convert to JavaFX image
+                takenImage = SwingFXUtils.toFXImage(webcamImage, null); //convert to JavaFX image
                 imgPane.setStyle("-fx-background-image: null");
-                imgViewProfilePic.setImage(myImage); //show on ImageView
-                this.takenImage = webcam.getImage();
+                imgViewProfilePic.setImage(takenImage); //show on ImageView
+//                BufferedImage takenWebcamImage = webcam.getImage();
 
             }
         }

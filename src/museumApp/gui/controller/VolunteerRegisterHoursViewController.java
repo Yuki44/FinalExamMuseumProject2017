@@ -177,7 +177,7 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
             Image img = new Image(file.toURI().toString());
             imgVolunteer.setImage(img);
 
-            String natPhotoPath = dbc.getNationalityImgFilePath() + "\\" + volunteer.getCountryAsString() + ".png";
+            String natPhotoPath = dbc.getNationalityImgFilePath() + "\\" + volunteer.getCountryAsString().toLowerCase() + ".png";
             File natFile = new File(natPhotoPath);
             Image natImg = new Image(natFile.toURI().toString());
             imgNationalityFlag.setImage(natImg);
