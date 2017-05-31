@@ -9,9 +9,8 @@ public class Guild extends BusinessEntity
     protected StringProperty name;
     protected Manager manager;
 
-    /** ----------------------------TO DO REFACTOR BEGINNING---------------------------------------------. */
     /**
-     * 1st Constructor.
+     * Constructor.
      */
     public Guild(int id, String name, Manager manager)
       {
@@ -20,7 +19,6 @@ public class Guild extends BusinessEntity
         this.manager = manager;
       }
 
-    /** ------------------------------------TO DO REFACTOR END---------------------------------------------. */
     /** ------------------------------------GUILD NAME---------------------------------------------. */
     /**
      * We get GUILD Name as string property because it can update the view

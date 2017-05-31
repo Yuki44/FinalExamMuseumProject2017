@@ -8,28 +8,29 @@ package museumApp.be;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-/**
- *
- * @author min
- */
-public class Nationality {
+public class Nationality
+  {
+
     protected StringProperty country;
 
-    public Nationality(String country) {
+    public Nationality(String country)
+      {
         this.country = new SimpleStringProperty(country);
-    }
+      }
 
-    public StringProperty getCountry() {
+    public StringProperty getCountry()
+      {
         return country;
-    }
-   
+      }
+
     public String getCountryAsString()
-    {
+      {
         return country.get();
-    }
-       @Override
+      }
+
+    @Override
     public String toString()
       {
         return getCountryAsString();
       }
-}
+  }
