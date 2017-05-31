@@ -85,6 +85,12 @@ public class VolunteerBll extends BllManager
         }
       }
 
+    /**
+     * Calls the update Volunteer function
+     *
+     * @param vtr
+     * @throws SQLException
+     */
     public void updateVolunteer(Volunteer vtr) throws SQLException
       {
         updateDbMgr.updateVolunteer(vtr);

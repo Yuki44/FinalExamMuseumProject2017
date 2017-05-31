@@ -4,7 +4,7 @@ public class MuseumManagerException extends RuntimeException
   {
 
     /**
-     * It makes possible for us to see the origin of the errors by calling RuntimeException
+     * Calls a RuntimeException.
      *
      * @param message
      */

@@ -54,6 +54,7 @@ public class GuildBll extends BllManager
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * Removes a Guild, Method call to DAL layer.
      *
      * @param gd
      * @throws SQLException
@@ -63,6 +64,12 @@ public class GuildBll extends BllManager
         removeDbMgr.removeGuild(gd);
       }
 
+    /**
+     * Updates a Guild, Method call to DAL layer.
+     *
+     * @param gd
+     * @throws SQLException
+     */
     public void updateGuild(Guild gd) throws SQLException
       {
         updateDbMgr.updateGuild(gd);

@@ -23,6 +23,7 @@ public class GuildVolunteerBll extends BllManager
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * Creates a list to fetch the guild volunteers, Method call to DAL layer.
      *
      * @return
      */
@@ -41,6 +42,7 @@ public class GuildVolunteerBll extends BllManager
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * Adds a GuildVolunteer, Method call to DAL layer.
      *
      * @param gv
      * @throws SQLException
@@ -52,6 +54,7 @@ public class GuildVolunteerBll extends BllManager
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * Remove a GuildVolunteer, Method call to DAL layer.
      *
      * @param gv
      * @throws SQLException
@@ -61,6 +64,12 @@ public class GuildVolunteerBll extends BllManager
         removeDbMgr.removeGuildVolunteer(gv);
       }
 
+    /**
+     * Updates a GuildVolunteer, Method call to DAL layer.
+     *
+     * @param gv
+     * @throws SQLException
+     */
     public void updateGuildVolunteer(GuildVolunteer gv) throws SQLException
       {
         updateDbMgr.updateGuildVolunteer(gv);
