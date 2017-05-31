@@ -7,7 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumApp.be.Guild;
 import museumApp.be.Volunteer;
-import museumApp.bll.VolunteerBll;
+import museumApp.bll.FacadeBll;
 
 public class VolunteerModel extends Model
   {
@@ -16,7 +16,7 @@ public class VolunteerModel extends Model
 
     public VolunteerModel() throws IOException
       {
-        volunteerBll = new VolunteerBll();
+        facadeBll = new FacadeBll();
         Runnable r = () ->
         {
             setVolunteersIntoObservable();
@@ -40,7 +40,7 @@ public class VolunteerModel extends Model
     public void setVolunteersIntoObservable()
       {
         volunteers.clear();
-        volunteers.addAll(volunteerBll.getAllVolunteers());
+        volunteers.addAll(facadeBll.getAllVolunteers());
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -52,7 +52,7 @@ public class VolunteerModel extends Model
     public void addVolunteer(Volunteer vtr) throws SQLException
       {
         volunteers.add(vtr);
-        volunteerBll.addVolunteer(vtr);
+       facadeBll.addVolunteer(vtr);
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -63,7 +63,7 @@ public class VolunteerModel extends Model
      */
     public void removeVolunteer(Volunteer vtr) throws SQLException
       {
-        volunteerBll.removeVolunteer(vtr);
+        facadeBll.removeVolunteer(vtr);
         volunteers.remove(vtr);
       }
 
@@ -75,7 +75,7 @@ public class VolunteerModel extends Model
      */
     public void updateVolunteer(Volunteer vtr) throws SQLException
       {
-        volunteerBll.updateVolunteer(vtr);
+        facadeBll.updateVolunteer(vtr);
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -87,7 +87,7 @@ public class VolunteerModel extends Model
      */
     public List<Volunteer> getVolunteerFromGuild(Guild newValue)
       {
-        return volunteerBll.getVolunteersFromGuild(newValue);
+        return facadeBll.getVolunteersFromGuild(newValue);
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

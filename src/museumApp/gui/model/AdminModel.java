@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumApp.be.Administrator;
-import museumApp.bll.AdminBll;
 import museumApp.bll.FacadeBll;
 
 public class AdminModel extends Model

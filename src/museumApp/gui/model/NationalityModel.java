@@ -4,7 +4,7 @@ import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumApp.be.Nationality;
-import museumApp.bll.NationalityBll;
+import museumApp.bll.FacadeBll;
 
 public class NationalityModel extends Model
   {
@@ -13,7 +13,7 @@ public class NationalityModel extends Model
 
     public NationalityModel() throws IOException
       {
-        nationalityBll = new NationalityBll();
+        facadeBll = new FacadeBll();
         Runnable r = () ->
         {
             setNationalitiesIntoObservable();
@@ -37,7 +37,7 @@ public class NationalityModel extends Model
     public void setNationalitiesIntoObservable()
       {
         nationalities.clear();
-        nationalities.addAll(nationalityBll.getAllNationalities());
+        nationalities.addAll(facadeBll.getAllNationalities());
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import museumApp.be.Guild;
 import museumApp.be.Manager;
 import museumApp.bll.FacadeBll;
-import museumApp.bll.ManagerBll;
 
 public class ManagerModel extends Model
   {

@@ -6,7 +6,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import museumApp.be.GuildVolunteer;
 import museumApp.bll.FacadeBll;
-import museumApp.bll.GuildVolunteerBll;
 
 public class GuildVolunteerModel extends Model
   {

@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import museumApp.be.Employee;
-import museumApp.bll.AdminBll;
 import museumApp.bll.FacadeBll;
-import museumApp.bll.ManagerBll;
 
 public class EmployeeModel extends Model
   {

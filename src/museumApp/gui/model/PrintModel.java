@@ -9,9 +9,8 @@ import museumApp.be.Guild;
 import museumApp.be.GuildVolunteer;
 import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
-import museumApp.bll.GuildVolunteerBll;
+import museumApp.bll.FacadeBll;
 import museumApp.bll.TimeRegistrationManager;
-import museumApp.bll.VolunteerBll;
 import museumApp.dal.DropboxConnection;
 
 public class PrintModel extends Model
@@ -23,11 +22,10 @@ public class PrintModel extends Model
 
     public PrintModel() throws IOException
       {
-        volunteerBll = new VolunteerBll();
-        guildVolunteerBll = new GuildVolunteerBll();
+        facadeBll = new FacadeBll();
         timeRegistrationManager = new TimeRegistrationManager();
-        volunteers = FXCollections.observableArrayList(volunteerBll.getAllVolunteers());
-        guildsVolunteers = FXCollections.observableArrayList(guildVolunteerBll.getAllGuildVolunteer());
+        volunteers = FXCollections.observableArrayList(facadeBll.getAllVolunteers());
+        guildsVolunteers = FXCollections.observableArrayList(facadeBll.getAllGuildVolunteer());
 //        volunteerTimeBasedOnId = FXCollections.observableArrayList(timeRegistrationManager.getVolunteerTimeBasedOnVtrId(vtrId));
       }
 
