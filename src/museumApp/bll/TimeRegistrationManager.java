@@ -70,15 +70,7 @@ public class TimeRegistrationManager extends BllManager
      */
     public void addVolunteerTime(VolunteerTime vTime) throws SQLException
       {
-        try
-        {
-            addDbMgr.addVolunteerTime(vTime);
-        }
-        catch (SQLException ex)
-        {
-            System.err.println(ex.getCause());
-            throw new MuseumManagerException("Unable to add Volunteer Time.");
-        }
+        addDbMgr.addVolunteerTime(vTime);
 
       }
 

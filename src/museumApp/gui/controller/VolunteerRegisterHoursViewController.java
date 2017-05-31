@@ -126,6 +126,7 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
                 timeModel = new TimeModel();
                 VolunteerTime vTime = new VolunteerTime(Date.valueOf(LocalDate.now()), Integer.parseInt(setHoursLabel.getText()), volunteer, guild);
                 timeModel.addVolunteerTime(vTime);
+
                 Stage stage;
                 Parent root;
                 stage = (Stage) borderPane.getScene().getWindow();

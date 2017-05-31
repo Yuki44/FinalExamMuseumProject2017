@@ -15,7 +15,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -127,8 +130,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private ImageView imgViewProfilePic;
     @FXML
     private Pane imgPane;
-    @FXML
-    private JFXButton buttonSaveInfo;
     @FXML
     private JFXButton buttonUseWebcam;
     @FXML
@@ -242,6 +243,16 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private GridPane gridPaneSuccessMsg;
     @FXML
     private Tab tabPrintToCsv;
+    @FXML
+    private JFXButton buttonUpdateInfo;
+    @FXML
+    private JFXButton bttnCloseWebcam;
+    @FXML
+    private Label lblSelectedVtrPrinted;
+    @FXML
+    private JFXButton buttonSaveInfo;
+    @FXML
+    private ImageView imgWebcamIcon;
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -558,7 +569,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
             lblFieldsRequired.setText("");
             lblFieldRequiredStar.setText("");
             updateList();
-//            gridPaneRegVtr.setVisible(false);
+            gridPaneRegVtr.setVisible(false);
             gridPaneSuccessMsg.setVisible(true);
             /** ------------------------------------------------------------------------------------------ */
             FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), gridPaneSuccessMsg);
@@ -568,7 +579,42 @@ public class ManagementRegisterVolunteerController extends Controller implements
             fadeIn.play(); //Plays the transition
             /** ------------------------------------------------------------------------------------------ */
             lblAddVtrSuccess.setText(firstName + " " + lastName + " saved!");
+            Runnable r = () ->
+            {
 
+                try
+                {
+                    Thread.sleep(3500);
+                }
+                catch (InterruptedException ex)
+                {
+                    Logger.getLogger(ManagementRegisterVolunteerController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Platform.runLater(() ->
+                {
+                    /** ------------------------------------------------------------------------------------------ */
+                    FadeTransition fadeOut = new FadeTransition(Duration.seconds(1), gridPaneSuccessMsg);
+                    fadeOut.setFromValue(1);
+                    fadeOut.setToValue(0);
+                    fadeOut.setCycleCount(1);
+                    fadeOut.play(); //Plays the transition
+                    /** ------------------------------------------------------------------------------------------ */
+                    gridPaneRegVtr.setVisible(true);
+                    /** ------------------------------------------------------------------------------------------ */
+                    FadeTransition fadeInGP = new FadeTransition(Duration.seconds(0.5), gridPaneRegVtr);
+                    fadeInGP.setFromValue(0.1);
+                    fadeInGP.setToValue(1);
+                    fadeInGP.setCycleCount(1);
+                    fadeInGP.play(); //Plays the transition
+                    /** ------------------------------------------------------------------------------------------ */
+                    gridPaneSuccessMsg.setVisible(false);
+
+                });
+
+            };
+            Thread t = new Thread(r);
+            t.setDaemon(true);
+            t.start();
             clearFields();
         }
         else
@@ -576,6 +622,11 @@ public class ManagementRegisterVolunteerController extends Controller implements
             lblFieldsRequired.setText("Fields required:");
             lblFieldRequiredStar.setText("*");
         }
+      }
+
+    @FXML
+    private void handleUpdateVolunteer(ActionEvent event)
+      {
       }
 
     public void clearFields()
@@ -586,6 +637,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         txtFieldAddVolunteerEmail.clear();
         regJoinedDatePicker.setValue(null);
         comboBoxNationality.getSelectionModel().clearSelection();
+        comboBoxNationality.setValue(null);
         txtFieldAddVolunteerCity.clear();
         txtFieldAddVolunteerAddress.clear();
         txtFieldAddVolunteerBirthdate.clear();
@@ -598,45 +650,41 @@ public class ManagementRegisterVolunteerController extends Controller implements
         imgPane.setStyle("-fx-background-repeat: stretch");
         imgPane.setStyle("-fx-background-position: center center");
 
-        Runnable r = () ->
-        {
-
-            try
-            {
-                Thread.sleep(3500);
-            }
-            catch (InterruptedException ex)
-            {
-                Logger.getLogger(ManagementRegisterVolunteerController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Platform.runLater(() ->
-            {
-                /** ------------------------------------------------------------------------------------------ */
-                FadeTransition fadeOut = new FadeTransition(Duration.seconds(4), gridPaneSuccessMsg);
-                fadeOut.setFromValue(1);
-                fadeOut.setToValue(0);
-                fadeOut.setCycleCount(1);
-                fadeOut.play(); //Plays the transition
-                /** ------------------------------------------------------------------------------------------ */
-            });
-
-        };
-        Thread t = new Thread(r);
-        t.setDaemon(true);
-        t.start();
-
-//        gridPaneRegVtr.setVisible(true);
-//        /** ------------------------------------------------------------------------------------------ */
-//        FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), gridPaneRegVtr);
-//        fadeIn.setFromValue(0.1);
-//        fadeIn.setToValue(1);
-//        fadeIn.setCycleCount(1);
-//        fadeIn.play(); //Plays the transition
-//        /** ------------------------------------------------------------------------------------------ */
       }
 
     @FXML
     private void handleAddMoreVtrInfo(ActionEvent event) throws IOException
+      {
+        next();
+      }
+
+    @FXML
+    private void handleGoToNecessaryInfo(ActionEvent event)
+      {
+        back();
+      }
+
+    @FXML
+    private void handleGoBackGreenBttn(MouseEvent event)
+      {
+        back();
+      }
+
+    private void back()
+      {
+        paneRegisterVtr.setLeftAnchor(anchorpane, -900.0);
+        gridPaneRegVtr.setVisible(true);
+        txtFieldAddVolunteerFName.requestFocus();
+        /** ------------------------------------------------------------------------------------------ */
+        FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), gridPaneRegVtr);
+        fadeIn.setFromValue(0.1);
+        fadeIn.setToValue(1);
+        fadeIn.setCycleCount(1);
+        fadeIn.play(); //Plays the transition
+        /** ------------------------------------------------------------------------------------------ */
+      }
+
+    private void next()
       {
         paneRegisterVtr.setLeftAnchor(anchorpane, 0.0);
         gridPaneRegVtr.setVisible(false);
@@ -650,18 +698,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
       }
 
     @FXML
-    private void handleGoToNecessaryInfo(ActionEvent event)
+    private void handleGoAddMoreInfoGreenBttn(MouseEvent event)
       {
-        paneRegisterVtr.setLeftAnchor(anchorpane, -900.0);
-        gridPaneRegVtr.setVisible(true);
-        txtFieldAddVolunteerFName.requestFocus();
-        /** ------------------------------------------------------------------------------------------ */
-        FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), gridPaneRegVtr);
-        fadeIn.setFromValue(0.1);
-        fadeIn.setToValue(1);
-        fadeIn.setCycleCount(1);
-        fadeIn.play(); //Plays the transition
-        /** ------------------------------------------------------------------------------------------ */
+        next();
       }
 
     private void handleSelectVolunteer()
@@ -719,29 +758,40 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String lastName = vtr.getLastNameAsString();
         String phoneNumber = vtr.getPhoneNumberAsString();
         String email = vtr.getEmailAsString();
-
         Date registeredDate = vtr.getRegisteredDate();
+        Instant instant = Instant.ofEpochMilli(registeredDate.getTime());
+        LocalDate localDate = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
         String nationality = vtr.getCountryAsString();
         String city = vtr.getCityAsString();
         String address = vtr.getAddressAsString();
         String birthDate = vtr.getBirthDateAString();
         String zipCode = vtr.getZipCodeAsString();
         String comment = vtr.getCommentAsString();
-        String photoName = vtr.getPhotoAsString();
 
         txtFieldAddVolunteerFName.setText(firstName);
         txtFieldAddVolunteerLName.setText(lastName);
         txtFieldAddVolunteerPhoneNum.setText(phoneNumber);
         txtFieldAddVolunteerEmail.setText(email);
-//        regJoinedDatePicker.setValue(null);
-//        comboBoxNationality.getSelectionModel().clearSelection();
+        regJoinedDatePicker.setValue(localDate);
+        Nationality someNationality = new Nationality(nationality);
+        comboBoxNationality.setValue(someNationality);
         txtFieldAddVolunteerCity.setText(city);
         txtFieldAddVolunteerAddress.setText(address);
         txtFieldAddVolunteerBirthdate.setText(birthDate);
         txtFieldAddVolunteerZipcode.setText(zipCode);
         txtAreaAddVolunteerComment.setText(comment);
-//        comboBoxFirstGuildSelection.getSelectionModel().clearSelection();
-//        imgViewProfilePic.setImage(null);
+        //        comboBoxFirstGuildSelection.getSelectionModel().clearSelection();
+        String photoName = vtr.getPhotoAsString();
+        DropboxConnection dbc = new DropboxConnection();
+        String photoPath = dbc.getVolunteerImgFilePath();
+        String absoluteImgPath = (photoPath + "\\" + photoName);
+        System.out.println(absoluteImgPath);
+        File file = new File(absoluteImgPath);
+        Image img = new Image(file.toURI().toString());
+        imgViewProfilePic.setImage(img);
+        imgPane.setStyle("-fx-background-image: null");
+        buttonSaveInfo.setVisible(false);
+        buttonUpdateInfo.setVisible(true);
       }
 
     public void updateList()
@@ -934,8 +984,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
                     {
                         Platform.runLater(() ->
                         {
-                            lblWebcamOperation.setText("Webcam is working");
+                            lblWebcamOperation.setText("Webcam is ready!");
                             lblWebcamOperation.setStyle("-fx-text-fill: #4b9e40;");
+                            imgWebcamIcon.setVisible(true);
                         });
                     }
                 }
@@ -946,6 +997,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
         t.start();
         lblWebcamOperation.setText("Please wait");
         lblWebcamOperation.setStyle("-fx-text-fill: #ed9c1a;");
+        buttonUseWebcam.setDisable(true);
+        bttnCloseWebcam.setDisable(false);
       }
 
     @FXML
@@ -978,6 +1031,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
             webcam.close();
             lblWebcamOperation.setText("Webcam is closed");
             lblWebcamOperation.setStyle("-fx-text-fill: #a04124;");
+            buttonUseWebcam.setDisable(false);
+            bttnCloseWebcam.setDisable(true);
+            imgWebcamIcon.setVisible(false);
         }
         catch (Exception ex)
         {
@@ -1001,12 +1057,37 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private void handleFocusOnSearch(Event event)
       {
         txtFieldSearchText.requestFocus();
+        txtFieldSearchText.clear();
+        addVtDatePicker.setValue(null);
+        textLbSetHours.clear();
+        comboBoxGuildSelection.getSelectionModel().clearSelection();
       }
 
     @FXML
     private void handleClearRegVolunteerTab(Event event)
       {
         clearFields();
+        buttonSaveInfo.setVisible(true);
+        buttonUpdateInfo.setVisible(false);
+      }
+
+    @FXML
+    private void handleClearRegManagerTab(Event event)
+      {
+        addTFNameTxtF.requestFocus();
+        addTFNameTxtF.clear();
+        addTLNameTxtF.clear();
+        addTEmailTxtF.clear();
+        addTUNameTxtF.clear();
+        addTPassTxtF.clear();
+      }
+
+    @FXML
+    private void handleClearRegGuildTab(Event event)
+      {
+        txtFieldAddGuildName.clear();
+        comboBoxAddGuildManager.getSelectionModel().clearSelection();
+        txtFieldAddGuildName.requestFocus();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -1020,6 +1101,15 @@ public class ManagementRegisterVolunteerController extends Controller implements
         if (vtr != null)
         {
             printModel.printAllSelectedVolunteerHours(vtr);
+            lblSelectedVtrPrinted.setText("Success!");
+            txtFieldSearchText.clear();
+            /** ------------------------------------------------------------------------------------------ */
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(4), lblSelectedVtrPrinted);
+            fadeOut.setFromValue(1);
+            fadeOut.setToValue(0);
+            fadeOut.setCycleCount(1);
+            fadeOut.play(); //Plays the transition
+            /** ------------------------------------------------------------------------------------------ */
         }
       }
 
