@@ -652,12 +652,13 @@ public class ManagementRegisterVolunteerController extends Controller implements
       {
         Volunteer vtr = volunteerTbl.getSelectionModel().getSelectedItem();
         if (vtr != null)
-        {
+        {   
             LocalDate localDate = addVtDatePicker.getValue();
             Date date = java.sql.Date.valueOf(localDate);
             int hours = Integer.parseInt(textLbSetHours.getText().trim());
             Guild gd = comboBoxGuildSelection.getSelectionModel().getSelectedItem();
             VolunteerTime vTime = new VolunteerTime(date, hours, vtr, gd);
+            timeModel= new TimeModel();
             timeModel.addVolunteerTime(vTime);
             addVtDatePicker.setValue(null);
             comboBoxGuildSelection.getSelectionModel().clearSelection();

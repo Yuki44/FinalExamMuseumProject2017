@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javafx.collections.ObservableList;
 import museumApp.be.VolunteerTime;
+import museumApp.bll.FacadeBll;
 
 public class TimeModel extends Model
   {
@@ -12,7 +13,7 @@ public class TimeModel extends Model
 
     public TimeModel() throws IOException
       {
-       
+       facadeBll = new FacadeBll();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
