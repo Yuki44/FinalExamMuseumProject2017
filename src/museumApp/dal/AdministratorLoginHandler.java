@@ -48,6 +48,12 @@ public class AdministratorLoginHandler extends DatabaseManager
         return null;
       }
 
+    /**
+     * This method creates a list of Administrators from the database.
+     *
+     * @return
+     * @throws SQLException
+     */
     public List<Administrator> getAllAdmins() throws SQLException
       {
         List<Administrator> admin = new ArrayList<>();
@@ -65,7 +71,15 @@ public class AdministratorLoginHandler extends DatabaseManager
         }
       }
 
-    public Administrator getOneAdmin(ResultSet rs) throws SQLException
+    /**
+     * This method specifies collums available in the database.
+     * The method is called in getAllAdmins()
+     *
+     * @param rs
+     * @return
+     * @throws SQLException
+     */
+    private Administrator getOneAdmin(ResultSet rs) throws SQLException
       {
         String userName = rs.getString("user_name");
         String password = rs.getString("password");
@@ -118,9 +132,9 @@ public class AdministratorLoginHandler extends DatabaseManager
         {
             String query = "SELECT * FROM employee WHERE employee_type_id = 2 AND user_name = ?";
             PreparedStatement pstmt = con.prepareStatement(query);
-            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery(query);
+            return getOneAdmin(rs);
 
-            return getAdminFromResults(pstmt); // REFACTOR
         }
         catch (SQLException sqle)
         {
@@ -129,19 +143,5 @@ public class AdministratorLoginHandler extends DatabaseManager
         }
       }
 
-    public Administrator getAdminFromResults(PreparedStatement pstmt) throws SQLException
-      {
-        ResultSet rs = pstmt.executeQuery();
-        rs.next();
-        int idAdm = rs.getInt("employee_id");
-        String userName = rs.getString("user_name");
-        String password = rs.getString("password");
-        String firstName = rs.getString("e_first_name");
-        String lastName = rs.getString("e_last_name");
-        String email = rs.getString("e_email");
-
-        Administrator admin = new Administrator(idAdm, firstName, lastName, email, userName, password);
-        return admin;
-      }
     /** ----------------------------------------------------------------------------------------------------. */
   }

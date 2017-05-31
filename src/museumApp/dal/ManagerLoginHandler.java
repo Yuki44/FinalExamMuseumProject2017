@@ -133,8 +133,8 @@ public class ManagerLoginHandler extends DatabaseManager
             String query = "SELECT * FROM employee WHERE employee_type_id = 1 AND user_name = ?";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, username);
-
-            return getManagerFromResults(pstmt); // REFACTOR
+            ResultSet rs = pstmt.executeQuery();
+            return getOneManager(rs);
         }
         catch (SQLException sqle)
         {
@@ -143,18 +143,4 @@ public class ManagerLoginHandler extends DatabaseManager
         }
       }
 
-    public Manager getManagerFromResults(PreparedStatement pstmt) throws SQLException
-      {
-        ResultSet rs = pstmt.executeQuery();
-        rs.next();
-        int idMgr = rs.getInt("employee_id");
-        String userName = rs.getString("user_name");
-        String password = rs.getString("password");
-        String firstName = rs.getString("e_first_name");
-        String lastName = rs.getString("e_last_name");
-        String email = rs.getString("e_email");
-
-        Manager manager = new Manager(idMgr, firstName, lastName, email, userName, password);
-        return manager;
-      }
   }
