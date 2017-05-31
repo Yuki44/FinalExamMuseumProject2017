@@ -13,7 +13,7 @@ public class TimeModel extends Model
 
     public TimeModel() throws IOException
       {
-       facadeBll = new FacadeBll();
+        facadeBll = new FacadeBll();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -35,7 +35,7 @@ public class TimeModel extends Model
      */
     public void addVolunteerTime(VolunteerTime vTime) throws SQLException
       {
-       facadeBll .addVolunteerTime(vTime); //updates database
+        facadeBll.addVolunteerTime(vTime); //updates database
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
