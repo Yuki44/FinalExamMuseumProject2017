@@ -134,6 +134,7 @@ public class AddData extends DatabaseManager
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method makes it possible to add a guild volunteer to the system.
      *
      * @param gv
      * @throws SQLException

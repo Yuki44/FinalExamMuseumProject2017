@@ -10,12 +10,18 @@ import museumApp.bll.FacadeBll;
 public class GuildModel extends Model
   {
 
-    private ObservableList<Guild> guilds;
+    private ObservableList<Guild> guilds = FXCollections.observableArrayList();
 
     public GuildModel() throws IOException
       {
         facadeBll = new FacadeBll();
-        guilds = FXCollections.observableArrayList(facadeBll.getAllGuilds());
+        Runnable r = () ->
+        {
+            setGuildsIntoObservable();
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -29,6 +35,12 @@ public class GuildModel extends Model
         return guilds;
       }
 
+    public void setGuildsIntoObservable()
+      {
+        guilds.clear();
+        guilds.addAll(facadeBll.getAllGuilds());
+      }
+
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      *
@@ -37,8 +49,18 @@ public class GuildModel extends Model
      */
     public void addGuild(Guild gd) throws SQLException
       {
+
         guilds.add(gd);
-        facadeBll.addGuild(gd);
+        Runnable r = () ->
+        {
+
+            facadeBll.addGuild(gd);
+
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
+
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -67,3 +89,10 @@ public class GuildModel extends Model
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
 
   }
+//  Runnable r = () ->
+//        {
+//
+//        };
+//        Thread t = new Thread(r);
+//        t.setDaemon(true);
+//        t.start();

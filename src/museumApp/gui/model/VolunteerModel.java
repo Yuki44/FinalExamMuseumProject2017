@@ -12,12 +12,18 @@ import museumApp.bll.VolunteerBll;
 public class VolunteerModel extends Model
   {
 
-    private ObservableList<Volunteer> volunteers;
+    private ObservableList<Volunteer> volunteers = FXCollections.observableArrayList();
 
     public VolunteerModel() throws IOException
       {
         volunteerBll = new VolunteerBll();
-        volunteers = FXCollections.observableArrayList(volunteerBll.getAllVolunteers());
+        Runnable r = () ->
+        {
+            setVolunteersIntoObservable();
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -31,6 +37,12 @@ public class VolunteerModel extends Model
         return volunteers;
       }
 
+    public void setVolunteersIntoObservable()
+      {
+        volunteers.clear();
+        volunteers.addAll(volunteerBll.getAllVolunteers());
+      }
+
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      *
@@ -41,7 +53,6 @@ public class VolunteerModel extends Model
       {
         volunteers.add(vtr);
         volunteerBll.addVolunteer(vtr);
-
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

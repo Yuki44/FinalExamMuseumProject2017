@@ -25,8 +25,8 @@ public class RemoveData extends DatabaseManager
 
     /** --------------------------------------VOLUNTEER------------------------------------------------. */
     /**
-     * Makes it possible to remove a volunteer from the database by use of
-     * the parameters below
+     * This method deletes the record of a volunteer from the volunteer table,
+     * by a given id.
      *
      * @throws SQLException
      */
@@ -38,7 +38,7 @@ public class RemoveData extends DatabaseManager
     /** ---------------------------------------MANAGER----------------------------------------------------. */
     /**
      * This method deletes the record of a manager from the employee table,
-     * by a given first name, last name, username and password.
+     * by a given id.
      *
      * @param mg
      * @throws SQLException
@@ -54,6 +54,13 @@ public class RemoveData extends DatabaseManager
         }
       }
 
+    /**
+     * This method deletes the record of a guild from the guild table,
+     * by a given id.
+     *
+     * @param gd
+     * @throws SQLException
+     */
     public void removeGuild(Guild gd) throws SQLException
       {
         String sql = "DELETE FROM guild WHERE guild_id = ?";

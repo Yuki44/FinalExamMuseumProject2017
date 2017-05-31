@@ -9,12 +9,18 @@ import museumApp.bll.NationalityBll;
 public class NationalityModel extends Model
   {
 
-    private ObservableList<Nationality> nationalities;
+    private ObservableList<Nationality> nationalities = FXCollections.observableArrayList();
 
     public NationalityModel() throws IOException
       {
         nationalityBll = new NationalityBll();
-        nationalities = FXCollections.observableArrayList(nationalityBll.getAllNationalities());
+        Runnable r = () ->
+        {
+            setNationalitiesIntoObservable();
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -26,6 +32,12 @@ public class NationalityModel extends Model
     public ObservableList<Nationality> getNationalities()
       {
         return nationalities;
+      }
+
+    public void setNationalitiesIntoObservable()
+      {
+        nationalities.clear();
+        nationalities.addAll(nationalityBll.getAllNationalities());
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

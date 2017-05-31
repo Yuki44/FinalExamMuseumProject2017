@@ -127,6 +127,12 @@ public class GetData extends DatabaseManager
         }
       }
 
+    /**
+     * This method gets a List of all guild volunteers form the database.
+     *
+     * @return
+     * @throws SQLException
+     */
     public List<GuildVolunteer> getAllGuildVolunteer() throws SQLException
       {
         List<GuildVolunteer> gv = new ArrayList<>();
@@ -147,6 +153,13 @@ public class GetData extends DatabaseManager
         }
       }
 
+    /**
+     * This method creates a list volunteers based on the id
+     *
+     * @param vtrId
+     * @return
+     * @throws SQLException
+     */
     public List<VolunteerTime> getVolunteerTimeBasedOnVtrId(int vtrId) throws SQLException
       {
         List<VolunteerTime> vTime = new ArrayList<>();
@@ -166,6 +179,14 @@ public class GetData extends DatabaseManager
         }
       }
 
+    /**
+     * This method creates a list volunteers and guilds based on the id
+     *
+     * @param vtrId
+     * @param gdId
+     * @return
+     * @throws SQLException
+     */
     public List<VolunteerTime> getVolunteerAndGuildTimeBasedOnId(int vtrId, int gdId) throws SQLException
       {
         List<VolunteerTime> vTime = new ArrayList<>();
@@ -186,6 +207,12 @@ public class GetData extends DatabaseManager
         }
       }
 
+    /**
+     * This method creates a list nationalities from the database
+     *
+     * @return
+     * @throws SQLException
+     */
     public List<Nationality> getAllNationalities() throws SQLException
       {
         List<Nationality> nationalities = new ArrayList<>();
@@ -304,6 +331,13 @@ public class GetData extends DatabaseManager
         return new Administrator(id, firstName, lastName, email, userName, password);
       }
 
+    /**
+     * This method makes the result set needed for the nationality.
+     *
+     * @param natResultSet
+     * @return
+     * @throws SQLException
+     */
     private Nationality getOneNationality(ResultSet natResultSet) throws SQLException
       {
 
@@ -311,6 +345,13 @@ public class GetData extends DatabaseManager
         return new Nationality(country);
       }
 
+    /**
+     * This method makes the result set needed for the Guild Volunteer.
+     *
+     * @param gdvtrResultSet
+     * @return
+     * @throws SQLException
+     */
     private GuildVolunteer getOneGuildVolunteer(ResultSet gdvtrResultSet) throws SQLException
       {
         Guild guild = getOneGuild(gdvtrResultSet);
@@ -324,50 +365,6 @@ public class GetData extends DatabaseManager
     /**
      * -----------------------------------OTHER GET METHODS-----------------------------------------------.
      */
-    /**
-     * TO REFACTOR
-     *
-     * @param pstmt
-     * @return
-     * @throws SQLException
-     */
-    public Manager getManagerFromResults(PreparedStatement pstmt) throws SQLException
-      {
-        ResultSet rs = pstmt.executeQuery();
-        rs.next();
-        int idMgr = rs.getInt("employee_id");
-        String userName = rs.getString("user_name");
-        String password = rs.getString("password");
-        String firstName = rs.getString("first_name");
-        String lastName = rs.getString("last_name");
-        String email = rs.getString("email");
-
-        Manager manager = new Manager(idMgr, firstName, lastName, email, userName, password);
-        return manager;
-      }
-
-    /**
-     * TO REFACTOR
-     *
-     * @param pstmt
-     * @return
-     * @throws SQLException
-     */
-    public Administrator getAdminFromResults(PreparedStatement pstmt) throws SQLException
-      {
-        ResultSet rs = pstmt.executeQuery();
-        rs.next();
-        int idAdm = rs.getInt("employee_id");
-        String userName = rs.getString("user_name");
-        String password = rs.getString("password");
-        String firstName = rs.getString("first_name");
-        String lastName = rs.getString("last_name");
-        String email = rs.getString("email");
-
-        Administrator admin = new Administrator(idAdm, firstName, lastName, email, userName, password);
-        return admin;
-      }
-
     /**
      * get all the volunteers work in the given guild name This method is used
      * to call Volunteers from the database Based the guilds they are registered
@@ -401,6 +398,13 @@ public class GetData extends DatabaseManager
         }
       }
 
+    /**
+     * This method creates a list of managers based on the guild(s) they manage.
+     *
+     * @param guild
+     * @return
+     * @throws SQLException
+     */
     public List<Manager> getManagerBasedOnGuild(Guild guild) throws SQLException
       {
         List<Manager> managers = new ArrayList<>();
@@ -422,60 +426,9 @@ public class GetData extends DatabaseManager
 
       }
 
-    /**
-     * get the manager with given username This method is used to get the
-     * manager based on their username. This method is used for the login
-     * function.
-     *
-     * @param username
-     * @return
-     */
-    public Manager getManagerBasedOnUsername(String username)
-      {
-        try (Connection con = connectionManager.getConnection())
-        {
-            String query = "SELECT * FROM employee WHERE employee_type_id = 1 AND user_name = ?";
-            PreparedStatement pstmt = con.prepareStatement(query);
-            pstmt.setString(1, username);
-
-            return getManagerFromResults(pstmt); // REFACTOR
-        }
-        catch (SQLException sqle)
-        {
-            System.err.println(sqle);
-            return null;
-        }
-      }
-
-    /**
-     * get the administrator with given username This method is used to get the
-     * administrator based on their username of the manager. This method is used
-     * in the login function.
-     *
-     *
-     * @param username
-     * @return
-     */
-    public Administrator getAdminBasedOnUsername(String username)
-      {
-        try (Connection con = connectionManager.getConnection())
-        {
-            String query = "SELECT * FROM employee WHERE employee_type_id = 2 AND user_name = ?";
-            PreparedStatement pstmt = con.prepareStatement(query);
-            pstmt.setString(1, username);
-
-            return getAdminFromResults(pstmt); // REFACTOR
-        }
-        catch (SQLException sqle)
-        {
-            System.err.println(sqle);
-            return null;
-        }
-      }
-
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /** ----------------------I DON'T THINK WE NEED THE FOLLOWING METHODS-------------------------------------------------------------------------------------. */
+    /** ---------------------------------------METHODS FOR FILTERING-------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     public List<Volunteer> getVolunteersByFirstName(String firstName) throws SQLException

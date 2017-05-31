@@ -5,10 +5,6 @@
  */
 package museumApp.dal;
 
-/**
- *
- * @author min
- */
 public interface Criteria
   {
 

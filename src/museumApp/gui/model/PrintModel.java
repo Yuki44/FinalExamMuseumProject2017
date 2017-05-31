@@ -43,138 +43,182 @@ public class PrintModel extends Model
 
     public void printAllVtrCsv() throws Exception
       {
-        Writer writer = null;
-        try
+
+        Runnable r = () ->
         {
-            DropboxConnection dbc = new DropboxConnection();
-            String fileName = "VolunteerInfo" + LocalDate.now() + "_" + System.currentTimeMillis() + ".csv";
-            File file = new File(dbc.getPrintFilePath(), fileName);
-            writer = new BufferedWriter(new FileWriter(file));
-            String title = "Name" + "," + "Email" + "," + "Phone Number" + ","
-                    + "Birthday" + "," + "Nationality" + "," + "Address"
-                    + "," + "Zip Code" + "," + "City" + "," + "Joined date" + "\n";
-            writer.write(title);
-            for (Volunteer volunteer : volunteers)
+
+            Writer writer = null;
+            try
+            {
+                DropboxConnection dbc = new DropboxConnection();
+                String fileName = "VolunteerInfo" + LocalDate.now() + "_" + System.currentTimeMillis() + ".csv";
+                File file = new File(dbc.getPrintFilePath(), fileName);
+                writer = new BufferedWriter(new FileWriter(file));
+                String title = "Name" + "," + "Email" + "," + "Phone Number" + ","
+                        + "Birthday" + "," + "Nationality" + "," + "Address"
+                        + "," + "Zip Code" + "," + "City" + "," + "Joined date" + "\n";
+                writer.write(title);
+                for (Volunteer volunteer : volunteers)
+                {
+
+                    String text = volunteer.getFullName().get()
+                            + "," + volunteer.getEmail().get() + "," + volunteer.getPhoneNumber().get()
+                            + "," + volunteer.getBirthDate().get() + "," + volunteer.getNationality().get()
+                            + "," + volunteer.getAddress().get() + "," + volunteer.getZipCode().get()
+                            + "," + volunteer.getCity().get() + "," + volunteer.getRegisteredDate() + "\n";
+
+                    writer.write(text);
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+            finally
             {
 
-                String text = volunteer.getFullName().get()
-                        + "," + volunteer.getEmail().get() + "," + volunteer.getPhoneNumber().get()
-                        + "," + volunteer.getBirthDate().get() + "," + volunteer.getNationality().get()
-                        + "," + volunteer.getAddress().get() + "," + volunteer.getZipCode().get()
-                        + "," + volunteer.getCity().get() + "," + volunteer.getRegisteredDate() + "\n";
-
-                writer.write(text);
+                try
+                {
+                    writer.flush();
+                    writer.close();
+                }
+                catch (IOException ex)
+                {
+                    ex.printStackTrace();
+                }
             }
-        }
-        catch (Exception ex)
-        {
-            ex.printStackTrace();
-        }
-        finally
-        {
-
-            writer.flush();
-            writer.close();
-        }
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
       }
 
     public void printGuildCsv(Guild gd) throws Exception
       {
-        Writer writer = null;
-        try
+        Runnable r = () ->
         {
 
-            DropboxConnection dbc = new DropboxConnection();
-            String fileName = "GuildInfo" + LocalDate.now() + "_" + System.currentTimeMillis() + ".csv";
-            File file = new File(dbc.getPrintFilePath(), fileName);
-            writer = new BufferedWriter(new FileWriter(file));
-            String titleGd = "Guild Name" + "," + "Guild Total Hours" + String.format("%n");
-            writer.write(titleGd);
-
-            int gdId = gd.getId();
-            String titleVtrs = "Guild Volunteers" + "," + "Volunteer Hours" + String.format("%n");
-
-            String volunteerText = "";
-            int allTime = 0;
-            for (GuildVolunteer gv : guildsVolunteers)
+            Writer writer = null;
+            try
             {
-                int gvGuildId = gv.getGuildId();
 
-                int vtrId = gv.getVolunteer().getId();
+                DropboxConnection dbc = new DropboxConnection();
+                String fileName = "GuildInfo" + LocalDate.now() + "_" + System.currentTimeMillis() + ".csv";
+                File file = new File(dbc.getPrintFilePath(), fileName);
+                writer = new BufferedWriter(new FileWriter(file));
+                String titleGd = "Guild Name" + "," + "Guild Total Hours" + String.format("%n");
+                writer.write(titleGd);
 
-                List<VolunteerTime> vTimeOnId = timeRegistrationManager.getVolunteerAndGuildTimeBasedOnId(vtrId, gdId);
-                int volunteerhours = 0;
-                for (VolunteerTime volTime : vTimeOnId)
+                int gdId = gd.getId();
+                String titleVtrs = "Guild Volunteers" + "," + "Volunteer Hours" + String.format("%n");
+
+                String volunteerText = "";
+                int allTime = 0;
+                for (GuildVolunteer gv : guildsVolunteers)
                 {
-                    volunteerhours += volTime.getHours();
-                }
+                    int gvGuildId = gv.getGuildId();
 
-                if (gvGuildId == gdId)
-                {
-                    allTime += volunteerhours;
-                    volunteerText += gv.getVolunteer().getFullName().get() + "," + volunteerhours + String.format("%n");
-                }
+                    int vtrId = gv.getVolunteer().getId();
 
+                    List<VolunteerTime> vTimeOnId = timeRegistrationManager.getVolunteerAndGuildTimeBasedOnId(vtrId, gdId);
+                    int volunteerhours = 0;
+                    for (VolunteerTime volTime : vTimeOnId)
+                    {
+                        volunteerhours += volTime.getHours();
+                    }
+
+                    if (gvGuildId == gdId)
+                    {
+                        allTime += volunteerhours;
+                        volunteerText += gv.getVolunteer().getFullName().get() + "," + volunteerhours + String.format("%n");
+                    }
+
+                }
+                String guildText = gd.getName().get() + "," + allTime + String.format("%n") + String.format("%n");
+                writer.write(guildText);
+                writer.write(titleVtrs);
+                writer.write(volunteerText);
             }
-            String guildText = gd.getName().get() + "," + allTime + String.format("%n") + String.format("%n");
-            writer.write(guildText);
-            writer.write(titleVtrs);
-            writer.write(volunteerText);
-        }
-        catch (Exception ex)
-        {
-            ex.printStackTrace();
-        }
-        finally
-        {
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+            finally
+            {
 
-            writer.flush();
-            writer.close();
-        }
+                try
+                {
+                    writer.flush();
+                    writer.close();
+                }
+                catch (IOException ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
       }
 
     public void printAllSelectedVolunteerHours(Volunteer vtr) throws IOException
       {
-        Writer writer = null;
-        try
+        Runnable r = () ->
         {
-            String vtrFullName = vtr.getFirstNameAsString() + vtr.getLastNameAsString();
-            DropboxConnection dbc = new DropboxConnection();
-            String fileName = "All" + vtrFullName + "Hours" + LocalDate.now() + "_" + System.currentTimeMillis() + ".csv";
-            File file = new File(dbc.getPrintFilePath(), fileName);
-            writer = new BufferedWriter(new FileWriter(file));
-            int vtrId = vtr.getId();
-            for (Volunteer volunteer : volunteers)
+
+            Writer writer = null;
+            try
             {
-                int vtrListId = volunteer.getId();
-                String text = "Volunteer: " + volunteer.getFullName().get() + "\n" + "\n";
-                if (vtrId == vtrListId)
+                String vtrFullName = vtr.getFirstNameAsString() + vtr.getLastNameAsString();
+                DropboxConnection dbc = new DropboxConnection();
+                String fileName = "All" + vtrFullName + "Hours" + LocalDate.now() + "_" + System.currentTimeMillis() + ".csv";
+                File file = new File(dbc.getPrintFilePath(), fileName);
+                writer = new BufferedWriter(new FileWriter(file));
+                int vtrId = vtr.getId();
+                for (Volunteer volunteer : volunteers)
                 {
-                    writer.write(text);
+                    int vtrListId = volunteer.getId();
+                    String text = "Volunteer: " + volunteer.getFullName().get() + "\n" + "\n";
+                    if (vtrId == vtrListId)
+                    {
+                        writer.write(text);
+                    }
+                }
+                String title = "Dates" + "," + "Hours" + "\n";
+                writer.write(title);
+                List<VolunteerTime> vTimeOnId = timeRegistrationManager.getVolunteerTimeBasedOnVtrId(vtrId);
+                for (VolunteerTime volunteerTime : vTimeOnId)
+                {
+                    String date = volunteerTime.getDateAsString();
+                    int hours = volunteerTime.getHours();
+                    String hoursThing = date + "," + hours
+                            + "\n";
+                    writer.write(hoursThing);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+            finally
+            {
+
+                try
+                {
+                    writer.flush();
+                    writer.close();
+                }
+                catch (IOException ex)
+                {
+                    ex.printStackTrace();
                 }
             }
-            String title = "Dates" + "," + "Hours" + "\n";
-            writer.write(title);
-            List<VolunteerTime> vTimeOnId = timeRegistrationManager.getVolunteerTimeBasedOnVtrId(vtrId);
-            for (VolunteerTime volunteerTime : vTimeOnId)
-            {
-                String date = volunteerTime.getDateAsString();
-                int hours = volunteerTime.getHours();
-                String hoursThing = date + "," + hours
-                        + "\n";
-                writer.write(hoursThing);
-            }
-
-        }
-        catch (Exception ex)
-        {
-            ex.printStackTrace();
-        }
-        finally
-        {
-
-            writer.flush();
-            writer.close();
-        }
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
       }
+
   }
