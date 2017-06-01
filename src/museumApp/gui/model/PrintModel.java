@@ -23,7 +23,6 @@ public class PrintModel extends Model
     public PrintModel() throws IOException
       {
         facadeBll = new FacadeBll();
-        timeRegistrationManager = new TimeRegistrationManager();
         volunteers = FXCollections.observableArrayList(facadeBll.getAllVolunteers());
         guildsVolunteers = FXCollections.observableArrayList(facadeBll.getAllGuildVolunteer());
 //        volunteerTimeBasedOnId = FXCollections.observableArrayList(timeRegistrationManager.getVolunteerTimeBasedOnVtrId(vtrId));
@@ -118,7 +117,7 @@ public class PrintModel extends Model
 
                     int vtrId = gv.getVolunteer().getId();
 
-                    List<VolunteerTime> vTimeOnId = timeRegistrationManager.getVolunteerAndGuildTimeBasedOnId(vtrId, gdId);
+                    List<VolunteerTime> vTimeOnId = facadeBll.getVolunteerAndGuildTimeBasedOnId(vtrId, gdId);
                     int volunteerhours = 0;
                     for (VolunteerTime volTime : vTimeOnId)
                     {
@@ -185,7 +184,7 @@ public class PrintModel extends Model
                 }
                 String title = "Dates" + "," + "Hours" + "\n";
                 writer.write(title);
-                List<VolunteerTime> vTimeOnId = timeRegistrationManager.getVolunteerTimeBasedOnVtrId(vtrId);
+                List<VolunteerTime> vTimeOnId = facadeBll.getVolunteerTimeBasedOnVtrId(vtrId);
                 for (VolunteerTime volunteerTime : vTimeOnId)
                 {
                     String date = volunteerTime.getDateAsString();

@@ -3,6 +3,7 @@ package museumApp.gui.model;
 import java.io.IOException;
 import java.sql.SQLException;
 import museumApp.be.Employee;
+import museumApp.bll.FacadeBll;
 import museumApp.bll.LoginManager;
 
 public class LoginModel extends Model
@@ -15,7 +16,7 @@ public class LoginModel extends Model
      */
     public LoginModel() throws IOException
       {
-        loginManager = new LoginManager();
+        facadeBll = new FacadeBll();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -30,7 +31,7 @@ public class LoginModel extends Model
      */
     public Employee LoginChecker(String username, String password) throws SQLException
       {
-        return loginManager.LoginChecker(username, password);
+        return facadeBll.LoginChecker(username, password);
       }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

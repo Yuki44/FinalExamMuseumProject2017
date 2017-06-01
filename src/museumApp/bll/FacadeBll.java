@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import museumApp.be.Administrator;
+import museumApp.be.Employee;
 import museumApp.be.Guild;
 import museumApp.be.GuildVolunteer;
 import museumApp.be.Manager;
@@ -487,5 +488,10 @@ public class FacadeBll
         {
             ex.printStackTrace();
         }
+      }
+    
+    public Employee LoginChecker(String username, String password) throws SQLException
+      {
+        return loginManager.LoginChecker(username, password);
       }
   }
