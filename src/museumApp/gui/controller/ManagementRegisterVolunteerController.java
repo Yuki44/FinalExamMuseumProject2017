@@ -512,8 +512,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
         Manager manager = comboBoxAddGuildManager.getSelectionModel().getSelectedItem();
         Guild gdToUpdate = tblGuild.getSelectionModel().getSelectedItem();
         int idToUpdate = gdToUpdate.getId();
+        guildModel.removeGuild(gdToUpdate);
         Guild gd = new Guild(idToUpdate, guildName, manager);
-        guildModel.updateGuild(gd);
+        guildModel.addGuild(gd);
         txtFieldAddGuildName.clear();
       }
     /**
