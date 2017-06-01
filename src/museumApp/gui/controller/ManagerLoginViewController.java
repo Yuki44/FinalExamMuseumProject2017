@@ -85,75 +85,14 @@ public class ManagerLoginViewController extends Controller implements Initializa
     @FXML
     private void handleLogin(ActionEvent event)
       {
-
-        Runnable r = () ->
-        {
-            try
-            {
-                Thread.sleep(2000);
-            }
-            catch (InterruptedException ex)
-            {
-                ex.printStackTrace();
-            }
-            Platform.runLater(() ->
-            {
-                try
-                {
-                    login();
-                }
-                catch (IOException ex)
-                {
-                    ex.printStackTrace();
-                }
-                catch (SQLException ex)
-                {
-                    ex.printStackTrace();
-                }
-            });
-
-        };
-        Thread t = new Thread(r);
-        t.setDaemon(true);
-        t.start();
-        imgLoading.setVisible(true);
-      }
-
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /**
-     * When you click ENTER it will go to password field.
-     *
-     * @param event
-     */
-    @FXML
-    private void handleGoToPassword(KeyEvent event)
-      {
         handleDisappearLabel();
-        if (event.getCode().equals(KeyCode.ENTER) && !txtUserName.getText().trim().isEmpty())
-        {
-            txtPassword.requestFocus();
-        }
-      }
-
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /**
-     * When you click ENTER it will login.
-     *
-     * @param event
-     * @throws IOException
-     * @throws SQLException
-     */
-    @FXML
-    private void handleGoToLogin(KeyEvent event)
-      {
-        handleDisappearLabel();
-        if (event.getCode().equals(KeyCode.ENTER) && !txtPassword.getText().trim().isEmpty() && !txtUserName.getText().trim().isEmpty())
+        if (!txtPassword.getText().isEmpty() && !txtUserName.getText().isEmpty())
         {
             Runnable r = () ->
             {
                 try
                 {
-                    Thread.sleep(2000);
+                    Thread.sleep(3500);
                 }
                 catch (InterruptedException ex)
                 {
@@ -181,6 +120,75 @@ public class ManagerLoginViewController extends Controller implements Initializa
             t.start();
             imgLoading.setVisible(true);
         }
+        else
+        {
+            handleAppearWrongLoginLabel();
+        }
+      }
+
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /**
+     * When you click ENTER it will go to password field.
+     *
+     * @param event
+     */
+    @FXML
+    private void handleGoToPassword(KeyEvent event)
+      {
+        if (event.getCode().equals(KeyCode.ENTER) && !txtUserName.getText().isEmpty())
+        {
+            txtPassword.requestFocus();
+        }
+        handleDisappearLabel();
+      }
+
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /**
+     * When you click ENTER it will login.
+     *
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
+    @FXML
+    private void handleGoToLogin(KeyEvent event)
+      {
+        handleDisappearLabel();
+        if (event.getCode().equals(KeyCode.ENTER) && !txtPassword.getText().isEmpty() && !txtUserName.getText().isEmpty())
+        {
+            Runnable r = () ->
+            {
+                try
+                {
+                    Thread.sleep(3500);
+                }
+                catch (InterruptedException ex)
+                {
+                    ex.printStackTrace();
+                }
+                Platform.runLater(() ->
+                {
+                    try
+                    {
+                        login();
+                    }
+                    catch (IOException ex)
+                    {
+                        ex.printStackTrace();
+                    }
+                    catch (SQLException ex)
+                    {
+                        ex.printStackTrace();
+                    }
+                });
+
+            };
+            Thread t = new Thread(r);
+            t.setDaemon(true);
+            t.start();
+            imgLoading.setVisible(true);
+        }
+
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -252,6 +260,7 @@ public class ManagerLoginViewController extends Controller implements Initializa
         txtPassword.setStyle("-jfx-unfocus-color:#FF1414");
         txtPassword.setStyle("-jfx-focus-color:#FF1414");
         lblWrongLogin.setText("This user ID or password is not recognized.");
+        imgLoading.setVisible(false);
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

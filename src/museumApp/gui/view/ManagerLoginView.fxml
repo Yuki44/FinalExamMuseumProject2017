@@ -122,7 +122,7 @@
          <children>
             <VBox alignment="CENTER" fillWidth="false" prefHeight="165.0" prefWidth="411.0" spacing="50.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
                <children>
-                  <JFXTextField fx:id="txtUserName" focusColor="#757575" labelFloat="true" minWidth="304.0" onKeyPressed="#handleGoToPassword" prefHeight="38.0" promptText="Username">
+                  <JFXTextField fx:id="txtUserName" focusColor="#757575" labelFloat="true" minWidth="304.0" onKeyReleased="#handleGoToPassword" prefHeight="38.0" promptText="Username">
                      <font>
                         <Font name="Rockwell" size="25.0" />
                      </font>
@@ -130,7 +130,7 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </JFXTextField>
-                  <JFXPasswordField fx:id="txtPassword" focusColor="#757575" labelFloat="true" minWidth="304.0" onKeyPressed="#handleGoToLogin" prefHeight="38.0" promptText="Password">
+                  <JFXPasswordField fx:id="txtPassword" focusColor="#757575" labelFloat="true" minWidth="304.0" onKeyReleased="#handleGoToLogin" prefHeight="38.0" promptText="Password">
                      <font>
                         <Font name="Rockwell" size="25.0" />
                      </font>
@@ -148,17 +148,6 @@
                   <RowConstraints />
               </rowConstraints>
                <children>
-                  <ImageView fitHeight="72.0" fitWidth="134.0" nodeOrientation="INHERIT" onMouseClicked="#goBackToLanguageSelection" pickOnBounds="true" preserveRatio="true" styleClass="buttonBackHoveredBlack">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <image>
-                        <Image url="@../img/arrowBack2.png" />
-                     </image>
-                     <GridPane.margin>
-                        <Insets bottom="20.0" left="20.0" />
-                     </GridPane.margin>
-                  </ImageView>
                   <HBox alignment="TOP_CENTER" spacing="40.0">
                      <children>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
@@ -177,6 +166,17 @@
                         </ImageView>
                      </children>
                   </HBox>
+                  <ImageView fitHeight="72.0" fitWidth="134.0" nodeOrientation="INHERIT" onMouseClicked="#goBackToLanguageSelection" pickOnBounds="true" preserveRatio="true" styleClass="buttonBackHoveredBlack">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <image>
+                        <Image url="@../img/arrowBack2.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" left="20.0" />
+                     </GridPane.margin>
+                  </ImageView>
                </children>
             </GridPane>
             <Label fx:id="lblWrongLogin" textFill="RED" GridPane.rowIndex="2">
