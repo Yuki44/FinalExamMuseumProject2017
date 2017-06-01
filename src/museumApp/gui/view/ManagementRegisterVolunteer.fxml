@@ -27,7 +27,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" styleClass="onlyTheBorder" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagementRegisterVolunteerController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" styleClass="onlyTheBorder" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagementRegisterVolunteerController">
    <center>
       <JFXTabPane fx:id="mainTabPane" prefHeight="242.0" prefWidth="546.0" BorderPane.alignment="CENTER">
          <tabs>
@@ -1009,6 +1009,16 @@
                               <Image url="@../img/DropboxLogo.png" />
                            </image>
                         </ImageView>
+                        <Label fx:id="lblPrintAllVtrSuccess" layoutX="330.0" layoutY="139.0" prefHeight="27.0" prefWidth="166.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblPrintGdHoursSuccess" layoutX="322.0" layoutY="360.0" prefHeight="27.0" prefWidth="166.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </content>

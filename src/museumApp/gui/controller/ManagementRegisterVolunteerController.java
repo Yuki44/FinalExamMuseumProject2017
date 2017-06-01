@@ -237,7 +237,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private ComboBox<Guild> comboBoxGuildSelection;
     @FXML
     private ComboBox<Guild> comboBoxSelectGuildCsv;
+    @FXML
     private Label lblPrintGdHoursSuccess;
+    @FXML
     private Label lblPrintAllVtrSuccess;
     @FXML
     private GridPane gridPaneSuccessMsg;
