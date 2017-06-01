@@ -24,7 +24,6 @@ import museumApp.gui.model.VolunteerModel;
 public abstract class Controller
   {
 
-    //This is necessary for the mouse click location
     double xMouse;
     double yMouse;
     protected Locale locale;
@@ -132,9 +131,11 @@ public abstract class Controller
 
     /** -------------------------------------------------------------------------------------------------------------------------. */
     /** --------------------------------------------LANGUAGES--------------------------------------------------------.
+     * Loads the language.
      *
      * @param lang
-     * @param country */
+     * @param country
+     */
     protected void loadLang(String lang, String country)
       {
         locale = new Locale(lang, country);

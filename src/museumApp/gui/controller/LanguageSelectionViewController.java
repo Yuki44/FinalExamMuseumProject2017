@@ -16,10 +16,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-/**
- * FXML Controller class.
- *
- */
 public class LanguageSelectionViewController extends Controller implements Initializable
   {
 
@@ -44,6 +40,11 @@ public class LanguageSelectionViewController extends Controller implements Initi
       }
 
     /** --------------------------------------GO TO DIFFERENT LANGUAGES-------------------------------------------------. */
+    /**
+     * Selects Danish as language
+     *
+     * @param event
+     */
     @FXML
     private void goToDanishView(MouseEvent event)
       {
@@ -51,6 +52,11 @@ public class LanguageSelectionViewController extends Controller implements Initi
         goToChooseVolunteerGuildView();
       }
 
+    /**
+     * Selects English as language
+     *
+     * @param event
+     */
     @FXML
     private void goToEnglishView(MouseEvent event)
       {
@@ -58,6 +64,11 @@ public class LanguageSelectionViewController extends Controller implements Initi
         goToChooseVolunteerGuildView();
       }
 
+    /**
+     * Selects German as language
+     *
+     * @param event
+     */
     @FXML
     private void goToGermanView(MouseEvent event)
       {
@@ -73,13 +84,6 @@ public class LanguageSelectionViewController extends Controller implements Initi
       {
         try
         {
-            /**
-             * This commented out method works for setting the next fxml in the same scene
-             * for a smoother transition, but need to be REFACTOR ed.
-             */
-//            BorderPane bPane = FXMLLoader.load(getClass().getResource("/museumApp/gui/view/ChooseVolunteerGuildView.fxml"));
-//            borderPane.getChildren().setAll(bPane);
-
             Stage stage;
             Parent root;
             stage = (Stage) borderPane.getScene().getWindow();

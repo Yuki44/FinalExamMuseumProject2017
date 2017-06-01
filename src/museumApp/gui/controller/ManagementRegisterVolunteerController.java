@@ -281,13 +281,17 @@ public class ManagementRegisterVolunteerController extends Controller implements
         txtFieldAddVolunteerFName.requestFocus();
         lblFieldsRequired.setText("");
         lblFieldRequiredStar.setText("");
-//        getInfoFromList();
         handleSelectGuild();
         handleSelectManager();
         handleSelectVolunteer();
 
       }
 
+    /**
+     * Constructor
+     *
+     * @throws IOException
+     */
     public ManagementRegisterVolunteerController() throws IOException
       {
         super();
@@ -399,6 +403,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
       }
 
+    /**
+     * Initializer for nationality
+     */
     public void initializeNationailities()
       {
         comboBoxNationality.setItems(nationalityModel.getNationalities());
@@ -453,6 +460,12 @@ public class ManagementRegisterVolunteerController extends Controller implements
         addTPassTxtF.clear();
       }
 
+    /**
+     * Handles updating the manager
+     *
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     private void handleUpdateManager(ActionEvent event) throws SQLException
       {
@@ -476,7 +489,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
       }
 
     /**
-     * Removes the manager
+     * Handles removing the manager
      *
      * @param event
      * @throws SQLException
@@ -527,7 +540,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
       }
 
     /**
-     * Removes the Guild
+     * Handles removing the Guild
      *
      * @param event
      */
@@ -670,6 +683,13 @@ public class ManagementRegisterVolunteerController extends Controller implements
         }
       }
 
+    /**
+     * Handles updating the volunteer
+     *
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     private void handleUpdateVolunteer(ActionEvent event) throws IOException, SQLException
       {
@@ -755,6 +775,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
       }
 
+    /**
+     * This method is used to clear text fields and combo boxes
+     */
     private void clearFields()
       {
         txtFieldAddVolunteerFName.clear();
@@ -796,6 +819,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
         back();
       }
 
+    /**
+     * Method for the "back" button
+     */
     private void back()
       {
         paneRegisterVtr.setLeftAnchor(anchorpane, -900.0);
@@ -810,6 +836,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
         /** ------------------------------------------------------------------------------------------ */
       }
 
+    /**
+     * Method for the "next" button
+     */
     private void next()
       {
         paneRegisterVtr.setLeftAnchor(anchorpane, 0.0);
@@ -829,6 +858,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
         next();
       }
 
+    /**
+     * Handles the selection of a volunteer
+     */
     private void handleSelectVolunteer()
       {
         volunteerTbl.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Volunteer>()
@@ -862,6 +894,12 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
       }
 
+    /**
+     * Handles the removal of a volunteer
+     *
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     private void handleRemoveVolunteer(ActionEvent event) throws SQLException
       {
@@ -887,9 +925,14 @@ public class ManagementRegisterVolunteerController extends Controller implements
         }
       }
 
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /** ----------------------------------MANAGER REGISTER VTR HOURS-----------------------------------------. */
+    /** ----------------------------------------------MANAGER REGISTER VTR HOURS----------------------------------------------------. */
+    /**
+     * Handles the management adding hours.
+     *
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
     private void handleManagerAddHour(ActionEvent event) throws IOException, SQLException
       {
@@ -959,6 +1002,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
       }
 
+    /**
+     * Handles updating a list of volunteers.
+     */
     private void updateList()
       {
         allVolunteersList = new ArrayList<>();
@@ -974,6 +1020,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
         volunteerListViewColumns();
       }
 
+    /**
+     * assigns volunteers to the columns.
+     */
     private void volunteerListViewColumns()
       {
         volunteerTbl.setItems(volunteerInfo);
@@ -981,6 +1030,11 @@ public class ManagementRegisterVolunteerController extends Controller implements
         volunteerTblColLname.setCellValueFactory(volunteer -> volunteer.getValue().getLastName());
       }
 
+    /**
+     * Handles the search function.
+     *
+     * @param event
+     */
     @FXML
     private void handleSearchOnInput(KeyEvent event)
       {
@@ -1126,6 +1180,11 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
       }
 
+    /**
+     * Handles the use of the webcam.
+     *
+     * @param event
+     */
     @FXML
     private void handleUseWebcam(ActionEvent event)
       {
@@ -1166,6 +1225,11 @@ public class ManagementRegisterVolunteerController extends Controller implements
         bttnCloseWebcam.setDisable(false);
       }
 
+    /**
+     * Handles taking a photo with the webcam.
+     *
+     * @param event
+     */
     @FXML
     private void handleTakePhoto(ActionEvent event)
       {
@@ -1188,6 +1252,11 @@ public class ManagementRegisterVolunteerController extends Controller implements
         }
       }
 
+    /**
+     * Handles closing the webcam.
+     *
+     * @param event
+     */
     @FXML
     private void handleCloseWebcam(ActionEvent event)
       {
@@ -1206,18 +1275,11 @@ public class ManagementRegisterVolunteerController extends Controller implements
         }
       }
 
-    @FXML
-    private void handleFilterVol(ActionEvent event)
-      {
-
-      }
-
-    @FXML
-    private void handleFilterTime(ActionEvent event)
-      {
-
-      }
-
+    /**
+     * Handles the search function.
+     *
+     * @param event
+     */
     @FXML
     private void handleFocusOnSearch(Event event)
       {
@@ -1260,6 +1322,12 @@ public class ManagementRegisterVolunteerController extends Controller implements
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ---------------------------------------PRINTING AREA (CSV)----------------------------------------------------------------------------------------. */
+    /**
+     * Handles the printing of the data affiliated to a specific volunteer
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void handlePrintHoursSelectedVtr(ActionEvent event) throws IOException
       {
@@ -1279,6 +1347,12 @@ public class ManagementRegisterVolunteerController extends Controller implements
         }
       }
 
+    /**
+     * Handles the printing of the data affiliated to all volunteers
+     *
+     * @param event
+     * @throws Exception
+     */
     @FXML
     private void handlePrintAllVtrCsv(ActionEvent event) throws Exception
       {
@@ -1294,6 +1368,12 @@ public class ManagementRegisterVolunteerController extends Controller implements
         /** ------------------------------------------------------------------------------------------ */
       }
 
+    /**
+     * Handles the printing of the data affiliated to a specific guild
+     *
+     * @param event
+     * @throws Exception
+     */
     @FXML
     private void handlePrintTotalHoursGd(ActionEvent event) throws Exception
       {
@@ -1326,12 +1406,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
         }
       }
 
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
   }

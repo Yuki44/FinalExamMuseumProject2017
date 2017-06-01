@@ -165,6 +165,11 @@ public class ChooseVolunteerGuildViewController extends Controller implements In
         }
       }
 
+    /**
+     * Makes a bundle for the language select.
+     *
+     * @param bundle
+     */
     void getLanguageBundle(ResourceBundle bundle)
       {
         this.bundle = bundle;

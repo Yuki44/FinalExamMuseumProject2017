@@ -14,6 +14,11 @@ public class VolunteerModel extends Model
 
     private ObservableList<Volunteer> volunteers = FXCollections.observableArrayList();
 
+    /**
+     * Constructor
+     *
+     * @throws IOException
+     */
     public VolunteerModel() throws IOException
       {
         facadeBll = new FacadeBll();
@@ -29,6 +34,7 @@ public class VolunteerModel extends Model
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method gets a list of volunteers.
      *
      * @return volunteers
      */
@@ -37,6 +43,9 @@ public class VolunteerModel extends Model
         return volunteers;
       }
 
+    /**
+     * This method sets a list of volunteers.
+     */
     public void setVolunteersIntoObservable()
       {
         volunteers.clear();
@@ -45,6 +54,7 @@ public class VolunteerModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method calls the add function for the volunteer.
      *
      * @param vtr
      * @throws SQLException
@@ -64,6 +74,7 @@ public class VolunteerModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method calls the remove function for the volunteer.
      *
      * @param vtr
      * @throws SQLException
@@ -76,6 +87,7 @@ public class VolunteerModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method calls the update function for the volunteer.
      *
      * @param vtr
      * @throws SQLException
@@ -88,7 +100,7 @@ public class VolunteerModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
-     * Comes from listGenerator() in ChooseVolunterGuildViewController
+     * This method gets a list of volunteers from guilds.
      *
      * @param newValue
      * @return

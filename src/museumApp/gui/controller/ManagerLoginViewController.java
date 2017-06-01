@@ -47,6 +47,11 @@ public class ManagerLoginViewController extends Controller implements Initializa
     private int loginState;
     private Employee employee = null;
 
+    /**
+     * Constructor
+     *
+     * @throws IOException
+     */
     public ManagerLoginViewController() throws IOException
       {
         super();
