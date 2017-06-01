@@ -41,7 +41,6 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
     private GridPane mainGridPane;
 
     private Volunteer volunteer;
-//    private VolunteerTime vTime;
     private Guild guild;
     @FXML
     private Label lblGuildName;
@@ -66,6 +65,11 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
     @FXML
     private ImageView imgNationalityFlag;
 
+    /**
+     * Constructor
+     *
+     * @throws IOException
+     */
     public VolunteerRegisterHoursViewController() throws IOException
       {
         super();
@@ -75,7 +79,7 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
       }
 
     /**
-     * Initializes the controller class.
+     * Initializer
      *
      * @param url
      * @param rb
@@ -83,10 +87,14 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
-//        setVolunteer(volunteer, guild);
       }
 
     /** ---------------------------------------------------------------------------------------------------------------------------. */
+    /**
+     * Handles the "back" button.
+     *
+     * @param event
+     */
     @FXML
     private void goBackToGuildSelection(MouseEvent event)
       {
@@ -116,6 +124,12 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
         }
       }
 
+    /**
+     * Handles the "next" button
+     *
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     private void goToFinalView(MouseEvent event) throws SQLException
       {
