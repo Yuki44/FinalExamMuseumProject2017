@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +39,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -179,8 +182,6 @@ public class ManagementRegisterVolunteerController extends Controller implements
     @FXML
     private JFXButton addManagerBTN;
     @FXML
-    private JFXButton deleteManagerBTN;
-     @FXML
     private JFXButton updateManagerBTN;
     @FXML
     private TableView<Volunteer> volunteerTbl;
@@ -257,6 +258,10 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private JFXButton buttonSaveInfo;
     @FXML
     private ImageView imgWebcamIcon;
+    @FXML
+    private JFXButton deleteManagerBTN1;
+    @FXML
+    private JFXButton bttnRemoveVolunteer;
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -447,7 +452,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
         addTUNameTxtF.clear();
         addTPassTxtF.clear();
       }
-        @FXML
+
+    @FXML
     private void handleUpdateManager(ActionEvent event) throws SQLException
       {
         /**
@@ -458,7 +464,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String email = addTEmailTxtF.getText().trim();
         String username = addTUNameTxtF.getText().trim();
         String password = addTPassTxtF.getText().trim();
-        Manager mgToUpdate= managerTbl.getSelectionModel().getSelectedItem();
+        Manager mgToUpdate = managerTbl.getSelectionModel().getSelectedItem();
         int idToUpdate = mgToUpdate.getId();
         Manager mg = new Manager(idToUpdate, fName, lName, email, username, password);
         managerModel.updateManager(mg);
@@ -468,6 +474,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         addTUNameTxtF.clear();
         addTPassTxtF.clear();
       }
+
     /**
      * Removes the manager
      *
@@ -505,7 +512,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
         guildModel.addGuild(gd);
         txtFieldAddGuildName.clear();
       }
-  @FXML
+
+    @FXML
     private void handleUpdateGuild(ActionEvent event) throws SQLException
       {
         String guildName = txtFieldAddGuildName.getText().trim();
@@ -517,6 +525,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         guildModel.addGuild(gd);
         txtFieldAddGuildName.clear();
       }
+
     /**
      * Removes the Guild
      *
@@ -835,10 +844,46 @@ public class ManagementRegisterVolunteerController extends Controller implements
             public void changed(ObservableValue<? extends Volunteer> observable, Volunteer oldValue, Volunteer newValue)
               {
                 Volunteer selectedVolunteer = newValue;
-                txtFieldSearchText.setText(selectedVolunteer.getFullNameAsString());
+                bttnRemoveVolunteer.setVisible(true);
+                ObservableList<GuildVolunteer> guildVolunteer = guildVolunteerModel.getGuildVolunteer();
+                for (GuildVolunteer gv : guildVolunteer)
+                {
+
+                    int vtrId = gv.getVolunteer().getId();
+                    if (newValue.getId() == vtrId)
+                    {
+                        String gvGuildName = gv.getGuild().getNameAsString();
+                        lblJoinedGuild.setText(gvGuildName);
+                    }
+                }
               }
           });
 
+      }
+
+    @FXML
+    private void handleRemoveVolunteer(ActionEvent event) throws SQLException
+      {
+        Volunteer vtr = volunteerTbl.getSelectionModel().getSelectedItem();
+        if (vtr != null)
+        {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete Confirmation");
+            alert.setHeaderText("You are about to delete: " + vtr.getFullName().get() + " from the system.");
+            alert.setContentText("This can't be undone, are you sure you want to proceed?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK)
+            {
+                volunteerModel.removeVolunteer(vtr);
+                updateList();
+                bttnRemoveVolunteer.setVisible(false);
+                txtFieldSearchText.requestFocus();
+            }
+            else
+            {
+                System.out.println("Volunteer deletion canceled by user");
+            }
+        }
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -1180,6 +1225,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         addVtDatePicker.setValue(null);
         textLbSetHours.clear();
         comboBoxGuildSelection.getSelectionModel().clearSelection();
+        bttnRemoveVolunteer.setVisible(false);
       }
 
     @FXML
