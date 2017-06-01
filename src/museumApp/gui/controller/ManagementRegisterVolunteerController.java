@@ -605,8 +605,9 @@ public class ManagementRegisterVolunteerController extends Controller implements
                     nationality, registeredDate, photo, comment, address, city, zipCode, country);
             volunteerModel.addVolunteer(vtr);
             Guild guild = comboBoxFirstGuildSelection.getSelectionModel().getSelectedItem();
-            if (guild != null)
+            if (guild != null && vtr.getId() != 0)
             {
+
                 GuildVolunteer gv = new GuildVolunteer(guild, vtr);
                 guildVolunteerModel.addGuildVolunteer(gv);
             }
