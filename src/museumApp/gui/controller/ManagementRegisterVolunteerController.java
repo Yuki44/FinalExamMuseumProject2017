@@ -709,7 +709,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
       }
 
-    public void clearFields()
+    private void clearFields()
       {
         txtFieldAddVolunteerFName.clear();
         txtFieldAddVolunteerLName.clear();
@@ -877,7 +877,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
 
       }
 
-    public void updateList()
+    private void updateList()
       {
         allVolunteersList = new ArrayList<>();
         try

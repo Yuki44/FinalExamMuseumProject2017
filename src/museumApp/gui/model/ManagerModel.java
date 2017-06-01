@@ -12,11 +12,18 @@ import museumApp.bll.FacadeBll;
 public class ManagerModel extends Model
   {
 
-    private ObservableList<Manager> managers;
+    private ObservableList<Manager> managers = FXCollections.observableArrayList();
 
     public ManagerModel() throws IOException
       {
         facadeBll = new FacadeBll();
+        Runnable r = () ->
+        {
+            setManagersIntoObservable();
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
         managers = FXCollections.observableArrayList(facadeBll.getAllManagers());
       }
 
@@ -31,6 +38,12 @@ public class ManagerModel extends Model
         return managers;
       }
 
+    public void setManagersIntoObservable()
+      {
+        managers.clear();
+        managers.addAll(facadeBll.getAllManagers());
+      }
+
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      *
@@ -40,7 +53,16 @@ public class ManagerModel extends Model
     public void addManager(Manager mg) throws SQLException
       {
         managers.add(mg); //updates gui through observable
-        facadeBll.addManager(mg); //updates database
+        Runnable r = () ->
+        {
+
+            facadeBll.addManager(mg); //updates database
+
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
+
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

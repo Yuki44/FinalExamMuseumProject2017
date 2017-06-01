@@ -35,7 +35,15 @@ public class TimeModel extends Model
      */
     public void addVolunteerTime(VolunteerTime vTime)
       {
-        facadeBll.addVolunteerTime(vTime); //updates database
+        Runnable r = () ->
+        {
+
+            facadeBll.addVolunteerTime(vTime); //updates database
+
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

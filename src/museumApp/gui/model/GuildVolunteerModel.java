@@ -10,12 +10,18 @@ import museumApp.bll.FacadeBll;
 public class GuildVolunteerModel extends Model
   {
 
-    private ObservableList<GuildVolunteer> guildVolunteer;
+    private ObservableList<GuildVolunteer> guildVolunteer = FXCollections.observableArrayList();
 
     public GuildVolunteerModel() throws IOException
       {
         facadeBll = new FacadeBll();
-        guildVolunteer = FXCollections.observableArrayList(facadeBll.getAllGuildVolunteer());
+        Runnable r = () ->
+        {
+            setGuildVolunteersIntoObservable();
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -29,6 +35,12 @@ public class GuildVolunteerModel extends Model
         return guildVolunteer;
       }
 
+    public void setGuildVolunteersIntoObservable()
+      {
+        guildVolunteer.clear();
+        guildVolunteer.addAll(facadeBll.getAllGuildVolunteer());
+      }
+
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
      *
@@ -38,7 +50,16 @@ public class GuildVolunteerModel extends Model
     public void addGuildVolunteer(GuildVolunteer gv) throws SQLException
       {
         guildVolunteer.add(gv);
-        facadeBll.addGuildVolunteer(gv);
+        Runnable r = () ->
+        {
+
+            facadeBll.addGuildVolunteer(gv);
+
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
+
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

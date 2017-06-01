@@ -52,7 +52,15 @@ public class VolunteerModel extends Model
     public void addVolunteer(Volunteer vtr) throws SQLException
       {
         volunteers.add(vtr);
-       facadeBll.addVolunteer(vtr);
+        Runnable r = () ->
+        {
+
+            facadeBll.addVolunteer(vtr);
+
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
