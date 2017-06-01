@@ -27,7 +27,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" styleClass="onlyTheBorder" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagementRegisterVolunteerController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" styleClass="onlyTheBorder" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagementRegisterVolunteerController">
    <center>
       <JFXTabPane fx:id="mainTabPane" prefHeight="242.0" prefWidth="546.0" BorderPane.alignment="CENTER">
          <tabs>
@@ -1046,7 +1046,7 @@
                               <TextField fx:id="txtLbFilterLName" editable="false" prefHeight="25.0" promptText="Last Name" />
                               <TextField fx:id="txtLbFilterGuild" editable="false" prefHeight="25.0" promptText="Guild" />
                               <TextField fx:id="txtLbFilterComment" editable="false" prefHeight="25.0" promptText="Comment" />
-                              <Button mnemonicParsing="false" onAction="#handleFilterVol" prefHeight="25.0" prefWidth="173.0" text="Go" />
+                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="173.0" text="Go" />
                            </buttons>
                         </ButtonBar>
                         <TableView layoutX="40.0" layoutY="128.0" prefHeight="298.0" prefWidth="786.0">
@@ -1071,7 +1071,7 @@
                               <TextField fx:id="txtLbFilterTimeFName" prefHeight="25.0" promptText="First Name" />
                               <TextField fx:id="txtLbFilterTimeLName" editable="false" prefHeight="25.0" promptText="Last Name" />
                               <TextField fx:id="txtLbFilterTimeGuild" editable="false" prefHeight="25.0" promptText="Guild" />
-                              <Button minWidth="0.0" mnemonicParsing="false" onAction="#handleFilterTime" prefHeight="25.0" text="Go" />
+                              <Button minWidth="0.0" mnemonicParsing="false" prefHeight="25.0" text="Go" />
                           </buttons>
                         </ButtonBar>
                      </children>
