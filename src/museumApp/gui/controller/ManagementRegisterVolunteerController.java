@@ -180,6 +180,8 @@ public class ManagementRegisterVolunteerController extends Controller implements
     private JFXButton addManagerBTN;
     @FXML
     private JFXButton deleteManagerBTN;
+     @FXML
+    private JFXButton updateManagerBTN;
     @FXML
     private TableView<Volunteer> volunteerTbl;
     @FXML
@@ -438,14 +440,34 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String username = addTUNameTxtF.getText().trim();
         String password = addTPassTxtF.getText().trim();
         Manager mg = new Manager(0, fName, lName, email, username, password);
-        managerModel.addManager(mg);
+        managerModel.updateManager(mg);
         addTFNameTxtF.clear();
         addTLNameTxtF.clear();
         addTEmailTxtF.clear();
         addTUNameTxtF.clear();
         addTPassTxtF.clear();
       }
-
+        @FXML
+    private void handleUpdateManager(ActionEvent event) throws SQLException
+      {
+        /**
+         * We get the text in the fields as strings.
+         */
+        String fName = addTFNameTxtF.getText().trim();
+        String lName = addTLNameTxtF.getText().trim();
+        String email = addTEmailTxtF.getText().trim();
+        String username = addTUNameTxtF.getText().trim();
+        String password = addTPassTxtF.getText().trim();
+        Manager mgToUpdate= managerTbl.getSelectionModel().getSelectedItem();
+        int idToUpdate = mgToUpdate.getId();
+        Manager mg = new Manager(idToUpdate, fName, lName, email, username, password);
+        managerModel.updateManager(mg);
+        addTFNameTxtF.clear();
+        addTLNameTxtF.clear();
+        addTEmailTxtF.clear();
+        addTUNameTxtF.clear();
+        addTPassTxtF.clear();
+      }
     /**
      * Removes the manager
      *
@@ -483,7 +505,17 @@ public class ManagementRegisterVolunteerController extends Controller implements
         guildModel.addGuild(gd);
         txtFieldAddGuildName.clear();
       }
-
+  @FXML
+    private void handleUpdateGuild(ActionEvent event) throws SQLException
+      {
+        String guildName = txtFieldAddGuildName.getText().trim();
+        Manager manager = comboBoxAddGuildManager.getSelectionModel().getSelectedItem();
+        Guild gdToUpdate = tblGuild.getSelectionModel().getSelectedItem();
+        int idToUpdate = gdToUpdate.getId();
+        Guild gd = new Guild(idToUpdate, guildName, manager);
+        guildModel.updateGuild(gd);
+        txtFieldAddGuildName.clear();
+      }
     /**
      * Removes the Guild
      *

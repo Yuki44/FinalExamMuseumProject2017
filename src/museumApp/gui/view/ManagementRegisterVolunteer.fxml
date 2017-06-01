@@ -27,7 +27,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" styleClass="onlyTheBorder" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagementRegisterVolunteerController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" styleClass="onlyTheBorder" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagementRegisterVolunteerController">
    <center>
       <JFXTabPane fx:id="mainTabPane" prefHeight="242.0" prefWidth="546.0" BorderPane.alignment="CENTER">
          <tabs>
@@ -701,7 +701,8 @@
                         <ButtonBar layoutX="315.0" layoutY="363.0" prefHeight="40.0" prefWidth="179.0">
                            <buttons>
                               <JFXButton fx:id="addManagerBTN" buttonType="RAISED" onAction="#handleAddingManager" prefHeight="13.0" style="-fx-border-color: grey;" styleClass="managementViewButtons" text="Add" />
-                              <JFXButton fx:id="deleteManagerBTN" buttonType="RAISED" layoutX="114.0" layoutY="17.0" onAction="#handleRemoveManager" prefHeight="13.0" style="-fx-border-color: grey;" styleClass="managementViewButtons" text="Delete" />
+                              <JFXButton fx:id="updateManagerBTN" buttonType="RAISED" layoutX="114.0" layoutY="17.0" onAction="#handleUpdateManager" prefHeight="13.0" style="-fx-border-color: grey;" styleClass="managementViewButtons" text="Edit" />
+                              <JFXButton fx:id="deleteManagerBTN1" buttonType="RAISED" layoutX="115.0" layoutY="17.0" onAction="#handleRemoveManager" prefHeight="13.0" style="-fx-border-color: grey;" styleClass="managementViewButtons" text="Delete" />
                            </buttons>
                         </ButtonBar>
                         <TableView fx:id="managerTbl" layoutX="589.0" layoutY="35.0" prefHeight="314.0" prefWidth="210.0">
@@ -763,10 +764,11 @@
                               </VBox>
                            </children>
                         </GridPane>
-                        <ButtonBar layoutX="315.0" layoutY="363.0" prefHeight="40.0" prefWidth="179.0">
+                        <ButtonBar layoutX="160.0" layoutY="363.0" prefHeight="40.0" prefWidth="369.0">
                            <buttons>
-                              <JFXButton buttonType="RAISED" onAction="#handleAddingGuild" prefHeight="13.0" style="-fx-border-color: grey;" styleClass="managementViewButtons" text="Add" />
-                              <JFXButton buttonType="RAISED" layoutX="114.0" layoutY="17.0" onAction="#handleRemoveGuild" prefHeight="13.0" style="-fx-border-color: grey;" styleClass="managementViewButtons" text="Delete" />
+                              <JFXButton buttonType="RAISED" minWidth="34.0" onAction="#handleAddingGuild" prefHeight="27.0" style="-fx-border-color: grey;" styleClass="managementViewButtons" text="Add" />
+                              <JFXButton buttonType="RAISED" layoutX="114.0" layoutY="17.0" onAction="#handleUpdateGuild" prefHeight="13.0" style="-fx-border-color: grey;" styleClass="managementViewButtons" text="Edit" />
+                              <JFXButton buttonType="RAISED" layoutX="115.0" layoutY="17.0" onAction="#handleRemoveGuild" prefHeight="13.0" style="-fx-border-color: grey;" styleClass="managementViewButtons" text="Delete" />
                            </buttons>
                         </ButtonBar>
                         <TableView fx:id="tblGuild" layoutX="578.0" layoutY="39.0" prefHeight="379.0" prefWidth="352.0">
