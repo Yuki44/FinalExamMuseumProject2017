@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -46,6 +48,8 @@ public class ManagerLoginViewController extends Controller implements Initializa
     private static final int wrongPassword = 3;
     private int loginState;
     private Employee employee = null;
+    @FXML
+    private ImageView imgLoading;
 
     /**
      * Constructor
@@ -66,6 +70,7 @@ public class ManagerLoginViewController extends Controller implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle rb)
       {
+        txtUserName.requestFocus();
         loginState = notLoggedIn; // Sets the program as not logged in.
       }
 
@@ -78,9 +83,40 @@ public class ManagerLoginViewController extends Controller implements Initializa
      * @throws SQLException
      */
     @FXML
-    private void handleLogin(ActionEvent event) throws IOException, SQLException
+    private void handleLogin(ActionEvent event)
       {
-        login();
+
+        Runnable r = () ->
+        {
+            try
+            {
+                Thread.sleep(2000);
+            }
+            catch (InterruptedException ex)
+            {
+                ex.printStackTrace();
+            }
+            Platform.runLater(() ->
+            {
+                try
+                {
+                    login();
+                }
+                catch (IOException ex)
+                {
+                    ex.printStackTrace();
+                }
+                catch (SQLException ex)
+                {
+                    ex.printStackTrace();
+                }
+            });
+
+        };
+        Thread t = new Thread(r);
+        t.setDaemon(true);
+        t.start();
+        imgLoading.setVisible(true);
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
@@ -108,12 +144,42 @@ public class ManagerLoginViewController extends Controller implements Initializa
      * @throws SQLException
      */
     @FXML
-    private void handleGoToLogin(KeyEvent event) throws IOException, SQLException
+    private void handleGoToLogin(KeyEvent event)
       {
         handleDisappearLabel();
         if (event.getCode().equals(KeyCode.ENTER) && !txtPassword.getText().trim().isEmpty() && !txtUserName.getText().trim().isEmpty())
         {
-            login();
+            Runnable r = () ->
+            {
+                try
+                {
+                    Thread.sleep(2000);
+                }
+                catch (InterruptedException ex)
+                {
+                    ex.printStackTrace();
+                }
+                Platform.runLater(() ->
+                {
+                    try
+                    {
+                        login();
+                    }
+                    catch (IOException ex)
+                    {
+                        ex.printStackTrace();
+                    }
+                    catch (SQLException ex)
+                    {
+                        ex.printStackTrace();
+                    }
+                });
+
+            };
+            Thread t = new Thread(r);
+            t.setDaemon(true);
+            t.start();
+            imgLoading.setVisible(true);
         }
       }
 
@@ -128,10 +194,15 @@ public class ManagerLoginViewController extends Controller implements Initializa
       {
         if (employee == null)
         {
-            employee = loginModel.LoginChecker(txtUserName.getText().trim(), txtPassword.getText().trim());
+            String username = txtUserName.getText().trim();
+            String password = txtPassword.getText().trim();
+
+            employee = loginModel.LoginChecker(username, password);
         }
+
         if (loginState != loggedIn && employee != null)
         {
+
             if (employee.getClass() == Administrator.class)
             {
                 loginState = loggedIn;
@@ -154,9 +225,7 @@ public class ManagerLoginViewController extends Controller implements Initializa
                 Scene scene;
                 scene = new Scene(root);
                 stage = (Stage) borderPane.getScene().getWindow();
-                stage.hide();
                 stage.setScene(scene);
-                stage.show();
                 stage.centerOnScreen();
 
             }
@@ -226,7 +295,7 @@ public class ManagerLoginViewController extends Controller implements Initializa
             System.err.println(ex);
         }
       }
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
 
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
+    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
   }

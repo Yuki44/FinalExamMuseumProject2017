@@ -123,9 +123,7 @@ public class LanguageSelectionViewController extends Controller implements Initi
             FXMLLoader loader = new FXMLLoader(location);
             root = loader.load();
             Scene scene = new Scene(root);
-            stage.hide();
             stage.setScene(scene);
-            stage.show();
             stage.centerOnScreen();
         }
         catch (IOException ex)
