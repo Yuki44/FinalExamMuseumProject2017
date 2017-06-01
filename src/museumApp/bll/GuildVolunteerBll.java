@@ -64,17 +64,6 @@ public class GuildVolunteerBll extends BllManager
         removeDbMgr.removeGuildVolunteer(gv);
       }
 
-    /**
-     * Updates a GuildVolunteer, Method call to DAL layer.
-     *
-     * @param gv
-     * @throws SQLException
-     */
-    public void updateGuildVolunteer(GuildVolunteer gv) throws SQLException
-      {
-        updateDbMgr.updateGuildVolunteer(gv);
-      }
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-
   }

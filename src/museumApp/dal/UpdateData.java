@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import museumApp.be.Administrator;
 import museumApp.be.Guild;
-import museumApp.be.GuildVolunteer;
 import museumApp.be.Manager;
 import museumApp.be.Volunteer;
 import museumApp.be.VolunteerTime;
@@ -26,7 +25,7 @@ public class UpdateData extends DatabaseManager
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
-     * This method creates the update query in the database.
+     * This method creates the update query for the administrator in the database.
      *
      * @param ad
      * @throws SQLException
@@ -51,6 +50,7 @@ public class UpdateData extends DatabaseManager
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method creates the update query for the guild in the database.
      *
      * @param gd
      * @throws SQLException
@@ -71,17 +71,7 @@ public class UpdateData extends DatabaseManager
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
-     *
-     * @param gv
-     * @throws SQLException
-     */
-    public void updateGuildVolunteer(GuildVolunteer gv) throws SQLException
-      {
-        // TODO
-      }
-
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
-    /**
+     * This method creates the update query for the manager in the database.
      *
      * @param mg
      * @throws SQLException
@@ -106,6 +96,7 @@ public class UpdateData extends DatabaseManager
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method creates the update query for the volunteer time in the database.
      *
      * @param vTime
      * @throws SQLException
@@ -127,6 +118,7 @@ public class UpdateData extends DatabaseManager
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method creates the update query for the volunteer in the database.
      *
      * @param vtr
      * @throws SQLException

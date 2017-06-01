@@ -236,22 +236,6 @@ public class FacadeBll
         }
       }
 
-    /**
-     * Calls the update Guild Volunteer function
-     *
-     * @param gv
-     */
-    public void updateGuildVolunteer(GuildVolunteer gv)
-      {
-        try
-        {
-            guildVolunteerBll.updateGuildVolunteer(gv);
-        }
-        catch (SQLException ex)
-        {
-            ex.printStackTrace();
-        }
-      }
 
     /*------------MANAGER FACADE---------------------------------------------
      */
@@ -489,7 +473,7 @@ public class FacadeBll
             ex.printStackTrace();
         }
       }
-    
+
     public Employee LoginChecker(String username, String password) throws SQLException
       {
         return loginManager.LoginChecker(username, password);
