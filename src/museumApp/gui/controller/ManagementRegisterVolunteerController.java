@@ -463,6 +463,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
             addTLNameTxtF.clear();
             addTUNameTxtF.clear();
             addTPassTxtF.clear();
+            addTEmailTxtF.clear();
         }
       }
 

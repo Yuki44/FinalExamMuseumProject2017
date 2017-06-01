@@ -84,6 +84,7 @@ public class VolunteerModel extends Model
     public void updateVolunteer(Volunteer vtr) throws SQLException
       {
         facadeBll.updateVolunteer(vtr);
+        volunteers.add(vtr);
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
