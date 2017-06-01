@@ -255,12 +255,13 @@ public class ManagerLoginViewController extends Controller implements Initializa
      */
     private void handleAppearWrongLoginLabel()
       {
+        imgLoading.setVisible(false);
         txtUserName.setStyle("-jfx-focus-color:#FF1414");
         txtUserName.setStyle("-jfx-unfocus-color: #FF1414");
         txtPassword.setStyle("-jfx-unfocus-color:#FF1414");
         txtPassword.setStyle("-jfx-focus-color:#FF1414");
         lblWrongLogin.setText("This user ID or password is not recognized.");
-        imgLoading.setVisible(false);
+        txtPassword.requestFocus();
       }
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */

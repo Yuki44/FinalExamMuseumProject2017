@@ -985,14 +985,24 @@ public class ManagementRegisterVolunteerController extends Controller implements
         txtFieldAddVolunteerZipcode.setText(zipCode);
         txtAreaAddVolunteerComment.setText(comment);
         //        comboBoxFirstGuildSelection.getSelectionModel().clearSelection();
+        DropboxConnection dbc = new DropboxConnection();
         String photoName = vtr.getPhotoAsString();
+        String photoPath = dbc.getVolunteerImgFilePath();
         if (vtr.getPhotoAsString() != null)
         {
-            DropboxConnection dbc = new DropboxConnection();
-            String photoPath = dbc.getVolunteerImgFilePath();
+
             String absoluteImgPath = (photoPath + "\\" + photoName);
             System.out.println(absoluteImgPath);
             File file = new File(absoluteImgPath);
+            Image img = new Image(file.toURI().toString());
+            imgViewProfilePic.setImage(img);
+            imgPane.setStyle("-fx-background-image: null");
+        }
+        else
+        {
+            String userNoImgPath = (photoPath + "\\" + "user" + ".png");
+            System.out.println(userNoImgPath);
+            File file = new File(userNoImgPath);
             Image img = new Image(file.toURI().toString());
             imgViewProfilePic.setImage(img);
             imgPane.setStyle("-fx-background-image: null");

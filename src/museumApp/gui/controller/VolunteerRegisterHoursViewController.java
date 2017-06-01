@@ -168,8 +168,7 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
       }
 
     /**
-     * THIS CODE HAS TO BE PUT(or refactored)
-     * INTO A NEW MODEL THAT IS NOT "userModel"
+     * Gets the volunteer from the previous controller and sets its info
      *
      * @param volunteer
      * @param guild
@@ -183,14 +182,24 @@ public class VolunteerRegisterHoursViewController extends Controller implements 
             lblVolunteerFullName.setText(volunteer.getFullNameAsString());
             lblGuildName.setText(guild.getNameAsString());
             lblJoinedDate.setText(volunteer.getRegisteredDateAsString());
-
             String photoName = volunteer.getPhotoAsString();
             String photoPath = dbc.getVolunteerImgFilePath();
-            String absoluteImgPath = (photoPath + "\\" + photoName);
-            System.out.println(absoluteImgPath);
-            File file = new File(absoluteImgPath);
-            Image img = new Image(file.toURI().toString());
-            imgVolunteer.setImage(img);
+            if (photoName != null)
+            {
+                String absoluteImgPath = (photoPath + "\\" + photoName);
+                System.out.println(absoluteImgPath);
+                File file = new File(absoluteImgPath);
+                Image img = new Image(file.toURI().toString());
+                imgVolunteer.setImage(img);
+            }
+            else
+            {
+                String userNoImgPath = (photoPath + "\\" + "user" + ".png");
+                System.out.println(userNoImgPath);
+                File file = new File(userNoImgPath);
+                Image img = new Image(file.toURI().toString());
+                imgVolunteer.setImage(img);
+            }
 
             String natPhotoPath = dbc.getNationalityImgFilePath() + "\\" + volunteer.getCountryAsString().toLowerCase() + ".png";
             File natFile = new File(natPhotoPath);

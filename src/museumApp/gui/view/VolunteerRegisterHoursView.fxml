@@ -13,7 +13,6 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -158,9 +157,9 @@
          <children>
             <VBox spacing="20.0">
                <children>
-                  <Pane maxHeight="300.0" maxWidth="300.0">
+                  <HBox alignment="TOP_RIGHT">
                      <children>
-                        <ImageView fx:id="imgVolunteer" cache="true" cacheHint="SCALE" fitHeight="199.0" fitWidth="230.0" layoutX="61.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imgVolunteer" cache="true" cacheHint="SCALE" fitHeight="260.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
                            <viewport>
                               <Rectangle2D />
                            </viewport>
@@ -169,10 +168,7 @@
                            </image>
                         </ImageView>
                      </children>
-                     <VBox.margin>
-                        <Insets top="40.0" />
-                     </VBox.margin>
-                  </Pane>
+                  </HBox>
                   <HBox spacing="15.0">
                      <children>
                         <Label fx:id="lblMemberSince" alignment="CENTER" contentDisplay="CENTER" text="Member Since:">

@@ -27,7 +27,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="951.0" styleClass="onlyTheBorder" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagementRegisterVolunteerController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" styleClass="onlyTheBorder" stylesheets="@../css/css.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="museumApp.gui.controller.ManagementRegisterVolunteerController">
    <center>
       <JFXTabPane fx:id="mainTabPane" prefHeight="242.0" prefWidth="546.0" BorderPane.alignment="CENTER">
          <tabs>
@@ -51,13 +51,13 @@
                                 </columnConstraints>
                                 <rowConstraints>
                                     <RowConstraints minHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="50.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="50.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="50.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="50.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="40.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="50.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="65.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="65.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="65.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="65.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="45.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="45.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="55.0" vgrow="SOMETIMES" />
                                     <RowConstraints maxHeight="111.0" minHeight="15.0" prefHeight="111.0" vgrow="SOMETIMES" />
                                     <RowConstraints maxHeight="14.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
@@ -76,6 +76,9 @@
                                              <cursor>
                                                 <Cursor fx:constant="TEXT" />
                                              </cursor>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
                                           </JFXTextField>
                                           <Label text="*" textFill="RED">
                                              <font>
@@ -106,6 +109,9 @@
                                              <HBox.margin>
                                                 <Insets left="5.0" />
                                              </HBox.margin>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
                                           </JFXTextField>
                                           <Label text="*" textFill="RED">
                                              <font>
@@ -130,6 +136,9 @@
                                              <cursor>
                                                 <Cursor fx:constant="TEXT" />
                                              </cursor>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
                                           </JFXTextField>
                                        </children>
                                        <GridPane.margin>
@@ -146,6 +155,26 @@
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
+                                    <HBox alignment="CENTER" spacing="13.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                       <children>
+                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../img/UserInfo/mailing.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXTextField fx:id="txtFieldAddVolunteerEmail" focusColor="#5fc552" labelFloat="true" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Email">
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
+                                             <HBox.margin>
+                                                <Insets left="-1.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </JFXTextField>
+                                       </children>
+                                    </HBox>
                                     <HBox alignment="CENTER" spacing="13.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                        <children>
                                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -156,7 +185,7 @@
                                                 <Insets />
                                              </HBox.margin>
                                           </ImageView>
-                                          <ComboBox fx:id="comboBoxFirstGuildSelection" prefHeight="25.0" prefWidth="292.0" promptText="none selected...">
+                                          <ComboBox fx:id="comboBoxFirstGuildSelection" prefHeight="25.0" prefWidth="292.0" promptText="none selected..." visibleRowCount="15">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
@@ -175,10 +204,10 @@
                                        <children>
                                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../img/UserInfo/maps-and-flags-2.png" />
+                                                <Image url="@../img/MnagementPng/maps-and-flags-1.png" />
                                              </image>
                                           </ImageView>
-                                          <ComboBox fx:id="comboBoxNationality" prefHeight="25.0" prefWidth="292.0" promptText="none selected...">
+                                          <ComboBox fx:id="comboBoxNationality" prefHeight="25.0" prefWidth="292.0" promptText="none selected..." visibleRowCount="15">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
@@ -203,6 +232,11 @@
                                     </Label>
                                     <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                        <children>
+                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../img/MnagementPng/maps-and-flags-1.png" />
+                                             </image>
+                                          </ImageView>
                                           <JFXDatePicker fx:id="regJoinedDatePicker" defaultColor="#5fc552" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="293.0" promptText="Select a date...">
                                              <cursor>
                                                 <Cursor fx:constant="TEXT" />
@@ -236,23 +270,6 @@
                                           <Insets />
                                        </GridPane.margin>
                                     </VBox>
-                                    <HBox alignment="CENTER" spacing="13.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                       <children>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../img/UserInfo/mailing.png" />
-                                             </image>
-                                          </ImageView>
-                                          <JFXTextField fx:id="txtFieldAddVolunteerEmail" focusColor="#5fc552" labelFloat="true" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Email">
-                                             <cursor>
-                                                <Cursor fx:constant="TEXT" />
-                                             </cursor>
-                                             <HBox.margin>
-                                                <Insets left="-1.0" />
-                                             </HBox.margin>
-                                          </JFXTextField>
-                                       </children>
-                                    </HBox>
                                     <Label fx:id="lblFieldsRequired" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" textFill="RED" GridPane.columnIndex="1">
                                        <graphic>
                                           <Label fx:id="lblFieldRequiredStar" textFill="RED">
@@ -269,7 +286,7 @@
                                     </Label>
                                     <HBox alignment="CENTER" GridPane.rowIndex="8">
                                        <children>
-                                          <JFXButton onAction="#handleAddMoreVtrInfo" prefHeight="39.0" prefWidth="117.0" style="-fx-background-color: #4FBA6F;" text="Add more info" textFill="WHITE">
+                                          <JFXButton onAction="#handleAddMoreVtrInfo" prefHeight="39.0" prefWidth="117.0" style="-fx-background-color: #4FBA6F;" text="More info" textFill="WHITE">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
@@ -362,10 +379,10 @@
                         </GridPane>
                         <AnchorPane fx:id="anchorpane" layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="446.0" prefWidth="893.0" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="-900.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <GridPane alignment="TOP_CENTER" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
+                              <GridPane alignment="TOP_CENTER" prefHeight="512.0" prefWidth="945.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-4.0" AnchorPane.topAnchor="0.0">
                                  <columnConstraints>
-                                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" />
-                                    <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="689.0" minWidth="10.0" prefWidth="689.0" />
+                                    <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="208.0" />
                                  </columnConstraints>
                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -378,10 +395,10 @@
                                        </columnConstraints>
                                        <rowConstraints>
                                           <RowConstraints minHeight="45.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="65.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="65.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="65.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="65.0" prefHeight="50.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="20.0" vgrow="NEVER" />
                                        </rowConstraints>
@@ -412,10 +429,13 @@
                                                    <image>
                                                       <Image url="@../img/UserInfo/weekly-calendar.png" />
                                                    </image></ImageView>
-                                                <JFXTextField fx:id="txtFieldAddVolunteerBirthdate" focusColor="#5fc552" labelFloat="true" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Date of Birth">
+                                                <JFXTextField fx:id="txtFieldAddVolunteerBirthdate" focusColor="#5fc552" labelFloat="true" maxWidth="340.0" minWidth="296.0" prefHeight="31.0" prefWidth="340.0" promptText="Date of Birth">
                                                    <cursor>
                                                       <Cursor fx:constant="TEXT" />
                                                    </cursor>
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
                                                 </JFXTextField>
                                              </children>
                                           </HBox>
@@ -426,10 +446,13 @@
                                                       <Image url="@../img/UserInfo/mailing-1.png" />
                                                    </image>
                                                 </ImageView>
-                                                <JFXTextField fx:id="txtFieldAddVolunteerAddress" focusColor="#5fc552" labelFloat="true" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="Addresss">
+                                                <JFXTextField fx:id="txtFieldAddVolunteerAddress" focusColor="#5fc552" labelFloat="true" maxWidth="340.0" minWidth="296.0" prefHeight="31.0" prefWidth="340.0" promptText="Addresss">
                                                    <cursor>
                                                       <Cursor fx:constant="TEXT" />
                                                    </cursor>
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
                                                 </JFXTextField>
                                              </children>
                                           </HBox>
@@ -437,13 +460,16 @@
                                              <children>
                                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../img/UserInfo/maps-and-flags-3.png" />
+                                                      <Image url="@../img/MnagementPng/maps-and-flags.png" />
                                                    </image>
                                                 </ImageView>
-                                                <JFXTextField fx:id="txtFieldAddVolunteerCity" focusColor="#5fc552" labelFloat="true" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="City">
+                                                <JFXTextField fx:id="txtFieldAddVolunteerCity" focusColor="#5fc552" labelFloat="true" maxWidth="340.0" minWidth="296.0" prefHeight="31.0" prefWidth="340.0" promptText="City">
                                                    <cursor>
                                                       <Cursor fx:constant="TEXT" />
                                                    </cursor>
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
                                                 </JFXTextField>
                                              </children>
                                           </HBox>
@@ -454,10 +480,13 @@
                                                       <Image url="@../img/UserInfo/maps-and-flags-4.png" />
                                                    </image>
                                                 </ImageView>
-                                                <JFXTextField fx:id="txtFieldAddVolunteerZipcode" focusColor="#5fc552" labelFloat="true" maxWidth="303.0" minWidth="296.0" prefHeight="31.0" prefWidth="303.0" promptText="ZipCode">
+                                                <JFXTextField fx:id="txtFieldAddVolunteerZipcode" focusColor="#5fc552" labelFloat="true" maxWidth="340.0" minWidth="296.0" prefHeight="31.0" prefWidth="340.0" promptText="ZipCode">
                                                    <cursor>
                                                       <Cursor fx:constant="TEXT" />
                                                    </cursor>
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
                                                 </JFXTextField>
                                              </children>
                                           </HBox>
@@ -493,14 +522,20 @@
                                                 <Insets top="31.0" />
                                              </GridPane.margin>
                                           </VBox>
-                                          <TextArea fx:id="txtAreaAddVolunteerComment" prefHeight="200.0" prefWidth="393.0" promptText="Write a comment..." GridPane.columnIndex="1" GridPane.rowIndex="5">
-                                             <font>
-                                                <Font size="15.0" />
-                                             </font>
-                                             <GridPane.margin>
-                                                <Insets top="15.0" />
-                                             </GridPane.margin>
-                                          </TextArea>
+                                          <HBox GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                             <children>
+                                                <ImageView fitHeight="45.0" fitWidth="45.0">
+                                                   <image>
+                                                      <Image url="@../img/MnagementPng/writer.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <TextArea fx:id="txtAreaAddVolunteerComment" prefHeight="200.0" prefWidth="393.0" promptText="Write a comment...">
+                                                   <font>
+                                                      <Font size="15.0" />
+                                                   </font>
+                                                </TextArea>
+                                             </children>
+                                          </HBox>
                                        </children>
                                        <GridPane.margin>
                                           <Insets left="50.0" />
@@ -514,7 +549,7 @@
                                           <Insets bottom="20.0" />
                                        </GridPane.margin>
                                        <children>
-                                          <ImageView fitHeight="252.0" fitWidth="252.0" pickOnBounds="true" preserveRatio="true" translateY="30.0">
+                                          <ImageView fitHeight="258.0" fitWidth="279.0" pickOnBounds="true" preserveRatio="true" translateY="30.0">
                                              <image>
                                                 <Image url="@../img/MnagementPng/id-card.png" />
                                              </image>
@@ -554,18 +589,18 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <GridPane layoutX="25.0" layoutY="28.0" prefHeight="329.0" prefWidth="509.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="28.0">
+                        <GridPane layoutX="25.0" layoutY="28.0" prefHeight="358.0" prefWidth="509.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="28.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="109.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" minWidth="10.0" prefWidth="341.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="40.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="40.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="40.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="40.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="40.0" prefHeight="0.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
                               <Label prefHeight="61.0" prefWidth="225.0" text="First Name :" GridPane.rowIndex="1">
@@ -615,7 +650,10 @@
                                           <Image url="@../img/UserInfo/chatting-2.png" />
                                        </image>
                                     </ImageView>
-                                    <JFXTextField fx:id="addTFNameTxtF" focusColor="#25adfc" labelFloat="true" minWidth="330.0" promptText="First Name" />
+                                    <JFXTextField fx:id="addTFNameTxtF" focusColor="#25adfc" labelFloat="true" minWidth="330.0" promptText="First Name">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font></JFXTextField>
                                     <Label text="*" textFill="RED">
                                        <font>
                                           <Font size="20.0" />
@@ -630,7 +668,10 @@
                                           <Image url="@../img/UserInfo/chatting-2.png" />
                                        </image>
                                     </ImageView>
-                                    <JFXTextField fx:id="addTLNameTxtF" focusColor="#25adfc" labelFloat="true" minWidth="330.0" promptText="Last Name" />
+                                    <JFXTextField fx:id="addTLNameTxtF" focusColor="#25adfc" labelFloat="true" minWidth="330.0" promptText="Last Name">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font></JFXTextField>
                                     <Label text="*" textFill="RED">
                                        <font>
                                           <Font size="20.0" />
@@ -645,7 +686,10 @@
                                           <Image url="@../img/UserInfo/mailing.png" />
                                        </image>
                                     </ImageView>
-                                    <JFXTextField fx:id="addTEmailTxtF" focusColor="#25adfc" labelFloat="true" minWidth="330.0" promptText="Email" />
+                                    <JFXTextField fx:id="addTEmailTxtF" focusColor="#25adfc" labelFloat="true" minWidth="330.0" promptText="Email">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font></JFXTextField>
                                     <Label textFill="RED">
                                        <font>
                                           <Font size="20.0" />
@@ -660,7 +704,10 @@
                                           <Image url="@../img/UserInfo/writer.png" />
                                        </image>
                                     </ImageView>
-                                    <JFXTextField fx:id="addTUNameTxtF" focusColor="#25adfc" labelFloat="true" minWidth="330.0" promptText="Username" />
+                                    <JFXTextField fx:id="addTUNameTxtF" focusColor="#25adfc" labelFloat="true" minWidth="330.0" promptText="Username">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font></JFXTextField>
                                     <Label text="*" textFill="RED">
                                        <font>
                                           <Font size="20.0" />
@@ -672,10 +719,13 @@
                                  <children>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../img/UserInfo/writer.png" />
+                                          <Image url="@../img/MnagementPng/padlock.png" />
                                        </image>
                                     </ImageView>
-                                    <JFXTextField fx:id="addTPassTxtF" focusColor="#25adfc" labelFloat="true" minWidth="330.0" promptText="Password" />
+                                    <JFXTextField fx:id="addTPassTxtF" focusColor="#25adfc" labelFloat="true" minWidth="330.0" promptText="Password">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font></JFXTextField>
                                     <Label text="*" textFill="RED">
                                        <font>
                                           <Font size="20.0" />
@@ -698,7 +748,7 @@
                               </HBox>
                            </children>
                         </GridPane>
-                        <ButtonBar layoutX="315.0" layoutY="363.0" prefHeight="40.0" prefWidth="179.0">
+                        <ButtonBar layoutX="274.0" layoutY="405.0" prefHeight="50.0" prefWidth="290.0">
                            <buttons>
                               <JFXButton fx:id="addManagerBTN" buttonType="RAISED" onAction="#handleAddingManager" prefHeight="13.0" style="-fx-border-color: grey;" styleClass="managementViewButtons" text="Add" />
                               <JFXButton fx:id="updateManagerBTN" buttonType="RAISED" layoutX="114.0" layoutY="17.0" onAction="#handleUpdateManager" prefHeight="13.0" style="-fx-border-color: grey;" styleClass="managementViewButtons" text="Edit" />
@@ -764,7 +814,7 @@
                               </VBox>
                            </children>
                         </GridPane>
-                        <ButtonBar layoutX="160.0" layoutY="363.0" prefHeight="40.0" prefWidth="369.0">
+                        <ButtonBar layoutX="99.0" layoutY="409.0" prefHeight="49.0" prefWidth="452.0">
                            <buttons>
                               <JFXButton buttonType="RAISED" minWidth="34.0" onAction="#handleAddingGuild" prefHeight="27.0" style="-fx-border-color: grey;" styleClass="managementViewButtons" text="Add" />
                               <JFXButton buttonType="RAISED" layoutX="114.0" layoutY="17.0" onAction="#handleUpdateGuild" prefHeight="13.0" style="-fx-border-color: grey;" styleClass="managementViewButtons" text="Edit" />
@@ -788,16 +838,15 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <GridPane layoutY="27.0" prefHeight="329.0" prefWidth="689.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="238.0" AnchorPane.topAnchor="27.0">
+                        <GridPane layoutY="27.0" prefHeight="329.0" prefWidth="692.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="284.0" AnchorPane.topAnchor="27.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                            </columnConstraints>
                            <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="130.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
                               <HBox spacing="20.0" GridPane.rowIndex="1">
@@ -807,11 +856,16 @@
                                           <Font size="19.0" />
                                        </font>
                                     </Label>
-                                    <JFXButton buttonType="RAISED" onAction="#handlePrintHoursSelectedVtr" prefHeight="44.0" prefWidth="151.0" style="-fx-border-color: grey;" text="Print">
+                                    <JFXButton buttonType="RAISED" onAction="#handlePrintHoursSelectedVtr" prefHeight="38.0" prefWidth="130.0" style="-fx-border-color: grey;" text="Save to file">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </JFXButton>
+                                    <ImageView fitHeight="35.0" fitWidth="35.0" opacity="0.51" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../img/printingtools.png" />
+                                       </image>
+                                    </ImageView>
                                  </children></HBox>
                               <HBox alignment="CENTER" GridPane.rowIndex="2">
                                  <children>
@@ -866,7 +920,6 @@
                                        </children>
                                     </VBox>
                                  </children></HBox>
-                              <HBox GridPane.rowIndex="4" />
                               <HBox alignment="CENTER_RIGHT" prefHeight="46.0" spacing="20.0">
                                  <children>
                                     <ImageView fitHeight="56.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
@@ -897,7 +950,7 @@
                                  </opaqueInsets></HBox>
                            </children>
                         </GridPane>
-                        <ButtonBar layoutX="57.0" layoutY="340.0" prefHeight="63.0" prefWidth="582.0">
+                        <ButtonBar layoutX="73.0" layoutY="383.0" prefHeight="71.0" prefWidth="593.0">
                            <buttons>
                               <JFXButton fx:id="bttnRemoveVolunteer" buttonType="RAISED" layoutX="30.0" layoutY="20.0" onAction="#handleRemoveVolunteer" prefHeight="44.0" prefWidth="185.0" style="-fx-border-color: grey;" text="Remove Selected Volunteer" visible="false">
                                  <cursor>
@@ -938,11 +991,11 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="tabPrintToCsv" onSelectionChanged="#handleFocusOnSearch" text="Print to CSV">
+            <Tab fx:id="tabPrintToCsv" onSelectionChanged="#handleFocusOnSearch" text="Save data to CSV">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <GridPane layoutY="27.0" prefHeight="329.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="27.0">
+                        <GridPane layoutY="27.0" prefHeight="421.0" prefWidth="443.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="27.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="350.0" />
                            </columnConstraints>
@@ -964,7 +1017,7 @@
                                                 <Image url="@../img/printingtools.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXButton buttonType="RAISED" onAction="#handlePrintAllVtrCsv" prefHeight="50.0" prefWidth="185.0" style="-fx-border-color: grey;" text="Print">
+                                          <JFXButton buttonType="RAISED" onAction="#handlePrintAllVtrCsv" prefHeight="50.0" prefWidth="185.0" style="-fx-border-color: grey;" text="Save to file">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
@@ -1007,7 +1060,7 @@
                                           <Image url="@../img/printingtools.png" />
                                        </image>
                                     </ImageView>
-                                    <JFXButton buttonType="RAISED" onAction="#handlePrintTotalHoursGd" prefHeight="50.0" prefWidth="185.0" style="-fx-border-color: grey;" text="Print">
+                                    <JFXButton buttonType="RAISED" onAction="#handlePrintTotalHoursGd" prefHeight="50.0" prefWidth="185.0" style="-fx-border-color: grey;" text="Save to file">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
@@ -1016,7 +1069,7 @@
                               </VBox>
                            </children>
                         </GridPane>
-                        <ImageView fitHeight="356.0" fitWidth="356.0" layoutX="474.0" layoutY="42.0" opacity="0.59" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="392.0" fitWidth="444.0" layoutX="474.0" layoutY="42.0" opacity="0.59" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/DropboxLogo.png" />
                            </image>
