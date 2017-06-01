@@ -14,6 +14,11 @@ public class ManagerModel extends Model
 
     private ObservableList<Manager> managers = FXCollections.observableArrayList();
 
+    /**
+     * Constructor
+     *
+     * @throws IOException
+     */
     public ManagerModel() throws IOException
       {
         facadeBll = new FacadeBll();
@@ -30,6 +35,7 @@ public class ManagerModel extends Model
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method gets a list of managers.
      *
      * @return managers
      */
@@ -38,6 +44,9 @@ public class ManagerModel extends Model
         return managers;
       }
 
+    /**
+     * This method sets the list of managers.
+     */
     public void setManagersIntoObservable()
       {
         managers.clear();
@@ -46,6 +55,7 @@ public class ManagerModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method calls the add manager method.
      *
      * @param mg
      * @throws SQLException
@@ -67,6 +77,7 @@ public class ManagerModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method calls the remove manager method.
      *
      * @param mg
      * @throws SQLException
@@ -79,6 +90,7 @@ public class ManagerModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method calls the update manager method.
      *
      * @param mg
      * @throws SQLException
@@ -90,6 +102,7 @@ public class ManagerModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method gets a list of managers based on the guild(s) they manage.
      *
      * @param guild
      * @return

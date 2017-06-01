@@ -18,14 +18,14 @@ public class EmployeeModel extends Model
      */
     public EmployeeModel() throws IOException
       {
-       facadeBll= new FacadeBll();
+        facadeBll = new FacadeBll();
         employee = new ArrayList<>();
       }
 
     /** ---------------------------------------------------------------------------------------------------------------------------. */
     /** ---------------------------------------------------------------------------------------------------------------------------. */
     /**
-     * to get the list of employees
+     * This method gets a list of employees
      *
      * @return list of Employees
      */
@@ -35,7 +35,7 @@ public class EmployeeModel extends Model
         result.addAll(facadeBll.getAllManagers());
         result.addAll(facadeBll.getAllAdmins());
         return result;
-      } 
+      }
     /** ---------------------------------------------------------------------------------------------------------------------------. */
     /** ---------------------------------------------------------------------------------------------------------------------------. */
 

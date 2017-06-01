@@ -11,6 +11,11 @@ public class NationalityModel extends Model
 
     private ObservableList<Nationality> nationalities = FXCollections.observableArrayList();
 
+    /**
+     * Constructor
+     *
+     * @throws IOException
+     */
     public NationalityModel() throws IOException
       {
         facadeBll = new FacadeBll();
@@ -26,6 +31,7 @@ public class NationalityModel extends Model
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method gets a list of nationalities.
      *
      * @return nationalities
      */
@@ -34,6 +40,9 @@ public class NationalityModel extends Model
         return nationalities;
       }
 
+    /**
+     * This method sets the list of nationalities.
+     */
     public void setNationalitiesIntoObservable()
       {
         nationalities.clear();

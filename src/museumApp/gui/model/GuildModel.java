@@ -12,6 +12,11 @@ public class GuildModel extends Model
 
     private ObservableList<Guild> guilds = FXCollections.observableArrayList();
 
+    /**
+     * Constructor
+     *
+     * @throws IOException
+     */
     public GuildModel() throws IOException
       {
         facadeBll = new FacadeBll();
@@ -27,6 +32,7 @@ public class GuildModel extends Model
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method gets a list of guilds.
      *
      * @return guilds
      */
@@ -35,6 +41,9 @@ public class GuildModel extends Model
         return guilds;
       }
 
+    /**
+     * This method sets the guilds.
+     */
     public void setGuildsIntoObservable()
       {
         guilds.clear();
@@ -43,6 +52,7 @@ public class GuildModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method calls the add guild method.
      *
      * @param gd
      * @throws SQLException
@@ -65,6 +75,7 @@ public class GuildModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method calls the remove guild method.
      *
      * @param gd
      * @throws SQLException
@@ -77,6 +88,7 @@ public class GuildModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method calls the update guild method.
      *
      * @param gd
      * @throws SQLException
@@ -84,16 +96,8 @@ public class GuildModel extends Model
     public void updateGuild(Guild gd) throws SQLException
       {
         facadeBll.updateGuild(gd);
-        
+
       }
-    /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
 
   }
-//  Runnable r = () ->
-//        {
-//
-//        };
-//        Thread t = new Thread(r);
-//        t.setDaemon(true);
-//        t.start();

@@ -11,6 +11,11 @@ public class TimeModel extends Model
 
     private ObservableList<VolunteerTime> volunteerTime;
 
+    /**
+     * Constructor
+     *
+     * @throws IOException
+     */
     public TimeModel() throws IOException
       {
         facadeBll = new FacadeBll();
@@ -19,6 +24,7 @@ public class TimeModel extends Model
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method gets a list of volunteer time.
      *
      * @return volunteerTime
      */
@@ -29,6 +35,7 @@ public class TimeModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method makes it possible to add volunteer time.
      *
      * @param vTime
      * @throws SQLException
@@ -48,6 +55,7 @@ public class TimeModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method makes it possible to remove volunteer time.
      *
      * @param vTime
      * @throws SQLException
@@ -60,6 +68,7 @@ public class TimeModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method makes it possible to update volunteer time.
      *
      * @param vTime
      * @throws SQLException

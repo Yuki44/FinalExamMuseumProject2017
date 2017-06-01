@@ -12,6 +12,11 @@ public class GuildVolunteerModel extends Model
 
     private ObservableList<GuildVolunteer> guildVolunteer = FXCollections.observableArrayList();
 
+    /**
+     * Constructor
+     *
+     * @throws IOException
+     */
     public GuildVolunteerModel() throws IOException
       {
         facadeBll = new FacadeBll();
@@ -27,6 +32,7 @@ public class GuildVolunteerModel extends Model
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method gets a list of guild volunteers.
      *
      * @return guildVolunteer
      */
@@ -35,6 +41,9 @@ public class GuildVolunteerModel extends Model
         return guildVolunteer;
       }
 
+    /**
+     * This method sets the list of guild volunteers
+     */
     public void setGuildVolunteersIntoObservable()
       {
         guildVolunteer.clear();
@@ -43,6 +52,7 @@ public class GuildVolunteerModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method calls the add guild volunteer method.
      *
      * @param gv
      * @throws SQLException
@@ -64,6 +74,7 @@ public class GuildVolunteerModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method calls the remove guild volunteer method.
      *
      * @param gv
      * @throws SQLException

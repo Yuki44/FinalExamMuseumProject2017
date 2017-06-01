@@ -12,6 +12,11 @@ public class AdminModel extends Model
 
     private ObservableList<Administrator> admins = FXCollections.observableArrayList();
 
+    /**
+     * Constructor
+     *
+     * @throws IOException
+     */
     public AdminModel() throws IOException
       {
         facadeBll = new FacadeBll();
@@ -27,6 +32,7 @@ public class AdminModel extends Model
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method gets a list of administrators.
      *
      * @return admins
      */
@@ -35,6 +41,9 @@ public class AdminModel extends Model
         return admins;
       }
 
+    /**
+     * This method sets a list of administrators.
+     */
     public void setAdminsIntoObservable()
       {
         admins.clear();
@@ -43,6 +52,7 @@ public class AdminModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method calls the add admin method.
      *
      * @param ad
      * @throws SQLException
@@ -63,6 +73,7 @@ public class AdminModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method calls the remove admin method.
      *
      * @param ad
      * @throws SQLException
@@ -75,6 +86,7 @@ public class AdminModel extends Model
 
     /** ------------------------------------------------------------------------------------------------------------------------------------------------------. */
     /**
+     * This method calls the update admin method.
      *
      * @param ad
      * @throws SQLException

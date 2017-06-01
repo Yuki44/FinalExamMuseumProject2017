@@ -15,14 +15,14 @@ public abstract class Model
   {
 
     /**
-     * Creates a connection to the BLL.
-     * only connect to the BLL.
+     * Creates a connection to the Facade.
+     *
      */
     protected FacadeBll facadeBll;
 
     /** ---------------------------------------------------------------------------------------------------------------------------. */
     /**
-     * Instantiates a new MuseumManager
+     * Constructor
      *
      * @throws IOException
      */

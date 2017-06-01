@@ -18,26 +18,44 @@ public class PrintModel extends Model
 
     private ObservableList<Volunteer> volunteers;
     private ObservableList<GuildVolunteer> guildsVolunteers;
-//    private ObservableList<VolunteerTime> volunteerTimeBasedOnId;
 
+    /**
+     * Constructor
+     *
+     * @throws IOException
+     */
     public PrintModel() throws IOException
       {
         facadeBll = new FacadeBll();
         volunteers = FXCollections.observableArrayList(facadeBll.getAllVolunteers());
         guildsVolunteers = FXCollections.observableArrayList(facadeBll.getAllGuildVolunteer());
-//        volunteerTimeBasedOnId = FXCollections.observableArrayList(timeRegistrationManager.getVolunteerTimeBasedOnVtrId(vtrId));
       }
 
+    /**
+     * This method gets a list of volunteers
+     *
+     * @return
+     */
     public ObservableList<Volunteer> getVolunteers()
       {
         return volunteers;
       }
 
+    /**
+     * This method gets a list of guild volunteers.
+     *
+     * @return
+     */
     public ObservableList<GuildVolunteer> getGuildVolunteers()
       {
         return guildsVolunteers;
       }
 
+    /**
+     * This method is used to print a .csv file containing all the volunteers.
+     *
+     * @throws Exception
+     */
     public void printAllVtrCsv() throws Exception
       {
 
@@ -90,6 +108,12 @@ public class PrintModel extends Model
         t.start();
       }
 
+    /**
+     * This method is used to print a .csv file containing a guild and all the volunteers that are part of it.
+     *
+     * @param gd
+     * @throws Exception
+     */
     public void printGuildCsv(Guild gd) throws Exception
       {
         Runnable r = () ->
@@ -159,6 +183,13 @@ public class PrintModel extends Model
         t.start();
       }
 
+    /**
+     * This method is used to print a .csv file containing the information
+     * concerning all the hours a volunteer has contributed.
+     *
+     * @param vtr
+     * @throws IOException
+     */
     public void printAllSelectedVolunteerHours(Volunteer vtr) throws IOException
       {
         Runnable r = () ->
