@@ -452,7 +452,7 @@ public class ManagementRegisterVolunteerController extends Controller implements
         String username = addTUNameTxtF.getText().trim();
         String password = addTPassTxtF.getText().trim();
         Manager mg = new Manager(0, fName, lName, email, username, password);
-        managerModel.updateManager(mg);
+        managerModel.addManager(mg);
         addTFNameTxtF.clear();
         addTLNameTxtF.clear();
         addTEmailTxtF.clear();
